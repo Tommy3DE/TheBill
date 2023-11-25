@@ -1,11 +1,10 @@
-import React from "react";
-import sqr from "../assets/icons/Vector.png";
-import hands from "../assets/lapy.png";
-import sqrline from "../assets/icons/Content.png";
+import sqr from "../../assets/icons/Vector.png";
+import hands from "../../assets/lapy.png";
+import sqrline from "../../assets/icons/Content.png";
 
 const Information = () => {
   return (
-    <section className="mt-8 items-center mx-[8%] font-poppins">
+    <section className="mt-20 items-center mx-[8%] font-poppins">
       <div className="flex flex-row w-full">
         <div className="flex flex-col w-[40%]">
           <p>Simplify</p>

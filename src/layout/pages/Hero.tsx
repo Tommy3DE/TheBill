@@ -1,11 +1,11 @@
-import arrow from "../assets/icons/Arrow 1.svg";
-import cat from "../assets/bill_cat_hero.png";
-import bg from "../assets/icons/Group 1.svg";
+import arrow from "../../assets/icons/Arrow 1.svg";
+import cat from "../../assets/bill_cat_hero.png";
+import bg from "../../assets/icons/Group 1.svg";
 
 const Hero = () => {
   return (
     <section className="mt-8 items-center mx-[8%] font-poppins">
-      <div className="flex flex-row h-[700px]">
+      <div className="flex flex-row h-[800px]">
         {" "}
         <div className="flex flex-col w-[40%] justify-center">
           <h1 className="text-7xl mb-8 tracking-wider font-playFair">
@@ -16,13 +16,17 @@ const Hero = () => {
             efektywne kolekcjonowanie faktur kosztowych na koniec miesiąca i
             przesłanie ich dalej do biura rachunkowego.
           </h3>
-          <div className="flex flex-row my-8 justify-between mx-1">
-            <button className="bg-[#2FD453] text-black font-bold text-3xl py-4 px-2 rounded-lg">
+          <div className="flex flex-row mt-14 justify-between mx-1">
+            <button className="bg-[#2FD453] text-black font-bold text-3xl py-4 px-2 rounded-lg hover:text-white hover:scale-105">
               Darmowy okres próbny
             </button>
-            <div className="py-4 px-2 flex flex-row text-3xl">
+            <div className="py-4 px-2 flex flex-row text-3xl group">
               <button className="mr-2">Prezentacja systemu</button>
-              <img src={arrow} alt="arrow"></img>
+              <img
+                src={arrow}
+                alt="arrow"
+                className="transition-transform duration-300 ease-in-out transform group-hover:translate-x-7"
+              ></img>
             </div>
           </div>
         </div>
