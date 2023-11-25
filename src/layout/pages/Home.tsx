@@ -1,16 +1,19 @@
-import React from 'react'
-import Hero from './Hero'
-import Information from './Information'
-import Footer from '../Footer'
+import React from "react";
+import Hero from "./Hero";
+import Information from "./Information";
+import Footer from "../Footer";
+import Navbar from "../Navbar";
+
 
 const Home = () => {
   return (
     <>
-        <Hero/>
-        <Information/>
-        <Footer/>
+      <Navbar />
+      <Hero />
+      <Information />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

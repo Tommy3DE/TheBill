@@ -3,11 +3,14 @@ import fab from "../../assets/pricing/fab.png";
 import prem from "../../assets/pricing/prem.png";
 import standard from "../../assets/pricing/standard.png";
 import { MdOutlineDone } from "react-icons/md";
+import Navbar from "../Navbar";
 
 
 const Cennik = () => {
 
   return (
+    <>
+    <Navbar/>
     <section className="mt-10 items-center mx-[8%] font-poppins">
       <div className="flex flex-col justify-center w-full">
         <h1 className="text-7xl w-full text-center">Cennik</h1>
@@ -106,6 +109,7 @@ const Cennik = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
