@@ -1,6 +1,6 @@
-import sqr from "../../assets/icons/Vector.png";
-import hands from "../../assets/lapy.png";
-import sqrline from "../../assets/icons/Content.png";
+import sqr from "../../../assets/icons/Vector.png";
+import hands from "../../../assets/lapy.png";
+import sqrline from "../../../assets/icons/Content.png";
 
 const Information = () => {
   return (

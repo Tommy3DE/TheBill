@@ -1,6 +1,6 @@
-import arrow from "../../assets/icons/Arrow 1.svg";
-import cat from "../../assets/bill_cat_hero.png";
-import bg from "../../assets/icons/Group 1.svg";
+import arrow from "../../../assets/icons/Arrow 1.svg";
+import cat from "../../../assets/bill_cat_hero.png";
+import bg from "../../../assets/icons/Group 1.svg";
 
 const Hero = () => {
   return (

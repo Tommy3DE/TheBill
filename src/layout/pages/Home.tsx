@@ -1,8 +1,10 @@
 import React from "react";
-import Hero from "./Hero";
-import Information from "./Information";
+import Hero from "./Home/Hero";
+import Information from "./Home/Information";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
+import UseCases from "./Home/UseCases";
+import Opinions from "./Home/Opinions";
 
 
 const Home = () => {
@@ -11,7 +13,9 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Information />
-      <Footer />
+      <UseCases/>
+      <Opinions/>
+      <Footer />  
     </>
   );
 };
