@@ -1,4 +1,3 @@
-import React from "react";
 import faq from "../../../assets/icons/faq.png";
 const FAQ = () => {
   return (

@@ -1,4 +1,3 @@
-import React from "react";
 import Hero from "./Home/Hero";
 import Information from "./Home/Information";
 import Footer from "../Footer";
