@@ -5,6 +5,7 @@ import Footer from "../Footer";
 import Navbar from "../Navbar";
 import UseCases from "./Home/UseCases";
 import Opinions from "./Home/Opinions";
+import FAQ from "./Home/FAQ";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
       <Information />
       <UseCases/>
       <Opinions/>
+      <FAQ/>
       <Footer />  
     </>
   );
