@@ -13,10 +13,10 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/oferta"
+              to="/funkcje"
               className="mr-12 cursor-pointer hover:text-[#50DEF1]"
             >
-              Oferta
+              Funkcje
             </Link>
             <Link
               to="/cennik"
@@ -31,7 +31,7 @@ const Navbar = () => {
               Pomoc
             </Link>
             <Link
-              to="/logowanie"
+              to="/logged"
               className="cursor-pointer hover:text-[#50DEF1]"
             >
               Logowanie
