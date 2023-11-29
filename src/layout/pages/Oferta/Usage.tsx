@@ -60,7 +60,7 @@ const Usage = () => {
   ];
 
   return (
-    <section className="mt-8 items-center mx-[8%] font-poppins flex flex-col border-t-4 border-[#51FFBF]">
+    <section className="mt-8 items-center mx-[8%] font-poppins flex flex-col border-y-4 py-8 border-[#51FFBF]">
       <h1 className="text-4xl tracking-wider mt-12 font-extrabold font-poppins uppercase ">
         Jak aplikacja thebill może pomóc Twojej firmie?
       </h1>
