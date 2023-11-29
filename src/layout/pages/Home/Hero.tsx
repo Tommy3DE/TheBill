@@ -5,19 +5,19 @@ import bg from "../../../assets/icons/Group 1.svg";
 const Hero = () => {
   return (
     <section className="mt-8 items-center mx-[8%] font-poppins">
-      <div className="flex flex-row h-[800px]">
+      <div className="flex flex-row h-[700px]">
         {" "}
-        <div className="flex flex-col w-[40%] justify-center">
-          <h1 className="text-7xl mb-8 tracking-wider font-playFair">
+        <div className="flex flex-col w-[60%] justify-center">
+          <h1 className="text-6xl leading-relaxed mb-8 tracking-wider font-playFair">
             Aplikacja do obsługi faktur w Twojej firmie.
           </h1>
-          <h3 className="text-2xl font-poppins tracking-widest leading-loose text-justify">
+          <h3 className="text-xl font-poppins tracking-widest leading-loose text-justify">
             Nie marnuj więcej czasu i pieniędzy. Aplikacja TheBill pozwoli na
             efektywne kolekcjonowanie faktur kosztowych na koniec miesiąca i
             przesłanie ich dalej do biura rachunkowego.
           </h3>
           <div className="flex flex-row mt-14 justify-between mx-1">
-            <button className="bg-[#2FD453] text-black font-bold text-3xl py-4 px-2 rounded-lg hover:text-white hover:scale-105">
+            <button className="bg-[#2fd453] text-black font-bold text-3xl py-4 px-2 rounded-lg hover:text-white hover:scale-105">
               Darmowy okres próbny
             </button>
             <div className="py-4 px-2 flex flex-row text-3xl group">
@@ -30,7 +30,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="w-[60%] flex justify-center items-center">
+        <div className="w-[40%] flex justify-center items-center">
           <img
             src={cat}
             alt="cat img"
@@ -49,10 +49,7 @@ const Hero = () => {
           <div className="flex flex-col justify-center h-full ">
             {" "}
             <p className="text-lg tracking-wider text-justify mt-2">
-              TheBill is a modern and intuitive invoice management tool designed
-              to streamline your business processes. With its user-centered
-              approach, you can easily create, track, and manage your invoices
-              with efficiency and simplicity.
+            Czy zarządzanie fakturami pochłania Twój cenny czas? Czy organizacja dokumentacji księgowej wydaje się niekończącym się wyzwaniem? Oto TheBill - Twoje nowe, niezawodne narzędzie do zarządzania fakturami, które przyniesie rewolucję w Twoim biznesie.
             </p>
           </div>
         </div>
