@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <section className="items-center mx-[8%] font-poppins">
-      <div className="h-auto w-full flex flex-row mt-[2%]">
-        <img src={logo} alt="logo" />
+    <section className="items-center font-poppins mt-4">
+      <div className=" h-20 w-full flex flex-row justify-center  bg-[#5ffa9d] border-y-4 border-[#1A9367]">
+        <img src={logo} alt="logo" className="h-40 ml-20 mt-4" />
 
-        <div className="flex flex-col flex-1">
-          <ul className="flex flex-row list-none p-0 uppercase justify-center items-center w-full text-xl font-medium">
+
+          <ul className="flex flex-row list-none p-0 uppercase justify-end mr-20 items-center w-full text-xl font-medium">
             <Link to="/" className="mr-12 cursor-pointer hover:text-[#50DEF1]">
               Home
             </Link>
@@ -32,20 +32,17 @@ const Navbar = () => {
             </Link>
             <Link
               to="/logged"
-              className="cursor-pointer hover:text-[#50DEF1]"
+              className="cursor-pointer mr-12 hover:text-[#50DEF1] text-[#0449FB]"
             >
               Logowanie
             </Link>
-          </ul>
-
-          <div className="ml-auto mt-4">
             <Link to="/newUser">
-              <button className="text-black font-[20px] uppercase px-2 py-3 bg-[#50DEF1] rounded-md text-xl hover:text-white hover:scale-105">
+              <button className="text-black font-[20px] uppercase px-2 py-3 bg-[#50DEF1] rounded-md text-xl hover:text-white hover:scale-105 mr-12">
                 Załóż konto
               </button>
             </Link>
-          </div>
-        </div>
+          </ul>
+
       </div>
     </section>
   );
