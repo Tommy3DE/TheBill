@@ -4,8 +4,8 @@ import reviews from "../../../assets/reviews.png";
 
 const Opinions = () => {
   return (
-    <section className="mt-20 items-center mx-[8%] font-poppins">
-      <h1 className="text-center text-4xl font-bold my-10">
+    <section className="mt-20 items-center mx-[8%] font-poppins border-y-4 py-10 border-[#51FFBF]">
+      <h1 className="text-center text-4xl font-extrabold my-14">
         Zaufało nam już wielu klientów. Oto opinie niektórych z nich{" "}
       </h1>
       <div className="flex flex-row">
