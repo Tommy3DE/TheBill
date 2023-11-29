@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <section className="mt-8 items-center mx-[8%] font-poppins">
       <div className="flex flex-col">
-        <img src={invoice} alt="invoice img" />
+        <img src={invoice} alt="invoice img"  className="rounded-xl"/>
         <div className="flex flex-row justify-between w-full mb-10 border-b-2 border-black">
           <ul className="flex flex-row font-bold my-20">
             <li>About Us</li>
