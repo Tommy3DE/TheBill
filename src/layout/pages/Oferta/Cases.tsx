@@ -11,7 +11,7 @@ const Cases = () => {
         Jakie problemy rozwiązuje TheBill?
       </h1>
       <div className="flex justify-end w-full">
-        <div className="w-[60%] h-[600px] border-2 black bg-blue-200 rounded-xl border-black flex flex-row justify-around ">
+        <div className="w-[80%] h-[600px] border-2 black bg-[#D9FFFF] rounded-xl border-black flex flex-row justify-around ">
           <div className="flex flex-col justify-around">
             <img src={cook} alt="cook" className="h-auto w-auto" />
             <div>
@@ -72,7 +72,7 @@ const Cases = () => {
         </div>
       </div>
       <div className="flex justify-start w-full my-12">
-        <div className="w-[60%] h-[600px] border-2 black bg-blue-200 rounded-xl border-black flex flex-row justify-around ">
+        <div className="w-[80%] h-[600px] border-2 black bg-[#D9FFFF] rounded-xl border-black flex flex-row justify-around ">
           <div className="flex flex-col justify-around">
             <img src={hair} alt="cook" className="h-auto w-auto" />
             <div>
@@ -128,7 +128,7 @@ const Cases = () => {
         </div>
       </div>
       <div className="flex justify-end w-full">
-        <div className="w-[60%] h-[600px] border-2 black bg-blue-200 rounded-xl border-black flex flex-row justify-around ">
+        <div className="w-[80%] h-[600px] border-2 black bg-[#D9FFFF] rounded-xl border-black flex flex-row justify-around ">
           <div className="flex flex-col justify-around">
             <img src={programmer} alt="cook" className="h-auto w-auto" />
             <div>
