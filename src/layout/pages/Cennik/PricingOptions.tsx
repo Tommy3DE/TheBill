@@ -22,7 +22,11 @@ type PricingTile = {
   point8: string;
 };
 
-const PricingOptions = (yearly: boolean) => {
+interface PricingOptionsProps {
+  yearly: boolean;
+}
+
+const PricingOptions = ({ yearly }: PricingOptionsProps) => {
   const pricing: PricingTile[] = [
     {
       id: 0,
@@ -71,7 +75,6 @@ const PricingOptions = (yearly: boolean) => {
       point6: "priorytetowe naprawianie błędów/ obsługa",
       point7: "",
       point8: "",
-
     },
     {
       id: 3,
@@ -117,17 +120,17 @@ const PricingOptions = (yearly: boolean) => {
               <img
                 src={tile.img}
                 alt={tile.title}
-                className="mt-10 rounded-lg"
+                className="mt-10 rounded-lg h-72"
               />
               <div className="h-1 bg-green-700 w-full my-5" />
               <h1 className="text-5xl text-[#1A9367]">
                 {yearly !== true ? tile.priceMth : tile.priceYrl} zł
               </h1>
-              <h3 className="mt-10 text-gray-400 text-2xl text-center">
+              <h3 className="mt-5 text-gray-400 text-2xl text-center">
                 {tile.text}
               </h3>
             </div>
-            <div className='flex flex-col mt-10 justify-start h-1/2'>
+            <div className="flex flex-col mt-10 justify-start h-1/2">
               <div className="flex flex-row items-start w-full mb-5">
                 <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
                 <p className="font-bold text-lg w-5/6">{tile.point1}</p>
@@ -140,46 +143,36 @@ const PricingOptions = (yearly: boolean) => {
                 <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
                 <p className="font-bold text-lg w-5/6">{tile.point3}</p>
               </div>
-              {
-                tile.point4 !== '' && (
-                    <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
-                <p className="font-bold text-lg w-5/6">{tile.point4}</p>
-              </div>
-                )
-              }
-              {
-                tile.point5 !== '' && (
-                    <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
-                <p className="font-bold text-lg w-5/6">{tile.point5}</p>
-              </div>
-                )
-              }
-              {
-                tile.point6 !== '' && (
-                    <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
-                <p className="font-bold text-lg w-5/6">{tile.point6}</p>
-              </div>
-                )
-              }
-              {
-                tile.point7 !== '' && (
-                    <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
-                <p className="font-bold text-lg w-5/6">{tile.point7}</p>
-              </div>
-                )
-              }
-              {
-                tile.point8 !== '' && (
-                    <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
-                <p className="font-bold text-lg w-5/6">{tile.point8}</p>
-              </div>
-                )
-              }
+              {tile.point4 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point4}</p>
+                </div>
+              )}
+              {tile.point5 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point5}</p>
+                </div>
+              )}
+              {tile.point6 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point6}</p>
+                </div>
+              )}
+              {tile.point7 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point7}</p>
+                </div>
+              )}
+              {tile.point8 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point8}</p>
+                </div>
+              )}
             </div>
           </div>
         ))}
