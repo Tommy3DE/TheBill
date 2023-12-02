@@ -93,12 +93,12 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
     },
   ];
   return (
-    <section className="mt-[-70px] items-center mx-[8%] font-poppins mb-32">
-      <div className="flex flex-row justify-evenly">
+    <section className="mt-[-70px] items-center lg:mx-[8%] font-poppins mb-32">
+      <div className="flex flex-col lg:flex-row justify-evenly">
         {pricing.map((tile) => (
           <div
             key={tile.id}
-            className="border-4 rounded-xl w-1/4 mx-4 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white"
+            className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white"
           >
             <div className="flex flex-col items-center h-1/2">
               <h1
