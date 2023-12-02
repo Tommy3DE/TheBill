@@ -10,7 +10,7 @@ const Footer = () => {
     <section className="mt-8 items-center mx-[8%] font-poppins">
       <div className="flex flex-col">
         <img src={invoice} alt="invoice img"  className="rounded-xl"/>
-        <div className="flex flex-row justify-between w-full mb-10 border-b-2 border-black">
+        <div className="flex lg:flex-row flex-col justify-between w-full mb-10 border-b-2 border-black">
           <ul className="flex flex-row font-bold my-20">
             <li>About Us</li>
             <li className="mx-5">Contact Us</li>
@@ -18,7 +18,7 @@ const Footer = () => {
             <li className="mx-5">Support</li>
             <li>Blog</li>
           </ul>
-          <div className="flex flex-row my-20 text-lg">
+          <div className="lg:flex lg:flex-row my-20 hidden text-lg">
             <FaFacebook />
             <FaInstagram className="mx-2" />
             <FaXTwitter />
@@ -28,11 +28,11 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="flex flex-row justify-center mb-10">
+        <div className="flex lg:flex-row flex-col items-center justify-center mb-10">
           <p>© 2023 TheBill All rights reserved.</p>
-          <p className="mx-8">Privacy Policy</p>
-          <p className="mr-8">Terms and Conditions</p>
-          <p>Cookie Policy</p>
+          <p className="mx-8 hidden lg:block">Privacy Policy</p>
+          <p className="mr-8 hidden lg:block">Terms and Conditions</p>
+          <p className=" hidden lg:block">Cookie Policy</p>
         </div>
       </div>
     </section>
