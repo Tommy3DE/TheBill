@@ -16,8 +16,8 @@ const UseCases = () => {
         Szerokie zastosowanie naszej aplikacji w różnych branżach
       </h1>
       <div className="flex flex-col mt-20">
-        <div className="flex flex-row w-full">
-          <div className="w-1/3">
+        <div className="flex lg:flex-row flex-col w-full">
+          <div className="lg:w-1/3 w-full">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Medycyna</h1>
               <img src={med} alt="icon" />
@@ -30,7 +30,7 @@ const UseCases = () => {
               medykamenty, ułatwiająca zarządzanie finansami gabinetu.
             </p>
           </div>
-          <div className="w-1/3 mx-10">
+          <div className="lg:w-1/3 w-full lg:mx-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Edukacja</h1>
               <img src={edu} alt="icon" />
@@ -58,7 +58,7 @@ const UseCases = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-row w-full mt-14">
+        <div className="flex lg:flex-row flex-col w-full mt-14">
           <div className="w-1/3">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Księgowość</h1>
@@ -99,7 +99,7 @@ const UseCases = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-row w-full mt-14">
+        <div className="flex lg:flex-row flex-col w-full mt-14">
           <div className="w-1/3">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Budownictwo</h1>

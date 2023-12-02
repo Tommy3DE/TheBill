@@ -8,8 +8,8 @@ const Opinions = () => {
       <h1 className="text-center text-4xl font-extrabold my-14">
         Zaufało nam już wielu klientów. Oto opinie niektórych z nich{" "}
       </h1>
-      <div className="flex flex-row">
-        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 w-1/2 mr-24">
+      <div className="flex lg:flex-row flex-col">
+        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 lg:w-1/2 lg:mr-24">
           <div className="flex justify-center flex-row text-3xl my-5">
             <IoIosStar className="text-yellow-300" />
             <IoIosStar className="text-yellow-300" />
@@ -28,7 +28,7 @@ const Opinions = () => {
             Dagmara
           </h3>
         </div>
-        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 w-1/2">
+        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 lg:w-1/2 mt-5 lg:mt-0 mb-5 lg:mb-0">
           <div className="flex justify-center flex-row text-3xl my-5">
             <IoIosStar className="text-yellow-300" />
             <IoIosStar className="text-yellow-300" />
@@ -48,9 +48,9 @@ const Opinions = () => {
           </h3>
         </div>
       </div>
-      <img src={reviews} alt="review-pic" className="w-full my-14" />
-      <div className="flex flex-row justify-around">
-        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 w-1/2 mr-24">
+      <img src={reviews} alt="review-pic" className="w-full my-14 lg:block hidden" />
+      <div className="flex lg:flex-row flex-col justify-around">
+        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 lg:w-1/2 lg:mr-24">
           <div className="flex justify-center flex-row text-3xl my-5">
             <IoIosStar className="text-yellow-300" />
             <IoIosStar className="text-yellow-300" />
@@ -68,7 +68,7 @@ const Opinions = () => {
             Zbigniew
           </h3>
         </div>
-        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 w-1/2">
+        <div className="border-2 rounded-lg border-green-700 flex flex-col justify-between p-5 lg:w-1/2 mt-5 lg:mt-0">
           <div className="flex justify-center flex-row text-3xl my-5">
             <IoIosStar className="text-yellow-300" />
             <IoIosStar className="text-yellow-300" />
