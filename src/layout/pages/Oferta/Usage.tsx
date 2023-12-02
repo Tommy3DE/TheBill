@@ -62,26 +62,26 @@ const Usage = () => {
   return (
     <section className="mt-8 items-center mx-[8%] font-poppins flex flex-col border-y-4 py-8 border-[#51FFBF]">
       <h1 className="text-4xl tracking-wider mt-12 font-extrabold font-poppins uppercase ">
-        Jak aplikacja thebill może pomóc Twojej firmie?
+        Jak aplikacja TheBill może pomóc Twojej firmie?
       </h1>
       <div className="flex-col">
         {steps.map((step) => (
           <div className="w-full flex flex-col my-5" key={step.id}>
-            <h1 className="font-extrabold text-4xl  my-8">{step.title}</h1>
-            <div className="flex-row flex justify-center ml-[-40px]">
-              <img src={step.img} alt={step.img} className="mr-8"/>
-              <div className="flex flex-col w-2/3">
+            <h1 className="font-extrabold text-4xl my-8 lg:text-start text-center">{step.title}</h1>
+            <div className="lg:flex-row flex-col flex justify-center items-center lg:ml-[-40px]">
+              <img src={step.img} alt={step.img} className="lg:mr-8 py-5 lg:py-0"/>
+              <div className="flex flex-col lg:w-2/3">
                 <div className="flex flex-row">
-                  <IoCheckmarkDone className="text-green-500 mr-2 text-2xl" />
-                  <p className="text-2xl">{step.point1}</p>
+                  <IoCheckmarkDone className="text-green-500 mr-2 lg:text-2xl text-4xl w-1/12" />
+                  <p className="text-2xl w-11/12">{step.point1}</p>
                 </div>
                 <div className="flex flex-row my-4">
-                  <IoCheckmarkDone className="text-green-500 mr-2 text-2xl" />
-                  <p className="text-2xl">{step.point2}</p>
+                <IoCheckmarkDone className="text-green-500 mr-2 lg:text-2xl text-4xl w-1/12" />
+                  <p className="text-2xl w-11/12">{step.point2}</p>
                 </div>{" "}
                {step.point3 !== '' &&  <div className="flex flex-row">
-                  <IoCheckmarkDone className="text-green-500 mr-2 text-2xl" />
-                  <p className="text-2xl">{step.point3}</p>
+               <IoCheckmarkDone className="text-green-500 mr-2 lg:text-2xl text-4xl w-1/12" />
+                  <p className="text-2xl w-11/12">{step.point3}</p>
                 </div>}
               </div>
             </div>
