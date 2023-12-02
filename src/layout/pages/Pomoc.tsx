@@ -24,7 +24,7 @@ const Pomoc = () => {
     <>
       <Navbar />
       <section className="mt-8 font-poppins flex flex-col">
-        <div className="mt-24 text-center w-full bg-[#DDFFED]">
+        <div className="lg:mt-24 text-center w-full bg-[#DDFFED]">
           <h1 className="text-6xl tracking-wider font-playFair font-bold my-10">
             Jak możemy Cię wesprzeć w prowadzeniu biznesu?{" "}
           </h1>
@@ -34,16 +34,16 @@ const Pomoc = () => {
           </h2>
         </div>
         <div className=" h-auto w-full">
-          <div className="mx-[12%]">
+          <div className="lg:mx-[12%]">
             <div className="flex flex-col mt-14">
-              <div className="flex items-center ml-[10%]">
+              <div className="flex items-center lg:ml-[10%] mb-10 lg:mb-0">
                 <img src={airplane} alt="airplane" />
                 <h2 className="font-poppins text-4xl font-extrabold ml-5">
                   Formularz kontaktowy
                 </h2>
               </div>
-              <div className="flex flex-row w-full justify-evenly">
-                <div className="flex flex-col text-xl justify-center w-1/3">
+              <div className="flex lg:flex-row w-full flex-col justify-evenly">
+                <div className="flex flex-col text-xl justify-center lg:w-1/3">
                   <input
                     type="text"
                     placeholder="Imię i nazwisko"
