@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from "../Navbar";
 import airplane from "../../assets/icons/airplane.jpg";
 import catHelp from "../../assets/catHelp.jpg";
@@ -6,6 +8,18 @@ import Address from "./Pomoc/Address";
 import Footer from "../Footer";
 
 const Pomoc = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const itemId = searchParams.get('item');
+    if (itemId) {
+      const element = document.getElementById(`accordion-item-${itemId}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
   return (
     <>
       <Navbar />
@@ -22,7 +36,7 @@ const Pomoc = () => {
         <div className=" h-auto w-full">
           <div className="mx-[12%]">
             <div className="flex flex-col mt-14">
-              <div className="flex items-center ml-[13%]">
+              <div className="flex items-center ml-[10%]">
                 <img src={airplane} alt="airplane" />
                 <h2 className="font-poppins text-4xl font-extrabold ml-5">
                   Formularz kontaktowy

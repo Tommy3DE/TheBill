@@ -28,12 +28,13 @@ const BasicInfo = () => {
             Z naszą aplikacją możliwe jest zautomatyzowanie komunikacji z działem księgowym.  Aplikacja poprzez skanowanie skrzynki mailowej w poszukiwaniu załączników PDF, oszczędza czas i eliminuje ryzyko pominięcia dokumentów. 
             </p>
         </div>
-        <div className="mt-32 flex flex-row justify-center">
+        <div className="mt-32 flex lg:flex-row flex-col justify-center">
             {infoTiles.map((tile)=>(
-                <div className="w-[270px] mx-12 flex justify-around flex-col items-center" key={tile.id}>
-                    <img src={tile.pic} alt={tile.pic} className=' w-28 h-28 mx-auto mb-10'/>
-                    <h1 className='text-2xl font-bold text-center w-10/12'>{tile.title}</h1>
-                    <p className='mt-20 text-justify text-xl'>{tile.text}</p>
+                
+                <div className="lg:w-[270px] lg:mx-12 flex justify-around flex-col items-center py-10" key={tile.id}>
+                    <img src={tile.pic} alt={tile.pic} className='lg:w-28 lg:h-28 mx-auto lg:mb-10'/>
+                    <h1 className='text-2xl font-bold text-center lg:w-10/12 my-10'>{tile.title}</h1>
+                    <p className='lg:mt-20 text-justify text-xl'>{tile.text}</p>
                 </div>
             )) }
         </div>

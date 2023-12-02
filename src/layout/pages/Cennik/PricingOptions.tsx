@@ -1,4 +1,3 @@
-import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import bida from "../../../assets/pricing/bida.png";
 import fab from "../../../assets/pricing/fab.png";

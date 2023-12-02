@@ -23,7 +23,7 @@ const FAQ = () => {
   return (
     <Accordion className='' transition transitionTimeout={1000}>
         {accTiles.map((tile)=>(
-            <AccordionItem header={tile.title} key={tile.id} className='text-3xl border-2 text-start p-4 w-1/2 mx-auto my-2 font-extrabold'>
+            <AccordionItem header={tile.title} key={tile.id} id={`accordion-item-${tile.id}`} className='text-3xl border-2 text-start p-4 w-1/2 mx-auto my-2 font-extrabold'>
             <p className='text-lg font-normal pt-4'>{tile.text}</p>
           </AccordionItem>
         ))}
@@ -32,4 +32,5 @@ const FAQ = () => {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default FAQ
