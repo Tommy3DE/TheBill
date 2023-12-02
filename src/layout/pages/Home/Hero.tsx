@@ -5,10 +5,10 @@ import bg from "../../../assets/icons/Group 1.svg";
 const Hero = () => {
   return (
     <section className="mt-8 items-center mx-[8%] font-poppins">
-      <div className="flex flex-row lg:h-[700px]">
+      <div className="flex lg:flex-row flex-col-reverse lg:h-[700px]">
         {" "}
-        <div className="flex flex-col w-[60%] justify-center">
-          <h1 className="text-6xl leading-relaxed mb-8 tracking-wider font-playFair">
+        <div className="flex flex-col lg:w-[60%] justify-center">
+          <h1 className="lg:text-6xl text-5xl leading-relaxed mb-8 tracking-wider font-playFair lg:text-start text-center">
             Aplikacja do obsługi faktur w Twojej firmie.
           </h1>
           <h3 className="text-xl font-poppins tracking-widest leading-loose text-justify">
@@ -16,11 +16,11 @@ const Hero = () => {
             efektywne kolekcjonowanie faktur kosztowych na koniec miesiąca i
             przesłanie ich dalej do biura rachunkowego.
           </h3>
-          <div className="flex flex-row mt-14 justify-between mx-1">
-            <button className="bg-[#2fd453] text-black font-bold text-3xl py-4 px-2 rounded-lg hover:text-white hover:scale-105">
+          <div className="flex lg:flex-row flex-col mt-14 justify-between mx-1">
+            <button className="bg-[#2fd453] text-black font-bold lg:text-3xl text-2xl py-4 px-2 rounded-lg hover:text-white hover:scale-105">
               Darmowy okres próbny
             </button>
-            <div className="py-4 px-2 flex flex-row text-3xl group">
+            <div className="py-4 px-2 flex flex-row lg:text-3xl text-2xl mt-5 lg:mt-0 group">
               <button className="mr-2">Prezentacja systemu</button>
               <img
                 src={arrow}
@@ -30,7 +30,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="w-[40%] flex justify-center items-center">
+        <div className="lg:w-[40%] flex justify-center items-center">
           <img
             src={cat}
             alt="cat img"
@@ -38,7 +38,7 @@ const Hero = () => {
           />
         </div>
       </div>
-      <div className="border border-black text-center text-lg font-poppins rounded-md">
+      <div className="border border-black text-center text-lg font-poppins rounded-md lg:block hidden">
         <div className="flex flex-row justify-center py-3 px-7 ">
           <div className="relative pr-5">
             <img src={bg} alt="bg" />
