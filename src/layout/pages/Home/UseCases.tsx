@@ -30,7 +30,7 @@ const UseCases = () => {
               medykamenty, ułatwiająca zarządzanie finansami gabinetu.
             </p>
           </div>
-          <div className="lg:w-1/3 w-full lg:mx-10">
+          <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Edukacja</h1>
               <img src={edu} alt="icon" />
@@ -43,7 +43,7 @@ const UseCases = () => {
               pozwala na efektywne zarządzanie budżetem szkoły.
             </p>
           </div>
-          <div className="w-1/3">
+          <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Finanse</h1>
               <img src={cash} alt="icon" />
@@ -58,8 +58,8 @@ const UseCases = () => {
             </p>
           </div>
         </div>
-        <div className="flex lg:flex-row flex-col w-full mt-14">
-          <div className="w-1/3">
+        <div className="flex lg:flex-row flex-col w-full lg:mt-14">
+        <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Księgowość</h1>
               <img src={calc} alt="icon" />
@@ -72,7 +72,7 @@ const UseCases = () => {
               przyspiesza i ułatwia procesy księgowe.
             </p>
           </div>
-          <div className="w-1/3 mx-10">
+          <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">IT</h1>
               <img src={it} alt="icon" />
@@ -85,7 +85,7 @@ const UseCases = () => {
               komputerowy i usługi hostingowe.
             </p>
           </div>
-          <div className="w-1/3">
+          <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Gastronomia</h1>
               <img src={gastro} alt="icon" />
@@ -99,8 +99,8 @@ const UseCases = () => {
             </p>
           </div>
         </div>
-        <div className="flex lg:flex-row flex-col w-full mt-14">
-          <div className="w-1/3">
+        <div className="flex lg:flex-row flex-col w-full lg:mt-14">
+        <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Budownictwo</h1>
               <img src={tool} alt="icon" />
@@ -113,7 +113,7 @@ const UseCases = () => {
               podwykonawców, co zapewnia lepszą kontrolę nad budżetem projektu.
             </p>
           </div>
-          <div className="w-1/3 mx-10">
+          <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Handel</h1>
               <img src={bag} alt="icon" />
@@ -126,7 +126,7 @@ const UseCases = () => {
               wynajem powierzchni handlowych.
             </p>
           </div>
-          <div className="w-1/3">
+          <div className="lg:w-1/3 w-full lg:mx-10 mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Transport</h1>
               <img src={car} alt="icon" />

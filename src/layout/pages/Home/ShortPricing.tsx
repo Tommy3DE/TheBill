@@ -50,10 +50,10 @@ const ShortPricing = () => {
   ];
   return (
     <section className="mt-20 items-center mx-[8%] font-poppins border-[#51FFBF] border-t-4">
-      <div className="flex flex-row w-full justify-center">
+      <div className="flex lg:flex-row flex-col w-full justify-center">
         {pricingTiles.map((tile) => (
           <div
-            className="flex flex-col mx-5 w-1/6 border-4 border-[#1DCF8F] items-center my-14 rounded"
+            className="flex flex-col mx-5 lg:w-1/6 border-4 border-[#1DCF8F] items-center my-14 rounded"
             key={tile.id}
           >
             <h1 className="text-2xl my-5 font-playFair">{tile.title}</h1>
@@ -78,11 +78,11 @@ const ShortPricing = () => {
         ))}
       </div>
       <div className="flex flex-row justify-center items-center w-full">
-        <div className="w-3/12 h-1 bg-[#51FFBF]"/>
-        <div className="w-6/12 h-12 rounded border-[#51FFBF] border-4 text-center text-3xl tracking-wider font-extrabold">
+        <div className="w-3/12 h-1 bg-[#51FFBF] hidden lg:block"/>
+        <div className="lg:w-6/12 w-full h-12 rounded border-[#51FFBF] border-4 text-center text-3xl tracking-wider font-extrabold">
         Dowiedz się więcej
         </div>
-        <div className=" w-3/12 h-1 bg-[#51FFBF]"/>
+        <div className=" w-3/12 h-1 bg-[#51FFBF] hidden lg:block"/>
         
       </div>
     </section>

@@ -5,7 +5,7 @@ import bg from "../../../assets/icons/Group 1.svg";
 const Hero = () => {
   return (
     <section className="mt-8 items-center mx-[8%] font-poppins">
-      <div className="flex flex-row h-[700px]">
+      <div className="flex flex-row lg:h-[700px]">
         {" "}
         <div className="flex flex-col w-[60%] justify-center">
           <h1 className="text-6xl leading-relaxed mb-8 tracking-wider font-playFair">
