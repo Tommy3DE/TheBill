@@ -2,7 +2,7 @@
 const LoggedUserHome = () => {
   return (
     <div>
-        ddd
+        
     </div>
   )
 }
