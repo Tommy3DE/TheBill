@@ -8,6 +8,7 @@ import Oferta from "./layout/pages/Oferta";
 import Pomoc from "./layout/pages/Pomoc";
 import Navbar from "./layout/Navbar";
 import LoggedUserHome from "./loggedUser/LoggedUserHome";
+import Settings from "./loggedUser/Settings/Settings";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/pomoc" element={<Pomoc />} />
           <Route path="/logowanie" element={<Navbar />} />
           <Route path="/logged"  element={<LoggedUserHome/>} />
+          <Route path="/logged/settings" element={<Settings/>}></Route>
         </Routes>
       </Router>
     </>

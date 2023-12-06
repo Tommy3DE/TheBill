@@ -18,19 +18,19 @@ type HomeTile = {
 
 const LoggedHome = () => {
   const homeLinks: HomeTile[] = [
-    { id: 1, name: "skanuj e-mail", linkTo: "", icon: scanning },
-    { id: 2, name: "zsynchronizuj skrzynkę", linkTo: "", icon: loading },
-    { id: 3, name: "skanuj dokument", linkTo: "", icon: scan },
-    { id: 4, name: "historia eksportów", linkTo: "", icon: logHis },
-    { id: 5, name: "dokumenty", linkTo: "", icon: document },
-    { id: 6, name: "kontrahenci", linkTo: "", icon: seller },
-    { id: 7, name: "ustawienia", linkTo: "", icon: logsettings },
-    { id: 8, name: "wyloguj", linkTo: "/", icon: logout },
+    { id: 1, name: "Skanuj e-mail", linkTo: "", icon: scanning },
+    { id: 2, name: "Zsynchronizuj skrzynkę", linkTo: "", icon: loading },
+    { id: 3, name: "Skanuj dokument", linkTo: "", icon: scan },
+    { id: 4, name: "Historia eksportów", linkTo: "", icon: logHis },
+    { id: 5, name: "Dokumenty", linkTo: "", icon: document },
+    { id: 6, name: "Kontrahenci", linkTo: "", icon: seller },
+    { id: 7, name: "Ustawienia", linkTo: "/logged/settings", icon: logsettings },
+    { id: 8, name: "Wyloguj", linkTo: "/", icon: logout },
   ];
 
   return (
     <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center">
-        <div className="w-[90%] bg-gray-300 rounded-lg mt-10 p-4 text-lg flex flex-row justify-start items-center font-bold ">
+        <div className="w-[90%] bg-gray-300 rounded-lg mt-10 p-4 text-lg flex flex-row justify-start items-center font-bold animate-pulse ">
             <img src={bell} alt="bell" className="mr-4"/>
             <p>
             Logujesz się do naszego systemu po raz pierwszy. Skonfiguruj swoją skrzynkę mailową
@@ -40,7 +40,7 @@ const LoggedHome = () => {
         {homeLinks.map((link) => (
           <div
             key={link.id}
-            className="lg:w-1/5 w-[90%] h-60 bg-green-300 lg:mx-1 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center border-2 border-green-800 py-4"
+            className="lg:w-1/5 w-[90%] h-60 bg-green-300 lg:mx-1 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center border-2 hover:scale-105 hover:bg-green-200 border-green-800 py-4"
           >
             <Link to={link.linkTo}>
               <img src={link.icon} alt={link.name} className="h-28 w-28"/>
