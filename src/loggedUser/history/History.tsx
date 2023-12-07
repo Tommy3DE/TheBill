@@ -1,7 +1,12 @@
+import SlimNav from "../../layout/SlimNav"
+import HistoryRoutes from "./components/HistoryRoutes"
 
 const History = () => {
   return (
-    <div>History</div>
+    <div className="h-auto lg:h-screen w-full">
+    <SlimNav/>
+    <HistoryRoutes/>
+    </div>
   )
 }
 
