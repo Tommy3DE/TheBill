@@ -21,7 +21,7 @@ const LoggedHome = () => {
     { id: 1, name: "Skanuj e-mail", linkTo: "", icon: scanning },
     { id: 2, name: "Zsynchronizuj skrzynkę", linkTo: "", icon: loading },
     { id: 3, name: "Skanuj dokument", linkTo: "", icon: scan },
-    { id: 4, name: "Historia eksportów", linkTo: "", icon: logHis },
+    { id: 4, name: "Historia eksportów", linkTo: "/logged/history", icon: logHis },
     { id: 5, name: "Dokumenty", linkTo: "", icon: document },
     { id: 6, name: "Kontrahenci", linkTo: "", icon: seller },
     { id: 7, name: "Ustawienia", linkTo: "/logged/settings", icon: logsettings },

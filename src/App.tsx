@@ -9,6 +9,7 @@ import Pomoc from "./layout/pages/Pomoc";
 import Navbar from "./layout/Navbar";
 import LoggedUserHome from "./loggedUser/LoggedUserHome";
 import Settings from "./loggedUser/Settings/Settings";
+import History from "./loggedUser/history/History";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route path="/pomoc" element={<Pomoc />} />
           <Route path="/logowanie" element={<Navbar />} />
           <Route path="/logged"  element={<LoggedUserHome/>} />
-          <Route path="/logged/settings" element={<Settings/>}></Route>
+          <Route path="/logged/settings" element={<Settings/>} />
+          <Route path='/logged/history' element={<History/>} />
         </Routes>
       </Router>
     </>
