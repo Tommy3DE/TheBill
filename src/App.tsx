@@ -12,6 +12,7 @@ import Settings from "./loggedUser/Settings/Settings";
 import History from "./loggedUser/history/History";
 import { Documents } from "./loggedUser/documents/Documents";
 import Clients from "./loggedUser/clients/Clients";
+import Scan from "./loggedUser/scan/Scan";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/logged/history' element={<History/>} />
           <Route path="/logged/documents" element={<Documents/>} />
           <Route path="/logged/clients" element={<Clients/>} />
+          <Route path="/logged/scanDoc" element={<Scan/>} />
         </Routes>
       </Router>
     </>

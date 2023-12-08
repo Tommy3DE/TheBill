@@ -20,7 +20,7 @@ const LoggedHome = () => {
   const homeLinks: HomeTile[] = [
     { id: 1, name: "Skanuj e-mail", linkTo: "", icon: scanning },
     { id: 2, name: "Zsynchronizuj skrzynkę", linkTo: "", icon: loading },
-    { id: 3, name: "Skanuj dokument", linkTo: "", icon: scan },
+    { id: 3, name: "Skanuj dokument", linkTo: "/logged/scanDoc", icon: scan },
     { id: 4, name: "Historia eksportów", linkTo: "/logged/history", icon: logHis },
     { id: 5, name: "Dokumenty", linkTo: "/logged/documents", icon: document },
     { id: 6, name: "Kontrahenci", linkTo: "/logged/clients", icon: seller },
