@@ -23,7 +23,7 @@ const LoggedHome = () => {
     { id: 3, name: "Skanuj dokument", linkTo: "", icon: scan },
     { id: 4, name: "Historia eksportów", linkTo: "/logged/history", icon: logHis },
     { id: 5, name: "Dokumenty", linkTo: "/logged/documents", icon: document },
-    { id: 6, name: "Kontrahenci", linkTo: "", icon: seller },
+    { id: 6, name: "Kontrahenci", linkTo: "/logged/clients", icon: seller },
     { id: 7, name: "Ustawienia", linkTo: "/logged/settings", icon: logsettings },
     { id: 8, name: "Wyloguj", linkTo: "/", icon: logout },
   ];
