@@ -13,7 +13,7 @@ type HistoryTiles = {
   message: string;
 };
 const HistoryRoutes = () => {
-  const settings: HistoryTiles[] = [
+  const hisTiles: HistoryTiles[] = [
     {
       id: 1,
       title: "Historia skanowania skrzynki",
@@ -39,7 +39,7 @@ const HistoryRoutes = () => {
         "Historia pobranych faktur i aktualizacji Twojego folderu z dokumentami, znajduje się w panelu “historia pobranych faktur”",
     },
     {
-      id: 3,
+      id: 4,
       title: "Historia skanów dokumentów papierowych",
       icon: scan,
       route: "",
@@ -56,7 +56,7 @@ const HistoryRoutes = () => {
         </div>
       </div>
       <div className="flex lg:flex-row flex-col justify-center items-center lg:mx-0 mx-5">
-        {settings.map((item) => (
+        {hisTiles.map((item) => (
           <div
             key={item.id}
             className=" lg:w-[15%] w-full  mx-5 flex flex-col justify-center lg:py-14  "
