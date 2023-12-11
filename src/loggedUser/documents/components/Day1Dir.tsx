@@ -12,62 +12,62 @@ const Day1Dir = () => {
     {
       id: 1,
       title: "01/2022",
-      route: "",
+      route: "012022",
     },
     {
       id: 2,
       title: "02/2022",
-      route: "",
+      route: "022022",
     },
     {
       id: 3,
       title: "03/2022",
-      route: "",
+      route: "032022",
     },
     {
       id: 4,
       title: "04/2022",
-      route: "",
+      route: "042022",
     },
     {
       id: 5,
       title: "05/2022",
-      route: "",
+      route: "052022",
     },
     {
       id: 6,
       title: "06/2022",
-      route: "",
+      route: "062022",
     },
     {
       id: 7,
       title: "07/2022",
-      route: "",
+      route: "072022",
     },
     {
       id: 8,
       title: "08/2022",
-      route: "",
+      route: "082022",
     },
     {
       id: 9,
       title: "09/2022",
-      route: "",
+      route: "092022",
     },
     {
       id: 10,
       title: "10/2022",
-      route: "",
+      route: "102022",
     },
     {
       id: 11,
       title: "11/2022",
-      route: "",
+      route: "112022",
     },
     {
       id: 12,
       title: "12/2022",
-      route: "",
+      route: "122022",
     },
   ];
   return (
@@ -76,10 +76,12 @@ const Day1Dir = () => {
       <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-44">
         {dirs.map((item) => (
           <div key={item.id} className="flex flex-col items-center">
+            <Link to={`/logged/documents/${item.route}`}>
             <div className="text-xl rounded-lg flex-col bg-green-300 p-8 mb-5 hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black">
               <img src={dir} alt={item.title} className="mx-auto mb-5" />
               <p className="text-center px-2">{item.title}</p>
             </div>
+            </Link>
           </div>
         ))}
       </div>

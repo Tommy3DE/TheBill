@@ -14,6 +14,7 @@ import History from "./loggedUser/history/History";
 import Clients from "./loggedUser/clients/Clients";
 import Scan from "./loggedUser/scan/Scan";
 import Day1Dir from "./loggedUser/documents/components/Day1Dir";
+import MthPage from "./loggedUser/documents/components/MthPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/logged/documents" element={<Day1Dir/>} />
           <Route path="/logged/clients" element={<Clients/>} />
           <Route path="/logged/scanDoc" element={<Scan/>} />
+          <Route path="/logged/documents/:date" element={<MthPage />}/>
         </Routes>
       </Router>
     </>
