@@ -236,7 +236,7 @@ const NewUser = () => {
                   <button
                     type="button"
                     onClick={() => handleSizeSelect("JDG", setFieldValue)}
-                    className={`w-1/5  border-2 rounded p-4 h-[450px] border-green-800 text-2xl ${
+                    className={`w-1/2  border-2 rounded p-4 h-[450px] border-green-800 text-2xl ${
                       selectedSize === "JDG" ? "bg-green-200" : "bg-slate-100"
                     }`}
                   >
@@ -248,7 +248,7 @@ const NewUser = () => {
                     onClick={() =>
                       handleSizeSelect("Mikro - przedsiębiorca", setFieldValue)
                     }
-                    className={`w-1/5  border-2 rounded p-4 h-[450px] border-green-800 text-2xl ${
+                    className={`w-1/5  border-2 rounded p-4 hidden h-[450px] border-green-800 text-2xl ${
                       selectedSize === "Mikro - przedsiębiorca"
                         ? "bg-green-200"
                         : "bg-slate-100"
@@ -261,7 +261,7 @@ const NewUser = () => {
                     onClick={() =>
                       handleSizeSelect("Biuro Rachunkowe", setFieldValue)
                     }
-                    className={`w-1/5 border-2 rounded p-4 h-[450px] border-green-800 text-2xl ${
+                    className={`w-1/5 border-2 rounded p-4 hidden h-[450px] border-green-800 text-2xl ${
                       selectedSize === "Biuro Rachunkowe"
                         ? "bg-green-200"
                         : "bg-slate-100"
@@ -274,7 +274,7 @@ const NewUser = () => {
                     onClick={() =>
                       handleSizeSelect("Średnia lub duża firma", setFieldValue)
                     }
-                    className={`w-1/5 border-2 rounded p-4 h-[450px] border-green-800 text-2xl ${
+                    className={`w-1/5 border-2 rounded p-4 hidden h-[450px] border-green-800 text-2xl ${
                       selectedSize === "Średnia lub duża firma"
                         ? "bg-green-200"
                         : "bg-slate-100"
