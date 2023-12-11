@@ -73,7 +73,7 @@ const Day1Dir = () => {
   return (
     <section className="font-poppins">
       <SlimNav/>
-      <div className="grid grid-cols-4 gap-4 lg:mx-0 mt-44">
+      <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-44">
         {dirs.map((item) => (
           <div key={item.id} className="flex flex-col items-center">
             <div className="text-xl rounded-lg flex-col bg-green-300 p-8 mb-5 hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black">
