@@ -73,7 +73,7 @@ const Day1Dir = () => {
   return (
     <section className="font-poppins">
       <SlimNav/>
-      <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-44 lg:mb-20">
+      <div className="grid lg:grid-cols-4 grid-cols-2 gap-4 mt-44 lg:mb-20 w-[70%] mx-auto">
         {dirs.map((item) => (
           <div key={item.id} className="flex flex-col items-center">
             <Link to={`/logged/documents/${item.route}`}>

@@ -19,7 +19,7 @@ type HomeTile = {
 const LoggedHome = () => {
   const homeLinks: HomeTile[] = [
     { id: 1, name: "Skanuj e-mail", linkTo: "/logged/scanMail", icon: scanning },
-    { id: 2, name: "Zsynchronizuj skrzynkę", linkTo: "", icon: loading },
+    { id: 2, name: "Zsynchronizuj skrzynkę", linkTo: "/logged/syncMail", icon: loading },
     { id: 3, name: "Skanuj dokument", linkTo: "/logged/scanDoc", icon: scan },
     { id: 4, name: "Historia eksportów", linkTo: "/logged/history", icon: logHis },
     { id: 5, name: "Dokumenty", linkTo: "/logged/documents", icon: document },

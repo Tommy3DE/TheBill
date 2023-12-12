@@ -16,6 +16,7 @@ import Scan from "./loggedUser/scan/Scan";
 import Day1Dir from "./loggedUser/documents/components/Day1Dir";
 import MthPage from "./loggedUser/documents/components/MthPage";
 import ScanEmail from "./loggedUser/ScanEmail/ScanEmail";
+import SyncMail from "./loggedUser/syncMail/SyncMail";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/logged/scanDoc" element={<Scan/>} />
           <Route path="/logged/documents/:date" element={<MthPage />}/>
           <Route path="/logged/scanMail" element={<ScanEmail/>}/>
+          <Route path="/logged/syncMail" element={<SyncMail/>}/>
         </Routes>
       </Router>
     </>
