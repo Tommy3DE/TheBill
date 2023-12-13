@@ -1,4 +1,3 @@
-import React from 'react'
 import SlimNav from '../../layout/SlimNav'
 import MailScan from './components/MailScan'
 
