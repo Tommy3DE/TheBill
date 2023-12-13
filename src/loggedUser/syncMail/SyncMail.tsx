@@ -4,7 +4,7 @@ import loading from "../../assets/iconsLogged/loading.png";
 
 const SyncMail = () => {
   return (
-    <section>
+    <section className="">
       <SlimNav />
       <div className="mt-24 lg:mx-[10%] mx-[2%]">
         <div className="flex flex-row justify-start items-center font-black">
@@ -54,11 +54,12 @@ const SyncMail = () => {
           *aby skrzynka została aktywowana, kliknij w link aktywacyjny który
           został wysłany w wiadomości e-mail na Twoją skrzynkę.
         </p>
-      <button className="bg-[#1A9367] text-4xl text-white rounded-lg px-6 py-3">+ dodaj skrzynkę</button>
-
+        <button className="bg-[#1A9367] text-4xl text-white rounded-lg px-6 py-3">
+          + dodaj skrzynkę
+        </button>
       </div>
       <Link to={"/logged"} className="lg:mx-10 mx-5">
-        <button className="px-4 py-2 hover:scale-105 font-extrabold text-xl rounded bg-red-400 text-white lg:w-auto w-[90%] lg:mt-72">
+        <button className="px-4 py-2 hover:scale-105 font-extrabold text-xl rounded bg-red-400 text-white lg:w-auto w-[90%] lg:mt-44">
           Wstecz
         </button>
       </Link>
