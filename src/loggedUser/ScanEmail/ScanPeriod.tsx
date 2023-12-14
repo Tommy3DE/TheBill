@@ -66,7 +66,7 @@ const ScanPeriod = () => {
         {selectedPeriod !== "" && (
           <Link
             to="/logged/scanMail/scanPeriod/scannedDocs"
-            className="mt-16 text-3xl"
+            className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
           >
             <button>Dalej</button>
           </Link>
