@@ -17,6 +17,7 @@ import Day1Dir from "./loggedUser/documents/components/Day1Dir";
 import MthPage from "./loggedUser/documents/components/MthPage";
 import ScanEmail from "./loggedUser/ScanEmail/ScanEmail";
 import SyncMail from "./loggedUser/syncMail/SyncMail";
+import ScanPeriod from "./loggedUser/ScanEmail/ScanPeriod";
 
 function App() {
   return (
@@ -29,15 +30,16 @@ function App() {
           <Route path="/funkcje" element={<Oferta />} />
           <Route path="/pomoc" element={<Pomoc />} />
           <Route path="/logowanie" element={<Navbar />} />
-          <Route path="/logged"  element={<LoggedUserHome/>} />
-          <Route path="/logged/settings" element={<Settings/>} />
-          <Route path='/logged/history' element={<History/>} />
-          <Route path="/logged/documents" element={<Day1Dir/>} />
-          <Route path="/logged/clients" element={<Clients/>} />
-          <Route path="/logged/scanDoc" element={<Scan/>} />
-          <Route path="/logged/documents/:date" element={<MthPage />}/>
-          <Route path="/logged/scanMail" element={<ScanEmail/>}/>
-          <Route path="/logged/syncMail" element={<SyncMail/>}/>
+          <Route path="/logged" element={<LoggedUserHome />} />
+          <Route path="/logged/settings" element={<Settings />} />
+          <Route path="/logged/history" element={<History />} />
+          <Route path="/logged/documents" element={<Day1Dir />} />
+          <Route path="/logged/clients" element={<Clients />} />
+          <Route path="/logged/scanDoc" element={<Scan />} />
+          <Route path="/logged/documents/:date" element={<MthPage />} />
+          <Route path="/logged/scanMail" element={<ScanEmail />} />
+          <Route path="/logged/syncMail" element={<SyncMail />} />
+          <Route path="/logged/scanMail/scanPeriod" element={<ScanPeriod />} />
         </Routes>
       </Router>
     </>

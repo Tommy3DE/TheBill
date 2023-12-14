@@ -39,9 +39,11 @@ const ScanEmail = () => {
                 2/12/2023
               </div>
               <div className="w-1/4 p-2 border-green-700 border-r-4 text-center">
+                <Link to={'/logged/scanMail/scanPeriod'}>
                 <button className="bg-green-400 text-bold rounded-lg py-1 lg:w-1/3">
                   Skanuj
                 </button>
+                </Link>
               </div>
               <div className="w-1/4 p-2 border-green-700 font-bold text-green-500 text-center">
                 Aktywna
