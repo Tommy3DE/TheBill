@@ -36,7 +36,10 @@ const ScanPeriod = () => {
           />
         </div>
         </div>
-        
+        <button className="w-1/3 bg-[#B1FFD0] rounded px-4 py-2 text-3xl mt-4 shadow-xl">Bierzący miesiąc</button>
+        <button className="w-1/3 bg-[#B1FFD0] rounded px-4 py-2 text-3xl my-4 shadow-xl">Grudzień</button>
+        <button className="w-1/3 bg-[#B1FFD0] rounded px-4 py-2 text-3xl shadow-xl">Styczeń</button>
+
       </div>
     </section>
   );
