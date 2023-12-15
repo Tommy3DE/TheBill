@@ -176,8 +176,8 @@ const NewUser = () => {
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
-          {({ setFieldValue }) => (
-            <Form className="flex flex-col w-full items-center">
+{({ setFieldValue, values }) => (
+  <Form className="flex flex-col w-full items-center">
               {step === 0 && (
                 <>
                   <Field
@@ -223,12 +223,14 @@ const NewUser = () => {
                   </Field>
                   <ErrorMessage name="industry" />
 
-                  <button
-                    className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
-                    onClick={handleNextStep}
-                  >
-                    Kontynuuj
-                  </button>
+                  {(values.firstName !== "" && values.lastName !== "" && values.NIP !== "" && values.industry !== "") && (
+          <button
+            className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
+            onClick={handleNextStep}
+          >
+            Kontynuuj
+          </button>
+          )}
                 </>
               )}
               {step === 1 && (
