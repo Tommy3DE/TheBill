@@ -18,6 +18,8 @@ import MthPage from "./loggedUser/documents/components/MthPage";
 import ScanEmail from "./loggedUser/ScanEmail/ScanEmail";
 import SyncMail from "./loggedUser/syncMail/SyncMail";
 import ScanPeriod from "./loggedUser/ScanEmail/ScanPeriod";
+import AppSettings from "./loggedUser/Settings/components/AppSettings";
+import DefinedAddresses from "./loggedUser/Settings/components/DefinedAddresses";
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/logged/scanMail" element={<ScanEmail />} />
           <Route path="/logged/syncMail" element={<SyncMail />} />
           <Route path="/logged/scanMail/scanPeriod" element={<ScanPeriod />} />
+          <Route path="/logged/settings/definedAddress" element={<DefinedAddresses />} />
+          <Route path="/logged/settings/appSettings" element={<AppSettings />} />
         </Routes>
       </Router>
     </>
