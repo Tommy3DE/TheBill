@@ -1,6 +1,7 @@
 import set from "../../../assets/innerSettingsIcons/set 1.png";
 import folder from "../../../assets/innerSettingsIcons/folder 1.png";
 import email from "../../../assets/innerSettingsIcons/email 1.png";
+import { Link } from "react-router-dom";
 
 type SettingsTiles = {
   id: number;
@@ -14,7 +15,7 @@ const SettingsRoutes = () => {
       id: 1,
       title: "Zdefiniowane adresy e-mail",
       icon: email,
-      route: "",
+      route: "/logged/settings/definedAddress",
     },
     {
       id: 2,
@@ -26,7 +27,7 @@ const SettingsRoutes = () => {
       id: 3,
       title: "Ogólne ustawienia konta",
       icon: set,
-      route: "",
+      route: "/logged/settings/appSettings",
     },
   ];
   return (
@@ -42,13 +43,15 @@ const SettingsRoutes = () => {
       </div>
       <div className="flex lg:flex-row flex-col justify-center items-center lg:mx-0 mx-5 py-14">
         {settings.map((item) => (
+          <Link to={item.route} className="lg:w-2/12 w-full mx-2 ">
           <div
             key={item.id}
-            className=" lg:w-2/12 w-full text-xl rounded-lg mx-2 flex flex-col justify-evenly py-32 items-center bg-green-300 lg:h-1/3 h-80 mb-5  hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black"
+            className=" w-full text-xl rounded-lg flex flex-col justify-evenly py-32 items-center bg-green-300 lg:h-1/3 h-80 mb-5  hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black"
           >
             <img src={item.icon} alt={item.title} className="h-20 w-20" />
             <p>{item.title}</p>
           </div>
+          </Link>
         ))}
       </div>
     </section>
