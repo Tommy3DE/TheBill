@@ -1,8 +1,15 @@
 import SlimNav from "../../../layout/SlimNav";
 import email from "../../../assets/innerSettingsIcons/email 1.png";
 import { FaTrash } from "react-icons/fa";
+import AddAccountant from "./AddAccountant";
+import { useState } from "react";
 
 const DefinedAddresses = () => {
+  const [modalVis, setModalVis] = useState(false)
+
+  const handleVis = () => {
+    setModalVis(prev=>!prev)
+  }
   return (
     <section className="w-full font-poppins">
       <SlimNav />
@@ -48,9 +55,10 @@ const DefinedAddresses = () => {
           </div>
           
         </div>
-        <button className="bg-[#1A9367] text-4xl text-white rounded-lg px-6 py-3 my-14">
+        <button className="bg-[#1A9367] text-4xl text-white rounded-lg px-6 py-3 my-14" onClick={handleVis}>
           + dodaj skrzynkę
         </button>
+        {modalVis && <AddAccountant handleVis={handleVis}/>}
       </div>
     </section>
   );
