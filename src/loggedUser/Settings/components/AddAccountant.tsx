@@ -8,7 +8,7 @@ const AddAccountant = ({handleVis}:visType) => {
     }
   return (
     <div className="h-full w-full bg-gray-600 bg-opacity-80 absolute left-0 top-0 z-10" onClick={handleVis}>
-        <div className="relative top-[35%] w-[30%] bg-white z-20 left-[35%] p-5 h-auto rounded-lg" onClick={handleBoardClick}>
+        <div className="relative top-[35%] lg:w-[30%] bg-white z-20 lg:left-[35%] p-5 h-auto rounded-lg" onClick={handleBoardClick}>
             <div className="flex flex-row text-xl justify-between">
                 <label htmlFor="name">Nazwa:</label>
                 <input type="text" id='name' className="bg-gray-200 rounded-md" placeholder="np. Księgowośc Nowak sp. z o.o."/>
