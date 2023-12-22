@@ -20,6 +20,7 @@ import SyncMail from "./loggedUser/syncMail/SyncMail";
 import ScanPeriod from "./loggedUser/ScanEmail/ScanPeriod";
 import AppSettings from "./loggedUser/Settings/components/AppSettings";
 import DefinedAddresses from "./loggedUser/Settings/components/DefinedAddresses";
+import Login from "./layout/pages/Login";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/logged/scanMail/scanPeriod" element={<ScanPeriod />} />
           <Route path="/logged/settings/definedAddress" element={<DefinedAddresses />} />
           <Route path="/logged/settings/appSettings" element={<AppSettings />} />
+          <Route path='/login' element={<Login/>} />
         </Routes>
       </Router>
     </>
