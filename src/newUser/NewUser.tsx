@@ -43,13 +43,13 @@ const NewUser = () => {
     const getPlanDetails = (value: string | null) => {
       switch (value) {
         case "Do 5":
-          return { name: "Bieda", image: bida, price: "19.99" };
-        case "Do 10":
+          return { name: "Darmowy", image: bida, price: "0" };
+        case "Do 15":
           return { name: "Standard", image: standard, price: "29.99" };
-        case "Do 20":
-          return { name: "Premium", image: prem, price: "39.99" };
-        case "Powyżej 20":
-          return { name: "Fabolous", image: fab, price: "69.99" };
+        case "Do 35":
+          return { name: "Premium", image: prem, price: "69.99" };
+        case "Powyżej 35":
+          return { name: "Biznes", image: fab, price: "99.99" };
         default:
           return { name: "", image: null, price: "0.00" };
       }
@@ -314,20 +314,20 @@ const NewUser = () => {
                         ? "bg-green-200"
                         : "bg-slate-100"
                     }`}
-                    onClick={() => handleAmountSelect("Do 10", setFieldValue)}
+                    onClick={() => handleAmountSelect("Do 15", setFieldValue)}
                   >
-                    Do 10
+                    Do 15
                   </button>
                   <button
                     type="button"
                     className={`text-3xl border-2 w-1/5 py-2 rounded border-green-800 mb-5 ${
-                      selectedAmount === "Do 20"
+                      selectedAmount === "Do 35"
                         ? "bg-green-200"
                         : "bg-slate-100"
                     }`}
                     onClick={() => handleAmountSelect("Do 20", setFieldValue)}
                   >
-                    Do 20
+                    Do 35
                   </button>
                   <button
                     type="button"
@@ -337,10 +337,10 @@ const NewUser = () => {
                         : "bg-slate-100"
                     }`}
                     onClick={() =>
-                      handleAmountSelect("Powyżej 20", setFieldValue)
+                      handleAmountSelect("Powyżej 35", setFieldValue)
                     }
                   >
-                    Powyżej 20
+                    Powyżej 35
                   </button>
                 </>
               )}
