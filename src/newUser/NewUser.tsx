@@ -11,6 +11,9 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 
 interface FormValues {
+  login: string;
+  pass: string;
+  pass2: string;
   firstName: string;
   lastName: string;
   NIP: string;
@@ -78,6 +81,9 @@ const NewUser = () => {
   };
 
   const initialValues: FormValues = {
+    login: "",
+    pass: "",
+    pass2: "",
     firstName: "",
     lastName: "",
     NIP: "",
@@ -113,6 +119,13 @@ const NewUser = () => {
   };
 
   const validationSchema = Yup.object().shape({
+    login: Yup.string()
+      .email("Podaj poprawny adres email")
+      .required("Login jest wymagany"),
+    pass: Yup.string().required("Hasło jest wymagane"),
+    pass2: Yup.string()
+      .oneOf([Yup.ref("pass")], "Hasła muszą się zgadzać")
+      .required("Potwierdzenie hasła jest wymagane"),
     firstName: Yup.string().required("Imię jest wymagane"),
     lastName: Yup.string().required("Nazwisko jest wymagane"),
     NIP: Yup.string()
@@ -131,7 +144,7 @@ const NewUser = () => {
     <>
       <SlimNav />
       <section className="mt-14 flex flex-col items-center font-poppins">
-        {step === 0 && (
+        {(step === 1 || step === 0) && (
           <>
             <h1 className="text-4xl">
               Do założenia konta, potrzebne są następujące informacje
@@ -142,23 +155,23 @@ const NewUser = () => {
             </h3>
           </>
         )}
-        {step === 1 && (
+        {step === 2 && (
           <h1 className="mb-10 text-4xl">
             Wybierz opcję odpowiadającą Twojemu biznesowi
           </h1>
         )}
-        {step === 2 && (
+        {step === 3 && (
           <h1 className="mb-10 text-4xl">
             Ile faktur kosztowych otrzymujesz każdego miesiąca?
           </h1>
         )}
-        {step === 3 && (
+        {step === 4 && (
           <h1 className="mb-5 text-4xl">
             Sprawdź, czy dane które podałeś we wcześniejszych formularzach są
             zgodne
           </h1>
         )}
-        {step === 4 && (
+        {step === 5 && (
           <>
             <h1 className="mb-5 text-4xl font-bold">
               Połącz swój WhatsApp do skanowania rachunków papierowych
@@ -169,16 +182,50 @@ const NewUser = () => {
             </h3>
           </>
         )}
-        {step === 5 && <h1 className="mb-5 text-4xl">Podsumowanie</h1>}
+        {step === 6 && <h1 className="mb-5 text-4xl">Podsumowanie</h1>}
 
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
-{({ setFieldValue, values }) => (
-  <Form className="flex flex-col w-full items-center">
+          {({ setFieldValue, values, isValid }) => (
+            <Form className="flex flex-col w-full items-center">
               {step === 0 && (
+                <>
+                  <Field
+                    name="login"
+                    type="email"
+                    className="text-4xl bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mt-10"
+                    placeholder="Login"
+                  />
+                  <ErrorMessage name="login" />
+
+                  <Field
+                    name="pass"
+                    type="text"
+                    className="text-4xl bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mt-6"
+                    placeholder="Hasło"
+                  />
+                  <ErrorMessage name="pass" />
+                  <Field
+                    name="pass2"
+                    type="text"
+                    className="text-4xl bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mt-6"
+                    placeholder="Powtórz Hasło"
+                  />
+                  <ErrorMessage name="pass2" />
+                  {step === 0 && isValid && (
+                    <button
+                      className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
+                      onClick={handleNextStep}
+                    >
+                      Kontynuuj
+                    </button>
+                  )}
+                </>
+              )}
+              {step === 1 && (
                 <>
                   <Field
                     name="firstName"
@@ -223,17 +270,20 @@ const NewUser = () => {
                   </Field>
                   <ErrorMessage name="industry" />
 
-                  {(values.firstName !== "" && values.lastName !== "" && values.NIP !== "" && values.industry !== "") && (
-          <button
-            className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
-            onClick={handleNextStep}
-          >
-            Kontynuuj
-          </button>
-          )}
+                  {values.firstName !== "" &&
+                    values.lastName !== "" &&
+                    values.NIP !== "" &&
+                    values.industry !== "" && (
+                      <button
+                        className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
+                        onClick={handleNextStep}
+                      >
+                        Kontynuuj
+                      </button>
+                    )}
                 </>
               )}
-              {step === 1 && (
+              {step === 2 && (
                 <div className="flex flex-row space-x-4 mt-4 justify-center">
                   <button
                     type="button"
@@ -286,7 +336,7 @@ const NewUser = () => {
                   </button>
                 </div>
               )}
-              {step === 1 && selectedSize !== null && (
+              {step === 2 && selectedSize !== null && (
                 <button
                   className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
                   onClick={handleNextStep}
@@ -294,7 +344,7 @@ const NewUser = () => {
                   Kontynuuj
                 </button>
               )}
-              {step === 2 && (
+              {step === 3 && (
                 <>
                   <button
                     type="button"
@@ -344,7 +394,7 @@ const NewUser = () => {
                   </button>
                 </>
               )}
-              {step === 2 && selectedAmount !== null && (
+              {step === 3 && selectedAmount !== null && (
                 <button
                   className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
                   onClick={handleNextStep}
@@ -352,7 +402,7 @@ const NewUser = () => {
                   Kontynuuj
                 </button>
               )}
-              {step === 3 && (
+              {step === 4 && (
                 <>
                   <label htmlFor="firstName" className="text-2xl">
                     Imię
@@ -434,7 +484,7 @@ const NewUser = () => {
                   </div>
                 </>
               )}
-              {step === 4 && (
+              {step === 5 && (
                 <>
                   <Field
                     name="phoneNum"
@@ -451,7 +501,7 @@ const NewUser = () => {
                   </button>
                 </>
               )}
-              {step === 5 && (
+              {step === 6 && (
                 <>
                   <div className="flex flex-row w-full h-full">
                     <div className="w-2/3 flex flex-row p-4 ml-[15%] items-center">
@@ -476,24 +526,19 @@ const NewUser = () => {
                   </div>
                   <button
                     className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
-                    type='submit'                  >
+                    type="submit"
+                  >
                     Kontynuuj
                   </button>
                 </>
               )}
-              {step === 6 && (
+              {step === 7 && (
                 <div className="w-full flex flex-col justify-center items-center">
                   <h1 className="text-4xl text-center mb-12">
                     Pomyślnie utworzyłeś swoje konto!
                   </h1>
-                  <Link
-                    to="/"
-                    className="w-1/5 flex justify-center"
-                  >
-                    <button
-                      className="text-2xl bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
-                      
-                    >
+                  <Link to="/" className="w-1/5 flex justify-center">
+                    <button className="text-2xl bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl">
                       Strona logowania
                     </button>
                   </Link>
