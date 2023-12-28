@@ -12,8 +12,8 @@ type Info = {
 
 const BasicInfo = () => {
     const infoTiles: Info[] = [
-        {id: 1, pic: information, title: 'Automatycznie skanuj skrzynkę mailową', text: 'TheBill za Ciebie skanuje skrzynkę mailową w poszukiwaniu dokumentów kosztowych.'},
-        {id: 2, pic: talking, title: 'Usprawnij komunikację z księgowością', text: 'TheBill sprawia, że wymiana dokumentów z księgowością jest łatwa i szybka - wszystko przez jednego maila.'},
+        {id: 1, pic: information, title: 'Automatycznie skanuj skrzynkę mailową', text: 'OneBill za Ciebie skanuje skrzynkę mailową w poszukiwaniu dokumentów kosztowych.'},
+        {id: 2, pic: talking, title: 'Usprawnij komunikację z księgowością', text: 'OneBill sprawia, że wymiana dokumentów z księgowością jest łatwa i szybka - wszystko przez jednego maila.'},
         {id: 3, pic: budget, title: 'Kontroluj swoje wydatki', text: 'Aplikacja pozwala na systematyczne śledzenie miesięcznych wydatków, co pozwala na bardziej efektywne zarządzanie finansami'},
         {id: 4, pic: taxes, title: 'Optymalizuj swoje podatki', text: 'Z nami będziesz miał pod kontrolą wszystkie faktury kosztowe, co przełoży się na większe odliczenia kosztów - mniej niezaliczonych faktur.'},
     ]

@@ -26,7 +26,7 @@ const Information = () => {
             <div className="w-full ml-4 flex flex-col justify-center">
               <h2 className="text-2xl font-bold">Streamline Invoicing</h2>
               <p className=" mt-8 text-lg">
-                TheBill is a user-friendly invoice management tool designed to
+                OneBill is a user-friendly invoice management tool designed to
                 simplify your workflow.
               </p>
             </div>
@@ -36,7 +36,7 @@ const Information = () => {
             <div className="w-full ml-4 flex flex-col justify-center">
               <h2 className="text-2xl font-bold">Automate Payments</h2>
               <p className=" mt-8 text-lg">
-              With TheBill, you can automate payment reminders and easily track outstanding invoices.
+              With OneBill, you can automate payment reminders and easily track outstanding invoices.
               </p>
             </div>
           </div>

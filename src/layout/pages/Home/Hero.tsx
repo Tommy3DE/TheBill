@@ -12,7 +12,7 @@ const Hero = () => {
             Aplikacja do obsługi faktur w Twojej firmie.
           </h1>
           <h3 className="text-xl font-poppins tracking-widest leading-loose text-justify">
-            Nie marnuj więcej czasu i pieniędzy. Aplikacja TheBill pozwoli na
+            Nie marnuj więcej czasu i pieniędzy. Aplikacja OneBill pozwoli na
             efektywne kolekcjonowanie faktur kosztowych na koniec miesiąca i
             przesłanie ich dalej do biura rachunkowego.
           </h3>
@@ -49,7 +49,7 @@ const Hero = () => {
           <div className="flex flex-col justify-center h-full ">
             {" "}
             <p className="text-lg tracking-wider text-justify mt-2">
-            Czy zarządzanie fakturami pochłania Twój cenny czas? Czy organizacja dokumentacji księgowej wydaje się niekończącym się wyzwaniem? Oto TheBill - Twoje nowe, niezawodne narzędzie do zarządzania fakturami, które przyniesie rewolucję w Twoim biznesie.
+            Czy zarządzanie fakturami pochłania Twój cenny czas? Czy organizacja dokumentacji księgowej wydaje się niekończącym się wyzwaniem? Oto OneBill - Twoje nowe, niezawodne narzędzie do zarządzania fakturami, które przyniesie rewolucję w Twoim biznesie.
             </p>
           </div>
         </div>

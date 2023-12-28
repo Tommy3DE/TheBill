@@ -47,8 +47,8 @@ const cases: CaseItem[] = [
       "Trudności w monitorowaniu i analizowaniu kosztów zakupów do lokalu."
     ],
     solutions: [
-      "Dzięki TheBill zautomatyzowaliśmy proces zbierania i sortowania faktur.",
-      "Aplikacja TheBill pomaga właścicielom lepiej kontrolować firmowe wydatki."
+      "Dzięki OneBill zautomatyzowaliśmy proces zbierania i sortowania faktur.",
+      "Aplikacja OneBill pomaga właścicielom lepiej kontrolować firmowe wydatki."
     ]
   },
   {
@@ -60,8 +60,8 @@ const cases: CaseItem[] = [
       "Czasochłonne procesy księgowe, które odciągają uwagę od głównej działalności salonu."
     ],
     solutions: [
-      "TheBill oferuje funkcje analizy wydatków, co pozwala na lepszą kontrolę kosztów.",
-      "TheBill minimalizuje czas poświęcony na księgowość dzięki automatyzacji."
+      "OneBill oferuje funkcje analizy wydatków, co pozwala na lepszą kontrolę kosztów.",
+      "OneBill minimalizuje czas poświęcony na księgowość dzięki automatyzacji."
     ]
   },
   {
@@ -73,8 +73,8 @@ const cases: CaseItem[] = [
       "Zarządzanie fakturami od podwykonawców i freelancerów może być skomplikowane i czasochłonne."
     ],
     solutions: [
-      "TheBill automatyzuje proces zarządzania licencjami i subskrypcjami.",
-      "TheBill ułatwia proces zarządzania i weryfikacji faktur od podwykonawców, upraszczając procesy księgowe."
+      "OneBill automatyzuje proces zarządzania licencjami i subskrypcjami.",
+      "OneBill ułatwia proces zarządzania i weryfikacji faktur od podwykonawców, upraszczając procesy księgowe."
     ]
   },
 ];
@@ -83,7 +83,7 @@ const Cases: React.FC = () => {
   return (
     <section className="mt-8 font-poppins flex flex-col">
       <h1 className="text-4xl tracking-wider my-12 font-extrabold font-poppins text-center">
-        Jakie problemy rozwiązuje TheBill?
+        Jakie problemy rozwiązuje OneBill?
       </h1>
       {cases.map((caseItem, index) => (
         <div key={index} className={`flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'} ${index === 1 && 'my-10'} w-full`}>

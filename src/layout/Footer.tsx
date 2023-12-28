@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex lg:flex-row flex-col items-center justify-center mb-10">
-          <p>© 2023 TheBill All rights reserved.</p>
+          <p>© 2023 OneBill All rights reserved.</p>
           <p className="mx-8 hidden lg:block">Privacy Policy</p>
           <p className="mr-8 hidden lg:block">Terms and Conditions</p>
           <p className=" hidden lg:block">Cookie Policy</p>

@@ -51,7 +51,7 @@ const Usage = () => {
       title: "Krok 4",
       img: value,
       point1:
-        "Dzięki TheBill, możesz skupić się na swoim biznesie bez obawy o to że nie zdążysz rozliczyć się z Urzędem Skarbowym czy ZUS.",
+        "Dzięki OneBill, możesz skupić się na swoim biznesie bez obawy o to że nie zdążysz rozliczyć się z Urzędem Skarbowym czy ZUS.",
       point2:
         "Aplikacja pokaże Ci wykaz płatności miesięcznych - możesz sprawnie zarządzać subskrypcjami i eliminować te z których nie korzystasz.",
       point3:   
@@ -62,7 +62,7 @@ const Usage = () => {
   return (
     <section className="mt-8 items-center mx-[8%] font-poppins flex flex-col border-y-4 py-8 border-[#51FFBF]">
       <h1 className="text-4xl tracking-wider mt-12 font-extrabold font-poppins uppercase ">
-        Jak aplikacja TheBill może pomóc Twojej firmie?
+        Jak aplikacja OneBill może pomóc Twojej firmie?
       </h1>
       <div className="flex-col">
         {steps.map((step) => (

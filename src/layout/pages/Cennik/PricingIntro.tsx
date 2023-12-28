@@ -13,7 +13,7 @@ const PricingIntro = ({setYearly, yearly}: PricingProps) => {
       <div className="w-full h-[80%] flex flex-col justify-between py-14">
         <div className="font-playFair flex flex-col justify-center items-center">
           <h1 className="text-5xl font-extrabold py-8 lg:text-start text-center">
-            Ile kosztuje osobisty asystent TheBill?
+            Ile kosztuje osobisty asystent OneBill?
           </h1>
           <h3 className="text-2xl text-gray-400 lg:text-start text-center">
             Znajdź plan najlepiej dopasowany do Twoich potrzeb biznesowych.

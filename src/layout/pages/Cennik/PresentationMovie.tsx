@@ -4,7 +4,7 @@ const PresentationMovie = () => {
     <section className="items-center mx-[8%] font-poppins flex flex-col mb-40">
         <div className='w-full p-4 bg-[#DDFFED] rounded-lg font-black border-2 border-black mb-20'>
             <h1 className='text-4xl text-center '>
-            Zobacz krótką prezentację możliwości TheBill
+            Zobacz krótką prezentację możliwości OneBill
             </h1>
         </div>
         <iframe

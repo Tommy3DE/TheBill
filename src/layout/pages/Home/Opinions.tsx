@@ -19,7 +19,7 @@ const Opinions = () => {
           </div>
           <p className="text-justify tracking-wider">
             Prowadzenie małej kawiarni to mnóstwo pracy, a zarządzanie fakturami
-            zawsze było dla mnie wyzwaniem. Od kiedy zaczęłam używać TheBill,
+            zawsze było dla mnie wyzwaniem. Od kiedy zaczęłam używać OneBill,
             cały proces stał się prostszy i bardziej przejrzysty. To
             niesamowite, jak jedna aplikacja może tak zmienić codzienne
             funkcjonowanie mojego biznesu.
@@ -38,7 +38,7 @@ const Opinions = () => {
           </div>
           <p className="text-justify tracking-wider">
             Jako właścicielka jednoosobowej działalności, każda minuta mojego
-            czasu jest cenna. TheBill dał mi możliwość zautomatyzowania procesu
+            czasu jest cenna. OneBill dał mi możliwość zautomatyzowania procesu
             zarządzania fakturami. Teraz mogę skupić się na rozwoju mojego
             butiku, wiedząc, że moje faktury są bezpieczne i dobrze zarządzane.
             To idealne rozwiązanie dla każdego JDG!
@@ -60,7 +60,7 @@ const Opinions = () => {
           </div>
           <p className="text-justify tracking-wider">
             Jako mikroprzedsiębiorca w branży kreatywnej, zawsze szukałem
-            sposobów, aby ułatwić sobie życie. TheBill to spełnienie moich
+            sposobów, aby ułatwić sobie życie. OneBill to spełnienie moich
             oczekiwań - prostota, wygoda i pełna kontrola nad moimi finansami.
             To narzędzie, które naprawdę rozumie potrzeby małych biznesów.
           </p>
@@ -78,7 +78,7 @@ const Opinions = () => {
           </div>
           <p className="text-justify tracking-wider">
             W mojej agencji marketingowej każdy dzień przynosi nowe wyzwania.
-            Dzięki TheBill, zarządzanie fakturami już nie jest jednym z nich.
+            Dzięki OneBill, zarządzanie fakturami już nie jest jednym z nich.
             Efektywność i prostota tej aplikacji pozwalają mi skupić się na tym,
             co naprawdę ważne - na moich klientach i rozwoju firmy.
           </p>
