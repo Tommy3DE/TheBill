@@ -117,8 +117,6 @@
 //     );
 //   };
 
-  
-
 //   const handleNextStep = () => {
 //     setStep((prev) => prev + 1);
 //   };
@@ -580,15 +578,10 @@
 
 // export default NewUser;
 
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
+import React from 'react';
+import { ErrorMessage, useFormik, FormikProvider } from 'formik';
 import * as Yup from 'yup';
 import SlimNav from '../layout/SlimNav';
-import bida from '../assets/pricing/bida.png';
-import fab from '../assets/pricing/fab.png';
-import prem from '../assets/pricing/prem.png';
-import standard from '../assets/pricing/standard.png';
-import { Link } from 'react-router-dom';
 
 interface FormValues {
   login: string;
@@ -596,18 +589,12 @@ interface FormValues {
   pass2: string;
   firstName: string;
   lastName: string;
-  NIP: string;
+  NIP: number;
   industry: string;
-  orgSize?: string;
   numOfInvoices?: string;
-  phoneNum: string;
 }
 
-const NewUser: React.FC = () => {
-  const [step, setStep] = useState<number>(0);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedAmount, setSelectedAmount] = useState<string>('');
-
+const NewUser = () => {
   const formik = useFormik<FormValues>({
     initialValues: {
       login: '',
@@ -615,79 +602,138 @@ const NewUser: React.FC = () => {
       pass2: '',
       firstName: '',
       lastName: '',
-      NIP: '',
+      NIP: 0,
       industry: '',
-      phoneNum: '',
+      numOfInvoices: '',
     },
     validationSchema: Yup.object().shape({
-          login: Yup.string()
-            .email("Podaj poprawny adres email")
-            .required("Login jest wymagany"),
-          pass: Yup.string().required("Hasło jest wymagane"),
-          pass2: Yup.string()
-            .oneOf([Yup.ref("pass")], "Hasła muszą się zgadzać")
-            .required("Potwierdzenie hasła jest wymagane"),
-          firstName: Yup.string().required("Imię jest wymagane"),
-          lastName: Yup.string().required("Nazwisko jest wymagane"),
-          NIP: Yup.string()
-            .matches(/^[0-9]{10}$/, "NIP musi składać się z 10 cyfr")
-            .required("NIP jest wymagany"),
-          industry: Yup.string().required("Branża jest wymagana"),
-          orgSize: Yup.string().required("Proszę wybrać rozmiar organizacji"),
-          numOfInvoices: Yup.string().required("Proszę wybrać ilość faktur"),
-          phoneNum: Yup.string().matches(
-            /^[0-9]{9}$/,
-            "Numer telefonu musi składać się z 9 cyfr"
-          ),
-        }),
+      login: Yup.string()
+        .email("Podaj poprawny adres email")
+        .required("Email jest wymagany"),
+      pass: Yup.string().required("Hasło jest wymagane"),
+      pass2: Yup.string()
+        .oneOf([Yup.ref("pass")], "Hasła muszą się zgadzać")
+        .required("Potwierdzenie hasła jest wymagane"),
+      firstName: Yup.string().required("Imię jest wymagane"),
+      lastName: Yup.string().required("Nazwisko jest wymagane"),
+      NIP: Yup.number()
+        .required("NIP jest wymagany"),
+      industry: Yup.string().required("Branża jest wymagana"),
+      numOfInvoices: Yup.string().required("Proszę wybrać ilość faktur"),
+    }),
     onSubmit: (values) => {
       console.log(values);
-      setStep((prev) => prev + 1);
     },
   });
-
-  const handleSizeSelect = (size: string) => {
-    formik.setFieldValue('orgSize', size);
-    setSelectedSize(size);
-  };
-
-  const handleAmountSelect = (amount: string) => {
-    formik.setFieldValue('numOfInvoices', amount);
-    setSelectedAmount(amount);
-  };
-
-  // Define a function to render each step based on the current step
-  const renderStep = () => {
-    switch (step) {
-      case 0:
-        return (
-          // Step 1: Account creation details
-          // Include fields for login, password, password confirmation, first and last name
-        );
-      case 1:
-        return (
-          // Step 2: Organizational details and selection
-          // Include fields for NIP, industry, organization size, number of invoices, and phone number
-        );
-      case 2:
-        return (
-          // Step 3: Summary and final confirmation
-          // Display a summary of the data entered with a submit button
-        );
-      default:
-        return null;
-    }
-  };
 
   return (
     <>
       <SlimNav />
-      <section className="mt-14 flex flex-col items-center font-poppins">
-        {renderStep()}
-      </section>
+      <FormikProvider value={formik}>
+        <section className="mt-14 flex flex-col items-center font-poppins w-full">
+          <form onSubmit={formik.handleSubmit} className="w-full flex flex-col items-center text-3xl">
+            <label htmlFor="firstName" className=" mb-2">Email</label>
+            <input
+              id="login"
+              name="login"
+              type="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.login}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="login" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <label htmlFor="pass" className="mb-2">Hasło</label>
+            <input
+              id="pass"
+              name="pass"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.pass}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="pass" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <label htmlFor="pass2" className="mb-2">Powtórz Hasło</label>
+            <input
+              id="pass2"
+              name="pass2"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.pass2}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="pass2" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <label htmlFor="firstName" className="mb-2">Imię</label>
+            <input
+              id="firstName"
+              name="firstName"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.firstName}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="firstName" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <label htmlFor="lastName" className="mb-2">Nazwisko</label>
+            <input
+              id="lastName"
+              name="lastName"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.lastName}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="lastName" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <label htmlFor="nip" className="mb-2">Numer NIP</label>
+            <input
+              id="nip"
+              name="NIP"
+              type="number"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.NIP}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="NIP" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <label htmlFor="industry" className="mb-2">Branża</label>
+            <input
+              id="industry"
+              name="industry"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.industry}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="industry" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <label htmlFor="numOfInvoices" className="mb-2">Ilość faktur</label>
+            <input
+              id="numOfInvoices"
+              name="numOfInvoices"
+              type="text"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.numOfInvoices}
+              className="bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mb-4"
+            />
+            <ErrorMessage name="numOfInvoices" component="div" className='text-sm text-red-600 -mt-4'/>
+
+            <button type="submit" className="bg-blue-500 text-white p-2 rounded mt-4">Submit</button>
+          </form>
+        </section>
+      </FormikProvider>
     </>
   );
 };
 
 export default NewUser;
-
