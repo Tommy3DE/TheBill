@@ -32,52 +32,6 @@
 //   return <div className="text-2xl mb-6">{values[fieldName]}</div>;
 // };
 
-// const NewUser = () => {
-//   const [step, setStep] = useState<number>(0);
-//   const [selectedSize, setSelectedSize] = useState<string | null>(null);
-//   const [selectedAmount, setSelectedAmount] = useState<string>("");
-
-//   useEffect(() => console.log(selectedAmount), [selectedAmount]);
-
-//   interface PlancardProps {
-//     val: string | null;
-//   }
-
-//   import React, { useState } from 'react';
-// import { useFormik } from 'formik';
-// import * as Yup from 'yup';
-// import SlimNav from '../layout/SlimNav';
-// import bida from '../assets/pricing/bida.png';
-// import fab from '../assets/pricing/fab.png';
-// import prem from '../assets/pricing/prem.png';
-// import standard from '../assets/pricing/standard.png';
-
-// const NewUser = () => {
-//   const [step, setStep] = useState(0);
-//   const [selectedSize, setSelectedSize] = useState('');
-//   const [selectedAmount, setSelectedAmount] = useState('');
-
-//   const formik = useFormik<FormValues>({
-//     initialValues: {
-//       login: '',
-//       pass: '',
-//       pass2: '',
-//       firstName: '',
-//       lastName: '',
-//       NIP: '',
-//       orgSize: '',
-//       numOfInvoices: '',
-//       industry: '',
-//       phoneNum: '',
-//     },
-//     validationSchema: Yup.object({
-//       // Define your validation schema here
-//     }),
-//     onSubmit: (values) => {
-//       console.log(values);
-//       setStep((prev) => prev + 1);
-//     },
-//   });
 
 //   const Plancard: React.FC<PlancardProps> = ({ val }) => {
 //     const getPlanDetails = (value: string | null) => {
