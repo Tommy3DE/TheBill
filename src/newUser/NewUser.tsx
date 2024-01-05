@@ -75,23 +75,7 @@
 //     setStep((prev) => prev + 1);
 //   };
 
-//               {step === 5 && (
-//                 <>
-//                   <Field
-//                     name="phoneNum"
-//                     type="text"
-//                     className="text-4xl bg-slate-100 w-1/5 placeholder:text-center rounded-lg border-2 border-black mt-10"
-//                     placeholder="+48 123 456 789"
-//                   />
-//                   <ErrorMessage name="phoneNum" />
-//                   <button
-//                     className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
-//                     onClick={handleNextStep}
-//                   >
-//                     Pomiń
-//                   </button>
-//                 </>
-//               )}
+//              
 //               
 //               {step === 7 && (
 //                 <div className="w-full flex flex-col justify-center items-center">
