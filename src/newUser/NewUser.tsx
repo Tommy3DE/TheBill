@@ -92,37 +92,7 @@
 //                   </button>
 //                 </>
 //               )}
-//               {step === 6 && (
-//                 <>
-//                   <div className="flex flex-row w-full h-full">
-//                     <div className="w-2/3 flex flex-row p-4 ml-[15%] items-center">
-//                       <div className=" w-1/3">
-//                         <div className="text-2xl mb-6">Imię:</div>
-//                         <div className="text-2xl mb-6">Nazwisko:</div>
-//                         <div className="text-2xl mb-6">NIP:</div>
-//                         <div className="text-2xl mb-6">Branża:</div>
-//                         <div className="text-2xl mb-6">Forma działaności:</div>
-//                         <div className="text-2xl mb-6">Ilość faktur:</div>
-//                       </div>
-//                       <div className=" w-2/3 text-right">
-//                         <DisplayFieldValue fieldName="firstName" />
-//                         <DisplayFieldValue fieldName="lastName" />
-//                         <DisplayFieldValue fieldName="NIP" />
-//                         <DisplayFieldValue fieldName="industry" />
-//                         <div className="text-2xl mb-6">{selectedSize}</div>
-//                         <div className="text-2xl mb-6">{selectedAmount}</div>
-//                       </div>
-//                     </div>
-//                     <Plancard val={selectedAmount} />
-//                   </div>
-//                   <button
-//                     className="w-1/5 text-4xl mt-12 bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl"
-//                     type="submit"
-//                   >
-//                     Kontynuuj
-//                   </button>
-//                 </>
-//               )}
+//               
 //               {step === 7 && (
 //                 <div className="w-full flex flex-col justify-center items-center">
 //                   <h1 className="text-4xl text-center mb-12">
