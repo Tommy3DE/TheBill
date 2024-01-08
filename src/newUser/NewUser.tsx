@@ -1,6 +1,4 @@
-// import { FormikProps } from "formik";
-// import { useFormikContext } from "formik";
-// import SlimNav from "../layout/SlimNav";
+
 // import bida from "../assets/pricing/bida.png";
 // import fab from "../assets/pricing/fab.png";
 // import prem from "../assets/pricing/prem.png";
@@ -8,16 +6,6 @@
 // import * as Yup from "yup";
 // import { Link } from "react-router-dom";
 // import { useFormik } from "formik";
-
-
-// interface DisplayFieldValueProps {
-//   fieldName: keyof FormValues;
-// }
-
-// const DisplayFieldValue: React.FC<DisplayFieldValueProps> = ({ fieldName }) => {
-//   const { values } = useFormikContext<FormValues>();
-//   return <div className="text-2xl mb-6">{values[fieldName]}</div>;
-// };
 
 
 //   const Plancard: React.FC<PlancardProps> = ({ val }) => {
