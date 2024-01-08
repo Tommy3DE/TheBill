@@ -1,5 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
 // import { FormikProps } from "formik";
 // import { useFormikContext } from "formik";
 // import SlimNav from "../layout/SlimNav";
@@ -11,18 +9,7 @@
 // import { Link } from "react-router-dom";
 // import { useFormik } from "formik";
 
-// interface FormValues {
-//   login: string;
-//   pass: string;
-//   pass2: string;
-//   firstName: string;
-//   lastName: string;
-//   NIP: string;
-//   industry: string;
-//   orgSize: string;
-//   numOfInvoices: string;
-//   phoneNum: string;
-// }
+
 // interface DisplayFieldValueProps {
 //   fieldName: keyof FormValues;
 // }
