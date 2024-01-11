@@ -1,82 +1,11 @@
-
-// import bida from "../assets/pricing/bida.png";
-// import fab from "../assets/pricing/fab.png";
-// import prem from "../assets/pricing/prem.png";
-// import standard from "../assets/pricing/standard.png";
-// import * as Yup from "yup";
-// import { Link } from "react-router-dom";
-// import { useFormik } from "formik";
-
-
-//   const Plancard: React.FC<PlancardProps> = ({ val }) => {
-//     const getPlanDetails = (value: string | null) => {
-//       switch (value) {
-//         case "Do 5":
-//           return { name: "Darmowy", image: bida, price: "0" };
-//         case "Do 15":
-//           return { name: "Standard", image: standard, price: "29.99" };
-//         case "Do 35":
-//           return { name: "Premium", image: prem, price: "69.99" };
-//         case "Powyżej 35":
-//           return { name: "Biznes", image: fab, price: "99.99" };
-//         default:
-//           return { name: "", image: null, price: "0.00" };
-//       }
-//     };
-
-//     const planDetails = getPlanDetails(val);
-
-//     return (
-//       <div className="w-1/2 flex flex-col items-center p-4 mr-[15%]">
-//         <h2 className="text-2xl mb-5">Rekomendowany plan:</h2>
-//         <div className="border-4 rounded-md border-[#1A9367] w-1/2 p-4">
-//           {planDetails.image && (
-//             <img
-//               src={planDetails.image}
-//               alt={planDetails.name}
-//               className="mx-auto"
-//             />
-//           )}
-//           <h1 className="text-4xl text-center pt-8">{planDetails.name}</h1>
-//           <h3 className="text-center text-xl pb-8">
-//             {planDetails.price} zł/mies
-//           </h3>
-//         </div>
-//       </div>
-//     );
-//   };
-
-//   const handleNextStep = () => {
-//     setStep((prev) => prev + 1);
-//   };
-
-//              
-//               
-//               {step === 7 && (
-//                 <div className="w-full flex flex-col justify-center items-center">
-//                   <h1 className="text-4xl text-center mb-12">
-//                     Pomyślnie utworzyłeś swoje konto!
-//                   </h1>
-//                   <Link to="/" className="w-1/5 flex justify-center">
-//                     <button className="text-2xl bg-[#1A9367] p-3 rounded-lg text-white border-2 border-black shadow-2xl">
-//                       Strona logowania
-//                     </button>
-//                   </Link>
-//                 </div>
-//               )}
-//             </Form>
-//           )}
-//         </Formik>
-//       </section>
-//     </>
-//   );
-// };
-
-// export default NewUser;
-
 import { ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import SlimNav from "../layout/SlimNav";
+import bida from "../assets/pricing/bida.png";
+import fab from "../assets/pricing/fab.png";
+import prem from "../assets/pricing/prem.png";
+import standard from "../assets/pricing/standard.png";
+import { useState } from "react";
 
 interface FormValues {
   login: string;
@@ -90,6 +19,7 @@ interface FormValues {
 }
 
 const NewUser = () => {
+  const [showPartTwo, setShowPartTwo] = useState(false)
   const formik = useFormik<FormValues>({
     initialValues: {
       login: "",
@@ -119,13 +49,14 @@ const NewUser = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
+      setShowPartTwo(prev => !prev)
     },
   });
 
   return (
     <>
       <SlimNav />
-      <FormikProvider value={formik}>
+      {showPartTwo === false && <FormikProvider value={formik}>
         <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
           <form
             onSubmit={formik.handleSubmit}
@@ -310,7 +241,20 @@ const NewUser = () => {
             </button>
           </form>
         </section>
-      </FormikProvider>
+      </FormikProvider>}
+      {showPartTwo && (
+        <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
+          <h1 className="text-4xl">
+            Zalecamy plan:
+          </h1>
+          <img src={
+        formik.values.numOfInvoices === "Do 5" ? bida :
+        formik.values.numOfInvoices === "Do 15" ? standard :
+        formik.values.numOfInvoices === "Do 35" ? prem :
+        formik.values.numOfInvoices === "Powyżej 35" ? fab : ""
+      }  alt="plan" />
+        </section>
+      )}
     </>
   );
 };
