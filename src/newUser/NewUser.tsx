@@ -256,37 +256,49 @@ const NewUser = () => {
         </FormikProvider>
       )}
       {showPartTwo && (
-  <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
-    <h1 className="text-4xl">Zalecamy plan:</h1>
-    {
-      (() => {
-        const selectedPlan = getSelectedPlan();
-        if (!selectedPlan) {
-          return <p>No plan selected</p>;
-        }
-
-        return (
-          <div className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white">
-            <img src={selectedPlan.img} alt="plan" className="rounded-lg h-60 w-60 mx-auto " />
-            <h2 className={`text-4xl text-center font-bold`}>
-              {selectedPlan.title}
-            </h2>
-            <div className="h-1 bg-green-700 w-full my-5" />
-            {Object.entries(selectedPlan)
-              .filter(([key, value]) => key.startsWith('point') && value)
-              .map(([key, value]) => (
-                <p key={key} className="flex flex-row items-start w-full mb-5">
-                  <FaCheckCircle className="text-3xl mr-2 text-green-500" />
-                  <span className=" text-lg w-5/6">{value}</span>
-                </p>
-              ))
-            }
+        <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
+          <div className="w-full my-12 flex flex-row justify-evenly  items-center">
+            <button className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6">
+              Zmień plan
+            </button>
+            <h1 className="lg:text-4xl px-4 py-2 text-center lg:w-1/3 hidden lg:block">Zalecamy plan:</h1>
+            <button className="lg:text-2xl px-4 py-2 bg-green-300 rounded lg:w-1/6">
+              Przejdź do Płatności
+            </button>
           </div>
-        );
-      })()
-    }
-  </section>
-)}
+
+          {(() => {
+            const selectedPlan = getSelectedPlan();
+            if (!selectedPlan) {
+              return <p>No plan selected</p>;
+            }
+            return (
+              <div className="border-4 rounded-xl lg:w-1/4 lg:mx-4  lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white">
+                <img
+                  src={selectedPlan.img}
+                  alt="plan"
+                  className="rounded-lg h-[90%] w-[90%] mx-auto "
+                />
+                <h2 className={`text-4xl text-center font-bold my-5`}>
+                  {selectedPlan.title}
+                </h2>
+                <div className="h-1 bg-green-700 w-full  mb-2" />
+                {Object.entries(selectedPlan)
+                  .filter(([key, value]) => key.startsWith("point") && value)
+                  .map(([key, value]) => (
+                    <p
+                      key={key}
+                      className="flex flex-row items-start w-full mb-5"
+                    >
+                      <FaCheckCircle className="text-3xl mr-2 text-green-500" />
+                      <span className=" text-lg w-5/6">{value}</span>
+                    </p>
+                  ))}
+              </div>
+            );
+          })()}
+        </section>
+      )}
     </>
   );
 };
