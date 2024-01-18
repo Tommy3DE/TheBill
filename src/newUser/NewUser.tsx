@@ -4,6 +4,7 @@ import SlimNav from "../layout/SlimNav";
 
 import { useState } from "react";
 import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
+import { FaCheckCircle } from "react-icons/fa";
 
 interface FormValues {
   login: string;
@@ -62,7 +63,6 @@ const NewUser = () => {
       return pricing[3];
     }
   };
-  
 
   return (
     <>
@@ -266,13 +266,20 @@ const NewUser = () => {
         }
 
         return (
-          <div>
-            <img src={selectedPlan.img} alt="plan" />
-            <h2>{selectedPlan.title}</h2>
-            {/* Display plan details */}
+          <div className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white">
+            <img src={selectedPlan.img} alt="plan" className="rounded-lg h-60 w-60 mx-auto " />
+            <h2 className={`text-4xl text-center font-bold`}>
+              {selectedPlan.title}
+            </h2>
+            <div className="h-1 bg-green-700 w-full my-5" />
             {Object.entries(selectedPlan)
               .filter(([key, value]) => key.startsWith('point') && value)
-              .map(([key, value]) => <p key={key}>{value}</p>)
+              .map(([key, value]) => (
+                <p key={key} className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 text-green-500" />
+                  <span className=" text-lg w-5/6">{value}</span>
+                </p>
+              ))
             }
           </div>
         );
@@ -280,7 +287,6 @@ const NewUser = () => {
     }
   </section>
 )}
-
     </>
   );
 };
