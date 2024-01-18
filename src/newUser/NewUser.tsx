@@ -1,11 +1,9 @@
 import { ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import SlimNav from "../layout/SlimNav";
-import bida from "../assets/pricing/bida.png";
-import fab from "../assets/pricing/fab.png";
-import prem from "../assets/pricing/prem.png";
-import standard from "../assets/pricing/standard.png";
+
 import { useState } from "react";
+import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
 
 interface FormValues {
   login: string;
@@ -19,7 +17,7 @@ interface FormValues {
 }
 
 const NewUser = () => {
-  const [showPartTwo, setShowPartTwo] = useState(false)
+  const [showPartTwo, setShowPartTwo] = useState(false);
   const formik = useFormik<FormValues>({
     initialValues: {
       login: "",
@@ -42,219 +40,247 @@ const NewUser = () => {
       firstName: Yup.string().required("Imię jest wymagane"),
       lastName: Yup.string().required("Nazwisko jest wymagane"),
       NIP: Yup.string()
-    .matches(/^[0-9]{10}$/, "NIP powinien składać się z 10 cyfr")
-    .required("NIP jest wymagany"),
+        .matches(/^[0-9]{10}$/, "NIP powinien składać się z 10 cyfr")
+        .required("NIP jest wymagany"),
       industry: Yup.string().required("Branża jest wymagana"),
       numOfInvoices: Yup.string().required("Proszę wybrać ilość faktur"),
     }),
     onSubmit: (values) => {
       console.log(values);
-      setShowPartTwo(prev => !prev)
+      setShowPartTwo((prev) => !prev);
     },
   });
+  const getSelectedPlan = (): PricingTile | undefined => {
+    const selectedNumOfInvoices = formik.values.numOfInvoices;
+    if (selectedNumOfInvoices === "Do 5") {
+      return pricing[0];
+    } else if (selectedNumOfInvoices === "Do 15") {
+      return pricing[1];
+    } else if (selectedNumOfInvoices === "Do 35") {
+      return pricing[2];
+    } else if (selectedNumOfInvoices === "Powyżej 35") {
+      return pricing[3];
+    }
+  };
+  
 
   return (
     <>
       <SlimNav />
-      {showPartTwo === false && <FormikProvider value={formik}>
-        <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
-          <form
-            onSubmit={formik.handleSubmit}
-            className="w-full flex flex-col items-center text-3xl"
-          >
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="firstName" className=" mb-2">
-                Email
-              </label>
-              <input
-                id="login"
-                name="login"
-                type="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.login}
-                className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
-              />
-            </div>
-            <ErrorMessage
-              name="login"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="pass" className="mb-2">
-                Hasło
-              </label>
-              <input
-                id="pass"
-                name="pass"
-                type="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.pass}
-                className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
-              />
-            </div>
-            <ErrorMessage
-              name="pass"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="pass2" className="mb-2">
-                Powtórz Hasło
-              </label>
-              <input
-                id="pass2"
-                name="pass2"
-                type="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.pass2}
-                className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
-              />
-            </div>
-            <ErrorMessage
-              name="pass2"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="firstName" className="mb-2">
-                Imię
-              </label>
-              <input
-                id="firstName"
-                name="firstName"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.firstName}
-                className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
-              />
-            </div>
-            <ErrorMessage
-              name="firstName"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="lastName" className="mb-2">
-                Nazwisko
-              </label>
-              <input
-                id="lastName"
-                name="lastName"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.lastName}
-                className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
-              />
-            </div>
-            <ErrorMessage
-              name="lastName"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="nip" className="mb-2">
-                Numer NIP
-              </label>
-              <input
-                id="nip"
-                name="NIP"
-                type="number"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.NIP}
-                className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
-              />
-            </div>
-            <ErrorMessage
-              name="NIP"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="industry" className="mb-2">
-                Branża
-              </label>
-              <select
-                id="industry"
-                name="industry"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.industry}
-                className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
-              >
-                <option value="" disabled selected hidden className="">
-                  Wybierz branżę
-                </option>
-                <option value="IT">IT</option>
-                <option value="Księgowość">Księgowość</option>
-                <option value="Edukacja">Edukacja</option>
-                <option value="Zdrowie">Zdrowie</option>
-                <option value="Budowlana">Budowlana</option>
-                <option value="Beauty">Beauty</option>
-                <option value="Usługi">Usługi</option>
-                <option value="Inna">Inna</option>
-              </select>
-            </div>
-            <ErrorMessage
-              name="industry"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-            <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-              <label htmlFor="numOfInvoices" className="mb-2">
-                Ilosć faktur kosztowych
-              </label>
-              <select
-                id="numOfInvoices"
-                name="numOfInvoices"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.numOfInvoices}
-                className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
-              >
-                <option value="" disabled selected hidden className="">
-                  Wybierz ilość
-                </option>
-                <option value="Do 5">Do 5</option>
-                <option value="Do 15">Do 15</option>
-                <option value="Do 35">Do 35</option>
-                <option value="Powyżej 35">Powyżej 35</option>
-              </select>
-            </div>
-            <ErrorMessage
-              name="numOfInvoices"
-              component="div"
-              className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-            />
-
-            <button
-              type="submit"
-              className="bg-blue-500 text-white p-2 rounded mt-4"
+      {showPartTwo === false && (
+        <FormikProvider value={formik}>
+          <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
+            <form
+              onSubmit={formik.handleSubmit}
+              className="w-full flex flex-col items-center text-3xl"
             >
-              Dalej
-            </button>
-          </form>
-        </section>
-      </FormikProvider>}
-      {showPartTwo && (
-        <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
-          <h1 className="text-4xl">
-            Zalecamy plan:
-          </h1>
-          <img src={
-        formik.values.numOfInvoices === "Do 5" ? bida :
-        formik.values.numOfInvoices === "Do 15" ? standard :
-        formik.values.numOfInvoices === "Do 35" ? prem :
-        formik.values.numOfInvoices === "Powyżej 35" ? fab : ""
-      }  alt="plan" />
-        </section>
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="firstName" className=" mb-2">
+                  Email
+                </label>
+                <input
+                  id="login"
+                  name="login"
+                  type="email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.login}
+                  className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                />
+              </div>
+              <ErrorMessage
+                name="login"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="pass" className="mb-2">
+                  Hasło
+                </label>
+                <input
+                  id="pass"
+                  name="pass"
+                  type="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.pass}
+                  className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                />
+              </div>
+              <ErrorMessage
+                name="pass"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="pass2" className="mb-2">
+                  Powtórz Hasło
+                </label>
+                <input
+                  id="pass2"
+                  name="pass2"
+                  type="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.pass2}
+                  className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                />
+              </div>
+              <ErrorMessage
+                name="pass2"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="firstName" className="mb-2">
+                  Imię
+                </label>
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.firstName}
+                  className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                />
+              </div>
+              <ErrorMessage
+                name="firstName"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="lastName" className="mb-2">
+                  Nazwisko
+                </label>
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastName}
+                  className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                />
+              </div>
+              <ErrorMessage
+                name="lastName"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="nip" className="mb-2">
+                  Numer NIP
+                </label>
+                <input
+                  id="nip"
+                  name="NIP"
+                  type="number"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.NIP}
+                  className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                />
+              </div>
+              <ErrorMessage
+                name="NIP"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="industry" className="mb-2">
+                  Branża
+                </label>
+                <select
+                  id="industry"
+                  name="industry"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.industry}
+                  className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
+                >
+                  <option value="" disabled selected hidden className="">
+                    Wybierz branżę
+                  </option>
+                  <option value="IT">IT</option>
+                  <option value="Księgowość">Księgowość</option>
+                  <option value="Edukacja">Edukacja</option>
+                  <option value="Zdrowie">Zdrowie</option>
+                  <option value="Budowlana">Budowlana</option>
+                  <option value="Beauty">Beauty</option>
+                  <option value="Usługi">Usługi</option>
+                  <option value="Inna">Inna</option>
+                </select>
+              </div>
+              <ErrorMessage
+                name="industry"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+              <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
+                <label htmlFor="numOfInvoices" className="mb-2">
+                  Ilosć faktur kosztowych
+                </label>
+                <select
+                  id="numOfInvoices"
+                  name="numOfInvoices"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.numOfInvoices}
+                  className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
+                >
+                  <option value="" disabled selected hidden className="">
+                    Wybierz ilość
+                  </option>
+                  <option value="Do 5">Do 5</option>
+                  <option value="Do 15">Do 15</option>
+                  <option value="Do 35">Do 35</option>
+                  <option value="Powyżej 35">Powyżej 35</option>
+                </select>
+              </div>
+              <ErrorMessage
+                name="numOfInvoices"
+                component="div"
+                className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+              />
+
+              <button
+                type="submit"
+                className="bg-blue-500 text-white p-2 rounded mt-4"
+              >
+                Dalej
+              </button>
+            </form>
+          </section>
+        </FormikProvider>
       )}
+      {showPartTwo && (
+  <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
+    <h1 className="text-4xl">Zalecamy plan:</h1>
+    {
+      (() => {
+        const selectedPlan = getSelectedPlan();
+        if (!selectedPlan) {
+          return <p>No plan selected</p>;
+        }
+
+        return (
+          <div>
+            <img src={selectedPlan.img} alt="plan" />
+            <h2>{selectedPlan.title}</h2>
+            {/* Display plan details */}
+            {Object.entries(selectedPlan)
+              .filter(([key, value]) => key.startsWith('point') && value)
+              .map(([key, value]) => <p key={key}>{value}</p>)
+            }
+          </div>
+        );
+      })()
+    }
+  </section>
+)}
+
     </>
   );
 };

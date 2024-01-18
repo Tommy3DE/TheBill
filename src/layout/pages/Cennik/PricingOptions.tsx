@@ -4,7 +4,7 @@ import fab from "../../../assets/pricing/fab.png";
 import prem from "../../../assets/pricing/prem.png";
 import standard from "../../../assets/pricing/standard.png";
 
-type PricingTile = {
+export type PricingTile = {
   id: number;
   priceMth: number;
   priceYrl: number;
@@ -24,74 +24,76 @@ type PricingTile = {
 interface PricingOptionsProps {
   yearly: boolean;
 }
+// eslint-disable-next-line react-refresh/only-export-components
+export const pricing: PricingTile[] = [
+  {
+    id: 0,
+    priceMth: 0,
+    priceYrl: 0,
+    title: "Pakiet Darmowy",
+    text: "Idelny do wypróbowania podstawowych funkcjonalności",
+    img: bida,
+    point1: "Skanowanie do 7 dokumentów miesięcznie",
+    point2: "integracja z 1 kontem mailowym",
+    point3: "podstawowy podgląd dokumentów",
+    point4: "",
+    point5: "",
+    point6: "",
+    point7: "",
+    point8: "",
+  },
+  {
+    id: 1,
+    priceMth: 29.99,
+    priceYrl: 299.99,
+    title: "Pakiet Standard",
+    text: "Idealny dla małego JDG - świetne narzędzie dla początkujących",
+    img: standard,
+    point1: "Skanowanie do 15 dokumentów miesięcznie",
+    point2: "integracja z 1 kontem mailowym",
+    point3: "informacje o nowych fakturach w ujęciu miesięcznym",
+    point4: "dostęp do aplikacji mobilnej",
+    point5: "historia w chmurze do 6 miesięcy wstecz",
+    point6: "",
+    point7: "",
+    point8: "",
+  },
+  {
+    id: 2,
+    priceMth: 69.99,
+    priceYrl: 699.99,
+    title: "Pakiet Premium",
+    text: "Pakiet dla bardziej wymagających przedsiębiorców",
+    img: prem,
+    point1: "Skanowanie do 35 dokumentów miesięcznie",
+    point2: "integracja z 2 kontami mailowym",
+    point3: "informacje o nowych fakturach w ujęciu miesięcznym.",
+    point4: "dostęp do aplikacji mobilnej",
+    point5: "historia w chmurze do 2 lat wstecz",
+    point6: "priorytetowe naprawianie błędów/ obsługa",
+    point7: "",
+    point8: "",
+  },
+  {
+    id: 3,
+    priceMth: 99.99,
+    priceYrl: 999.99,
+    title: "Pakiet Biznes",
+    text: "Pakiet dla najbardziej wymagających osób, chcących rozwijać działalność",
+    img: fab,
+    point1: "Skanowanie nieograniczonej liczby dokumentów",
+    point2: "integracja z 2 kontami mailowym",
+    point3: "informacje o nowych fakturach w ujęciu miesięcznym.",
+    point4: "dostęp do aplikacji mobilnej",
+    point5: "historia w chmurze do 5 lat wstecz",
+    point6: "priorytetowe naprawianie błędów/ obsługa",
+    point7: "raporty i analityka konta",
+    point8: "alerty dot. ważnych terminów i nowych faktur",
+  },
+];
 
 const PricingOptions = ({ yearly }: PricingOptionsProps) => {
-  const pricing: PricingTile[] = [
-    {
-      id: 0,
-      priceMth: 0,
-      priceYrl: 0,
-      title: "Pakiet Darmowy",
-      text: "Idelny do wypróbowania podstawowych funkcjonalności",
-      img: bida,
-      point1: "Skanowanie do 7 dokumentów miesięcznie",
-      point2: "integracja z 1 kontem mailowym",
-      point3: "podstawowy podgląd dokumentów",
-      point4: "",
-      point5: "",
-      point6: "",
-      point7: "",
-      point8: "",
-    },
-    {
-      id: 1,
-      priceMth: 29.99,
-      priceYrl: 299.99,
-      title: "Pakiet Standard",
-      text: "Idealny dla małego JDG - świetne narzędzie dla początkujących",
-      img: standard,
-      point1: "Skanowanie do 15 dokumentów miesięcznie",
-      point2: "integracja z 1 kontem mailowym",
-      point3: "informacje o nowych fakturach w ujęciu miesięcznym",
-      point4: "dostęp do aplikacji mobilnej",
-      point5: "historia w chmurze do 6 miesięcy wstecz",
-      point6: "",
-      point7: "",
-      point8: "",
-    },
-    {
-      id: 2,
-      priceMth: 69.99,
-      priceYrl: 699.99,
-      title: "Pakiet Premium",
-      text: "Pakiet dla bardziej wymagających przedsiębiorców",
-      img: prem,
-      point1: "Skanowanie do 35 dokumentów miesięcznie",
-      point2: "integracja z 2 kontami mailowym",
-      point3: "informacje o nowych fakturach w ujęciu miesięcznym.",
-      point4: "dostęp do aplikacji mobilnej",
-      point5: "historia w chmurze do 2 lat wstecz",
-      point6: "priorytetowe naprawianie błędów/ obsługa",
-      point7: "",
-      point8: "",
-    },
-    {
-      id: 3,
-      priceMth: 99.99,
-      priceYrl: 999.99,
-      title: "Pakiet Biznes",
-      text: "Pakiet dla najbardziej wymagających osób, chcących rozwijać działalność",
-      img: fab,
-      point1: "Skanowanie nieograniczonej liczby dokumentów",
-      point2: "integracja z 2 kontami mailowym",
-      point3: "informacje o nowych fakturach w ujęciu miesięcznym.",
-      point4: "dostęp do aplikacji mobilnej",
-      point5: "historia w chmurze do 5 lat wstecz",
-      point6: "priorytetowe naprawianie błędów/ obsługa",
-      point7: "raporty i analityka konta",
-      point8: "alerty dot. ważnych terminów i nowych faktur",
-    },
-  ];
+  
   return (
     <section className="mt-[-70px] items-center lg:mx-[8%] font-poppins mb-32">
       <div className="flex flex-col lg:flex-row justify-evenly">
