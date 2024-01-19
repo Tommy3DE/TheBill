@@ -21,10 +21,11 @@ import ScanPeriod from "./loggedUser/ScanEmail/ScanPeriod";
 import AppSettings from "./loggedUser/Settings/components/AppSettings";
 import DefinedAddresses from "./loggedUser/Settings/components/DefinedAddresses";
 import Login from "./layout/pages/Login";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -48,7 +49,7 @@ function App() {
           <Route path='/login' element={<Login/>} />
         </Routes>
       </Router>
-    </>
+    </AuthProvider>
   );
 }
 
