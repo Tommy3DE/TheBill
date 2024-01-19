@@ -6,7 +6,6 @@ import Cennik from "./layout/pages/Cennik";
 import NewUser from "./newUser/NewUser";
 import Oferta from "./layout/pages/Oferta";
 import Pomoc from "./layout/pages/Pomoc";
-import Navbar from "./layout/Navbar";
 import LoggedUserHome from "./loggedUser/LoggedUserHome";
 import Settings from "./loggedUser/Settings/Settings";
 import History from "./loggedUser/history/History";
