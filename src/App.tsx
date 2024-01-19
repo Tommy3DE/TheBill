@@ -22,6 +22,7 @@ import AppSettings from "./loggedUser/Settings/components/AppSettings";
 import DefinedAddresses from "./loggedUser/Settings/components/DefinedAddresses";
 import Login from "./layout/pages/Login";
 import { AuthProvider } from "./context/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -33,19 +34,18 @@ function App() {
           <Route path="/newUser" element={<NewUser />} />
           <Route path="/funkcje" element={<Oferta />} />
           <Route path="/pomoc" element={<Pomoc />} />
-          <Route path="/logowanie" element={<Navbar />} />
-          <Route path="/logged" element={<LoggedUserHome />} />
-          <Route path="/logged/settings" element={<Settings />} />
-          <Route path="/logged/history" element={<History />} />
-          <Route path="/logged/documents" element={<Day1Dir />} />
-          <Route path="/logged/clients" element={<Clients />} />
-          <Route path="/logged/scanDoc" element={<Scan />} />
-          <Route path="/logged/documents/:date" element={<MthPage />} />
-          <Route path="/logged/scanMail" element={<ScanEmail />} />
-          <Route path="/logged/syncMail" element={<SyncMail />} />
-          <Route path="/logged/scanMail/scanPeriod" element={<ScanPeriod />} />
-          <Route path="/logged/settings/definedAddress" element={<DefinedAddresses />} />
-          <Route path="/logged/settings/appSettings" element={<AppSettings />} />
+          <Route path="/logged" element={<ProtectedRoute element={<LoggedUserHome />}/>} />
+          <Route path="/logged/settings" element={<ProtectedRoute element={<Settings />}/>} />
+          <Route path="/logged/history" element={<ProtectedRoute element={<History />}/>} />
+          <Route path="/logged/documents" element={<ProtectedRoute element={<Day1Dir />}/>} />
+          <Route path="/logged/clients" element={<ProtectedRoute element={<Clients />}  />} />
+          <Route path="/logged/scanDoc" element={<ProtectedRoute element={<Scan />}  />} />
+          <Route path="/logged/documents/:date" element={<ProtectedRoute element={<MthPage />} />} />
+          <Route path="/logged/scanMail" element={<ProtectedRoute element={<ScanEmail />} />} />
+          <Route path="/logged/syncMail" element={<ProtectedRoute element={<SyncMail />} />} />
+          <Route path="/logged/scanMail/scanPeriod" element={<ProtectedRoute element={<ScanPeriod />} />} />
+          <Route path="/logged/settings/definedAddress" element={<ProtectedRoute element={<DefinedAddresses />} />} />
+          <Route path="/logged/settings/appSettings" element={<ProtectedRoute element={<AppSettings />}/>} />
           <Route path='/login' element={<Login/>} />
         </Routes>
       </Router>
