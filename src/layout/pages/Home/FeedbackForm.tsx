@@ -34,7 +34,7 @@ const FeedbackForm = () => {
       <form
         ref={form}
         onSubmit={sendEmail}
-        className="flex flex-col text-xl justify-center lg:w-1/3 my-5"
+        className="flex flex-col text-xl justify-center w-full lg:w-1/3 my-5"
       >
         <input
           type="text"
