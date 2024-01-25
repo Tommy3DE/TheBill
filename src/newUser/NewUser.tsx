@@ -269,6 +269,7 @@ const NewUser = () => {
 
           {(() => {
             const selectedPlan = getSelectedPlan();
+            console.log(selectedPlan)
             if (!selectedPlan) {
               return <p>No plan selected</p>;
             }
@@ -279,8 +280,11 @@ const NewUser = () => {
                   alt="plan"
                   className="rounded-lg h-[90%] w-[90%] mx-auto "
                 />
-                <h2 className={`text-4xl text-center font-bold my-5`}>
+                <h2 className={`text-4xl text-center font-bold my-2`}>
                   {selectedPlan.title}
+                </h2>
+                <h2 className="text-center my-3">
+                  {selectedPlan.priceMth} miesięcznie lub {selectedPlan.priceYrl} rocznie
                 </h2>
                 <div className="h-1 bg-green-700 w-full  mb-2" />
                 {Object.entries(selectedPlan)

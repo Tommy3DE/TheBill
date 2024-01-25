@@ -16,7 +16,7 @@ const UseCases = () => {
       </h1>
       <div className="flex flex-col mt-20">
         <div className="flex lg:flex-row flex-col w-full">
-          <div className="lg:w-1/3 w-full">
+          <div className="lg:w-1/3 w-full mt-10">
             <div className="flex flex-row justify-between">
               <h1 className="text-2xl font-extrabold mb-4">Medycyna</h1>
               <img src={med} alt="icon" />
