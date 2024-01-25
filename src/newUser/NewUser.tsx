@@ -294,9 +294,6 @@ const NewUser = () => {
                       <span className=" text-lg w-5/6">{value}</span>
                     </p>
                   ))}
-                  <p>
-                    test
-                  </p>
               </div>
             );
           })()}
