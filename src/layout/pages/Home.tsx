@@ -6,7 +6,7 @@ import Opinions from "./Home/Opinions";
 import FAQ from "./Home/FAQ";
 import BasicInfo from "./Home/BasicInfo";
 import ShortPricing from "./Home/ShortPricing";
-import KSEF from "./Home/KSEF";
+import FeedbackForm from "./Home/FeedbackForm";
 
 const Home = () => {
   return (
@@ -15,9 +15,9 @@ const Home = () => {
       <Hero />
       <BasicInfo />
       <ShortPricing />
-      <KSEF />
       <UseCases />
       <Opinions />
+      <FeedbackForm />
       <FAQ />
       <Footer />
     </>
