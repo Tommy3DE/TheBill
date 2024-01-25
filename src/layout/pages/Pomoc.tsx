@@ -1,14 +1,17 @@
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { FormEvent, useEffect, useRef } from 'react';
 import Navbar from "../Navbar";
 import airplane from "../../assets/icons/airplane.jpg";
 import catHelp from "../../assets/catHelp.jpg";
 import FAQ from "./Pomoc/FAQ";
 import Address from "./Pomoc/Address";
 import Footer from "../Footer";
+import emailjs from '@emailjs/browser';
+
 
 const Pomoc = () => {
   const location = useLocation();
+  const form = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -20,6 +23,21 @@ const Pomoc = () => {
       }
     }
   }, [location]);
+
+  const sendEmail = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (form.current) { 
+      emailjs.sendForm('service_j47lvzl', 'template_iuscwh9', form.current, 'jMHcnYi7CJyBcblPz')
+        .then((result) => {
+          console.log(result.text);
+        }, (error) => {
+          console.log(error.text);
+        });
+    }
+  };
+
+
   return (
     <>
       <Navbar />
@@ -43,23 +61,29 @@ const Pomoc = () => {
                 </h2>
               </div>
               <div className="flex lg:flex-row w-full flex-col justify-evenly">
-                <div className="flex flex-col text-xl justify-center lg:w-1/3">
+                <form ref={form} onSubmit={sendEmail} className="flex flex-col text-xl justify-center lg:w-1/3 my-5">
                   <input
                     type="text"
+                    name='user_name'
                     placeholder="Imię i nazwisko"
-                    className="border border-gray-500 rounded-lg text-4xl p-3"
+                    className="border border-gray-500 rounded-lg text-4xl p-3 h-[15%]"
                   />
                   <input
                     type="email"
+                    name='user_mail'
                     placeholder="Twój e-mail"
-                    className="border border-gray-500 rounded-lg text-4xl my-10 p-3"
+                    className="border border-gray-500 rounded-lg text-4xl my-5 p-3 h-[15%]"
                   />
                   <input
                     type="text"
+                    name="user_message"
                     placeholder="Treść wiadomości"
-                    className="border border-gray-500 rounded-lg text-4xl h-2/5 placeholder:align-text-top p-3"
+                    className="border border-gray-500 rounded-lg text-4xl h-[55%] placeholder:align-text-top p-3"
                   />
-                </div>
+                  <button className='text-2xl bg-[#5ffa9d] h-[15%] my-3 rounded-lg hover:font-bold hover:scale-105 hover:text-white '>
+                    Wyślij
+                  </button>
+                </form>
                 <img src={catHelp} alt="catimg" />
               </div>
             </div>
