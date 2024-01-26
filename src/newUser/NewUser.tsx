@@ -19,6 +19,7 @@ interface FormValues {
 
 const NewUser = () => {
   const [showPartTwo, setShowPartTwo] = useState(false);
+  const [changePlan, setChangePlan] = useState(false)
   const formik = useFormik<FormValues>({
     initialValues: {
       login: "",
@@ -63,10 +64,97 @@ const NewUser = () => {
       return pricing[3];
     }
   };
+  const handleChangePlan = () => {
+    setChangePlan(prev => !prev)
+  }
 
   return (
     <>
       <SlimNav />
+      {changePlan && 
+        <div className="h-full w-full bg-gray-300 bg-opacity-80 absolute top-0 left-0 flex flex-crow">
+          {pricing.map((tile) => (
+          <div
+            key={tile.id}
+            className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white"
+          >
+            <div className="flex flex-col items-center h-1/2">
+              <h1
+                className={`text-4xl text-center font-extrabold ${
+                  tile.id === 0
+                    ? "text-[#61E9B7]"
+                    : tile.id === 1
+                    ? "text-[#35D299]"
+                    : tile.id === 2
+                    ? "text-[#1A9367]"
+                    : tile.id === 3
+                    ? "text-[#C19F46]"
+                    : ""
+                }`}
+              >
+                {tile.title}
+              </h1>
+              <img
+                src={tile.img}
+                alt={tile.title}
+                className="mt-10 rounded-lg h-72"
+              />
+              <div className="h-1 bg-green-700 w-full my-5" />
+              <h1 className=" text-[#1A9367]">
+              {tile.priceMth === 0
+                    ? "Plan darmowy"
+                    : `${tile.priceMth} miesięcznie lub ${tile.priceYrl} rocznie`}
+              </h1>
+              
+            </div>
+            <div className="flex flex-col mt-10 justify-start h-1/2">
+              <div className="flex flex-row items-start w-full mb-5">
+                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <p className="font-bold text-lg w-5/6">{tile.point1}</p>
+              </div>
+              <div className="flex flex-row items-start w-full mb-5">
+                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <p className="font-bold text-lg w-5/6">{tile.point2}</p>
+              </div>
+              <div className="flex flex-row items-start w-full mb-5">
+                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <p className="font-bold text-lg w-5/6">{tile.point3}</p>
+              </div>
+              {tile.point4 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point4}</p>
+                </div>
+              )}
+              {tile.point5 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point5}</p>
+                </div>
+              )}
+              {tile.point6 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point6}</p>
+                </div>
+              )}
+              {tile.point7 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point7}</p>
+                </div>
+              )}
+              {tile.point8 !== "" && (
+                <div className="flex flex-row items-start w-full mb-5">
+                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                  <p className="font-bold text-lg w-5/6">{tile.point8}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+        </div>
+      }
       {showPartTwo === false && (
         <FormikProvider value={formik}>
           <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
@@ -258,10 +346,12 @@ const NewUser = () => {
       {showPartTwo && (
         <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
           <div className="w-full my-12 flex flex-row justify-evenly  items-center">
-            <button className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6">
+            <button className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6" onClick={handleChangePlan}>
               Zmień plan
             </button>
-            <h1 className="lg:text-4xl px-4 py-2 text-center lg:w-1/3 hidden lg:block">Zalecamy plan:</h1>
+            <h1 className="lg:text-4xl px-4 py-2 text-center lg:w-1/3 hidden lg:block">
+              Zalecamy plan:
+            </h1>
             <button className="lg:text-2xl px-4 py-2 bg-green-300 rounded lg:w-1/6">
               Przejdź do Płatności
             </button>
@@ -269,7 +359,7 @@ const NewUser = () => {
 
           {(() => {
             const selectedPlan = getSelectedPlan();
-            console.log(selectedPlan)
+            console.log(selectedPlan);
             if (!selectedPlan) {
               return <p>No plan selected</p>;
             }
@@ -284,7 +374,9 @@ const NewUser = () => {
                   {selectedPlan.title}
                 </h2>
                 <h2 className="text-center my-3">
-                  {selectedPlan.priceMth} miesięcznie lub {selectedPlan.priceYrl} rocznie
+                  {selectedPlan.priceMth === 0
+                    ? "Plan darmowy"
+                    : `${selectedPlan.priceMth} miesięcznie lub ${selectedPlan.priceYrl} rocznie`}
                 </h2>
                 <div className="h-1 bg-green-700 w-full  mb-2" />
                 {Object.entries(selectedPlan)
