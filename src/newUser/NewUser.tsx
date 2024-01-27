@@ -64,19 +64,43 @@ const NewUser = () => {
       return pricing[3];
     }
   };
-  const handleChangePlan = () => {
+  const handlePlan = () => {
     setChangePlan(prev => !prev)
   }
+
+  const handlePlanChange = (tileId: number): void => {
+    const selectedTile = pricing.find(tile => tile.id === tileId);
+    
+    let numOfInvoicesValue: string = "";
+  
+    if (selectedTile) {
+      if (selectedTile.point1.includes("7")) {
+        numOfInvoicesValue = "Do 5";
+      } else if (selectedTile.point1.includes("15")) {
+        numOfInvoicesValue = "Do 15";
+      } else if (selectedTile.point1.includes("35")) {
+        numOfInvoicesValue = "Do 35";
+      } else if (selectedTile.point1.toLowerCase().includes("nieograniczonej")) {
+        numOfInvoicesValue = "Powyżej 35";
+      }
+    }
+  
+    if (numOfInvoicesValue !== "") {
+      formik.setFieldValue("numOfInvoices", numOfInvoicesValue);
+    }
+    handlePlan()
+  };
 
   return (
     <>
       <SlimNav />
       {changePlan && 
-        <div className="h-full w-full bg-gray-300 bg-opacity-80 absolute top-0 left-0 flex flex-crow">
+        <div className="h-screen w-full bg-gray-300 bg-opacity-80 fixed top-0 left-0 flex flex-crow">
           {pricing.map((tile) => (
           <div
             key={tile.id}
-            className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white"
+            className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white hover:bg-green-200 cursor-pointer"
+            onClick={() => handlePlanChange(tile.id)}
           >
             <div className="flex flex-col items-center h-1/2">
               <h1
@@ -107,46 +131,46 @@ const NewUser = () => {
               </h1>
               
             </div>
-            <div className="flex flex-col mt-10 justify-start h-1/2">
-              <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+            <div className="flex flex-col mt-5 justify-start h-1/2">
+              <div className="flex flex-row items-center w-full mb-3">
+                <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                 <p className="font-bold text-lg w-5/6">{tile.point1}</p>
               </div>
-              <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+              <div className="flex flex-row items-center w-full mb-3">
+                <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                 <p className="font-bold text-lg w-5/6">{tile.point2}</p>
               </div>
-              <div className="flex flex-row items-start w-full mb-5">
-                <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+              <div className="flex flex-row items-center w-full mb-3">
+                <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                 <p className="font-bold text-lg w-5/6">{tile.point3}</p>
               </div>
               {tile.point4 !== "" && (
-                <div className="flex flex-row items-start w-full mb-5">
-                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <div className="flex flex-row items-center w-full mb-3">
+                  <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                   <p className="font-bold text-lg w-5/6">{tile.point4}</p>
                 </div>
               )}
               {tile.point5 !== "" && (
-                <div className="flex flex-row items-start w-full mb-5">
-                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <div className="flex flex-row items-center w-full mb-3">
+                  <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                   <p className="font-bold text-lg w-5/6">{tile.point5}</p>
                 </div>
               )}
               {tile.point6 !== "" && (
-                <div className="flex flex-row items-start w-full mb-5">
-                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <div className="flex flex-row items-center w-full mb-3">
+                  <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                   <p className="font-bold text-lg w-5/6">{tile.point6}</p>
                 </div>
               )}
               {tile.point7 !== "" && (
-                <div className="flex flex-row items-start w-full mb-5">
-                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <div className="flex flex-row items-center w-full mb-3">
+                  <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                   <p className="font-bold text-lg w-5/6">{tile.point7}</p>
                 </div>
               )}
               {tile.point8 !== "" && (
-                <div className="flex flex-row items-start w-full mb-5">
-                  <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
+                <div className="flex flex-row items-center w-full mb-3">
+                  <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                   <p className="font-bold text-lg w-5/6">{tile.point8}</p>
                 </div>
               )}
@@ -346,7 +370,7 @@ const NewUser = () => {
       {showPartTwo && (
         <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
           <div className="w-full my-12 flex flex-row justify-evenly  items-center">
-            <button className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6" onClick={handleChangePlan}>
+            <button className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6" onClick={handlePlan}>
               Zmień plan
             </button>
             <h1 className="lg:text-4xl px-4 py-2 text-center lg:w-1/3 hidden lg:block">
