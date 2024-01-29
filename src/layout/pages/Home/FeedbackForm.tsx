@@ -1,8 +1,9 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const FeedbackForm = () => {
   const form = useRef<HTMLFormElement | null>(null);
+  const [messageSent, setMessageSent] = useState(false)
 
   const sendEmail = (e: FormEvent) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const FeedbackForm = () => {
         .then(
           (result) => {
             console.log(result.text);
+            setMessageSent(prev => !prev)
           },
           (error) => {
             console.log(error.text);
@@ -28,6 +30,10 @@ const FeedbackForm = () => {
 
   return (
     <section className="flex flex-col justify-center items-center mx-[8%] font font-poppins">
+      {messageSent && <>
+          
+      </>
+      }
       <h1 className="text-3xl font-bold my-5">
         Pomóż nam dalej ulepszać aplikacje
       </h1>
