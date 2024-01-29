@@ -7,6 +7,7 @@ import FAQ from "./Pomoc/FAQ";
 import Address from "./Pomoc/Address";
 import Footer from "../Footer";
 import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 
 
 const Pomoc = () => {
@@ -29,11 +30,22 @@ const Pomoc = () => {
 
     if (form.current) { 
       emailjs.sendForm('service_j47lvzl', 'template_iuscwh9', form.current, 'jMHcnYi7CJyBcblPz')
-        .then((result) => {
+      .then(
+        (result) => {
           console.log(result.text);
-        }, (error) => {
+          toast.success("Wiadomość pomyślnie wysłana", {
+            position: "top-right",
+            autoClose: 7000
+          });
+        },
+        (error) => {
           console.log(error.text);
-        });
+          toast.error("Błąd wysyłania wiadomości", {
+            position: "top-right",
+            autoClose: 7000
+          });
+        }
+      );
     }
   };
 

@@ -1,9 +1,9 @@
 import { FormEvent, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const FeedbackForm = () => {
   const form = useRef<HTMLFormElement | null>(null);
-  const [messageSent, setMessageSent] = useState(false)
 
   const sendEmail = (e: FormEvent) => {
     e.preventDefault();
@@ -19,10 +19,17 @@ const FeedbackForm = () => {
         .then(
           (result) => {
             console.log(result.text);
-            setMessageSent(prev => !prev)
+            toast.success("Wiadomość pomyślnie wysłana", {
+              position: "top-right",
+              autoClose: 7000
+            });
           },
           (error) => {
             console.log(error.text);
+            toast.error("Błąd wysyłania wiadomości", {
+              position: "top-right",
+              autoClose: 7000
+            });
           }
         );
     }
@@ -30,10 +37,6 @@ const FeedbackForm = () => {
 
   return (
     <section className="flex flex-col justify-center items-center mx-[8%] font font-poppins">
-      {messageSent && <>
-          
-      </>
-      }
       <h1 className="text-3xl font-bold my-5">
         Pomóż nam dalej ulepszać aplikacje
       </h1>

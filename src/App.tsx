@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import 'react-toastify/dist/ReactToastify.css';
 import Home from "./layout/pages/Home";
 import Cennik from "./layout/pages/Cennik";
 import NewUser from "./newUser/NewUser";
@@ -22,10 +22,12 @@ import DefinedAddresses from "./loggedUser/Settings/components/DefinedAddresses"
 import Login from "./layout/pages/Login";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <AuthProvider>
+      <ToastContainer/>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
