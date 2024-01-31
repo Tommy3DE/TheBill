@@ -1,14 +1,13 @@
-import { useLocation } from 'react-router-dom';
-import { FormEvent, useEffect, useRef } from 'react';
+import { useLocation } from "react-router-dom";
+import { FormEvent, useEffect, useRef } from "react";
 import Navbar from "../Navbar";
 import airplane from "../../assets/icons/airplane.jpg";
 import catHelp from "../../assets/catHelp.jpg";
 import FAQ from "./Pomoc/FAQ";
 import Address from "./Pomoc/Address";
 import Footer from "../Footer";
-import emailjs from '@emailjs/browser';
-import { toast } from 'react-toastify';
-
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const Pomoc = () => {
   const location = useLocation();
@@ -16,11 +15,11 @@ const Pomoc = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const itemId = searchParams.get('item');
+    const itemId = searchParams.get("item");
     if (itemId) {
       const element = document.getElementById(`accordion-item-${itemId}`);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
   }, [location]);
@@ -28,27 +27,47 @@ const Pomoc = () => {
   const sendEmail = (e: FormEvent) => {
     e.preventDefault();
 
-    if (form.current) { 
-      emailjs.sendForm('service_j47lvzl', 'template_iuscwh9', form.current, 'jMHcnYi7CJyBcblPz')
-      .then(
-        (result) => {
-          console.log(result.text);
-          toast.success("Wiadomość pomyślnie wysłana", {
-            position: "top-right",
-            autoClose: 7000
-          });
-        },
-        (error) => {
-          console.log(error.text);
-          toast.error("Błąd wysyłania wiadomości", {
-            position: "top-right",
-            autoClose: 7000
-          });
-        }
-      );
+    if (form.current) {
+      emailjs
+        .sendForm(
+          "service_j47lvzl",
+          "template_iuscwh9",
+          form.current,
+          "jMHcnYi7CJyBcblPz"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            toast.success("Wiadomość pomyślnie wysłana", {
+              position: "top-right",
+              autoClose: 7000,
+            });
+          },
+          (error) => {
+            console.log(error.text);
+            toast.error("Błąd wysyłania wiadomości", {
+              position: "top-right",
+              autoClose: 7000,
+            });
+          }
+        );
     }
   };
-
+  const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    const previousElement = e.target.previousElementSibling as HTMLElement | null;
+    if (previousElement) {
+      previousElement.style.display = "none";
+    }
+  };
+  
+  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    const previousElement = e.target.previousElementSibling as HTMLElement | null;
+    if (e.target.value === "" && previousElement) {
+      previousElement.style.display = "block";
+    }
+  };
+  
+  
 
   return (
     <>
@@ -66,33 +85,49 @@ const Pomoc = () => {
         <div className=" h-auto w-full">
           <div className="lg:mx-[12%]">
             <div className="flex flex-col mt-14">
-              <div className="flex items-center lg:ml-[10%] mb-10 lg:mb-0">
+              <div className="flex items-center lg:ml-[8%] mb-10 lg:mb-0">
                 <img src={airplane} alt="airplane" />
                 <h2 className="font-poppins text-4xl font-extrabold ml-5">
                   Formularz kontaktowy
                 </h2>
               </div>
               <div className="flex lg:flex-row w-full flex-col justify-evenly">
-                <form ref={form} onSubmit={sendEmail} className="flex flex-col text-xl justify-center lg:w-1/3 my-5">
+                <form
+                  ref={form}
+                  onSubmit={sendEmail}
+                  className="flex flex-col text-xl justify-center lg:w-1/3 my-5"
+                >
                   <input
                     type="text"
-                    name='user_name'
+                    name="user_name"
                     placeholder="Imię i nazwisko"
-                    className="border border-gray-500 rounded-lg text-4xl p-3 h-[15%]"
+                    className="border border-gray-500 rounded-lg text-2xl p-3 h-[15%]"
                   />
                   <input
                     type="email"
-                    name='user_mail'
+                    name="user_mail"
                     placeholder="Twój e-mail"
-                    className="border border-gray-500 rounded-lg text-4xl my-5 p-3 h-[15%]"
+                    className="border border-gray-500 rounded-lg text-2xl my-5 p-3 h-[15%]"
                   />
-                  <input
-                    type="text"
-                    name="user_message"
-                    placeholder="Treść wiadomości"
-                    className="border border-gray-500 rounded-lg text-4xl h-[55%] placeholder:align-text-top p-3"
-                  />
-                  <button className='text-2xl bg-[#5ffa9d] h-[15%] my-3 rounded-lg hover:font-bold hover:scale-105 hover:text-white '>
+                  <div className="relative border border-gray-500 rounded-lg h-36">
+                    <label
+                      htmlFor="user_message"
+                      className="text-2xl pl-3 pt-2 absolute text-gray-400"
+                    >
+                      Treść wiadomości
+                    </label>
+                    <textarea
+      name="user_message"
+      id="user_message"
+      rows={1} // Używamy liczby bez cudzysłowów
+      className="text-2xl w-full h-full pt-3 pl-3 rounded-lg focus:outline-none resize-none overflow-hidden"
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      style={{ lineHeight: '1.5rem' }}
+    ></textarea>
+                  </div>
+
+                  <button className="text-2xl bg-[#5ffa9d] h-[15%] my-3 rounded-lg hover:font-bold hover:scale-105 hover:text-white ">
                     Wyślij
                   </button>
                 </form>
@@ -104,7 +139,7 @@ const Pomoc = () => {
         <div className="bg-[#DDFFED] w-full p-2 mb-8 font-extrabold text-3xl">
           <p className="text-center">Często zadawane pytania | FAQ</p>
         </div>
-        <FAQ/>
+        <FAQ />
         <Address />
         <Footer />
       </section>
