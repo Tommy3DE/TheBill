@@ -4,6 +4,7 @@ const AppSettings = () => {
   return (
     <section>
       <SlimNav />
+      <div className="mx-auto max-w-[1980px] ">
       <div className="w-full flex justify-center items-center">
         <div className=" flex flex-col justify-center border-2 rounded lg:w-1/2 w-[98%] lg:mt-[10%] mt-[35%] text-2xl">
           <div className="flex flex-row justify-between py-2">
@@ -31,6 +32,7 @@ const AppSettings = () => {
             <p>jan@nowak.pl</p>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ const ScanEmail = () => {
   return (
     <section>
       <SlimNav />
+      <div className="mx-auto max-w-[1980px] ">
       <div className="mt-24 lg:mx-[10%] mx-[2%]">
         <div className="flex flex-row justify-start items-center font-black">
           <h1 className="text-4xl">Wybierz skrzynkę którą chcesz skanować</h1>
@@ -57,6 +58,7 @@ const ScanEmail = () => {
           Wstecz
         </button>
       </Link>
+      </div>
     </section>
   );
 };

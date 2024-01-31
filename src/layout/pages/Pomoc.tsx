@@ -60,7 +60,7 @@ const Pomoc = () => {
   return (
     <>
       <Navbar />
-      <section className="mt-8 font-poppins flex flex-col">
+      <section className="mt-8 font-poppins flex flex-col mx-auto max-w-[1980px] ">
         <div className="lg:mt-24 text-center w-full bg-[#DDFFED]">
           <h1 className="text-6xl tracking-wider font-playFair font-bold my-10">
             Jak możemy Cię wesprzeć w prowadzeniu biznesu?{" "}

@@ -15,6 +15,7 @@ const ScanPeriod = () => {
   return (
     <section className=" font-poppins">
       <SlimNav />
+      <div className="mx-auto max-w-[1980px] ">
       <div className="mt-36 lg:mx-[10%] mx-[2%] flex flex-col justifty-center items-center">
         <h1 className="text-4xl font-black">
           Wybierz miesiąc który chcesz przeskanować:
@@ -71,6 +72,7 @@ const ScanPeriod = () => {
             <button>Dalej</button>
           </Link>
         )}
+      </div>
       </div>
     </section>
   );

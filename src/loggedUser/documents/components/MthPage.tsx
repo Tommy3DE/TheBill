@@ -44,6 +44,7 @@ const MthPage = () => {
   return (
     <div>
       <SlimNav />
+      <div className="mx-auto max-w-[1980px] ">
       <div className="mx-[15%] mt-16 h-[80vh]">
         <h1 className=" font-bold h-1/6 flex flex-row">
           <h2 className="text-3xl">
@@ -65,6 +66,7 @@ const MthPage = () => {
           Wstecz
         </button>
       </Link>
+      </div>
     </div>
   );
 };

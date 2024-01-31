@@ -5,7 +5,9 @@ const Scan = () => {
   return (
     <div>
     <SlimNav />
+    <div className="mx-auto max-w-[1980px] ">
     <MailScan />
+    </div>
     </div>
   )
 }

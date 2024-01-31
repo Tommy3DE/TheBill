@@ -29,7 +29,7 @@ const LoggedHome = () => {
   ];
 
   return (
-    <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center">
+    <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
         <div className="w-[90%] bg-gray-300 rounded-lg mt-10 p-4 text-lg flex flex-row justify-start items-center font-bold animate-pulse ">
             <img src={bell} alt="bell" className="mr-4"/>
             <p>

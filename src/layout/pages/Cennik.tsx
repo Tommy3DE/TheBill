@@ -6,15 +6,17 @@ import PresentationMovie from "./Cennik/PresentationMovie";
 import Footer from "../Footer";
 
 const Cennik = () => {
-  const [yearly, setYearly] = useState<boolean>(false)
+  const [yearly, setYearly] = useState<boolean>(false);
 
   return (
     <>
       <Navbar />
-      <PricingIntro setYearly={setYearly} yearly={yearly}/>
-      <PricingOptions yearly={yearly}/>
-      <PresentationMovie />
-      <Footer />
+      <div className="mx-auto max-w-[1980px] ">
+        <PricingIntro setYearly={setYearly} yearly={yearly} />
+        <PricingOptions yearly={yearly} />
+        <PresentationMovie />
+        <Footer />
+      </div>
     </>
   );
 };

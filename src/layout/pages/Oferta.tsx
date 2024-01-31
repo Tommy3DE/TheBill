@@ -8,10 +8,12 @@ const Oferta = () => {
   return (
     <>
     <Navbar/>
+    <div className="mx-auto max-w-[1980px] ">
     <TestMac />
     <Usage/>
     <Cases/>
     <Footer/>
+    </div>
     </>)
 }
 

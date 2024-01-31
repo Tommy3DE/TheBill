@@ -13,6 +13,7 @@ const DefinedAddresses = () => {
   return (
     <section className="w-full font-poppins">
       <SlimNav />
+      <div className="mx-auto max-w-[1980px] ">
       <div className="mt-24 lg:mx-[5%] mx-[2%] font-bold h-1/6   flex flex-row items-center">
         <h1 className="text-3xl">Dokumenty {">"} Zdefiniowane adresy e-mail</h1>
         <img src={email} alt="email" className="h-12 w-12 ml-5" />
@@ -59,6 +60,7 @@ const DefinedAddresses = () => {
           + dodaj skrzynkę
         </button>
         {modalVis && <AddAccountant handleVis={handleVis}/>}
+      </div>
       </div>
     </section>
   );

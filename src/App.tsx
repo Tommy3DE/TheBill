@@ -28,7 +28,6 @@ function App() {
   return (
     <AuthProvider>
       <ToastContainer/>
-      <div className="mx-auto max-w-[1980px] flex flex-col min-h-screen">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -51,7 +50,6 @@ function App() {
           <Route path='/login' element={<Login/>} />
         </Routes>
       </Router>
-      </div>
     </AuthProvider>
   );
 }

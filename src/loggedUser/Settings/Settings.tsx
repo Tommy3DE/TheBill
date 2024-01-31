@@ -7,7 +7,9 @@ const Settings = () => {
   return (
     <section>
       <SlimNav />
+      <div className="mx-auto max-w-[1980px] ">
       <SettingsRoutes/>
+      </div>
     </section>
   );
 };
