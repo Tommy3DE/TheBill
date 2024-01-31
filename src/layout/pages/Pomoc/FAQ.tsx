@@ -1,36 +1,116 @@
-import { Accordion, AccordionItem } from '@szhsin/react-accordion';
+import { Accordion, AccordionItem } from "@szhsin/react-accordion";
+import { ReactNode } from "react";
 
 type accordionTile = {
-    id: number;
-    title: string;
-    text: string;
-}
+  id: number;
+  title: string;
+  text: ReactNode;
+};
 
 const FAQ = () => {
-    const accTiles: accordionTile[] = [
-        {id: 1, title: 'Czym jest aplikacja OneBill?', text: 'OneBill to aplikacja do zarządzania fakturami, która automatyzuje proces zbierania, sortowania i przesyłania faktur kosztowych do biur księgowych, szczególnie dedykowana dla jednoosobowych działalności gospodarczych, mikro i małych przedsiębiorców.'},
-        {id: 2, title: 'Jak zacząć korzystać z OneBill?', text: 'Aby rozpocząć korzystanie z OneBill, wystarczy pobrać aplikację, zarejestrować się, skonfigurować swoje konto i dodać adres mailowy swój oraz swojego biura ksiegowego.'},
-        {id: 3, title: 'Czy OneBill jest bezpieczny?', text: 'Tak, OneBill stosuje zaawansowane protokoły bezpieczeństwa i szyfrowania, aby chronić Twoje dane i zapewnić ich poufność.'},
-        {id: 4, title: 'Jakie plany cenowe oferuje OneBill?', text: 'OneBill oferuje różne plany cenowe, w tym darmowy plan testowy oraz płatne plany Standard, Premium i Fabulous, każdy z różnym zakresem funkcji.'},
-        {id: 5, title: 'Czy mogę zmienić swój plan subskrypcji?', text: 'Tak, możesz zmienić swój plan subskrypcji w dowolnym momencie, wybierając plan, który najlepiej odpowiada Twoim aktualnym potrzebom.'},
-        {id: 6, title: 'Jak OneBill pomaga w zarządzaniu fakturami?', text: 'OneBill automatycznie zbiera faktury z Twojej skrzynki e-mailowej, sortuje je, a następnie umożliwia łatwe przesyłanie do Twojego biura księgowego.'},
-        {id: 7, title: 'Czy OneBill integruje się z innymi systemami księgowymi?', text: 'Nie, OneBill nie oferuje integracji z innymi platformami.'},
-        {id: 8, title: 'Jak mogę uzyskać pomoc techniczną lub wsparcie?', text: 'Wsparcie techniczne jest dostępne poprzez e-mail, chat, a w przypadku planu Fabulous także telefonicznie. Dostępne są również zasoby pomocnicze na naszej stronie internetowej.'},
-        {id: 9, title: 'Czy mogę eksportować dane z OneBill do innych formatów?', text: 'Tak, OneBill umożliwia eksport danych do różnych formatów, w tym Excela, co ułatwia analizę i raportowanie.'},
-        {id: 10, title: 'Czy OneBill jest dostępny na urządzenia mobilne?', text: 'Tak, OneBill oferuje aplikację mobilną, która umożliwia zarządzanie fakturami i monitorowanie finansów z dowolnego miejsca.'}
-    ]
+  const accTiles: accordionTile[] = [
+    {
+      id: 1,
+      title: "Do czego służy aplikacja OneBill?",
+      text: "Aplikacja OneBill została stworzona do pomocy przedsiębiorcom w organizacji dokumentów kosztowych i usprawnieniu procesów administracyjnych w firmie. Nasz produkt skanuje skrzynkę e-mail użytkownika w poszukiwaniu dokumentów kosztowych z wybranego miesiąca rozliczeniowego, agreguje je do jednego maila i umożliwia jednym kliknięciem wysyłkę gotowej dokumentacji do biura księgowego. Dodatkowo, w panelu użytkownika dokumenty są zapisywane, dzięki czemu nasi klienci nie muszą martwić się o organizację dokumentów w swojej firmie.",
+    },
+    {
+      id: 2,
+      title: "Jak założyć konto?",
+      text: "Aby założyć konto, należy kliknąć w przycisk “Załóż konto” znajdujący się na wstążce na górze strony. Wymagamy podstawowych informacji, dostępnych w CEiDG takich jak Imię, nazwisko, NIP oraz branża w jakiej działasz. Dodatkowo, program spyta ile faktur miesięcznie procesujesz, dzięki czemu dobierze on odpowiedni dla Ciebie pakiet.",
+    },
+    {
+      id: 3,
+      title: "Nie mam konta G-mail, czy nadal mogę skorzystać z OneBill?",
+      text: (
+        <>
+          Obecnie wspieramy{" "}
+          <span className="underline font-extrabold">
+            jedynie klienta poczty Google - G-mail’a.
+          </span>{" "}
+          Pracujemy nad możliwością integracji z innymi klientami poczty, o czym
+          wkrótce będziemy informować na naszej stronie.
+        </>
+      ),
+    },
+    {
+      id: 4,
+      title:
+        "Pierwszy raz korzystam z OneBill, jak rozpocząć skanowanie skrzynki?",
+      text: (
+        <>
+          <h2 className="my-3 text-green-700 text-2xl font-playFair font-bold">
+            Jeżeli nie posiadasz konta....
+          </h2>
+          <span>
+            Jeśli pierwszy raz korzystasz z OneBill i nie posiadasz konta w
+            naszym systemie, kliknij proszę załóż konto i podążaj zgodnie z
+            krokami na formularzu. W momencie pierwszego logowania, aplikacja
+            poprosi Cię o synchronizację skrzynki mailowej z kontem i wyrażenie
+            zgód wymaganych przez Google, na połączenie z aplikacją. W kolejnym
+            kroku, będziesz mógł wybrać który miesiąc chcesz przeskanować. Po
+            skończonym skanowaniu, aplikacja wyświetli dokumenty, które udało
+            się przechwycić
+          </span>
+          <h2 className="my-3 text-green-700 text-2xl font-playFair font-bold">
+            Jeżeli posiadasz konto....
+          </h2>
+          <span>
+            Po zalogowaniu się do aplikacji, kliknij w ikonkę “skanuj e-mail”.
+            Aplikacja wyświetli zsynchronizowane adresy mailowe oraz status
+            skrzynki. Po kliknięciu w przycisk “Skanuj” znajdujący się w sekcji
+            Akcja, aplikacja przeniesie Cie do okna w którym będziesz mógł
+            wybrać miesiąc który chcesz przeskanować. Po wybraniu miesiąca,
+            aplikacja rozpocznie skanowanie skrzynki. Po skończonym skanowaniu,
+            dokumenty zostaną wyświetlone w kolejnym oknie, w którym będziesz
+            mógł zadecydować, co chcesz z nimi zrobić.
+          </span>
+        </>
+      ),
+    },
+    {
+      id: 5,
+      title: "Jak dodać adres mojego biura księgowego?",
+      text: "Aby móc wysyłać faktury do biura księgowego, należy w pierwszej kolejności dodać adres e-mail biura księgowego wybierając “Ustawienia” z ekranu głównego i przechodząc do “Zdefiniowane adresy e-mail. ",
+    },
+    {
+      id: 6,
+      title: "Jak przesyłać faktury do biura księgowego, które prowadzi moją firmę?",
+      text: "Aby poprawnie korzystać z możliwości wysyłki faktur do biura księgowego, należy w pierwszej kolejności dodać adres biura księgowego. Kiedy program skończy skanowanie skrzynki, aplikacja zapyta Cię co chcesz zrobić z zeskanowanymi dokumentami. Jedną z opcji do wybory jest “wysłać paczkę dokumentów e-mailem do księgowego”. Klikając to opcję, otworzy się nowe okno z gotową wiadomością e-mail i załącznikami. ",
+    },
+    {
+      id: 7,
+      title: "Gdzie zapisują się przeskanowane faktury?",
+      text: (<>Zeskanowane podczas sesji faktury, zapisywane są w folderze Dokumenty. Aplikacja segreguje faktury według daty sprzedaży i przyporzadkowuje je do odpowiednich podfolderów. {<br/>}<span className="font-bold">Przykład:</span> <span className=" italic">“Jeżeli użytkownik skanuje miesiąc styczeń 2024, to zeskanowane faktury będą zapisane w folderze “Dokumenty” w podfolderze “01.2024”. Wraz z nadejściem kolejnego miesiąca, aplikacja utworzy nowy podfolder o nazwie “02.2024”, gdzie będą przechowywane faktury z lutego.”</span></>),
+    },
+    {
+      id: 8,
+      title: "Czy jest mobilna aplikacja OneBill?",
+      text: "Aktualnie trwają pracę nad aplikacją mobilną dla OneBill, dzięki której użytkownicy będą mogli jeszcze szybciej i jeszcze łatwiej zarządzać kosztami swojej firmy z dowolnego miejsca na ziemi. O szczegółach będziemy informować za pośrednictwem naszej strony internetowej.",
+    },
+    {
+      id: 9,
+      title: "Co jeśli przekroczę liczbę dokumentów określoną dla mojego pakietu?",
+      text: (<>Jeżeli użytkownik przekroczy liczbę dokumentów możliwych do przeskanowania przez aplikację, określoną w pakiecie, wtedy aplikacja skończy skanowanie na maxymalnej liczbie dokumentów i poinformuje użytkownika, że zostało X dokumentów do wyświetlenia. Aby je wyświetlić, należy będzie zwiększyć plan. Zeskanowane dokumenty w ramach pakietu zostaną zachowane w folderze dokumenty. <br/>
+      <span className="font-bold">Przykład:</span>{' '} <span className=" italic">“Posiadam pakiet Standard, który umożliwia mi przeskanowanie 15 dokumentów. W miesiącu lipcu 2023, mam 19 dokumentów. Aplikacja zakończy skan na 15 dokumencie i poinformuje użytkownika że są jeszcze 4 dokumenty do wyświetlenia. 15 dokumentów zostanie zapisanych w sekcji “Dokumenty”, aby kontynuować scan i wyświetlić pozostałe 4 użytkownik będzie musiał wyrazić zgodę na zwiększenie planu.” </span></>),
+    },
+  ];
 
   return (
-    <Accordion className='' transition transitionTimeout={1000}>
-        {accTiles.map((tile)=>(
-            <AccordionItem header={tile.title} key={tile.id} id={`accordion-item-${tile.id}`} className='text-3xl border-2 text-start p-4 lg:w-1/2 mx-auto my-2 font-extrabold'>
-            <p className='text-lg font-normal pt-4'>{tile.text}</p>
-          </AccordionItem>
-        ))}
-
-  </Accordion>
-  )
-}
+    <Accordion className="" transition transitionTimeout={1000}>
+      {accTiles.map((tile) => (
+        <AccordionItem
+          header={tile.title}
+          key={tile.id}
+          id={`accordion-item-${tile.id}`}
+          className="text-3xl border-2 text-start p-4 lg:w-2/3 mx-auto my-2 font-extrabold font-playFair"
+        >
+          <p className="text-lg font-normal pt-4 font-poppins">{tile.text}</p>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+};
 
 // eslint-disable-next-line react-refresh/only-export-components
-export default FAQ
+export default FAQ;

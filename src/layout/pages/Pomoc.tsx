@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { FormEvent, useEffect, useRef } from "react";
 import Navbar from "../Navbar";
 import airplane from "../../assets/icons/airplane.jpg";
-import catHelp from "../../assets/catHelp.jpg";
+import help from "../../assets/help.jpg";
 import FAQ from "./Pomoc/FAQ";
 import Address from "./Pomoc/Address";
 import Footer from "../Footer";
@@ -54,20 +54,20 @@ const Pomoc = () => {
     }
   };
   const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    const previousElement = e.target.previousElementSibling as HTMLElement | null;
+    const previousElement = e.target
+      .previousElementSibling as HTMLElement | null;
     if (previousElement) {
       previousElement.style.display = "none";
     }
   };
-  
+
   const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    const previousElement = e.target.previousElementSibling as HTMLElement | null;
+    const previousElement = e.target
+      .previousElementSibling as HTMLElement | null;
     if (e.target.value === "" && previousElement) {
       previousElement.style.display = "block";
     }
   };
-  
-  
 
   return (
     <>
@@ -95,7 +95,7 @@ const Pomoc = () => {
                 <form
                   ref={form}
                   onSubmit={sendEmail}
-                  className="flex flex-col text-xl justify-center lg:w-1/3 my-5"
+                  className="flex flex-col text-xl justify-center lg:w-2/5 my-5 mr-5"
                 >
                   <input
                     type="text"
@@ -117,26 +117,26 @@ const Pomoc = () => {
                       Treść wiadomości
                     </label>
                     <textarea
-      name="user_message"
-      id="user_message"
-      rows={1} // Używamy liczby bez cudzysłowów
-      className="text-2xl w-full h-full pt-3 pl-3 rounded-lg focus:outline-none resize-none overflow-hidden"
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      style={{ lineHeight: '1.5rem' }}
-    ></textarea>
+                      name="user_message"
+                      id="user_message"
+                      rows={1}
+                      className="text-2xl w-full h-full pt-3 pl-3 rounded-lg focus:outline-none resize-none overflow-hidden"
+                      onFocus={handleFocus}
+                      onBlur={handleBlur}
+                      style={{ lineHeight: "1.5rem" }}
+                    ></textarea>
                   </div>
 
                   <button className="text-2xl bg-[#5ffa9d] h-[15%] my-3 rounded-lg hover:font-bold hover:scale-105 hover:text-white ">
                     Wyślij
                   </button>
                 </form>
-                <img src={catHelp} alt="catimg" />
+                <img src={help} alt="help" />
               </div>
             </div>
           </div>
         </div>
-        <div className="bg-[#DDFFED] w-full p-2 mb-8 font-extrabold text-3xl">
+        <div className="bg-[#DDFFED] w-full py-3 mb-8 font-black text-3xl border-y-2 border-green-2 font-playFair ">
           <p className="text-center">Często zadawane pytania | FAQ</p>
         </div>
         <FAQ />
