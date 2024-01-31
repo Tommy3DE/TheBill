@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { FormEvent, useRef } from "react";
 import Navbar from "../Navbar";
 import airplane from "../../assets/icons/airplane.jpg";
@@ -10,7 +9,6 @@ import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 
 const Pomoc = () => {
-  const location = useLocation();
   const form = useRef<HTMLFormElement | null>(null);
 
 
