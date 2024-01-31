@@ -3,8 +3,8 @@ import logo from  '../../../assets/logo.png'
 const Address = () => {
   return (
     <>
-    <div className='h-1 bg-green-600 my-12' />
-    <div className="w-full flex flex-row justify-center">
+    {/* <div className='h-1 bg-green-600 my-8' /> */}
+    <div className="w-full flex flex-row justify-center mt-8">
         <img src={logo} alt="logo" className='h-64' />
         <div className=' border-l-[3px] border-green-600 flex flex-col justify-center pl-10 ml-10'>
             <h2 className='text-4xl font-black text-green-700 mb-5'>OneBill</h2>

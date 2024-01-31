@@ -1,5 +1,5 @@
 {
-  "name": "OneBill",
+  "name": "onebill",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.12.1",
-    "@szhsin/react-accordion": "^1.2.3",
     "dayjs": "^1.11.10",
     "formik": "^2.4.5",
     "react": "^18.2.0",
+    "react-accessible-accordion": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.20.0",

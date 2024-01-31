@@ -1,5 +1,12 @@
-import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { ReactNode } from "react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css';
 
 type accordionTile = {
   id: number;
@@ -97,15 +104,17 @@ const FAQ = () => {
   ];
 
   return (
-    <Accordion className="" transition transitionTimeout={250}>
+    <Accordion allowZeroExpanded>
       {accTiles.map((tile) => (
-        <AccordionItem
-          header={tile.title}
-          key={tile.id}
-          id={`accordion-item-${tile.id}`}
-          className="text-3xl border-2 text-start p-4 lg:w-2/3 mx-auto my-2 font-extrabold font-playFair"
-        >
-          <p className="text-lg font-normal pt-4 font-poppins">{tile.text}</p>
+        <AccordionItem key={tile.id}>
+          <AccordionItemHeading>
+            <AccordionItemButton>
+              {tile.title}
+            </AccordionItemButton>
+          </AccordionItemHeading>
+          <AccordionItemPanel>
+            <p>{tile.text}</p>
+          </AccordionItemPanel>
         </AccordionItem>
       ))}
     </Accordion>

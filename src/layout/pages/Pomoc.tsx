@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { FormEvent, useEffect, useRef } from "react";
+import { FormEvent, useRef } from "react";
 import Navbar from "../Navbar";
 import airplane from "../../assets/icons/airplane.jpg";
 import help from "../../assets/help.jpg";
@@ -13,16 +13,6 @@ const Pomoc = () => {
   const location = useLocation();
   const form = useRef<HTMLFormElement | null>(null);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const itemId = searchParams.get("item");
-    if (itemId) {
-      const element = document.getElementById(`accordion-item-${itemId}`);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [location]);
 
   const sendEmail = (e: FormEvent) => {
     e.preventDefault();
