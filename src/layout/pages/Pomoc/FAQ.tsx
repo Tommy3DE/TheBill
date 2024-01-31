@@ -97,7 +97,7 @@ const FAQ = () => {
   ];
 
   return (
-    <Accordion className="" transition transitionTimeout={1000}>
+    <Accordion className="" transition transitionTimeout={250}>
       {accTiles.map((tile) => (
         <AccordionItem
           header={tile.title}
@@ -112,5 +112,4 @@ const FAQ = () => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export default FAQ;

@@ -1,17 +1,19 @@
-import { FaLocationDot } from "react-icons/fa6";
+import logo from  '../../../assets/logo.png'
 
 const Address = () => {
   return (
-    <div className="w-full bg-[#53F89E] h-48 mt-8">
-      <div className="flex flex-row items-center ml-[6%] mt-[1%]">
-        <FaLocationDot className="text-7xl" />
-        <div className="flex flex-col">
-          <h2 className="text-2xl font-black">Gdzie nas znaleźć</h2>
-          <h3 className="text-xl">ul. Adwentowicza 13 m.12</h3>
-          <h3 className="text-xl">92-532 Łódź</h3>
+    <>
+    <div className='h-1 bg-green-600 my-12' />
+    <div className="w-full flex flex-row justify-center">
+        <img src={logo} alt="logo" className='h-64' />
+        <div className=' border-l-[3px] border-green-600 flex flex-col justify-center pl-10 ml-10'>
+            <h2 className='text-4xl font-black text-green-700 mb-5'>OneBill</h2>
+            <h3 className='text-xl font-bold text-gray-600'>Szybko, łatwo i skutecznie.</h3>
+            <h3 className='text-xl text-gray-500 my-2'>Wydatki firmowe pod kontrolą!</h3>
+            <h4 className='text-lg text-gray-400 font-extrathin'>Nie trać więcej czasu na papierkową robotę - usprawnij procesy w swojej firmie już dziś.</h4>
         </div>
-      </div>
     </div>
+    </>
   );
 };
 
