@@ -104,7 +104,7 @@ const FAQ = () => {
   ];
 
   return (
-    <Accordion allowZeroExpanded>
+    <Accordion allowZeroExpanded className="lg:mx-[6%]">
       {accTiles.map((tile) => (
         <AccordionItem key={tile.id}>
           <AccordionItemHeading>
