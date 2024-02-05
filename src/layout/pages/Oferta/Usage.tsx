@@ -1,8 +1,4 @@
 import { IoCheckmarkDone } from "react-icons/io5";
-import document from "../../../assets/usageIcons/document.png";
-import value from "../../../assets/usageIcons/value-chain.png";
-import scanning from "../../../assets/usageIcons/scanning.png";
-import invoice from "../../../assets/usageIcons/invoice.png";
 
 type step = {
   id: number;
@@ -18,7 +14,7 @@ const Usage = () => {
     {
       id: 1,
       title: "Krok 1",
-      img: invoice,
+      img: '',
       point1:
         "Aplikacja pomoże w organizacji faktur kosztowych w Twojej organizacji.",
       point2:
@@ -29,7 +25,7 @@ const Usage = () => {
     {
       id: 2,
       title: "Krok 2",
-      img: scanning,
+      img: 'scanning',
       point1: "Aplikacja bezpośrednio integruje się z Twoją skrzynką mailową.",
       point2:
         "Wszystkie faktury dot. wybranego okresu rozliczeniowego zostaną pobrane i spakowane do jednego pliku.",
@@ -39,7 +35,7 @@ const Usage = () => {
     {
       id: 3,
       title: "Krok 3",
-      img: document,
+      img: '',
       point1:
         "Biuro księgowe otrzymuje jednego maila, przez co eliminujemy ryzyko pominięcia dokumentu",
       point2:
@@ -49,7 +45,7 @@ const Usage = () => {
     {
       id: 4,
       title: "Krok 4",
-      img: value,
+      img: '',
       point1:
         "Dzięki OneBill, możesz skupić się na swoim biznesie bez obawy o to że nie zdążysz rozliczyć się z Urzędem Skarbowym czy ZUS.",
       point2:

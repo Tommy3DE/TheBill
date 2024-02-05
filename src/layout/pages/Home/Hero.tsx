@@ -1,6 +1,5 @@
 import finger from "../../../assets/icons/finger.png";
 import main from "../../../assets/main.png";
-import bg from "../../../assets/icons/Group 1.svg";
 
 const Hero = () => {
   return (
@@ -8,7 +7,7 @@ const Hero = () => {
       <div className="flex lg:flex-row flex-col-reverse lg:h-[700px]">
         {" "}
         <div className="flex flex-col lg:w-[60%] justify-center">
-          <h1 className="lg:text-6xl text-5xl leading-relaxed mb-8 tracking-wider font-playFair lg:text-start text-center">
+          <h1 className="lg:text-6xl text-5xl  mb-8 tracking-widest leading-10 font-black font-playFair lg:text-start text-center">
             Aplikacja do obsługi faktur w{" "}
             <span className="text-green-600">Twojej firmie.</span>
           </h1>

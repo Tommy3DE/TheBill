@@ -1,45 +1,70 @@
-import budget from '../../../assets/basicInfoIcons/budget.png'
-import information from '../../../assets/basicInfoIcons/information.png'
-import taxes from '../../../assets/basicInfoIcons/taxes.png'
-import talking from '../../../assets/basicInfoIcons/talking.png'
+import mail from "../../../assets/usageIcons/mail.png";
+import pc from "../../../assets/usageIcons/pc.png";
+import secure from "../../../assets/usageIcons/secure.png";
 
 type Info = {
-    id: number;
-    pic: string;
-    title: string;
-    text: string;
-}
+  id: number;
+  pic: string;
+  title: string;
+  text: any;
+};
 
 const BasicInfo = () => {
-    const infoTiles: Info[] = [
-        {id: 1, pic: information, title: 'Automatycznie skanuj skrzynkę mailową', text: 'OneBill za Ciebie skanuje skrzynkę mailową w poszukiwaniu dokumentów kosztowych.'},
-        {id: 2, pic: talking, title: 'Usprawnij komunikację z księgowością', text: 'OneBill sprawia, że wymiana dokumentów z księgowością jest łatwa i szybka - wszystko przez jednego maila.'},
-        {id: 3, pic: budget, title: 'Kontroluj swoje wydatki', text: 'Aplikacja pozwala na systematyczne śledzenie miesięcznych wydatków, co pozwala na bardziej efektywne zarządzanie finansami'},
-        {id: 4, pic: taxes, title: 'Optymalizuj swoje podatki', text: 'Z nami będziesz miał pod kontrolą wszystkie faktury kosztowe, co przełoży się na większe odliczenia kosztów - mniej niezaliczonych faktur.'},
-    ]
+  const infoTiles: Info[] = [
+    {
+      id: 1,
+      pic: mail,
+      title: "Automatyczne skanowanie skrzynki e-mail",
+      text: "Nasze inteligentne algorytmy wyszukują i segregują Twoje dokumenty kosztowe bez żadnego wysiłku z Twojej strony",
+    },
+    {
+      id: 2,
+      pic: pc,
+      title: "Prosta Integracja",
+      text: "OneBill w prosty sposób łączy się z Twoją skrzynką mailową. W kilku krokach możesz zsynchronizować swój adres e-mail i rozpocząć przeszukiwanie skrzynki. ",
+    },
+    {
+      id: 3,
+      pic: secure,
+      title: "Bezpieczeństwo i prywatność",
+      text: (
+        <>
+          Twoje dane są dla nas bardzo ważne, dlatego też zapewniamy najwyższy
+          poziom bezpieczeństwa i prywatności Twoich informacji. Więcej
+          informacji znajdziesz w zakładce{" "}
+          {<span className=" underline uppercase font-extrabold">OFERTA</span>}.
+        </>
+      ),
+    },
+  ];
 
   return (
-    <section className="mt-32 items-center mx-[8%] font-poppins">
-        <div className="bg-[#83f9ce] flex flex-col p-6 rounded-lg">
-            <h3 className="text-2xl font-bold mb-6">
-            Nie trać czasu na ręczne pobieranie faktur, Usprawnij swoję firmę już dzisiaj
-            </h3>
-            <p className='text-lg'>
-            Z naszą aplikacją możliwe jest zautomatyzowanie komunikacji z działem księgowym.  Aplikacja poprzez skanowanie skrzynki mailowej w poszukiwaniu załączników PDF, oszczędza czas i eliminuje ryzyko pominięcia dokumentów. 
-            </p>
-        </div>
-        <div className="mt-32 flex lg:flex-row flex-col justify-center">
-            {infoTiles.map((tile)=>(
-                
-                <div className="lg:w-[270px] lg:mx-12 flex justify-around flex-col items-center py-10" key={tile.id}>
-                    <img src={tile.pic} alt={tile.pic} className='lg:w-28 lg:h-28 mx-auto lg:mb-10'/>
-                    <h1 className='text-2xl font-bold text-center lg:w-10/12 my-10'>{tile.title}</h1>
-                    <p className='lg:mt-20 text-justify text-xl'>{tile.text}</p>
-                </div>
-            )) }
-        </div>
+    <section className=" mt-10 items-center mx-[8%] font-poppins">
+      <div className="bg-[#83F9CE] flex flex-col p-6 rounded-lg w-[60%] mx-auto text-center py-8 animate-pulse">
+        <h3 className="text-3xl font-bold font-playFair ">
+          Wypróbuj za darmo przez okres 30 dni!
+        </h3>
+      </div>
+      <div className=" flex flex-col justify-center">
+        {infoTiles.map((tile) => (
+          <div
+            className={`lg:mx-[5%] flex justify-around ${tile.id === 2 ? 'flex-row-reverse pl-44' : 'flex-row pr-44'} items-center py-8`}
+            key={tile.id}
+          >
+            <img src={tile.pic} alt={tile.pic} className="w-[40%]" />
+            <div className="w-[60%] mx-14">
+              <h1 className={`text-4xl font-bold text-start my-8 font-playFair`}>
+                {tile.title}
+              </h1>
+              <p className="lg:mt-14 text-justify text-xl font-poppins">
+                {tile.text}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default BasicInfo
+export default BasicInfo;
