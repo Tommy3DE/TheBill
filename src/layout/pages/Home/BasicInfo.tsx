@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import mail from "../../../assets/usageIcons/mail.png";
 import pc from "../../../assets/usageIcons/pc.png";
 import secure from "../../../assets/usageIcons/secure.png";
@@ -6,7 +7,7 @@ type Info = {
   id: number;
   pic: string;
   title: string;
-  text: any;
+  text: ReactNode;
 };
 
 const BasicInfo = () => {
