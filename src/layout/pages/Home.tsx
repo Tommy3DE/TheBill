@@ -1,13 +1,12 @@
 import Hero from "./Home/Hero";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
-import UseCases from "./Home/UseCases";
-import Opinions from "./Home/Opinions";
 import FAQ from "./Home/FAQ";
 import BasicInfo from "./Home/BasicInfo";
 import ShortPricing from "./Home/ShortPricing";
 import FeedbackForm from "./Home/FeedbackForm";
 import GmailIntegration from "./Home/GmailIntegration";
+import ThreeRecInfo from "./Home/ThreeRecInfo";
 
 const Home = () => {
   return (
@@ -17,9 +16,8 @@ const Home = () => {
         <Hero />
         <BasicInfo />
         <GmailIntegration />
-        <Opinions />
+        <ThreeRecInfo/>
         <ShortPricing />
-
         <FeedbackForm />
         <FAQ />
         <Footer />
