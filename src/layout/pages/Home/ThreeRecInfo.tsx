@@ -33,6 +33,7 @@ const ThreeRecInfo = () => {
     }
 ]
   return (
+    <div>
     <div className="flex flex-row my-8 mx-[8%] font-poppins">
         {infoTiles.map(tile=>(
             <div key={tile.id} className="border-[#92E3A9] border-2 bg-[#E9F9F3] drop-shadow-2xl mx-10 w-1/3 py-10 px-3">
@@ -42,7 +43,10 @@ const ThreeRecInfo = () => {
             </div>
         ))}
     </div>
-  )
+    <p className="text-center text-sm text-gray-400">*źródło: Raport ABC Rynek i Opinia, wrzesień 2020</p>
+    <p className="text-center text-sm text-gray-400">**źródło: marketsplash.pl - najważniejsze statystyki e-mail </p>
+    <p className="text-center text-sm text-gray-400">***źródło: Gazeta Prawna, 13 lipiec 2023</p>
+  </div>)
 }
 
 export default ThreeRecInfo
