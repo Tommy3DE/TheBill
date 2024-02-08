@@ -7,6 +7,7 @@ import ShortPricing from "./Home/ShortPricing";
 import FeedbackForm from "./Home/FeedbackForm";
 import GmailIntegration from "./Home/GmailIntegration";
 import ThreeRecInfo from "./Home/ThreeRecInfo";
+import AddBenefits from "./Home/AddBenefits";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         <BasicInfo />
         <GmailIntegration />
         <ThreeRecInfo/>
+        <AddBenefits/>
         <ShortPricing />
         <FeedbackForm />
         <FAQ />
