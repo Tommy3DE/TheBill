@@ -8,6 +8,7 @@ import FeedbackForm from "./Home/FeedbackForm";
 import GmailIntegration from "./Home/GmailIntegration";
 import ThreeRecInfo from "./Home/ThreeRecInfo";
 import AddBenefits from "./Home/AddBenefits";
+import PolishEnt from "./Home/PolishEnt";
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
         <ThreeRecInfo/>
         <AddBenefits/>
         <ShortPricing />
+        <PolishEnt/>
         <FeedbackForm />
         <FAQ />
         <Footer />

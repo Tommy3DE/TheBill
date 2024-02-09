@@ -1,4 +1,3 @@
-import bida from "../../../assets/pricing/bida.png";
 import fab from "../../../assets/pricing/fab.png";
 import prem from "../../../assets/pricing/prem.png";
 import standard from "../../../assets/pricing/standard.png";
@@ -16,37 +15,30 @@ type priceTile = {
 
 const ShortPricing = () => {
   const pricingTiles: priceTile[] = [
-    {
-      id: 1,
-      title: "Pakiet Darmowy",
-      img: bida,
-      point1: "5 faktur",
-      point2: "1 skanowanie",
-      point3: "",
-    },
+
     {
       id: 2,
       title: "Pakiet Standard",
       img: standard,
-      point1: "10 faktur",
-      point2: "3 skanowania",
-      point3: "chmura danych",
+      point1: "15 faktur",
+      point2: "5 sesji skanujących",
+      point3: "chmura danych do 6 miesięcy",
     },
     {
       id: 3,
       title: "Pakiet Premium",
       img: prem,
-      point1: "20 faktur",
-      point2: "7 skanowań",
-      point3: "chmura danych",
+      point1: "35 faktur",
+      point2: "10 sesji skanujących",
+      point3: "chmura danych do 2 lat",
     },
     {
       id: 4,
       title: "Pakiet Biznes",
       img: fab,
-      point1: "40 faktur",
-      point2: "20 skanowań",
-      point3: "chmura danych",
+      point1: "Nieograniczona ilość faktur",
+      point2: "Nieograniczone skanowanie",
+      point3: "chmura danych do 5 lat",
     },
   ];
   return (
@@ -54,7 +46,7 @@ const ShortPricing = () => {
       <div className="flex lg:flex-row flex-col w-full justify-center">
         {pricingTiles.map((tile) => (
           <div
-            className="flex flex-col mx-5 lg:w-1/6 border-4 border-[#1DCF8F] items-center my-14 rounded"
+            className="flex flex-col mx-5 lg:w-1/5 border-4 border-[#1DCF8F] items-center my-14 rounded"
             key={tile.id}
           >
             <h1 className="text-2xl my-5 font-playFair">{tile.title}</h1>

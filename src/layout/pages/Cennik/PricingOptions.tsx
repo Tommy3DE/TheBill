@@ -1,5 +1,4 @@
 import { FaCheckCircle } from "react-icons/fa";
-import bida from "../../../assets/pricing/bida.png";
 import fab from "../../../assets/pricing/fab.png";
 import prem from "../../../assets/pricing/prem.png";
 import standard from "../../../assets/pricing/standard.png";
@@ -24,24 +23,7 @@ export type PricingTile = {
 interface PricingOptionsProps {
   yearly: boolean;
 }
-// eslint-disable-next-line react-refresh/only-export-components
 export const pricing: PricingTile[] = [
-  {
-    id: 0,
-    priceMth: 0,
-    priceYrl: 0,
-    title: "Darmowy",
-    text: "Idelny do wypróbowania podstawowych funkcjonalności",
-    img: bida,
-    point1: "Skanowanie do 7 dokumentów miesięcznie",
-    point2: "integracja z 1 kontem mailowym",
-    point3: "podstawowy podgląd dokumentów",
-    point4: "",
-    point5: "",
-    point6: "",
-    point7: "",
-    point8: "",
-  },
   {
     id: 1,
     priceMth: 29.99,
