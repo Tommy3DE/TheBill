@@ -4,7 +4,7 @@ import img2 from "../../../assets/jonathan-borba-hl6uG9cHW5A-unsplash 1.png";
 import img3 from "../../../assets/kristian-angelo-xyJZvUL4_TY-unsplash 1.png";
 const PolishEnt = () => {
   return (
-    <div className="mx-[8%] mt-12">
+    <div className="mx-[8%] my-12">
       <p className="font-black text-end font-playFair text-3xl">
         Nasza oferta kierowana jest do  <br/>
         <span className="text-[#34D399] underline">

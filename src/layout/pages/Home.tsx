@@ -1,7 +1,6 @@
 import Hero from "./Home/Hero";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
-import FAQ from "./Home/FAQ";
 import BasicInfo from "./Home/BasicInfo";
 import ShortPricing from "./Home/ShortPricing";
 import FeedbackForm from "./Home/FeedbackForm";
@@ -9,6 +8,7 @@ import GmailIntegration from "./Home/GmailIntegration";
 import ThreeRecInfo from "./Home/ThreeRecInfo";
 import AddBenefits from "./Home/AddBenefits";
 import PolishEnt from "./Home/PolishEnt";
+import FiveSteps from "./Home/FiveSteps";
 
 const Home = () => {
   return (
@@ -22,8 +22,8 @@ const Home = () => {
         <AddBenefits/>
         <ShortPricing />
         <PolishEnt/>
+        <FiveSteps />
         <FeedbackForm />
-        <FAQ />
         <Footer />
       </div>
     </>
