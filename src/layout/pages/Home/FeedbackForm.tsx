@@ -1,6 +1,7 @@
 import { FormEvent, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import airplane from "../../../assets/icons/airplane.png";
 
 const FeedbackForm = () => {
   const form = useRef<HTMLFormElement | null>(null);
@@ -52,6 +53,19 @@ const FeedbackForm = () => {
 
   return (
     <section className="flex flex-col justify-center items-center mx-[8%] font font-poppins">
+      <div className="flex flex-row items-center">
+        <img src={airplane} alt="plane" className="mr-5 h-24 mt-5"/>
+        <div className=" font-playFair font-black">
+          <h1 className="text-5xl font-black my-5 text-[#1A9367]">
+            Formularz kontaktowy
+          </h1>
+          <h2 className="text-3xl">
+            Masz pytania?{" "}
+            <span className="text-[#34D399] ">Napisz do nas!</span>
+          </h2>
+        </div>
+      </div>
+
       <form
         ref={form}
         onSubmit={sendEmail}
@@ -88,9 +102,8 @@ const FeedbackForm = () => {
         </div>
 
         <div className="flex flex-row items-start">
-          
           <p>
-          <input type="checkbox" name="check" id="1" className="mr-5 mt-3" />
+            <input type="checkbox" name="check" id="1" className="mr-5 mt-3" />
             Wyrażam zgodę na przetwarzanie moich danych osobowych przez KVX
             Digital Solutions sp. z o.o. z siedzibą w Łodzi (dalej „KVXDS”) w
             celach marketingowych poprzez otrzymywanie od KVXDS informacji
@@ -101,11 +114,22 @@ const FeedbackForm = () => {
           </p>
         </div>
 
-        <button className="text-3xl bg-[#199466] my-3 p-5 w-[60%] rounded-full hover:font-bold hover:scale-105 text-white ">
+        <button className="text-3xl bg-[#199466] ml-5 my-3 p-5 w-[60%] rounded-full hover:font-bold hover:scale-105 text-white ">
           Wyślij wiadomość
         </button>
-        <p className=" text-xs">*pole wymagane</p>
+        <p className="ml-5 text-xs">*pole wymagane</p>
       </form>
+      <p className="text-xs w-2/5">
+        {" "}
+        Zgodę można wycofać w każdym czasie, kontaktując się z zespołem OneBill
+        na adres e-mail pomoc@kvxdigitalsolutions.com. Wycofanie zgody nie
+        wpływa na zgodność z prawem przetwarzania dokonanego przed jej
+        wycofaniem. Administratorem Pani/Pana danych osobowych jest KVX Digital
+        Solutions sp. z o.o. z siedzibą w Łodzi, ul. Adwentowicza 13/12, KRS:
+        0001083222. Więcej informacji na temat przetwarzania danych osobowych i
+        przysługujących Pani/Panu praw znajduje się w naszej Polityce
+        Prywatności.
+      </p>
     </section>
   );
 };

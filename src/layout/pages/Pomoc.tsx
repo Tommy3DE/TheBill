@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from "react";
 import Navbar from "../Navbar";
-import airplane from "../../assets/icons/airplane.jpg";
+import airplane from "../../assets/icons/airplane.png";
 import help from "../../assets/help.jpg";
 import FAQ from "./Pomoc/FAQ";
 import Address from "./Pomoc/Address";
