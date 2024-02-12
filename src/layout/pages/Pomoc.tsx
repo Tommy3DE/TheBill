@@ -3,7 +3,6 @@ import Navbar from "../Navbar";
 import airplane from "../../assets/icons/airplane.png";
 import help from "../../assets/help.jpg";
 import FAQ from "./Pomoc/FAQ";
-import Address from "./Pomoc/Address";
 import Footer from "../Footer";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
@@ -128,7 +127,6 @@ const Pomoc = () => {
           <p className="text-center">Często zadawane pytania | FAQ</p>
         </div>
         <FAQ />
-        <Address />
         <Footer />
       </section>
     </>

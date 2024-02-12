@@ -82,8 +82,8 @@ const FeedbackForm = () => {
   };
 
   return (
-    <section className="flex flex-col items-center mx-[10%] font-poppins">
-      <div className="flex flex-row items-center my-15">
+    <section className="flex flex-col items-center mx-[10%] font-poppin mt-10">
+      <div className="flex flex-row items-center my-20">
         <img src={airplane} alt="plane" className="mr-5 h-24 mt-5" />
         <div className=" font-playFair font-black">
           <h1 className="text-5xl font-black my-5 text-[#1A9367]">

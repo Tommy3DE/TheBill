@@ -4,10 +4,12 @@ import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import Address from "./pages/Pomoc/Address";
 
 const Footer = () => {
   return (
-    <section className=" items-center mx-[8%] font-poppins">
+    <section className=" items-center mx-[8%] pt-10 font-poppins">
+      <Address/>
       <div className="flex flex-col">
         {/* <img src={invoice} alt="invoice img"  className="rounded-xl"/> */}
         <div className="flex lg:flex-row flex-col justify-between w-full mb-10 border-b-2 border-black py-12">
