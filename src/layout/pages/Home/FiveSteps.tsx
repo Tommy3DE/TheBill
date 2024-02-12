@@ -5,6 +5,7 @@ import s3 from '../../../assets/fiveSteps/s3.png'
 import s4 from '../../../assets/fiveSteps/s4.png'
 import s5 from '../../../assets/fiveSteps/s5.png'
 import succ from '../../../assets/fiveSteps/succ.png'
+import mac from '../../../assets/mac.png'
 interface StepTile  {
     id: number,
     pic: string,
@@ -65,6 +66,13 @@ const steps: StepTile[] = [
             <h3 className='text-2xl font-black'>Masz więcej czasu na prowadzenie swojego biznesu!</h3>
             <h3 className='text-2xl'>Od teraz <span className='font-black'>OneBill</span> zajmuje się Twoimi fakturami!</h3>
             <img src={succ} alt="success" />
+        </div>
+        <div className='mt-10'>
+                <h1 className='font-playFair text-5xl text-center'>
+                Twoje faktury w <span className='text-[#1A9367] underline'>jednym miejscu</span>
+
+                </h1>
+                <img src={mac} alt="macbook" className='mt-5 mx-auto w-1/2 h-1/2' />
         </div>
     </div>
   )
