@@ -1,7 +1,10 @@
 import Footer from "../Footer";
 import Navbar from "../Navbar";
-import Cases from "./Oferta/Cases";
 import EasyBanner from "./Oferta/EasyBanner";
+import JobsExamples from "./Oferta/JobsExamples";
+import Movie from "./Oferta/Movie";
+import OfferBenefits from "./Oferta/OfferBenefits";
+import SSLImage from "./Oferta/SSLImage";
 import TestMac from "./Oferta/TestMac";
 import Usage from "./Oferta/Usage";
 
@@ -13,7 +16,10 @@ const Oferta = () => {
         <TestMac />
         <Usage />
         <EasyBanner />
-        <Cases />
+        <OfferBenefits/>
+        <SSLImage/>
+        <JobsExamples />
+        <Movie/>
         <Footer />
       </div>
     </>
