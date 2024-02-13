@@ -1,5 +1,6 @@
 import Footer from "../Footer";
 import Navbar from "../Navbar";
+import BiuroRachOffer from "./Oferta/BiuroRachOffer";
 import EasyBanner from "./Oferta/EasyBanner";
 import JobsExamples from "./Oferta/JobsExamples";
 import Movie from "./Oferta/Movie";
@@ -20,6 +21,7 @@ const Oferta = () => {
         <SSLImage/>
         <JobsExamples />
         <Movie/>
+        <BiuroRachOffer/>
         <Footer />
       </div>
     </>

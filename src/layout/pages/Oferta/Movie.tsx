@@ -18,7 +18,7 @@ const Movie = () => {
               style={{
                 height: "calc(6/16 * 100vw)",
                 minHeight: "15px",
-                maxHeight: "60vh", // zmieniono z 50% na 50vh
+                maxHeight: "60vh", 
               }}
               src="https://www.youtube.com/embed/VK8BwPSVLg" // Upewnij się, że link jest poprawny
               title="YouTube video player"
