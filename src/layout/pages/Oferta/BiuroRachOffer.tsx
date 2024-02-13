@@ -1,6 +1,5 @@
 import mail from "../../../assets/innerSettingsIcons/email 1.png";
-import rec from '../../../assets/offerIcons/Rectangle 278.png'
-import pic from '../../../assets/offerIcons/dan-dimmock-sNwnjxm8eTY-unsplash 1.png'
+
 const BiuroRachOffer = () => {
   return (
     <div className="mt-20">
