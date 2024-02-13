@@ -10,42 +10,34 @@ const Navbar = () => {
     setIsOpened((prev) => !prev);
   };
   return (
-    <section className="items-center font-poppins mt-4">
-      <div className=" h-20 w-full lg:flex hidden flex-row justify-center  bg-[#5ffa9d] border-y-4 border-[#1A9367]">
-        <img src={logo} alt="logo" className="h-40 ml-20 mt-4" />
-        <ul className="flex flex-row list-none p-0 uppercase justify-end mr-20 items-center w-full text-xl font-medium ">
+    <section className="items-center font-poppins">
+      <div className=" h-20 w-full lg:flex hidden flex-row justify-center  bg-[#92E3A9] bg-opacity-20">
+        <img src={logo} alt="logo" className="h-40 ml-20 mt-2" />
+        <ul className="flex flex-row list-none p-0 uppercase justify-around ml-28 items-center w-full text-2xl font-medium ">
           <Link to="/" className="mr-12 cursor-pointer hover:text-[#50DEF1]">
             Home
           </Link>
-          <Link
-            to="/funkcje"
-            className="mr-12 cursor-pointer hover:text-[#50DEF1]"
-          >
+          <Link to="/funkcje" className="cursor-pointer hover:text-[#50DEF1]">
             Funkcje
           </Link>
-          <Link
-            to="/cennik"
-            className="mr-12 cursor-pointer hover:text-[#50DEF1]"
-          >
+          <Link to="/cennik" className="cursor-pointer hover:text-[#50DEF1]">
             Cennik
           </Link>
-          <Link
-            to="/pomoc"
-            className="mr-12 cursor-pointer hover:text-[#50DEF1]"
-          >
+          <Link to="/pomoc" className="cursor-pointer hover:text-[#50DEF1]">
             Pomoc
           </Link>
-          <Link
-            to="/logged"
-            className="cursor-pointer mr-12 hover:text-[#50DEF1] text-[#0449FB]"
-          >
-            Logowanie
-          </Link>
-          <Link to="/newUser">
-            <button className="text-black font-[20px] uppercase px-2 py-3 bg-[#50DEF1] rounded-md text-xl hover:text-white hover:scale-105 mr-12">
-              Załóż konto
-            </button>
-          </Link>
+          <div>
+            <Link to="/logged">
+              <button className="uppercase cursor-pointer mr-5 bg-[#92E3A9] px-5 py-2 rounded-full hover:text-white hover:scale-105">
+                Logowanie
+              </button>
+            </Link>
+            <Link to="/newUser">
+              <button className="text-black uppercase px-5 py-2 bg-white border-2 border-green-700 rounded-full text-2xl hover:text-green-700 hover:scale-105">
+                Załóż konto
+              </button>
+            </Link>
+          </div>
         </ul>
       </div>
       <div className="flex lg:hidden flex-row justify-between items-center mx-5">
@@ -56,11 +48,11 @@ const Navbar = () => {
         />
       </div>
       <div
-    className={`h-screen w-screen top-0 left-0 bg-green-600 bg-opacity-[98%] fixed ${
-      isOpened ? 'visible opacity-100' : 'invisible opacity-0'
-    } transition-opacity duration-500 ease-in-out`}
-    onClick={handleOpen}
->
+        className={`h-screen w-screen top-0 left-0 bg-green-600 bg-opacity-[98%] fixed ${
+          isOpened ? "visible opacity-100" : "invisible opacity-0"
+        } transition-opacity duration-500 ease-in-out`}
+        onClick={handleOpen}
+      >
         <IoMdCloseCircleOutline className="w-full absolute text-5xl top-10 text-white" />
         <ul className=" text-white font-black flex flex-col list-none p-0 uppercase justify-center items-center w-full text-4xl tracking-wider h-screen">
           <Link to="/" className="mb-5">
