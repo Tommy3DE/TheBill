@@ -1,4 +1,3 @@
-import React from 'react';
 import bg from '../../../assets/offerIcons/matthew-henry-fPxOowbR6ls-unsplash 1.png';
 
 const SSLImage = () => {

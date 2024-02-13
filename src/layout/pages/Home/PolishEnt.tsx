@@ -1,4 +1,3 @@
-import React from "react";
 import img1 from "../../../assets/delfina-pan-wJoB8D3hnzc-unsplash 1.png";
 import img2 from "../../../assets/jonathan-borba-hl6uG9cHW5A-unsplash 1.png";
 import img3 from "../../../assets/kristian-angelo-xyJZvUL4_TY-unsplash 1.png";
