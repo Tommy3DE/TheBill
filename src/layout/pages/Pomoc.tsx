@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 const Pomoc = () => {
   const form = useRef<HTMLFormElement | null>(null);
 
-
   const sendEmail = (e: FormEvent) => {
     e.preventDefault();
 
@@ -18,7 +17,7 @@ const Pomoc = () => {
       emailjs
         .sendForm(
           "service_j47lvzl",
-          "template_iuscwh9",
+          "template_gtdgcze",
           form.current,
           "jMHcnYi7CJyBcblPz"
         )
@@ -72,37 +71,54 @@ const Pomoc = () => {
         <div className=" h-auto w-full">
           <div className="lg:mx-[12%]">
             <div className="flex flex-col mt-14">
-              <div className="flex items-center lg:ml-[8%] mb-10 lg:mb-0">
-                <img src={airplane} alt="airplane" />
-                <h2 className="font-poppins text-4xl font-extrabold ml-5">
-                  Formularz kontaktowy
+              <div className="items-center  mb-10 lg:mb-0">
+                <h2 className="font-playFair text-5xl font-extrabold ml-5 text-center mb-10">
+                Pomóż nam rozwijać <span className="text-[#1A9367]">OneBill</span>
                 </h2>
               </div>
               <div className="flex lg:flex-row w-full flex-col justify-evenly">
                 <form
                   ref={form}
                   onSubmit={sendEmail}
-                  className="flex flex-col text-xl justify-center lg:w-2/5 my-5 mr-5"
+                  className="flex flex-col text-xl justify-center w-full lg:w-1/3 my-5 "
                 >
                   <input
                     type="text"
                     name="user_name"
                     placeholder="Imię i nazwisko"
-                    className="border border-gray-500 rounded-lg text-2xl p-3 h-[15%]"
+                    className="border border-gray-500 rounded-lg text-2xl p-2 "
                   />
                   <input
                     type="email"
                     name="user_mail"
                     placeholder="Twój e-mail"
-                    className="border border-gray-500 rounded-lg text-2xl my-5 p-3 h-[15%]"
+                    className="border border-gray-500 rounded-lg text-2xl mt-5 p-2"
                   />
-                  <div className="relative border border-gray-500 rounded-lg h-36">
-                    <label
-                      htmlFor="user_message"
-                      className="text-2xl pl-3 pt-2 absolute text-gray-400"
-                    >
-                      Treść wiadomości
-                    </label>
+                  <select
+                    name="user_topic"
+                    className="border border-gray-500 rounded-lg text-2xl mt-5 p-2 "
+                  >
+                    <option value="" disabled selected hidden className="">
+                      Wybierz temat
+                    </option>
+                    <option value="Błędy wyszukiwania faktur">
+                      Błędy wyszukiwania faktur
+                    </option>
+                    <option value="Problemy z integracją z kontem mailowym">
+                      Problemy z integracją z kontem mailowym
+                    </option>
+                    <option value="Bezpieczeństwo i prywatność">
+                      Bezpieczeństwo i prywatność
+                    </option>
+                    <option value="Interface użytkownika">
+                      Interface użytkownika
+                    </option>
+                    <option value="Wydajność">Wydajność </option>
+                    <option value="Błędy graficzne">Błędy graficzne</option>
+                    <option value="Aplikacja mobilna">Aplikacja mobilna</option>
+                    <option value="Inny">Inny</option>
+                  </select>
+                  <div className="relative border-2 border-gray-500 rounded-lg h-72 mt-5">
                     <textarea
                       name="user_message"
                       id="user_message"
@@ -110,12 +126,13 @@ const Pomoc = () => {
                       className="text-2xl w-full h-full pt-3 pl-3 rounded-lg focus:outline-none resize-none overflow-hidden"
                       onFocus={handleFocus}
                       onBlur={handleBlur}
+                      placeholder="Treść widomości"
                       style={{ lineHeight: "1.5rem" }}
                     ></textarea>
                   </div>
 
-                  <button className="text-2xl bg-[#5ffa9d] h-[15%] my-3 rounded-lg hover:font-bold hover:scale-105 hover:text-white ">
-                    Wyślij
+                  <button className="text-2xl bg-[#1A9367] my-3 rounded-full font-bold hover:scale-105 text-white py-3 font-playFair">
+                  Wyślij wiadomość
                   </button>
                 </form>
                 <img src={help} alt="help" />
@@ -124,7 +141,7 @@ const Pomoc = () => {
           </div>
         </div>
         <div className="bg-[#DDFFED] w-full py-3 mb-8 font-black text-3xl border-y-2 border-green-2 font-playFair ">
-          <p className="text-center">Często zadawane pytania | FAQ</p>
+          <p className="text-start mx-[9%]">Często zadawane pytania | FAQ</p>
         </div>
         <FAQ />
         <Footer />

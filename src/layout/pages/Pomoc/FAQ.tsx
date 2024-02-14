@@ -101,10 +101,54 @@ const FAQ = () => {
       text: (<>Jeżeli użytkownik przekroczy liczbę dokumentów możliwych do przeskanowania przez aplikację, określoną w pakiecie, wtedy aplikacja skończy skanowanie na maxymalnej liczbie dokumentów i poinformuje użytkownika, że zostało X dokumentów do wyświetlenia. Aby je wyświetlić, należy będzie zwiększyć plan. Zeskanowane dokumenty w ramach pakietu zostaną zachowane w folderze dokumenty. <br/>
       <span className="font-bold">Przykład:</span>{' '} <span className=" italic">“Posiadam pakiet Standard, który umożliwia mi przeskanowanie 15 dokumentów. W miesiącu lipcu 2023, mam 19 dokumentów. Aplikacja zakończy skan na 15 dokumencie i poinformuje użytkownika że są jeszcze 4 dokumenty do wyświetlenia. 15 dokumentów zostanie zapisanych w sekcji “Dokumenty”, aby kontynuować scan i wyświetlić pozostałe 4 użytkownik będzie musiał wyrazić zgodę na zwiększenie planu.” </span></>),
     },
+    {
+      id: 10,
+      title: "Czy moje dane są bezpieczne w OneBill?",
+      text: (<>Bezpieczeństwo Twoich danych jest dla nas priorytetem. OneBill wykorzystuje zaawansowane technologie szyfrowania i spełnia rygorystyczne standardy ochrony danych, aby zapewnić, że Twoje informacje są zawsze chronione. Dodatkowo, OneBill korzysta z certyfikatu SSL OV. <br/>
+        <p className="font-bold">Co sprawia, że certyfikat OV wyróżnia się spośród innych?</p>
+        Jego kluczową przewagą jest możliwość sprawdzenia właściciela certyfikatu bezpośrednio w przeglądarce internetowej. To oznacza, że Twoi klienci mają pewność, że odwiedzają bezpieczną stronę, co buduje zaufanie i zabezpiecza ich dane.
+        Wybierając certyfikat OV, nie tylko chronisz swoją witrynę, ale także zyskujesz narzędzie, które podnosi poziom bezpieczeństwa i wiarygodności Twojej strony w oczach użytkowników. To inwestycja w zaufanie i spokój zarówno dla Ciebie, jak i Twoich klientów.</>),
+    },
+    {
+      id: 11,
+      title: "Czy OneBill integruje się z innymi systemami księgowymi?",
+      text: (<>Aktualnie nie, choć prowadzimy pracę nad rozszerzeniem naszych funkcjonalności.</>),
+    },
+    {
+      id: 12,
+      title: "Jak mogę przesłać faktury w wersji papierowej?",
+      text: (<>Faktury papierowe mogą być dodawane z poziomu aplikacji mobilnej. Każdy scan dokumentu za pośrednictwem aplikacji mobilnej, jest przesyłany do aplikacji OneBill i zapisywany w odpowiednim folderze. Aplikacja również zapyta, czy użytkownik chce przesłać dokumenty papierowe bezpośrednio do księgowego czy chce jedynie zapisać dokumenty w aplikacji.</>),
+    },
+    {
+      id: 13,
+      title: "Jakie formaty dokumentów obsługuje OneBill?",
+      text: (<>Aktualnie OneBill obsługuje pliki JPG, JPEG i PDF. Są to główne formaty dokumentów, w jakich użytkownicy otrzymują wirtualne faktury.
+        Dodatkowo, OneBill pozwala na konwersję plików do formatu ZIP, przez co „paczki faktur” mogą być bez ograniczeń przesyłane do biura księgowego.</>),
+    },
+    {
+      id: 14,
+      title: "Czy OneBill oferuje wersję demonstracyjną lub okres próbny?",
+      text: (<>Wychodząc naprzeciw naszym użytkownikom, oferujemy 30 dniowy darmowy okres próbny. W trakcie trwania tego okresu, użytkownik ma pełny dostęp do wybranego przez siebie pakietu. Po tym okresie, zaczynamy naliczać opłatę za użytkowanie aplikacji.</>),
+    },
+    {
+      id: 15,
+      title: "Jak mogę anulować moją subskrypcję OneBill?",
+      text: (<>Subskrypcję OneBill można anulować wchodząc w zakładkę Ustawienia {'>'} Ogólne ustawienia konta {'>'} Abonament. Klikając „Anuluj”, użytkownik będzie miał prawo korzystać z aplikacji do końca bieżącego okresu rozliczeniowego. Po tym okresie, dostęp do aplikacji zostanie zablokowany a faktury usunięte z naszego systemu.</>),
+    },
+    {
+      id: 16,
+      title: "Czy mogę eksportować dane z OneBill do innych formatów?",
+      text: (<>Prowadzimy pracę nad możliwością ekstrakcji danych do formatu XML oraz XLS. W razie zgłaszanego zapotrzebowania, będziemy wprowadzać kolejne formaty plików.</>),
+    },{
+      id: 17,
+      title: "Jak OneBill pomaga w przestrzeganiu przepisów podatkowych?",
+      text: (<>OneBill jest zaprojektowany z myślą o przestrzeganiu lokalnych przepisów podatkowych i księgowych. Aplikacja pomaga w organizacji i archiwizacji dokumentów zgodnie z obowiązującymi wymogami, ułatwiając przestrzeganie terminów i zasad.
+        Aby zapewnić, że nasze rozwiązania są zawsze zgodne z najnowszymi przepisami, uważnie śledzimy wszystkie komunikaty wydawane przez Ministerstwo Finansów oraz bieżące zmiany w przepisach podatkowych. Zachęcamy do odwiedzenia naszego bloga, gdzie regularnie publikujemy aktualne informacje i analizy z zakresu finansów i podatków, abyś zawsze był na bieżąco z ważnymi dla Twojej firmy zagadnieniami.</>),
+    },
   ];
 
   return (
-    <Accordion allowZeroExpanded className="lg:mx-[6%]">
+    <Accordion allowZeroExpanded className="lg:mx-[8%]">
       {accTiles.map((tile) => (
         <AccordionItem key={tile.id}>
           <AccordionItemHeading>
