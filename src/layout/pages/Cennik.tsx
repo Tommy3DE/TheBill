@@ -4,6 +4,7 @@ import { useState } from "react";
 import PricingOptions from "./Cennik/PricingOptions";
 import Footer from "../Footer";
 import FreeTrial from "./Cennik/FreeTrial";
+import CennikFAQ from "./Cennik/CennikFAQ";
 
 const Cennik = () => {
   const [yearly, setYearly] = useState<boolean>(false);
@@ -15,6 +16,7 @@ const Cennik = () => {
         <PricingIntro setYearly={setYearly} yearly={yearly} />
         <PricingOptions yearly={yearly} />
         <FreeTrial/>
+        <CennikFAQ/>
         <Footer />
       </div>
     </>

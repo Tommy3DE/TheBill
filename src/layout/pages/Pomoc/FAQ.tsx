@@ -8,7 +8,7 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
-type accordionTile = {
+export type accordionTile = {
   id: number;
   title: string;
   text: ReactNode;
