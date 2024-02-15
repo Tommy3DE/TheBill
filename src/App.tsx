@@ -10,6 +10,7 @@ import LoggedUserHome from "./loggedUser/LoggedUserHome";
 import Settings from "./loggedUser/Settings/Settings";
 import History from "./loggedUser/history/History";
 // import { Documents } from "./loggedUser/documents/Documents";
+import Blog from './layout/pages/Blog'
 import Clients from "./loggedUser/clients/Clients";
 import Scan from "./loggedUser/scan/Scan";
 import Day1Dir from "./loggedUser/documents/components/Day1Dir";
@@ -35,6 +36,7 @@ function App() {
           <Route path="/newUser" element={<NewUser />} />
           <Route path="/funkcje" element={<Oferta />} />
           <Route path="/pomoc" element={<Pomoc />} />
+          <Route path="/blog" element={<Blog />}/>
           <Route path="/logged" element={<ProtectedRoute element={<LoggedUserHome />}/>} />
           <Route path="/logged/settings" element={<ProtectedRoute element={<Settings />}/>} />
           <Route path="/logged/history" element={<ProtectedRoute element={<History />}/>} />

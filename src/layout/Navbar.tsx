@@ -26,6 +26,9 @@ const Navbar = () => {
           <Link to="/pomoc" className="cursor-pointer hover:text-[#50DEF1]">
             Pomoc
           </Link>
+          <Link to="/blog" className="cursor-pointer hover:text-[#50DEF1]">
+            Blog
+          </Link>
           <div>
             <Link to="/logged">
               <button className="uppercase cursor-pointer mr-5 bg-[#92E3A9] px-5 py-2 rounded-full hover:text-white hover:scale-105">
@@ -66,6 +69,9 @@ const Navbar = () => {
           </Link>
           <Link to="/pomoc" className="mb-5">
             Pomoc
+          </Link>
+          <Link to="/blog" className="mb-5">
+            Blog
           </Link>
           <Link to="/logged" className="mb-5">
             Logowanie
