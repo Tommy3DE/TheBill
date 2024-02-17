@@ -1,4 +1,5 @@
 import Navbar from '../Navbar'
+import Articles from './Blog/Articles'
 import BlogHeader from './Blog/BlogHeader'
 
 const Blog = () => {
@@ -6,6 +7,7 @@ const Blog = () => {
     <Navbar/>
     <div className="mx-auto max-w-[1980px] ">
         <BlogHeader/>
+        <Articles/>
     </div>
     </>
   )
