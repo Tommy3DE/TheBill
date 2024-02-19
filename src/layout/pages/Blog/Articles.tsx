@@ -1,7 +1,29 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
+
+interface ArticleTile {
+    id: number,
+    category: 'Zarządzanie' | 'Procesy biznesowe' | 'Technologia' | "Finanse",
+    date: string,
+    title: string,
+    img: string,
+    shortV: string,
+    fullArt: ReactNode
+}
 
 const Articles = () => {
   const [category, setCategory] = useState<string>("Wszystkie");
+
+  const articles: ArticleTile[] = [
+    {
+        id: 1,
+        category: 'Zarządzanie',
+        date: '12.01.2024',
+        title: 'Najczęstsze błędy w zarządzaniu finansami małych firm',
+        img: '',
+        shortV: 'Zarządzanie finansami to kluczowy aspekt prowadzenia każdej małej firmy. Jednak wiele mikroprzedsiębiorstw napotyka na drodze typowe błędy, które mogą poważnie zaburzyć ich stabilność finansową. Poznaj najczęstsze pułapki i dowiedz się, jak ich unikać...',
+        fullArt: ''
+    }
+  ]
   return (
     <section className="mt-5">
       <div className="h-24 bg-gray-200 flex flex-row justify-center items-center font-bold font-poppins">
@@ -57,7 +79,9 @@ const Articles = () => {
           Finanse
         </h1>
       </div>
-      <h1></h1>
+      <h1>
+        {articles.map((x)=><div>{x.id}</div>)}
+      </h1>
     </section>
   );
 };
