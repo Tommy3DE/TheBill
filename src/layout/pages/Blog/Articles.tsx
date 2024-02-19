@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Articles = () => {
-  const [category, setCategory] = useState<string>("Wszytskie");
+  const [category, setCategory] = useState<string>("Wszystkie");
   return (
     <section className="mt-5">
       <div className="h-24 bg-gray-200 flex flex-row justify-center items-center font-bold font-poppins">
