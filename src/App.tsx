@@ -24,6 +24,11 @@ import Login from "./layout/pages/Login";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
+import BlogArticle1 from "./layout/pages/Blog/BlogArticles/BlogArticle1";
+import BlogArticle5 from "./layout/pages/Blog/BlogArticles/BlogArticle5";
+import BlogArticle2 from "./layout/pages/Blog/BlogArticles/BlogArticle2";
+import BlogArticle3 from "./layout/pages/Blog/BlogArticles/BlogArticle3";
+import BlogArticle4 from "./layout/pages/Blog/BlogArticles/BlogArticle4";
 
 function App() {
   return (
@@ -37,6 +42,11 @@ function App() {
           <Route path="/funkcje" element={<Oferta />} />
           <Route path="/pomoc" element={<Pomoc />} />
           <Route path="/blog" element={<Blog />}/>
+          <Route path="/blog/1" element={<BlogArticle1 />} />
+          <Route path="/blog/2" element={<BlogArticle2 />} />
+          <Route path="/blog/3" element={<BlogArticle3 />} />
+          <Route path="/blog/4" element={<BlogArticle4 />} />
+          <Route path="/blog/5" element={<BlogArticle5 />} />
           <Route path="/logged" element={<ProtectedRoute element={<LoggedUserHome />}/>} />
           <Route path="/logged/settings" element={<ProtectedRoute element={<Settings />}/>} />
           <Route path="/logged/history" element={<ProtectedRoute element={<History />}/>} />
