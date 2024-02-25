@@ -87,7 +87,7 @@ const BlogArticle2 = () => {
             Automatyzacja procesów finansowych to nie tylko oszczędność czasu i
             pieniędzy, ale także pewność, że każdy aspekt Twoich finansów jest
             zarządzany efektywnie i precyzyjnie. Aplikacja OneBill stanowi
-            doskonałe narzędzie do osiągnięcia tych celów, oferują
+            doskonałe narzędzie do osiągnięcia tych celów.
           </p>
         </div>
       </div>
@@ -123,7 +123,7 @@ const BlogArticle2 = () => {
           Zarządzanie finansami to kluczowy aspekt prowadzenia każdej małej firmy. 
           </p>
           <Link
-            to={`/blog/2`}
+            to={`/blog/1`}
             className="flex flex-row items-center font-bold mt-5 hover:text-green-700 border-t-2 py-3 mx-[3%]"
           >
             Czytaj dalej <FaArrowRight className="ml-1" />
