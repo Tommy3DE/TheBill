@@ -1,16 +1,18 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
 
-// Definicja typów dla kontekstu
 interface AuthContextType {
   isLoggedIn: boolean;
-  login: () => void;
+  accessToken: string | null;
+  refreshToken: string | null;
+  login: (newAccessToken: string, newRefreshToken: string) => void;
   logout: () => void;
 }
 
-// Utworzenie kontekstu z domyślnymi wartościami
 const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
-  login: () => {},
+  accessToken: null,
+  refreshToken: null,
+  login: (_newAccessToken: string, _newRefreshToken: string) => {},
   logout: () => {},
 });
 
@@ -20,26 +22,28 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-// Typy dla propsów AuthProvider
 interface AuthProviderProps {
   children: ReactNode;
 }
-
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [refreshToken, setRefreshToken] = useState<string | null>(null); 
 
-  const login = () => {
+  const login = (newAccessToken: string, newRefreshToken: string) => {
     setIsLoggedIn(true);
-    // Dodaj tutaj logikę logowania, np. ustawienie tokena
+    setAccessToken(newAccessToken);
+    setRefreshToken(newRefreshToken); 
   };
 
   const logout = () => {
     setIsLoggedIn(false);
-    // Dodaj tutaj logikę wylogowania, np. usunięcie tokena
+    setAccessToken(null); 
+    setRefreshToken(null); 
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, accessToken, refreshToken, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
