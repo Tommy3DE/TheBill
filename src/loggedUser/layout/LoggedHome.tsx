@@ -51,12 +51,12 @@ const LoggedHome = () => {
         <span className="mt-8">{link.name}</span>
       </div>
     ) : link.linkTo ? (
-      <Link to={link.linkTo}>
+      <Link to={link.linkTo} className="text-center w-full h-full flex flex-col justify-center items-center cursor-pointer">
         <img src={link.icon} alt={link.name} className="h-28 w-28"/>
         <span className="mt-8">{link.name}</span>
       </Link>
     ) : (
-      <div className="text-center w-full h-full flex flex-col justify-center items-center">
+      <div className="text-center w-full h-full flex flex-col justify-center items-center cursor-pointer">
         <img src={link.icon} alt={link.name} className="h-28 w-28"/>
         <span className="mt-8">{link.name}</span>
       </div>

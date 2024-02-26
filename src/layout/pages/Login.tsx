@@ -30,6 +30,8 @@ const Login = () => {
       if (response.ok) {
         const { refresh, access } = await response.json();
         login(access, refresh);
+        localStorage.setItem('accessToken', access);
+        localStorage.setItem('refreshToken', refresh);
         navigate('/logged')
       } else {
         toast.error("Błędne dane logowania", {
