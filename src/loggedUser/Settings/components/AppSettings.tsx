@@ -10,6 +10,7 @@ interface SettingsData {
 }
 
 const AppSettings = () => {
+  const [settingData, setSettingData] = useState<SettingsData>();
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
 
