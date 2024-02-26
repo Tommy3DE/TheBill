@@ -18,12 +18,6 @@ export interface ArticleTile {
 
 const Articles = () => {
   const [category, setCategory] = useState<string>("Wszystkie");
-  const [selectedArticle, setSelectedArticle] = useState<ArticleTile | null>(
-    null
-  );
-  const selectArticle = (article: ArticleTile) => {
-    setSelectedArticle(article);
-  };
 
   const articles: ArticleTile[] = [
     {
@@ -74,6 +68,9 @@ const Articles = () => {
         "W dzisiejszym dynamicznym świecie biznesu, mikroprzedsiębiorcy szukają rozwiązań, które ułatwią im codzienne zarządzanie finansami. Aplikacja OneBill, z jej innowacyjnym podejściem do zarządzania dokumentacją kosztową, pomogła wielu przedsiębiorcom usprawnić ich działania. Oto kilka studiów przypadków, które pokazują, jak OneBill zmienił sposób, w jaki prowadzą oni swoje firmy.",
     },
   ];
+  
+  const filteredArticles = category === "Wszystkie" ? articles : articles.filter(article => article.category === category);
+
 
   return (
     <section className="mt-5">
@@ -131,7 +128,7 @@ const Articles = () => {
         </h1>
       </div>
       <div className="flex flex-row justify-start mx-[5%] font-poppins flex-wrap">
-        {articles.map((x) => (
+        {filteredArticles.map((x) => (
           <div className="w-1/4 mx-10 flex-col flex my-20" key={x.id}>
             <div className="flex flex-row justify-between items-center">
               <div className="rounded-full bg-[#D3F3E7] font-black px-4 py-2">
@@ -147,7 +144,6 @@ const Articles = () => {
             <p>
               <Link
                 to={`/blog/${x.id}`}
-                onClick={() => selectArticle(x)}
                 className="flex flex-row items-center font-bold mt-5 hover:text-green-700"
               >
                 Czytaj dalej <FaArrowRight className="ml-1" />
