@@ -49,8 +49,43 @@ const NewUser = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      setShowPartTwo((prev) => !prev);
-    },
+
+      const apiUrl = 'http://185.25.150.225/api/register';
+
+      const requestBody = {
+        email: values.login,
+        password: values.pass,
+        NIP: values.NIP,
+        first_name: values.firstName,
+        last_name: values.lastName,
+        industry: values.industry, 
+        max_invoices: values.numOfInvoices,
+        org_size: "JDG",
+        package: 'Premium' 
+      };
+
+      fetch(apiUrl, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(requestBody), 
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); 
+      })
+      .then(data => {
+        console.log(data); 
+        setShowPartTwo(prev => !prev); 
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+      });
+    }
+    
   });
   const getSelectedPlan = (): PricingTile | undefined => {
     const selectedNumOfInvoices = formik.values.numOfInvoices;
@@ -311,9 +346,10 @@ const NewUser = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.industry}
+                  defaultValue={''}
                   className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
                 >
-                  <option value="" disabled selected hidden className="">
+                  <option value="" disabled  hidden className="">
                     Wybierz branżę
                   </option>
                   <option value="IT">IT</option>
@@ -340,10 +376,11 @@ const NewUser = () => {
                   name="numOfInvoices"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  defaultValue={''}
                   value={formik.values.numOfInvoices}
                   className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
                 >
-                  <option value="" disabled selected hidden className="">
+                  <option value="" disabled hidden className="">
                     Wybierz ilość
                   </option>
                   <option value="Do 5">Do 5</option>
