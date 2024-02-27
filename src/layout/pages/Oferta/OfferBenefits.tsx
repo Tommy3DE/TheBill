@@ -67,7 +67,7 @@ const OfferBenefits = () => {
   return (
     <div className="mx-[8%] flex flex-col">
       {benefits.map((benefit) => (
-        <div className="flex flex-row items-start justify-start mb-10" key={benefit.id}>
+        <div className="flex lg:flex-row flex-col lg:items-start lg:justify-start items-center justify-center mb-10" key={benefit.id}>
           <img src={benefit.pic} alt={benefit.title} className="w-[150px] h-[150px]" />
           <div className="ml-10">
             <h1 className="text-3xl font-playFair text-[#1A9367] font-black tracking-wider">

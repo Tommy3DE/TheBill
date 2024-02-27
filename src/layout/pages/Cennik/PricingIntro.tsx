@@ -11,7 +11,7 @@ const PricingIntro = ({ setYearly, yearly }: PricingProps) => {
     setYearly(!yearly);
   };
   return (
-    <section className="mt-40">
+    <section className="lg:mt-40 mt-12">
       <img src={bg} alt="bg" className="w-full" />
       <h1 className=" font-black text-6xl font-playFair text-center my-12">
         Ile kosztuje osobisty asystent{" "}
@@ -20,9 +20,9 @@ const PricingIntro = ({ setYearly, yearly }: PricingProps) => {
       <h3 className="text-gray-400 font-poppins text-center text-2xl">
         Znajdź plan najlepiej dopasowany do Twoich potrzeb biznesowych.
       </h3>
-      <div className="flex flex-row justify-center items-center">
+      <div className="flex lg:flex-row flex-col justify-center items-center">
         <img src={image} alt="finance_bro" className="" />
-        <div className="flex flex-col w-1/4">
+        <div className="flex flex-col lg:w-1/4">
           <h1 className="font-playFair text-4xl font-black text-start">
             W <span className="text-[#1A9367]">OneBill</span> wiemy co jest{" "}
             najcenniejsze dla przedsiębiorców - czas...

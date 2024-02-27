@@ -33,7 +33,7 @@ const JobsExamples = () => {
         Nasza aplikacja, znajduje zastosowanie w <br />
         <span className="font-black text-black">każdej formie działalności gospodarczej.</span>
       </h3>
-      <div className="grid grid-cols-3 gap-4 mt-10">
+      <div className="grid lg:grid-cols-3 gap-4 mt-10">
         {jobs.slice(0, 3).map((job) => (
           <div key={job.id} className="flex flex-col items-center justify-center">
             <img src={job.pic} alt="Job example" />
@@ -41,7 +41,7 @@ const JobsExamples = () => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-2 gap-4 mt-10">
+      <div className="grid lg:grid-cols-2 gap-4 mt-10">
         {jobs.slice(3, 5).map((job) => (
           <div key={job.id} className="flex flex-col items-center justify-center">
             <img src={job.pic} alt="Job example"/>
@@ -49,7 +49,7 @@ const JobsExamples = () => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-10">
+      <div className="grid lg:grid-cols-3 gap-4 mt-10">
         {jobs.slice(5).map((job) => (
           <div key={job.id} className="flex flex-col items-center justify-center">
             <img src={job.pic} alt="Job example"/>

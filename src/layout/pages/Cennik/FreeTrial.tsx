@@ -7,10 +7,10 @@ const FreeTrial = () => {
         Skorzystaj z naszej promocji{" "}
         <span className="text-red-600">-50% na każdy pakiet!</span>
       </h3>
-      <div className="flex flex-row justify-center mt-20 items-center">
+      <div className="flex flex-col lg:flex-row justify-center mt-20 items-center">
         <img src={promoPic} alt="promo" />
         <div>
-          <div className="bg-[#83F9CE] w-full rounded-2xl mx-20 text-center py-12 h-auto">
+          <div className="bg-[#83F9CE] w-full rounded-2xl lg:mx-20 text-center py-12 h-auto">
             <h1 className="text-3xl font-bold">Chcę skorzystać z promocji!</h1>
             <p className="text-xl text-gray-500">
               Ciesz się wybranym pakietem przez cały miesiąc!
