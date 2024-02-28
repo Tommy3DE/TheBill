@@ -43,7 +43,7 @@ const SettingsRoutes = () => {
       </div>
       <div className="flex lg:flex-row flex-col justify-center items-center lg:mx-0 mx-5 py-14">
         {settings.map((item) => (
-          <Link to={item.route} className="lg:w-2/12 w-full mx-2 ">
+          <Link to={item.route} className="lg:w-2/12 w-full mx-2 " key={item.id}>
           <div
             key={item.id}
             className=" w-full text-xl rounded-lg flex flex-col justify-evenly py-32 items-center bg-green-300 lg:h-1/3 h-80 mb-5  hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black"
