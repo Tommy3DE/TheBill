@@ -34,9 +34,9 @@ const ThreeRecInfo = () => {
 ]
   return (
     <div>
-    <div className="flex flex-row my-8 mx-[8%] font-poppins">
+    <div className="flex lg:flex-row flex-col my-8 mx-[8%] font-poppins">
         {infoTiles.map(tile=>(
-            <div key={tile.id} className="border-[#92E3A9] border-2 bg-[#E9F9F3] drop-shadow-2xl mx-10 w-1/3 py-10 px-3">
+            <div key={tile.id} className="border-[#92E3A9] border-2 bg-[#E9F9F3] drop-shadow-2xl lg:mx-10 lg:w-1/3 py-10 px-3 my-10">
                 <h1 className="text-center text-7xl">{tile.title}</h1>
                 <h2 className="text-center font-black text-[#1A9367] my-5 text-2xl">{tile.text1}</h2>
                 <h3 className="text-center mx-10">{tile.text2}</h3>

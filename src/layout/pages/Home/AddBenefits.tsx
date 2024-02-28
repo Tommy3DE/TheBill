@@ -75,15 +75,15 @@ const AddBenefits = () => {
         {tiles.map((tile) => (
           <div
             key={tile.id}
-            className={`flex mx-40 justify-center items-center ${
+            className={`flex lg:flex-row flex-col lg:mx-40 justify-center items-center ${
               tile.id === 1 || tile.id === 3 ? "flex-row-reverse" : "flex-row"
             }`}
           >
-            <div className="flex items-center flex-col justify-center">
+            <div className="flex items-center lg:flex-col flex-col-reverse justify-center my-5">
               <img src={tile.img} alt="pic" />
-              <h3 className="font-playFair -my-2 font-black text-xl">{tile.subtitle}</h3>
+              <h3 className="font-playFair lg:-my-2 font-black lg:text-xl text-3xl">{tile.subtitle}</h3>
             </div>
-            <div className=" w-5/12">
+            <div className=" lg:w-5/12 w-11/12">
               <h4 className="text-2xl text-[#1A9367]">{tile.title}</h4>
               <h3>{tile.text}</h3>
             </div>

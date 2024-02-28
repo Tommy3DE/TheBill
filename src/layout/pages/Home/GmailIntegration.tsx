@@ -3,7 +3,7 @@ import gmail from "../../../assets/gmail.png";
 const GmailIntegration = () => {
     const DiagonalLines = () => {
         return (
-          <div className="relative w-32 h-32 mx-12 mt-6">
+          <div className="lg:relative w-32 h-32 mx-12 mt-6 hidden ">
             <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 -rotate-45"></div>
             <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 rotate-45"></div>
           </div>
@@ -14,7 +14,7 @@ const GmailIntegration = () => {
       <div className="flex flex-row justify-center">
         <img src={logo} alt="logo" className="h-44" />
         <DiagonalLines/>
-        <img src={gmail} alt="gmail" className="h-44" />
+        <img src={gmail} alt="gmail" className="h-44 lg:block hidden" />
       </div>
       <p className="text-center font-playFair text-green-700 text-3xl font-extrabold tracking-wide my-8">Obecnie wspieramy integrację tylko kont Google.</p>
       <p className="text-center font-playFair text-3xl font-extrabold"> 

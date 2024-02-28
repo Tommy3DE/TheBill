@@ -40,8 +40,8 @@ const BasicInfo = () => {
   ];
 
   return (
-    <section className=" mt-10 items-center mx-[8%] font-poppins">
-      <div className="bg-[#83F9CE] flex flex-col p-6 rounded-lg w-[60%] mx-auto text-center py-8 animate-pulse">
+    <section className=" mt-10 items-center lg:mx-[8%] font-poppins">
+      <div className="bg-[#83F9CE] flex flex-col p-6 rounded-lg lg:w-[60%] mx-auto text-center py-8 animate-pulse">
         <h3 className="text-3xl font-bold font-playFair ">
           Wypróbuj za darmo przez okres 30 dni!
         </h3>
@@ -49,11 +49,11 @@ const BasicInfo = () => {
       <div className=" flex flex-col justify-center">
         {infoTiles.map((tile) => (
           <div
-            className={`lg:mx-[5%] flex justify-around ${tile.id === 2 ? 'flex-row-reverse pl-44' : 'flex-row pr-44'} items-center py-8`}
+            className={`lg:mx-[5%] flex lg:flex-row flex-col  justify-around ${tile.id === 2 ? 'lg:flex-row-reverse lg:pl-44' : 'lg:flex-row lg:pr-44'} items-center py-8`}
             key={tile.id}
           >
-            <img src={tile.pic} alt={tile.pic} className="w-[40%]" />
-            <div className="w-[60%] mx-14">
+            <img src={tile.pic} alt={tile.pic} className="lg:w-[40%]" />
+            <div className="lg:w-[60%] lg:mx-14 mx-2">
               <h1 className={`text-4xl font-bold text-start my-8 font-playFair`}>
                 {tile.title}
               </h1>

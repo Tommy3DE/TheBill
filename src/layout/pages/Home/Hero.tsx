@@ -20,7 +20,7 @@ const Hero = () => {
           <h3 className="text-4xl font-playFair text-[#00D0A7] tracking-widest leading-loose text-justify">
             Twoje faktury w jednym miejscu
           </h3>
-          <p className="text-2xl mt-5 ">
+          <p className="text-2xl mt-5 lg:block hidden ">
             Z Aplikacją <span className="font-extrabold">OneBill</span> ,
             organizacja dokumentów nigdy nie była prostsza!
           </p>
@@ -33,7 +33,7 @@ const Hero = () => {
           />
         </div>
       </div>
-      <div className="text-2xl -mt-24 text-justify font-poppins">
+      <div className="text-2xl lg:-mt-24 text-justify font-poppins">
         W OneBill rozumiemy wyzwania, przed jakimi stoją mikroprzedsiębiorcy.
         Nasza innowacyjna aplikacja została tak zaprojektowana, aby uprościć i
         zautomatyzować proces zarządzania dokumentacją kosztową w Twojej firmie,

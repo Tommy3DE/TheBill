@@ -2,7 +2,7 @@
 const EasyBanner = () => {
   return (
     <div className='bg-[#D9D9D9] bg-opacity-40 my-16 font-playFair py-10 flex flex-col justify-center items-center'>
-        <h1 className='text-5xl pb-5 font-black'>
+        <h1 className='text-5xl pb-5 font-black text-center'>
         Proste zarządzanie kosztami 
         </h1>
         <h3 className='tracking-wider text-xl font-poppins w-2/3 text-center'>

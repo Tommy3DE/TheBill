@@ -52,7 +52,7 @@ const steps: StepTile[] = [
         <h3 className=' italic font-poppins text-2xl mb-10'>5 kroków do automatyzacji Twojej firmy!</h3>
         <div className='flex flex-col'>
             {steps.map((step)=>(
-                <div className='flex flex-row'>
+                <div className='flex lg:flex-row flex-col' key={step.id}>
                     <img src={step.pic} alt="stepIcon" />
                     <div className='ml-5 flex flex-col justify-center'>
                         <h1 className='text-4xl font-playFair mb-5'>{step.title}</h1>

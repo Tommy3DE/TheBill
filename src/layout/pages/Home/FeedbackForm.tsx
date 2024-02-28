@@ -82,7 +82,7 @@ const FeedbackForm = () => {
   };
 
   return (
-    <section className="flex flex-col items-center mx-[10%] font-poppin mt-10">
+    <section className="flex flex-col items-center lg:mx-[10%] font-poppin mt-10">
       <div className="flex flex-row items-center my-20">
         <img src={airplane} alt="plane" className="mr-5 h-24 mt-5" />
         <div className=" font-playFair font-black">
@@ -95,9 +95,9 @@ const FeedbackForm = () => {
           </h2>
         </div>
       </div>
-      <div className="w-full flex justify-center mt-16 relative">
+      <div className="w-full flex lg:flex-row flex-col justify-center mt-16 relative">
         {" "}
-        <div className="w-2/5 shadow-2xl z-10 bg-white p-2">
+        <div className="lg:w-2/5 shadow-2xl z-10 bg-white p-2">
           <form
             ref={form}
             onSubmit={sendEmail}
@@ -151,7 +151,7 @@ const FeedbackForm = () => {
               </p>
             </div>
 
-            <button className="text-3xl bg-[#199466] ml-5 my-3 p-5 w-[60%] rounded-full hover:font-bold hover:scale-105 text-white ">
+            <button className="text-3xl bg-[#199466] ml-5 my-3 p-5 lg:w-[60%] rounded-full hover:font-bold hover:scale-105 text-white ">
               Wyślij wiadomość
             </button>
             <p className="ml-5 text-xs">*pole wymagane</p>
@@ -168,8 +168,8 @@ const FeedbackForm = () => {
             naszej Polityce Prywatności.
           </p>
         </div>
-        <img src={thing} alt="thing" className="absolute -mt-10 -ml-10 z-0" />
-        <div className="w-2/5 pl-32">
+        <img src={thing} alt="thing" className="lg:absolute -mt-10 -ml-10 z-0 hidden" />
+        <div className="lg:w-2/5 lg:pl-32">
           <p className=" font-playFair text-4xl font-bold mt-3 mb-16">
             Jeżeli:
           </p>

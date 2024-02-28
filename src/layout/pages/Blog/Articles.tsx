@@ -68,13 +68,13 @@ const Articles = () => {
         "W dzisiejszym dynamicznym świecie biznesu, mikroprzedsiębiorcy szukają rozwiązań, które ułatwią im codzienne zarządzanie finansami. Aplikacja OneBill, z jej innowacyjnym podejściem do zarządzania dokumentacją kosztową, pomogła wielu przedsiębiorcom usprawnić ich działania. Oto kilka studiów przypadków, które pokazują, jak OneBill zmienił sposób, w jaki prowadzą oni swoje firmy.",
     },
   ];
-  
+
   const filteredArticles = category === "Wszystkie" ? articles : articles.filter(article => article.category === category);
 
 
   return (
     <section className="mt-5">
-      <div className="h-24 bg-gray-200 flex flex-row justify-center items-center font-bold font-poppins">
+      <div className="h-24 bg-gray-200 flex flex-row justify-center items-center font-bold font-poppins flex-wrap">
         <h1
           onClick={() => setCategory("Wszystkie")}
           className={`mx-8 cursor-pointer ${
@@ -127,9 +127,9 @@ const Articles = () => {
           Finanse
         </h1>
       </div>
-      <div className="flex flex-row justify-start mx-[5%] font-poppins flex-wrap">
-        {filteredArticles.map((x) => (
-          <div className="w-1/4 mx-10 flex-col flex my-20" key={x.id}>
+      <div className={`flex flex-row ${filteredArticles.length > 0 ? 'justify-start' : 'justify-center'} mx-[5%] font-poppins flex-wrap`}>
+        {filteredArticles.length > 0 ? filteredArticles.map((x) => (
+          <div className="lg:w-1/4 mx-10 flex-col flex my-20" key={x.id}>
             <div className="flex flex-row justify-between items-center">
               <div className="rounded-full bg-[#D3F3E7] font-black px-4 py-2">
                 {x.category}
@@ -150,7 +150,7 @@ const Articles = () => {
               </Link>
             </p>
           </div>
-        ))}
+        )) : <h1 className="text-center text-3xl mt-10 text-gray-500">Brak artykułów</h1>}
       </div>
     </section>
   );
