@@ -1,5 +1,5 @@
 import { accordionTile } from "../Pomoc/FAQ";
-import { ReactNode } from "react";
+
 import {
   Accordion,
   AccordionItem,

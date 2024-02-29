@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import pic1 from "../../../assets/articlesThumbnail/austin-distel-rxpThOwuVgE-unsplash 1.png";
