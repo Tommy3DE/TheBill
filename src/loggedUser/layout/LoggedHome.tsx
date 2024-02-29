@@ -32,6 +32,7 @@ const LoggedHome = () => {
     { id: 7, name: "Ustawienia", linkTo: "/logged/settings", icon: logsettings },
     { id: 8, name: "Wyloguj", action: logout, icon: logoutbtn },
   ];
+  useEffect(()=> {
     const accessToken = localStorage.getItem("accessToken");
 
     fetch("http://185.25.150.225/api/bookkeeper", {
