@@ -9,6 +9,7 @@ import logsettings from "../../assets/iconsLogged/logsettings.png";
 import scanning from "../../assets/iconsLogged/scanning.png";
 import bell from '../../assets/iconsLogged/bell.png'
 import { useAuth } from "../../context/AuthContext";
+import { useEffect, useState } from "react";
 
 type HomeTile = {
   id: number;
@@ -20,6 +21,7 @@ type HomeTile = {
 
 const LoggedHome = () => {
   const {logout} = useAuth()
+  const [accAdded, setAccAdded] = useState(false)
   const homeLinks: HomeTile[] = [
     { id: 1, name: "Skanuj e-mail", linkTo: "/logged/scanMail", icon: scanning },
     { id: 2, name: "Zsynchronizuj skrzynkę", linkTo: "/logged/syncMail", icon: loading },
@@ -30,15 +32,33 @@ const LoggedHome = () => {
     { id: 7, name: "Ustawienia", linkTo: "/logged/settings", icon: logsettings },
     { id: 8, name: "Wyloguj", action: logout, icon: logoutbtn },
   ];
+    const accessToken = localStorage.getItem("accessToken");
+
+    fetch("http://185.25.150.225/api/bookkeeper", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((data) => setAccAdded(data))
+      .catch((error) => console.error("Error:", error));
+  },[])
 
   return (
     <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
-        <div className="w-[90%] bg-gray-300 rounded-lg mt-10 p-4 text-lg flex flex-row justify-start items-center font-bold animate-pulse ">
+      {accAdded ? null : <div className="w-[90%] bg-gray-300 rounded-lg mt-10 p-4 text-lg flex flex-row justify-start items-center font-bold animate-pulse ">
             <img src={bell} alt="bell" className="mr-4"/>
             <p>
             Logujesz się do naszego systemu po raz pierwszy. Skonfiguruj swoją skrzynkę mailową
             </p>
-        </div>
+        </div>}
       <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center flex-wrap lg:px-20">
       {homeLinks.map((link) => (
   <div
