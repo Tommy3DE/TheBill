@@ -14,7 +14,7 @@ const AppSettings = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
 
-    fetch("http://185.25.150.225/api/user_data", {
+    fetch("http://185.25.150.225:8000/api/user_data", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

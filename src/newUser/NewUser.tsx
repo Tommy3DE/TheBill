@@ -50,7 +50,7 @@ const NewUser = () => {
     onSubmit: (values) => {
       console.log(values);
 
-      const apiUrl = 'http://185.25.150.225/api/register';
+      const apiUrl = 'http://185.25.150.225:8000/api/register';
 
       const requestBody = {
         email: values.login,

@@ -1,16 +1,39 @@
 import { useEffect, useState } from "react";
 import SlimNav from "../../layout/SlimNav";
 import * as dayjs from "dayjs";
-import { Link } from "react-router-dom";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("");
+  const requestBody = {
+    month: selectedPeriod
+  };
 
   useEffect(() => {
     const today = dayjs().format("YYYY-MM-DD HH:mm");
     setDate(today);
   }, []);
+
+  const handleScan = () => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    fetch("http://185.25.150.225:8000/api/scan", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+  }
 
   return (
     <section className=" font-poppins">
@@ -50,27 +73,26 @@ const ScanPeriod = () => {
             onChange={(e) => setSelectedPeriod(e.target.value)}
           >
             <option value="">--Wybierz--</option>
-            <option value="Styczeń">Styczeń</option>
-            <option value="Luty">Luty</option>
-            <option value="Marzec">Marzec</option>
-            <option value="Kwiecień">Kwiecień</option>
-            <option value="Maj">Maj</option>
-            <option value="Czerwiec">Czerwiec</option>
-            <option value="Lipiec">Lipiec</option>
-            <option value="Sierpień">Sierpień</option>
-            <option value="Wrzesień">Wrzesień</option>
-            <option value="Październik">Październik</option>
-            <option value="Listopad">Listopad</option>
-            <option value="Grudzień">Grudzień</option>
+            <option value={1}>Styczeń</option>
+            <option value={2}>Luty</option>
+            <option value={3}>Marzec</option>
+            <option value={4}>Kwiecień</option>
+            <option value={5}>Maj</option>
+            <option value={6}>Czerwiec</option>
+            <option value={7}>Lipiec</option>
+            <option value={8}>Sierpień</option>
+            <option value={9}>Wrzesień</option>
+            <option value={10}>Październik</option>
+            <option value={11}>Listopad</option>
+            <option value={12}>Grudzień</option>
           </select>
         </div>
         {selectedPeriod !== "" && (
-          <Link
-            to="/logged/scanMail/scanPeriod/scannedDocs"
+          <button
             className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
           >
-            <button>Dalej</button>
-          </Link>
+            <button onClick={handleScan}>Skanuj</button>
+          </button>
         )}
       </div>
       </div>

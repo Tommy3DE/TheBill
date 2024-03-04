@@ -21,7 +21,7 @@ const AddAccountant = ({ handleVis }: visType) => {
   const handleNewAcc = () => {
     const accessToken = localStorage.getItem("accessToken");
 
-    fetch("http://185.25.150.225/api/bookkeeper", {
+    fetch("http://185.25.150.225:8000/api/bookkeeper", {
       method: "Post",
       headers: {
         "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const DefinedAddresses = () => {
   useEffect(()=> {
     const accessToken = localStorage.getItem("accessToken");
 
-    fetch("http://185.25.150.225/api/bookkeeper", {
+    fetch("http://185.25.150.225:8000/api/bookkeeper", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
