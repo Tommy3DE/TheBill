@@ -5,6 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import Address from "./pages/Pomoc/Address";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -34,7 +35,10 @@ const Footer = () => {
             <p>KVX Digital Solutions Sp. z o.o. </p>
           </div>
           <div className="flex flex-row">
+            <Link to={"/polityka_prywatnosci"}>
             <p className="mx-8 hidden lg:block">Polityka prywatności</p>
+            
+            </Link>
             <p className="mr-8 hidden lg:block">Regulamin </p>
             <p className=" hidden lg:block">Cookies</p>
           </div>
