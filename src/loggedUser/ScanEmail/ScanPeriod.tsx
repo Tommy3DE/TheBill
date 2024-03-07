@@ -17,7 +17,7 @@ const ScanPeriod = () => {
   const handleScan = () => {
     const accessToken = localStorage.getItem("accessToken");
 
-    fetch("http://185.25.150.225:8000/api/scan", {
+    fetch("https://api.onebill.com.pl/api/scan", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

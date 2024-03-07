@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://api.onebill.com.pl/api/login", {
+      const response = await fetch("https://api.onebill.com.pl/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -35,7 +35,7 @@ const LoggedHome = () => {
   useEffect(()=> {
     const accessToken = localStorage.getItem("accessToken");
 
-    fetch("http://185.25.150.225:8000/api/bookkeeper", {
+    fetch("https://api.onebill.com.pl/api/bookkeeper", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
