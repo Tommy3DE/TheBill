@@ -29,6 +29,9 @@ import BlogArticle5 from "./layout/pages/Blog/BlogArticles/BlogArticle5";
 import BlogArticle2 from "./layout/pages/Blog/BlogArticles/BlogArticle2";
 import BlogArticle3 from "./layout/pages/Blog/BlogArticles/BlogArticle3";
 import BlogArticle4 from "./layout/pages/Blog/BlogArticles/BlogArticle4";
+import ONas from "./layout/pages/Stopka/ONas";
+import PolitykaPryw from "./layout/pages/Stopka/PolitykaPryw";
+import PolitykaCookies from "./layout/pages/Stopka/PolitykaCookies";
 
 function App() {
   return (
@@ -60,6 +63,11 @@ function App() {
           <Route path="/logged/settings/definedAddress" element={<ProtectedRoute element={<DefinedAddresses />} />} />
           <Route path="/logged/settings/appSettings" element={<ProtectedRoute element={<AppSettings />}/>} />
           <Route path='/login' element={<Login/>} />
+          <Route path="/o_nas" element={<ONas />}/>
+          <Route path="/regulamin" element={<Blog />}/>
+          <Route path="/polityka_prywatnosci" element={<PolitykaPryw />}/>
+          <Route path="/pliki_cookies" element={<PolitykaCookies />}/>
+
         </Routes>
       </Router>
     </AuthProvider>
