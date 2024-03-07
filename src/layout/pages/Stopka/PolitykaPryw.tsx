@@ -5,7 +5,7 @@ const PolitykaPryw = () => {
   return (
     <div>
       <Navbar />
-      <div className="mx-[8%]">
+      <div className="lg:mx-[8%] mx-[5%]  max-w-[1980px]">
         <h1 className=" font-playFair text-5xl font-black mt-[10%] text-green-700 text-center">
           Polityka prywatności
         </h1>

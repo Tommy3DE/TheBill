@@ -15,7 +15,10 @@ const Footer = () => {
         {/* <img src={invoice} alt="invoice img"  className="rounded-xl"/> */}
         <div className="flex lg:flex-row flex-col justify-between w-full mb-10 border-b-2 border-black py-12">
           <ul className="flex flex-row font-bold lg:text-2xl text-md font-playFair">
+            <Link to='/o_nas'>
             <li>O Nas</li>
+            
+            </Link>
             <li className="mx-8">Skontaktuj się z Nami</li>
             <li>FAQs</li>
             <li className="mx-8">Pomoc</li>
