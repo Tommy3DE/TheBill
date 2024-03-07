@@ -42,7 +42,9 @@ const Footer = () => {
             <p className="mx-8 hidden lg:block">Polityka prywatności</p>
             
             </Link>
+            <Link to={"/regulamin"}>
             <p className="mr-8 hidden lg:block">Regulamin </p>
+            </Link>
             <p className=" hidden lg:block">Cookies</p>
           </div>
         </div>
