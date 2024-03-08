@@ -31,7 +31,6 @@ import BlogArticle3 from "./layout/pages/Blog/BlogArticles/BlogArticle3";
 import BlogArticle4 from "./layout/pages/Blog/BlogArticles/BlogArticle4";
 import ONas from "./layout/pages/Stopka/ONas";
 import PolitykaPryw from "./layout/pages/Stopka/PolitykaPryw";
-import PolitykaCookies from "./layout/pages/Stopka/PolitykaCookies";
 import Regulamin from "./layout/pages/Stopka/Regulamin";
 import PageNotFound from "./layout/pages/PageNotFound";
 
@@ -68,7 +67,6 @@ function App() {
           <Route path="/o_nas" element={<ONas />}/>
           <Route path="/regulamin" element={<Regulamin />}/>
           <Route path="/polityka_prywatnosci" element={<PolitykaPryw />}/>
-          <Route path="/pliki_cookies" element={<PolitykaCookies />}/>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>

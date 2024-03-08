@@ -1,32 +1,35 @@
 import Navbar from "../../Navbar";
 import kvx from "../../../assets/kvxLogo.png";
 import Footer from "../../Footer";
-import tick from '../../../assets/icons/tick.png'
+import tick from "../../../assets/icons/tick.png";
 
 interface MissionTile {
-    id: number,
-    text: string
+  id: number;
+  text: string;
 }
 const ONas = () => {
-    const missions: MissionTile[] = [
-        {
-            id: 1,
-            text: 'tworzenie oprogramowania ułatwiajacego prowadzenie działalności gospodarczej,'
-        },
-        {
-            id: 2,
-            text: 'aktywizacja osób wykluczonych cyfrowo,'
-        },{
-            id: 3,
-            text: 'oprogramowanie, z którego KAŻDY może skorzystać,'
-        },{
-            id: 4,
-            text: 'krzewienie przedsiębiorczości w społeczeństwie,'
-        },{
-            id: 5,
-            text: 'ułatwianie komunikacji pomiędzy przedsiębiorcami a organami państwowymi.'
-        },
-    ]
+  const missions: MissionTile[] = [
+    {
+      id: 1,
+      text: "tworzenie oprogramowania ułatwiajacego prowadzenie działalności gospodarczej,",
+    },
+    {
+      id: 2,
+      text: "aktywizacja osób wykluczonych cyfrowo,",
+    },
+    {
+      id: 3,
+      text: "oprogramowanie, z którego KAŻDY może skorzystać,",
+    },
+    {
+      id: 4,
+      text: "krzewienie przedsiębiorczości w społeczeństwie,",
+    },
+    {
+      id: 5,
+      text: "ułatwianie komunikacji pomiędzy przedsiębiorcami a organami państwowymi.",
+    },
+  ];
   return (
     <div>
       <Navbar />
@@ -57,19 +60,16 @@ const ONas = () => {
           Polsce.
         </p>
         <h1 className=" font-playFair text-5xl font-black my-[5%] text-green-700 text-center">
-        Wizja
+          Wizja
         </h1>
         <ul className="flex flex-col justify-center items-start lg:mx-[15%]">
-        {missions.map((mission)=>(
+          {missions.map((mission) => (
             <li key={mission.id} className="flex flex-row items-center mb-5">
-                <img src={tick} alt="tick" />
-                <div className="text-2xl ml-5">
-                    {mission.text}
-                </div>
+              <img src={tick} alt="tick" />
+              <div className="text-2xl ml-5">{mission.text}</div>
             </li>
-))}
+          ))}
         </ul>
-        
       </div>
       <Footer />
     </div>
