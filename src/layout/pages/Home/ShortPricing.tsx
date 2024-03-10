@@ -17,7 +17,7 @@ const ShortPricing = () => {
   const pricingTiles: priceTile[] = [
 
     {
-      id: 2,
+      id: 1,
       title: "Pakiet Standard",
       img: standard,
       point1: "15 faktur",
@@ -25,7 +25,7 @@ const ShortPricing = () => {
       point3: "chmura danych do 6 miesięcy",
     },
     {
-      id: 3,
+      id: 2,
       title: "Pakiet Premium",
       img: prem,
       point1: "35 faktur",
@@ -33,7 +33,7 @@ const ShortPricing = () => {
       point3: "chmura danych do 2 lat",
     },
     {
-      id: 4,
+      id: 3,
       title: "Pakiet Biznes",
       img: fab,
       point1: "Nieograniczona ilość faktur",
@@ -46,7 +46,7 @@ const ShortPricing = () => {
       <div className="flex lg:flex-row flex-col w-full justify-center">
         {pricingTiles.map((tile) => (
           <div
-            className="flex flex-col mx-5 lg:w-1/5 border-4 border-[#1DCF8F] items-center my-14 rounded"
+            className="flex flex-col mx-5 lg:w-1/4 border-4 border-[#1DCF8F] items-center my-14 rounded"
             key={tile.id}
           >
             <h1 className="text-2xl my-5 font-playFair">{tile.title}</h1>

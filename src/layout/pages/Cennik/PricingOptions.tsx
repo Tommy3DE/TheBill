@@ -82,9 +82,9 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
         {pricing.map((tile) => (
           <div
             key={tile.id}
-            className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white"
+            className="border-4 rounded-xl lg:w-1/4 lg:mx-4 my-5 lg:my-0 border-green-700 flex flex-col justify-evenly py-5 px-5 bg-white"
           >
-            <div className="flex flex-col items-center h-auto">
+            <div className="flex flex-col items-center h-[55%]">
               <h1
                 className={`text-4xl text-center font-playFair font-black ${
                   tile.id === 1
@@ -101,9 +101,9 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
               <img
                 src={tile.img}
                 alt={tile.title}
-                className="mt-10 rounded-lg h-72"
+                className="mt-10 rounded-lg h-32"
               />
-              <div className="h-1 bg-green-700 w-full my-5" />
+              <div className="h-1 bg-green-700 w-full my-10" style={{ height: '4px' }} />
               <h1 className={`text-5xl text-[#1A9367] font-black ${
                   tile.id === 1
                     ? "text-[#35D299]"
@@ -122,7 +122,7 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
                 {tile.opis}
               </h1>
             </div>
-            <div className="flex flex-col mt-10 justify-start h-1/2">
+            <div className="flex flex-col mt-5 justify-start items-start h-[50%]">
               <div className="flex flex-row items-start w-full mb-5">
                 <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
                 <p className="font-bold text-lg w-5/6">{tile.point1}</p>

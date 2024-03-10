@@ -117,7 +117,7 @@ const Pomoc = () => {
                     <option value="Aplikacja mobilna">Aplikacja mobilna</option>
                     <option value="Inny">Inny</option>
                   </select>
-                  <div className="relative border-2 border-gray-500 rounded-lg h-72 mt-5">
+                  <div className="relative border border-gray-500 rounded-lg h-72 mt-5">
                     <textarea
                       name="user_message"
                       id="user_message"
