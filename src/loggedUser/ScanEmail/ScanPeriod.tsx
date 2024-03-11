@@ -89,9 +89,9 @@ const ScanPeriod = () => {
         </div>
         {selectedPeriod !== "" && (
           <button
-            className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
+            className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer" onClick={handleScan}
           >
-            <button onClick={handleScan}>Skanuj</button>
+            Skanuj
           </button>
         )}
       </div>
