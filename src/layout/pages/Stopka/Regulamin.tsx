@@ -9,7 +9,7 @@ const Regulamin = () => {
         <h1 className=" font-playFair text-5xl font-black my-[8%] text-green-700 text-center">
           Regulamin
         </h1>
-        <h2 className=" font-black mb-5">Witamy w OneBill!</h2>
+        <h2 className="text-lg font-black mb-5">Witamy w OneBill!</h2>
         <div className="text-justify">
           <p className="mb-5">
             Niniejszy regulamin określa zasady korzystania ze Strony
@@ -21,7 +21,7 @@ const Regulamin = () => {
             warunki. W przypadku braku akceptacji niniejszych warunków
             Użytkownik powinien opuścić Stronę OneBill.
           </p>
-          <h2 className=" font-black">Pliki cookie:</h2>
+          <h2 className="text-lg font-black">Pliki cookie:</h2>
           <p className="mb-5">
             Na tej Stronie internetowej wykorzystujemy pliki cookie, aby
             spersonalizować doświadczenia online naszych odbiorców. Wchodząc na
@@ -47,7 +47,7 @@ const Regulamin = () => {
             cookie stron trzecich, które mogą być wykorzystywane przez inne
             podmioty podczas korzystania z usług świadczonych przez te podmioty.{" "}
           </p>
-          <h2 className=" font-black">Licencja:</h2>
+          <h2 className="text-lg font-black">Licencja:</h2>
           <p className="mb-5">
             O ile nie stwierdzono inaczej, firma KVX Digital Solutions lub jej
             licencjodawcy są właścicielami praw własności intelektualnej
@@ -130,7 +130,7 @@ const Regulamin = () => {
             innych osób do wykorzystywania, powielania i edytowania jego
             komentarzy w dowolnej formie i we wszystkich formatach lub mediach.
           </p>
-          <h2 className=" font-black">
+          <h2 className="text-lg font-black">
             Zamieszczanie odnośników do naszych treści{" "}
           </h2>
           <p className="">
@@ -228,7 +228,7 @@ const Regulamin = () => {
             graficznych KVX Digital Solutions w celu umieszczenia linku bez
             umowy licencyjnej na wykorzystanie znaku towarowego.
           </p>
-          <h2 className=" font-black">Odpowiedzialność za treść:</h2>
+          <h2 className="text-lg font-black">Odpowiedzialność za treść:</h2>
           <p className="mb-5">
             Nie ponosimy odpowiedzialności za jakiekolwiek treści, które
             pojawiają się na innych stronach internetowych. Zobowiązujesz się do
@@ -238,7 +238,7 @@ const Regulamin = () => {
             nieprzyzwoita lub niezgodna z prawem, lub która w inny sposób łamie,
             lub zachęca do łamania, prawa osób trzecich.
           </p>
-          <h2 className=" font-black">Zastrzeżenia praw:</h2>
+          <h2 className="text-lg font-black">Zastrzeżenia praw:</h2>
           <p className="mb-5">
             Zastrzegamy sobie prawo do zażądania usunięcia wszystkich lub
             wybranych linków kierujących do naszej Strony. Podmioty linkujące
@@ -249,7 +249,7 @@ const Regulamin = () => {
             Umieszczanie linków do naszej Strony oznacza akceptację i
             zobowiązanie do przestrzegania niniejszych zasad i warunków.
           </p>
-          <h2 className=" font-black">Usuwanie linków z naszej Strony</h2>
+          <h2 className="text-lg font-black">Usuwanie linków z naszej Strony</h2>
           <p className="mb-5">
             Jeśli zauważysz na naszej Stronie link, który z jakichkolwiek
             powodów jest obraźliwy, skontaktuj się z nami i poinformuj nas o tym
@@ -263,7 +263,7 @@ const Regulamin = () => {
             zobowiązujemy się do utrzymania dostępności strony lub aktualizacji
             materiałów na niej zawartych.{" "}
           </p>
-          <h2 className=" font-black">Usuwanie linków z naszej Strony</h2>
+          <h2 className="text-lg font-black">Usuwanie linków z naszej Strony</h2>
           <p className="mb-5">
             W maksymalnym zakresie dozwolonym przez obowiązujące prawo, nie
             udzielamy żadnych poręczeń, gwarancji i innych zobowiązań względem
@@ -292,6 +292,68 @@ const Regulamin = () => {
           <p className="mb-5">
           Pod warunkiem, że strona internetowa oraz informacje i usługi na niej zawarte są udostępniane nieodpłatnie, nie ponosimy odpowiedzialności za powstanie jakichkolwiek strat lub szkód o dowolnym charakterze.
           </p>
+          <h2 className="text-lg font-black mb-5">Warunki Zawierania i Rozwiązywania Umów z KVX Digital Solutions</h2>
+          <h2 className="text-lg font-black mb-5">Zawieranie Umowy</h2>
+          <h2 className="text-lg font-black">Składanie Zamówienia</h2>
+          <ol className="list-decimal mb-5 mx-5">
+            <li>
+            Aby skorzystać z naszych usług, klient powinien zakupić jeden z dostępnych abonamentów (standard/ premium lub biznes) poprzez naszą stronę internetową (www.onebill.com.pl).
+            </li>
+            <li>Zamówienie zostaje zaakceptowane, gdy płatność za abonament zostanie pomyślnie zaksięgowana na koncie KVX Digital Solutions, a klient otrzyma informację o poprawnym zaksięgowaniu płatności, co skutkuje zawarciem umowy.</li>
+            <li>Klient zobowiązany jest do zapłaty ustalonej opłaty za usługę zgodnie z wybranym planem subskrypcji. Płatności są dokonywane według metod wskazanych przez KVX Digital Solutions.</li>
+            <li>
+            Klient jest odpowiedzialny za podanie aktualnych i poprawnych informacji wymaganych do realizacji usługi.
+            </li>
+          </ol>
+          <h2 className="text-lg font-black">Rozwiązywanie Umowy</h2>
+          <ol className="list-decimal mb-5 mx-5">
+            <li>
+            Umowa może zostać rozwiązana przez którąkolwiek ze stron w trybie natychmiastowym. Klient, rezygnujący z subskrypcji, będzie miał dostęp do swojego konta OneBill do końca trwania okresu rozliczeniowego. Po tym okresie, konto użytkownika i wszelkie dokumenty związane z kontem będą usuwane z bazy danych KVX Digital Solutions.
+            </li>
+            <li>
+            Jeśli KVX Digital Solutions nie jest w stanie świadczyć usług zgodnie z umową, klient ma prawo do rozwiązania umowy bez ponoszenia kar.
+            </li>
+            <li>
+            Jeśli klient naruszy warunki umowy, KVX Digital Solutions ma prawo do jej rozwiązania z natychmiastowym skutkiem.
+            </li>
+            <li>
+            W przypadku rozwiązania umowy z powodów niezależnych od klienta, KVX Digital Solutions zobowiązuje się do zwrotu proporcjonalnej części opłat za niewykorzystany okres subskrypcji.
+            </li>
+
+</ol>
+<h2 className="text-lg font-black">Postanowienia Ogólne</h2>
+<ul className="mb-5 list-disc mx-5">
+  <li>
+  KVX Digital Solutions zastrzega sobie prawo do zmiany warunków umowy, o czym poinformuje klientów z odpowiednim wyprzedzeniem.
+  </li>
+  <li>
+  Umowa podlega prawu [wprowadź odpowiednią jurysdykcję] i jest interpretowana zgodnie z tym prawem.
+  </li>
+  <li>
+  Wszelkie spory wynikające z umowy będą rozstrzygane przez właściwy sąd [wprowadź odpowiednią jurysdykcję] lub przez arbitraż, jeśli strony się na to zgodzą.
+  </li>
+</ul>
+
+
+          <h2 className="text-lg font-black">Procedura reklamacji</h2>
+          <p className="mb-5">
+          W KVX Digital Solutions cenimy naszych klientów i zawsze dążymy do zapewnienia najlepszej jakości usług. Jeśli napotkasz jakiekolwiek problemy z naszym produktem, postępuj zgodnie z poniższą procedurą, abyśmy mogli szybko i skutecznie rozwiązać Twój problem.
+          </p>
+          <div className="">
+          <h2 className="text-lg font-black">Krok 1: Dokładnie opisz problem, którego doświadczasz z naszym produktem.</h2>
+          <p className="mb-5">W miarę możliwości dołącz zrzuty ekranu lub inne dowody, które mogą pomóc nam lepiej zrozumieć problem.</p>
+          <h2 className="text-lg font-black">Krok 2: Skontaktuj się z naszym zespołem obsługi klienta.</h2>
+          <p className="mb-5">Korzystając z formularza kontaktowego dostępnego na naszej stronie internetowej lub za pośrednictwem  adresu e-mail support@kvxdigitalsolutions.com skontaktuj się z naszym działem obsługi klienta. Upewnij się, że podajesz swój adres e-mail przypisany do abonamentu.</p>
+          <h2 className="text-lg font-black">Krok 3: Czas Oczekiwania na Odpowiedź</h2>
+          <p className="mb-5">Po otrzymaniu Twojego zgłoszenia, nasz zespół rozpocznie proces weryfikacji i analizy problemu. Odpowiemy na Twoje zgłoszenie w ciągu 72 godzin roboczych, dostarczając informacje o statusie zgłoszenia i dalszych krokach.</p>
+          <h2 className="text-lg font-black">Krok 4: Rozwiązanie Problemu</h2>
+          <p className="mb-5">Nasz zespół dołoży wszelkich starań, aby rozwiązać problem w możliwie najkrótszym czasie. Możemy poprosić o dodatkowe informacje lub udzielić instrukcji, które pomogą rozwiązać problem.</p>
+          <h2 className="text-lg font-black">Krok 5: Zakończenie Reklamacji</h2>
+          <p className="mb-5">Po rozwiązaniu problemu skontaktujemy się z Tobą, aby potwierdzić, że wszystko funkcjonuje prawidłowo. Twoja opinia na temat procesu rozwiązywania problemów jest dla nas ważna, więc możemy poprosić o krótką opinię.</p>
+          <h2 className="text-lg font-black">Kontakt</h2>
+          <p className="mb-5">W przypadku dodatkowych pytań lub potrzeby pomocy, skontaktuj się z naszym zespołem obsługi klienta.</p>
+          </div>
+          
         </div>
       </div>
       <Footer />
