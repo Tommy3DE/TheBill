@@ -16,7 +16,7 @@ const ScanPeriod = () => {
 
   const handleScan = () => {
     const accessToken = localStorage.getItem("accessToken");
-
+  
     fetch("https://api.onebill.com.pl/api/scan", {
       method: "POST",
       headers: {
@@ -25,15 +25,30 @@ const ScanPeriod = () => {
       },
       body: JSON.stringify(requestBody),
     })
-      .then((response) => {
+      .then(async (response) => {
         if (response.ok) {
           return response.json();
+        } else if (response.status === 425) {
+          let url = await response.text();
+          // Usuwamy zbędne cudzysłowy na początku i końcu (jeśli istnieją)
+          url = url.replace(/^"|"$/g, '');
+          // Opcjonalnie: odkodowanie URL, jeśli jest zakodowany
+          url = decodeURIComponent(url);
+  
+          const newWindow = window.open(url, '_blank');
+          if (newWindow) {
+            newWindow.focus();
+          } else {
+            console.error("Nie udało się otworzyć nowego okna");
+          }
+          throw new Error(`Network response was Too Early. URL: ${url}`);
         }
         throw new Error("Network response was not ok.");
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
   }
+  
 
   return (
     <section className=" font-poppins">
