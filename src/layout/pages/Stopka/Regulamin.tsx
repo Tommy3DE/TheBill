@@ -12,9 +12,7 @@ const Regulamin = () => {
         <h2 className="text-lg font-black mb-5">Witamy w OneBill!</h2>
         <div className="text-justify">
           <p className="mb-5">
-            Niniejszy regulamin określa zasady korzystania ze Strony
-            internetowej KVX Digital Solutions, dostępnej pod adresem
-            www.onebill.com.pl.
+          Niniejszy regulamin określa zasady korzystania ze strony internetowej KVX DIGITAL SOLUTIONS SP. Z O.O., ul. Adwentowicza 13/12, 92-532 Łódź, numer NIP: 7282881037, numer REGON: 527519122, e-mail: info@kvxdigitalsolutions.com, dalej zwanym KVX Digital Solutions, dostępnej pod adresem www.onebill.com.pl.
           </p>
           <p className="mb-5">
             Użytkownik wchodząc na Stronę internetową, akceptuje niniejsze
