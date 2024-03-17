@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import SlimNav from "../../layout/SlimNav";
-import * as dayjs from "dayjs";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
@@ -10,8 +9,9 @@ const ScanPeriod = () => {
   };
 
   useEffect(() => {
-    const today = dayjs().format("YYYY-MM-DD HH:mm");
-    setDate(today);
+    const today = new Date();
+    const formattedDate = today.toISOString().substring(0, 16).replace('T', ' ');
+    setDate(formattedDate);
   }, []);
 
   const handleScan = () => {
