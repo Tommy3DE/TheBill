@@ -30,9 +30,7 @@ const ScanPeriod = () => {
           return response.json();
         } else if (response.status === 425) {
           let url = await response.text();
-          // Usuwamy zbędne cudzysłowy na początku i końcu (jeśli istnieją)
           url = url.replace(/^"|"$/g, '');
-          // Opcjonalnie: odkodowanie URL, jeśli jest zakodowany
           url = decodeURIComponent(url);
   
           const newWindow = window.open(url, '_blank');
