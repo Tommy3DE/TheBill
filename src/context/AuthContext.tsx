@@ -26,19 +26,27 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [refreshToken, setRefreshToken] = useState<string | null>(null); 
+  // Początkowy stan oparty na wartościach z localStorage
+  const initialAccessToken = localStorage.getItem('accessToken');
+  const initialRefreshToken = localStorage.getItem('refreshToken');
+  
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!initialAccessToken && !!initialRefreshToken);
+  const [accessToken, setAccessToken] = useState<string | null>(initialAccessToken);
+  const [refreshToken, setRefreshToken] = useState<string | null>(initialRefreshToken);
 
   const login = (newAccessToken: string, newRefreshToken: string) => {
+    localStorage.setItem('accessToken', newAccessToken);
+    localStorage.setItem('refreshToken', newRefreshToken);
     setIsLoggedIn(true);
     setAccessToken(newAccessToken);
     setRefreshToken(newRefreshToken); 
   };
 
   const logout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
     setIsLoggedIn(false);
-    setAccessToken(null); 
+    setAccessToken(null);
     setRefreshToken(null); 
   };
 
@@ -48,3 +56,4 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   );
 };
+
