@@ -129,7 +129,7 @@ const NewUser = () => {
   return (
     <>
       <SlimNav />
-      <div className="mx-auto max-w-[1980px] ">
+      <div className="mx-auto max-w-[1980px]">
       {changePlan && 
         <div className="h-screen w-full bg-gray-300 bg-opacity-80 fixed top-0 left-0 flex flex-crow">
           {pricing.map((tile) => (
@@ -220,7 +220,7 @@ const NewUser = () => {
           <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
             <form
               onSubmit={formik.handleSubmit}
-              className="w-full flex flex-col items-center text-3xl"
+              className="w-full flex flex-col items-center text-3xl mt-12"
             >
               <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
                 <label htmlFor="firstName" className=" mb-2">
