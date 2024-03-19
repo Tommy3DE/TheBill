@@ -3,6 +3,7 @@ import fab from "../../../assets/pricing/fab.png";
 import prem from "../../../assets/pricing/prem.png";
 import standard from "../../../assets/pricing/standard.png";
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 export type PricingTile = {
   id: number;
@@ -32,13 +33,20 @@ export const pricing: PricingTile[] = [
     priceYrl: 299.99,
     title: "Pakiet Standard",
     text: "Początkujący przedsiębiorca",
-    opis: <><span className="font-black">Pakiet Standard</span> jest idealnym rozwiązaniem dla osób zaczynających prowadzić działalność. Pomaga w organizacji i chorni przed błędami. Pomaga wyrobić dobre praktyki rozliczeniowe w firmie.</>,
+    opis: (
+      <>
+        <span className="font-black">Pakiet Standard</span> jest idealnym
+        rozwiązaniem dla osób zaczynających prowadzić działalność. Pomaga w
+        organizacji i chorni przed błędami. Pomaga wyrobić dobre praktyki
+        rozliczeniowe w firmie.
+      </>
+    ),
     img: standard,
     point1: "Skanowanie do 15 dokumentów miesięcznie",
     point2: "integracja z 1 kontem mailowym",
     point3: "informacje o nowych fakturach w ujęciu miesięcznym",
     point4: "dostęp do aplikacji mobilnej",
-    point5: "historia w chmurze do 6 miesięcy wstecz"
+    point5: "historia w chmurze do 6 miesięcy wstecz",
   },
   {
     id: 2,
@@ -46,7 +54,13 @@ export const pricing: PricingTile[] = [
     priceYrl: 699.99,
     title: "Pakiet Premium",
     text: "Doświadczony przedsiębiorca",
-    opis: <><span className="font-black">Pakiet Premium,</span> kierowany jest do osób, które zwiększają skalę swojej działalności i potrzebują automatyzować niektóre procesy w swojej firmie.</>,
+    opis: (
+      <>
+        <span className="font-black">Pakiet Premium,</span> kierowany jest do
+        osób, które zwiększają skalę swojej działalności i potrzebują
+        automatyzować niektóre procesy w swojej firmie.
+      </>
+    ),
     img: prem,
     point1: "Skanowanie do 35 dokumentów miesięcznie",
     point2: "integracja z 2 kontami mailowym",
@@ -61,7 +75,14 @@ export const pricing: PricingTile[] = [
     priceYrl: 999.99,
     title: "Pakiet Biznes",
     text: "Wymagający przedsiębiorca",
-    opis: <><span className="font-black">Pakiet Biznes,</span>  stworzony jest z myślą o osobach, które prowadzą kilka projektów na raz i nie mogą pozwolić sobie na pomyłki przy tak fundamentalnych rzeczach jak rozliczenia.</>,
+    opis: (
+      <>
+        <span className="font-black">Pakiet Biznes,</span> stworzony jest z
+        myślą o osobach, które prowadzą kilka projektów na raz i nie mogą
+        pozwolić sobie na pomyłki przy tak fundamentalnych rzeczach jak
+        rozliczenia.
+      </>
+    ),
     img: fab,
     point1: "Skanowanie nieograniczonej liczby dokumentów",
     point2: "integracja z 2 kontami mailowym",
@@ -75,7 +96,6 @@ export const pricing: PricingTile[] = [
 ];
 
 const PricingOptions = ({ yearly }: PricingOptionsProps) => {
-  
   return (
     <section className=" items-center lg:mx-[8%] font-poppins mt-10">
       <div className="flex flex-col lg:flex-row justify-evenly">
@@ -103,8 +123,12 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
                 alt={tile.title}
                 className="mt-10 rounded-lg h-32"
               />
-              <div className="h-1 bg-green-700 w-full my-10" style={{ height: '4px' }} />
-              <h1 className={`text-5xl text-[#1A9367] font-black ${
+              <div
+                className="h-1 bg-green-700 w-full my-10"
+                style={{ height: "4px" }}
+              />
+              <h1
+                className={`text-5xl text-[#1A9367] font-black ${
                   tile.id === 1
                     ? "text-[#35D299]"
                     : tile.id === 2
@@ -112,7 +136,8 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
                     : tile.id === 3
                     ? "text-[#C19F46]"
                     : ""
-                }`}>
+                }`}
+              >
                 {yearly !== true ? tile.priceMth : tile.priceYrl} zł
               </h1>
               <h3 className="mt-5 font-black text-2xl text-center ">
@@ -166,6 +191,11 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
                 </div>
               )}
             </div>
+            <Link to={"/newUser"}>
+              <button className="my-5 text-2xl bg-green-700 text-white hover:scale-95 w-full p-2 rounded ">
+                Wybierz
+              </button>
+            </Link>
           </div>
         ))}
       </div>
