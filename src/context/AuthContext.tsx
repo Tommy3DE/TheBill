@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 interface AuthContextType {
   isLoggedIn: boolean;
@@ -49,6 +49,43 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setAccessToken(null);
     setRefreshToken(null); 
   };
+
+  const refreshAccessToken = async () => {
+    try {
+      const response = await fetch('https://api.onebill.com.pl/api/refresh', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ refresh: localStorage.getItem('refreshToken') }),
+      });
+  
+      if (response.ok) {
+        const { access, refresh } = await response.json();
+        localStorage.setItem('accessToken', access);
+        localStorage.setItem('refreshToken', refresh);
+        setAccessToken(access);
+        setRefreshToken(refresh);
+        scheduleTokenRefresh();
+      } else {
+        logout();
+      }
+    } catch (error) {
+      console.error('Błąd odświeżania tokena:', error);
+      logout();
+    }
+  };
+  
+  const scheduleTokenRefresh = () => {
+    const refreshTime = 14 * 60 * 1000; 
+    setTimeout(refreshAccessToken, refreshTime);
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      scheduleTokenRefresh();
+    }
+  }, [isLoggedIn]);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, accessToken, refreshToken, login, logout }}>
