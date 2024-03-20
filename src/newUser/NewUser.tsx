@@ -21,6 +21,7 @@ interface FormValues {
 const NewUser = () => {
   const [showPartTwo, setShowPartTwo] = useState(false);
   const [changePlan, setChangePlan] = useState(false);
+  const [wantInvoice, setWantInvoice] = useState(false);
   const formik = useFormik<FormValues>({
     initialValues: {
       login: "",
@@ -103,6 +104,9 @@ const NewUser = () => {
   };
   const handlePlan = () => {
     setChangePlan((prev) => !prev);
+  };
+  const handleInvoice = () => {
+    setWantInvoice((prev) => !prev);
   };
 
   const handlePlanChange = (tileId: number): void => {
@@ -394,40 +398,128 @@ const NewUser = () => {
         )}
         {showPartTwo && (
           <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins mx-[15%]">
-            <div className="font-playFair">
-              <h1 className="text-5xl mt-24 font-bold">
-                <span className="text-[#1A9367]">Podsumowanie</span> zamówienia
-              </h1>
-              <p className="text-3xl font-bold text-center my-5">Dla konta</p>
-              <p className="flex flex-row items-center justify-center text-4xl">
-                <HiOutlineEnvelope className="mr-2 text-4xl" />{" "}
-                {formik.values.login}
-              </p>
-            </div>
-            <div className="w-full bg-[#1A9367] p-6 flex flex-row rounded-xl">
-                <div className="w-1/3 rounded-xl flex flex-col items-start bg-slate-100 mr-8 p-10">
-                    <h1 className="font-playFair text-4xl mx-auto">Podsumowanie</h1>
-                    <div className="border border-green-700 my-10 w-full"> </div>
-                    <h1 className="font-bold ">Plan:</h1>
-                    <h1 className="font-bold ">Cena netto:</h1>
-                    <h1 className="font-bold ">VAT:</h1>
-                    <div className="h-2 bg-green-700 my-10"> </div>
-                    <h1>Razem: </h1>
-                </div>
-                <div className='w-2/3 rounded-xl flex flex-col bg-white'>
-s
-                </div>
-            </div>
-            <p>
-              <input type="checkbox" name="invoice" id="inv1" />
-              <span className="text-[#1A9367] font-playFair text-2xl">Chcę otrzymać fakturę</span>
-            </p>
-            <p>
-              <input type="checkbox" name="invoice" id="inv1" />
-              <span>Akceptuję regulamin płatności</span>
+            {/* Tutaj uzyskujemy dane wybranego planu */}
+            {(() => {
+              const selectedPlan = getSelectedPlan();
+              if (!selectedPlan) {
+                return <p>No plan selected</p>;
+              }
+              return (
+                <>
+                  <div className="font-playFair mb-10">
+                    <h1 className="text-5xl mt-24 font-bold">
+                      <span className="text-[#1A9367]">Podsumowanie</span>{" "}
+                      zamówienia
+                    </h1>
+                    <p className="text-3xl font-bold text-center my-5">
+                      Dla konta
+                    </p>
+                    <p className="flex flex-row items-center justify-center text-4xl">
+                      <HiOutlineEnvelope className="mr-2 text-4xl" />{" "}
+                      {formik.values.login}
+                    </p>
+                  </div>
+                  <div className="w-full bg-[#1A9367] p-6 flex flex-row rounded-xl">
+                    <div className="w-1/3 rounded-xl flex flex-col items-start bg-slate-100 mr-8 p-10">
+                      <h1 className="font-playFair text-4xl mx-auto">
+                        Podsumowanie
+                      </h1>
+                      <div className="border border-green-700 my-5 w-full">
+                        {" "}
+                      </div>
+                      <div className="flex justify-between w-full items-center">
+                        <h1 className="font-bold text-xl">Plan:</h1>
+                        <h1 className="font-bold text-xl">
+                          {selectedPlan.title}
+                        </h1>
+                      </div>
+                      <div className="flex justify-between w-full items-center">
+                        <h1 className="font-bold text-xl">Cena netto:</h1>
+                        <h1 className="font-bold text-xl">
+                          {(selectedPlan.priceMth * 0.77).toFixed(2)}
+                        </h1>
+                      </div>
+                      <div className="flex justify-between w-full items-center">
+                        <h1 className="font-bold text-xl">VAT:</h1>
+                        <h1 className="font-bold text-xl">
+                          {(selectedPlan.priceMth * 0.23).toFixed(2)}
+                        </h1>
+                      </div>
+                      <div className="border border-green-700 my-5 w-full">
+                        {" "}
+                      </div>
+                      <div className="flex justify-between w-full items-center">
+                        <h1 className="text-2xl font-bold text-[#1A9367]">
+                          Razem:
+                        </h1>
+                        <h1 className="text-2xl font-bold text-[#1A9367]">
+                          {selectedPlan.priceMth}
+                        </h1>
+                      </div>
+                      {wantInvoice && (
+                        <div className="w-full my-5">
+                        <h2 className="text-center text-2xl  font-playFair font-bold">
+                          Dane do Faktury
+                        </h2>
+                        <p>NIP</p>
+                        <input type="text" value={formik.values.NIP} />
+                        <p>Nazwa Firmy</p>
+                        <input type="text" />
+                        <p>Adres</p>
+                        <input type="text" />
+                        </div>
+                        
+                      )}
+                    </div>
 
-            </p>
-            {/* <div className="w-full my-12 flex flex-row justify-evenly  items-center">
+                    <div className="w-2/3 rounded-xl flex flex-col bg-white">
+                      <div className="flex flex-row justify-around items-center">
+                          <h1 className="text-5xl text-[#35D299] font-poppins font-bold">
+                          {selectedPlan.title}
+                          </h1>
+                          <img src={selectedPlan.img} alt={selectedPlan.title} />
+
+                      </div>
+                      <div className="border border-green-700 my-5 w-full">
+                        {" "}
+                      </div>
+                      {Object.entries(selectedPlan)
+                    .filter(([key, value]) => key.startsWith("point") && value)
+                    .map(([key, value]) => (
+                      <p
+                        key={key}
+                        className="flex flex-row items-start w-full mb-5 mx-10"
+                      >
+                        <FaCheckCircle className="text-3xl mr-2 text-green-500" />
+                        <span className=" text-xl w-5/6">{value}</span>
+                      </p>
+                    ))}
+                    </div>
+                  </div>
+                  <p className="mb-3 mt-5">
+                    <input
+                      type="checkbox"
+                      name="invoice"
+                      id="inv1"
+                      className=" w-6 h-6"
+                      onClick={handleInvoice}
+                    />
+                    <span className="text-[#1A9367] font-playFair text-3xl">
+                      Chcę otrzymać fakturę
+                    </span>
+                  </p>
+                  <p>
+                    <input
+                      type="checkbox"
+                      name="regulamin"
+                      id="reg1"
+                      className=" w-6 h-6"
+                    />
+                    <span className="text-xl">
+                      Akceptuję regulamin płatności
+                    </span>
+                  </p>
+                  {/* <div className="w-full my-12 flex flex-row justify-evenly  items-center">
               <button
                 className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6"
                 onClick={handlePlan}
@@ -477,6 +569,9 @@ s
                 </div>
               );
             })()} */}
+                </>
+              );
+            })()}
           </section>
         )}
       </div>
