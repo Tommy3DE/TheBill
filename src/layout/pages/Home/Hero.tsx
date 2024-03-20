@@ -33,7 +33,7 @@ const Hero = () => {
           />
         </div>
       </div>
-      <div className="text-2xl lg:-mt-24 text-justify font-poppins">
+      <div className="text-2xl 2xl:-mt-24 text-justify font-poppins">
         W OneBill rozumiemy wyzwania, przed jakimi stoją mikroprzedsiębiorcy.
         Nasza innowacyjna aplikacja została tak zaprojektowana, aby uprościć i
         zautomatyzować proces zarządzania dokumentacją kosztową w Twojej firmie,

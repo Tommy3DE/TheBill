@@ -221,10 +221,7 @@ const NewUser = () => {
                 onSubmit={formik.handleSubmit}
                 className="w-full flex flex-col items-center text-3xl mt-12"
               >
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="firstName" className=" mb-2">
-                    Email
-                  </label>
+                <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="login"
                     name="login"
@@ -232,18 +229,12 @@ const NewUser = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.login}
-                    className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                    placeholder="Adres email"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
+                  <ErrorMessage name="login" component="div" className="text-sm text-red-600" />
                 </div>
-                <ErrorMessage
-                  name="login"
-                  component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-                />
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="pass" className="mb-2">
-                    Hasło
-                  </label>
+                <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="pass"
                     name="pass"
@@ -251,18 +242,12 @@ const NewUser = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.pass}
-                    className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                    placeholder="Hasło"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
+                  <ErrorMessage name="pass" component="div" className="text-sm text-red-600" />
                 </div>
-                <ErrorMessage
-                  name="pass"
-                  component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-                />
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="pass2" className="mb-2">
-                    Powtórz Hasło
-                  </label>
+                <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="pass2"
                     name="pass2"
@@ -270,18 +255,17 @@ const NewUser = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.pass2}
-                    className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                    placeholder="Powtórz Hasło"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
-                </div>
-                <ErrorMessage
+                  <ErrorMessage
                   name="pass2"
                   component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+                  className="text-sm text-red-600"
                 />
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="firstName" className="mb-2">
-                    Imię
-                  </label>
+                </div>
+                
+                <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="firstName"
                     name="firstName"
@@ -289,18 +273,17 @@ const NewUser = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.firstName}
-                    className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                    placeholder="Imię"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
-                </div>
-                <ErrorMessage
+                  <ErrorMessage
                   name="firstName"
                   component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+                  className="text-sm text-red-600"
                 />
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="lastName" className="mb-2">
-                    Nazwisko
-                  </label>
+                </div>
+                
+                <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="lastName"
                     name="lastName"
@@ -308,18 +291,17 @@ const NewUser = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.lastName}
-                    className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
+                    placeholder="Nazwisko"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
-                </div>
-                <ErrorMessage
+                  <ErrorMessage
                   name="lastName"
                   component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+                  className="text-sm text-red-600"
                 />
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="nip" className="mb-2">
-                    Numer NIP
-                  </label>
+                </div>
+                
+                <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="nip"
                     name="NIP"
@@ -327,18 +309,16 @@ const NewUser = () => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.NIP}
-                    className="bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4"
-                  />
-                </div>
-                <ErrorMessage
+                    placeholder="Numer NIP"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
+                  /><ErrorMessage
                   name="NIP"
                   component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
+                  className="text-sm text-red-600"
                 />
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="industry" className="mb-2">
-                    Branża
-                  </label>
+                </div>
+                
+                <div className="mb-6 w-full flex flex-col items-center">
                   <select
                     id="industry"
                     name="industry"
@@ -346,7 +326,7 @@ const NewUser = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.industry}
                     defaultValue={""}
-                    className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   >
                     <option value="" disabled hidden className="">
                       Wybierz branżę
@@ -360,16 +340,13 @@ const NewUser = () => {
                     <option value="Usługi">Usługi</option>
                     <option value="Inna">Inna</option>
                   </select>
-                </div>
                 <ErrorMessage
                   name="industry"
                   component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-                />
-                <div className="flex lg:flex-row flex-col justify-between items-center lg:w-2/4 w-full mb-4">
-                  <label htmlFor="numOfInvoices" className="mb-2">
-                    Ilosć faktur kosztowych
-                  </label>
+                  className="text-sm text-red-600"
+                /></div>
+                
+                <div className="mb-6 w-full flex flex-col items-center">
                   <select
                     id="numOfInvoices"
                     name="numOfInvoices"
@@ -377,21 +354,21 @@ const NewUser = () => {
                     onBlur={formik.handleBlur}
                     defaultValue={""}
                     value={formik.values.numOfInvoices}
-                    className="text-3xl bg-slate-100 lg:w-3/5 w-[90%] placeholder:text-center rounded-lg border-2 border-black mb-4 text-gray-700"
+                    className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   >
                     <option value="" disabled hidden className="">
-                      Wybierz ilość
+                      Ilość miesięcznych faktur
                     </option>
                     <option value="Do 15">Do 15</option>
                     <option value="Do 35">Do 35</option>
                     <option value="Powyżej 35">Powyżej 35</option>
                   </select>
-                </div>
                 <ErrorMessage
                   name="numOfInvoices"
                   component="div"
-                  className="text-sm text-red-600 -mt-4 w-1/2 lg:text-end text-center"
-                />
+                  className="text-sm text-red-600"
+                /></div>
+                
 
                 <button
                   type="submit"

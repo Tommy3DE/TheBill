@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className=" h-20 w-full lg:flex hidden flex-row justify-center  bg-[#92E3A9] bg-opacity-20">
         <img src={logo} alt="logo" className="h-40 ml-20 mt-2" />
         <ul className="flex flex-row list-none p-0 uppercase justify-around ml-28 items-center w-full text-2xl font-medium ">
-          <Link to="/" className="mr-12 cursor-pointer hover:text-[#50DEF1]">
+          <Link to="/" className="cursor-pointer hover:text-[#50DEF1]">
             Home
           </Link>
           <Link to="/funkcje" className="cursor-pointer hover:text-[#50DEF1]">

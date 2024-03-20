@@ -62,8 +62,8 @@ const steps: StepTile[] = [
             ))}
         </div>
         <div className='font-playFair flex flex-col items-center'>
-            <h1 className='text-4xl text-[#34D399]'>Gratulacje! </h1>
-            <h3 className='text-2xl font-black'>Masz więcej czasu na prowadzenie swojego biznesu!</h3>
+            <h1 className='text-6xl text-[#34D399]'>Gratulacje! </h1>
+            <h3 className='text-2xl font-black mt-5'>Masz więcej czasu na prowadzenie swojego biznesu!</h3>
             <h3 className='text-2xl'>Od teraz <span className='font-black'>OneBill</span> zajmuje się Twoimi fakturami!</h3>
             <img src={succ} alt="success" />
         </div>
