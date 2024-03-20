@@ -5,6 +5,7 @@ import SlimNav from "../layout/SlimNav";
 import { useState } from "react";
 import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
+import { HiOutlineEnvelope } from "react-icons/hi2";
 
 interface FormValues {
   login: string;
@@ -49,44 +50,45 @@ const NewUser = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
+      setShowPartTwo((prev) => !prev);
 
-      const apiUrl = "https://api.onebill.com.pl/api/register";
+      // const apiUrl = "https://api.onebill.com.pl/api/register";
 
-      const requestBody = {
-        email: values.login,
-        password: values.pass,
-        NIP: values.NIP,
-        first_name: values.firstName,
-        last_name: values.lastName,
-        industry: values.industry,
-        max_invoices: values.numOfInvoices,
-        org_size: "JDG",
-        package: "Premium",
-      };
+      // const requestBody = {
+      //   email: values.login,
+      //   password: values.pass,
+      //   NIP: values.NIP,
+      //   first_name: values.firstName,
+      //   last_name: values.lastName,
+      //   industry: values.industry,
+      //   max_invoices: values.numOfInvoices,
+      //   org_size: "JDG",
+      //   package: "Premium",
+      // };
 
-      fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          setShowPartTwo((prev) => !prev);
-        })
-        .catch((error) => {
-          console.error(
-            "There was a problem with your fetch operation:",
-            error
-          );
-        });
+      // fetch(apiUrl, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(requestBody),
+      // })
+      //   .then((response) => {
+      //     if (!response.ok) {
+      //       throw new Error("Network response was not ok");
+      //     }
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     console.log(data);
+      //     setShowPartTwo((prev) => !prev);
+      //   })
+      //   .catch((error) => {
+      //     console.error(
+      //       "There was a problem with your fetch operation:",
+      //       error
+      //     );
+      //   });
     },
   });
   const getSelectedPlan = (): PricingTile | undefined => {
@@ -232,7 +234,11 @@ const NewUser = () => {
                     placeholder="Adres email"
                     className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
-                  <ErrorMessage name="login" component="div" className="text-sm text-red-600" />
+                  <ErrorMessage
+                    name="login"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
                 </div>
                 <div className="mb-6 w-full flex flex-col items-center">
                   <input
@@ -245,7 +251,11 @@ const NewUser = () => {
                     placeholder="Hasło"
                     className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
-                  <ErrorMessage name="pass" component="div" className="text-sm text-red-600" />
+                  <ErrorMessage
+                    name="pass"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
                 </div>
                 <div className="mb-6 w-full flex flex-col items-center">
                   <input
@@ -259,12 +269,12 @@ const NewUser = () => {
                     className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
                   <ErrorMessage
-                  name="pass2"
-                  component="div"
-                  className="text-sm text-red-600"
-                />
+                    name="pass2"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
                 </div>
-                
+
                 <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="firstName"
@@ -277,12 +287,12 @@ const NewUser = () => {
                     className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
                   <ErrorMessage
-                  name="firstName"
-                  component="div"
-                  className="text-sm text-red-600"
-                />
+                    name="firstName"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
                 </div>
-                
+
                 <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="lastName"
@@ -295,12 +305,12 @@ const NewUser = () => {
                     className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
                   />
                   <ErrorMessage
-                  name="lastName"
-                  component="div"
-                  className="text-sm text-red-600"
-                />
+                    name="lastName"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
                 </div>
-                
+
                 <div className="mb-6 w-full flex flex-col items-center">
                   <input
                     id="nip"
@@ -311,13 +321,14 @@ const NewUser = () => {
                     value={formik.values.NIP}
                     placeholder="Numer NIP"
                     className="form-input mt-1 shadow-sm rounded-lg border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 w-2/4"
-                  /><ErrorMessage
-                  name="NIP"
-                  component="div"
-                  className="text-sm text-red-600"
-                />
+                  />
+                  <ErrorMessage
+                    name="NIP"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
                 </div>
-                
+
                 <div className="mb-6 w-full flex flex-col items-center">
                   <select
                     id="industry"
@@ -340,12 +351,13 @@ const NewUser = () => {
                     <option value="Usługi">Usługi</option>
                     <option value="Inna">Inna</option>
                   </select>
-                <ErrorMessage
-                  name="industry"
-                  component="div"
-                  className="text-sm text-red-600"
-                /></div>
-                
+                  <ErrorMessage
+                    name="industry"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
+                </div>
+
                 <div className="mb-6 w-full flex flex-col items-center">
                   <select
                     id="numOfInvoices"
@@ -363,12 +375,12 @@ const NewUser = () => {
                     <option value="Do 35">Do 35</option>
                     <option value="Powyżej 35">Powyżej 35</option>
                   </select>
-                <ErrorMessage
-                  name="numOfInvoices"
-                  component="div"
-                  className="text-sm text-red-600"
-                /></div>
-                
+                  <ErrorMessage
+                    name="numOfInvoices"
+                    component="div"
+                    className="text-sm text-red-600"
+                  />
+                </div>
 
                 <button
                   type="submit"
@@ -381,8 +393,41 @@ const NewUser = () => {
           </FormikProvider>
         )}
         {showPartTwo && (
-          <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
-            <div className="w-full my-12 flex flex-row justify-evenly  items-center">
+          <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins mx-[15%]">
+            <div className="font-playFair">
+              <h1 className="text-5xl mt-24 font-bold">
+                <span className="text-[#1A9367]">Podsumowanie</span> zamówienia
+              </h1>
+              <p className="text-3xl font-bold text-center my-5">Dla konta</p>
+              <p className="flex flex-row items-center justify-center text-4xl">
+                <HiOutlineEnvelope className="mr-2 text-4xl" />{" "}
+                {formik.values.login}
+              </p>
+            </div>
+            <div className="w-full bg-[#1A9367] p-6 flex flex-row rounded-xl">
+                <div className="w-1/3 rounded-xl flex flex-col items-start bg-slate-100 mr-8 p-10">
+                    <h1 className="font-playFair text-4xl mx-auto">Podsumowanie</h1>
+                    <div className="border border-green-700 my-10 w-full"> </div>
+                    <h1 className="font-bold ">Plan:</h1>
+                    <h1 className="font-bold ">Cena netto:</h1>
+                    <h1 className="font-bold ">VAT:</h1>
+                    <div className="h-2 bg-green-700 my-10"> </div>
+                    <h1>Razem: </h1>
+                </div>
+                <div className='w-2/3 rounded-xl flex flex-col bg-white'>
+s
+                </div>
+            </div>
+            <p>
+              <input type="checkbox" name="invoice" id="inv1" />
+              <span className="text-[#1A9367] font-playFair text-2xl">Chcę otrzymać fakturę</span>
+            </p>
+            <p>
+              <input type="checkbox" name="invoice" id="inv1" />
+              <span>Akceptuję regulamin płatności</span>
+
+            </p>
+            {/* <div className="w-full my-12 flex flex-row justify-evenly  items-center">
               <button
                 className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6"
                 onClick={handlePlan}
@@ -431,7 +476,7 @@ const NewUser = () => {
                     ))}
                 </div>
               );
-            })()}
+            })()} */}
           </section>
         )}
       </div>
