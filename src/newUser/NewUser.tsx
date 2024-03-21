@@ -191,25 +191,25 @@ const NewUser = () => {
                       <p className="font-bold text-lg w-5/6">{tile.point4}</p>
                     </div>
                   )}
-                  {tile.point5 !== "" && (
+                  {tile.point5  && (
                     <div className="flex flex-row items-center w-full mb-3">
                       <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                       <p className="font-bold text-lg w-5/6">{tile.point5}</p>
                     </div>
                   )}
-                  {tile.point6 !== "" && (
+                  {tile.point6 && (
                     <div className="flex flex-row items-center w-full mb-3">
                       <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                       <p className="font-bold text-lg w-5/6">{tile.point6}</p>
                     </div>
                   )}
-                  {tile.point7 !== "" && (
+                  {tile.point7 && (
                     <div className="flex flex-row items-center w-full mb-3">
                       <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                       <p className="font-bold text-lg w-5/6">{tile.point7}</p>
                     </div>
                   )}
-                  {tile.point8 !== "" && (
+                  {tile.point8 && (
                     <div className="flex flex-row items-center w-full mb-3">
                       <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                       <p className="font-bold text-lg w-5/6">{tile.point8}</p>
@@ -458,42 +458,48 @@ const NewUser = () => {
                       </div>
                       {wantInvoice && (
                         <div className="w-full my-5">
-                        <h2 className="text-center text-2xl  font-playFair font-bold">
-                          Dane do Faktury
-                        </h2>
-                        <p>NIP</p>
-                        <input type="text" value={formik.values.NIP} />
-                        <p>Nazwa Firmy</p>
-                        <input type="text" />
-                        <p>Adres</p>
-                        <input type="text" />
+                          <h2 className="text-center text-2xl  font-playFair font-bold">
+                            Dane do Faktury
+                          </h2>
+                          <p>NIP</p>
+                          <input type="text" value={formik.values.NIP} />
+                          <p>Nazwa Firmy</p>
+                          <input type="text" />
+                          <p>Adres</p>
+                          <input type="text" />
                         </div>
-                        
                       )}
                     </div>
 
                     <div className="w-2/3 rounded-xl flex flex-col bg-white">
                       <div className="flex flex-row justify-around items-center">
-                          <h1 className="text-5xl text-[#35D299] font-poppins font-bold">
+                        <h1 className="text-5xl text-[#35D299] font-poppins font-bold">
                           {selectedPlan.title}
-                          </h1>
-                          <img src={selectedPlan.img} alt={selectedPlan.title} />
-
+                        </h1>
+                        <img src={selectedPlan.img} alt={selectedPlan.title} />
                       </div>
                       <div className="border border-green-700 my-5 w-full">
                         {" "}
                       </div>
                       {Object.entries(selectedPlan)
-                    .filter(([key, value]) => key.startsWith("point") && value)
-                    .map(([key, value]) => (
-                      <p
-                        key={key}
-                        className="flex flex-row items-start w-full mb-5 mx-10"
-                      >
-                        <FaCheckCircle className="text-3xl mr-2 text-green-500" />
-                        <span className=" text-xl w-5/6">{value}</span>
-                      </p>
-                    ))}
+                        .filter(
+                          ([key, value]) => key.startsWith("point") && value
+                        )
+                        .map(([key, value]) => (
+                          <p
+                            key={key}
+                            className="flex flex-row items-start w-full mb-5 mx-10"
+                          >
+                            <FaCheckCircle className="text-3xl mr-2 text-green-500" />
+                            <span className=" text-xl w-5/6">{value}</span>
+                          </p>
+                        ))}
+                        <div className="mx-auto my-5">
+                          <button className="px-4 py-2  rounded-lg text-2xl hover:scale-95 bg-green-300" onClick={handlePlanChange}>
+                          Zmien Plan
+                        </button>
+                        </div>
+                        
                     </div>
                   </div>
                   <p className="mb-3 mt-5">
@@ -519,56 +525,7 @@ const NewUser = () => {
                       Akceptuję regulamin płatności
                     </span>
                   </p>
-                  {/* <div className="w-full my-12 flex flex-row justify-evenly  items-center">
-              <button
-                className="lg:text-2xl px-4 py-2 bg-blue-300 rounded lg:w-1/6"
-                onClick={handlePlan}
-              >
-                Zmień plan
-              </button>
-              <h1 className="lg:text-4xl px-4 py-2 text-center lg:w-1/3 hidden lg:block">
-                Zalecamy plan:
-              </h1>
-              <button className="lg:text-2xl px-4 py-2 bg-green-300 rounded lg:w-1/6">
-                Przejdź do Płatności
-              </button>
-            </div>
-
-            {(() => {
-              const selectedPlan = getSelectedPlan();
-              console.log(selectedPlan);
-              if (!selectedPlan) {
-                return <p>No plan selected</p>;
-              }
-              return (
-                <div className="border-4 rounded-xl lg:w-1/4 lg:mx-4  lg:my-0 border-green-700 flex flex-col justify-evenly py-10 px-5 bg-white">
-                  <img
-                    src={selectedPlan.img}
-                    alt="plan"
-                    className="rounded-lg h-[90%] w-[90%] mx-auto "
-                  />
-                  <h2 className={`text-4xl text-center font-bold my-2`}>
-                    {selectedPlan.title}
-                  </h2>
-                  <h2 className="text-center my-3">
-                    {selectedPlan.priceMth} miesięcznie lub{" "}
-                    {selectedPlan.priceYrl} rocznie
-                  </h2>
-                  <div className="h-1 bg-green-700 w-full  mb-2" />
-                  {Object.entries(selectedPlan)
-                    .filter(([key, value]) => key.startsWith("point") && value)
-                    .map(([key, value]) => (
-                      <p
-                        key={key}
-                        className="flex flex-row items-start w-full mb-5"
-                      >
-                        <FaCheckCircle className="text-3xl mr-2 text-green-500" />
-                        <span className=" text-lg w-5/6">{value}</span>
-                      </p>
-                    ))}
-                </div>
-              );
-            })()} */}
+                  
                 </>
               );
             })()}
