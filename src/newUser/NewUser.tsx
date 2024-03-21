@@ -398,7 +398,6 @@ const NewUser = () => {
         )}
         {showPartTwo && (
           <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins lg:mx-[15%]">
-            {/* Tutaj uzyskujemy dane wybranego planu */}
             {(() => {
               const selectedPlan = getSelectedPlan();
               if (!selectedPlan) {
@@ -495,7 +494,7 @@ const NewUser = () => {
                           </p>
                         ))}
                         <div className="mx-auto my-5">
-                          <button className="px-4 py-2  rounded-lg text-2xl hover:scale-95 bg-green-300" onClick={handlePlanChange}>
+                          <button className="px-4 py-2  rounded-lg text-2xl hover:scale-95 bg-green-300" onClick={()=>handlePlanChange(selectedPlan.id)}>
                           Zmien Plan
                         </button>
                         </div>
