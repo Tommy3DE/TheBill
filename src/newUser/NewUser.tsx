@@ -397,7 +397,7 @@ const NewUser = () => {
           </FormikProvider>
         )}
         {showPartTwo && (
-          <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins mx-[15%]">
+          <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins lg:mx-[15%]">
             {/* Tutaj uzyskujemy dane wybranego planu */}
             {(() => {
               const selectedPlan = getSelectedPlan();
@@ -419,8 +419,8 @@ const NewUser = () => {
                       {formik.values.login}
                     </p>
                   </div>
-                  <div className="w-full bg-[#1A9367] p-6 flex flex-row rounded-xl">
-                    <div className="w-1/3 rounded-xl flex flex-col items-start bg-slate-100 mr-8 p-10">
+                  <div className="w-full bg-[#1A9367] p-6 flex lg:flex-row flex-col rounded-xl">
+                    <div className="lg:w-1/3 rounded-xl flex flex-col items-start bg-slate-100 lg:mr-8 p-10">
                       <h1 className="font-playFair text-4xl mx-auto">
                         Podsumowanie
                       </h1>
@@ -457,7 +457,7 @@ const NewUser = () => {
                         </h1>
                       </div>
                       {wantInvoice && (
-                        <div className="w-full my-5">
+                        <div className="my-5 -mx-3">
                           <h2 className="text-center text-2xl  font-playFair font-bold">
                             Dane do Faktury
                           </h2>
@@ -471,12 +471,12 @@ const NewUser = () => {
                       )}
                     </div>
 
-                    <div className="w-2/3 rounded-xl flex flex-col bg-white">
+                    <div className="lg:w-2/3 rounded-xl flex flex-col bg-white mt-5 lg:mt-0">
                       <div className="flex flex-row justify-around items-center">
                         <h1 className="text-5xl text-[#35D299] font-poppins font-bold">
                           {selectedPlan.title}
                         </h1>
-                        <img src={selectedPlan.img} alt={selectedPlan.title} />
+                        <img src={selectedPlan.img} alt={selectedPlan.title}  className="h-24"/>
                       </div>
                       <div className="border border-green-700 my-5 w-full">
                         {" "}
@@ -488,7 +488,7 @@ const NewUser = () => {
                         .map(([key, value]) => (
                           <p
                             key={key}
-                            className="flex flex-row items-start w-full mb-5 mx-10"
+                            className="flex flex-row items-start w-full mb-5 lg:mx-10 mx-2"
                           >
                             <FaCheckCircle className="text-3xl mr-2 text-green-500" />
                             <span className=" text-xl w-5/6">{value}</span>
