@@ -46,7 +46,23 @@ const ScanPeriod = () => {
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
   }
-  
+  //z query wyciagnac https://onebill.com.pl/logged/scanMail/scanPeriod?state=XSV8vMAYqrTDV3L4cOpCMpH1HxtF8O&code=4/0AeaYSHDH1OcH6bo9HIKcMqw63Wawvt73NmI4T7QoMIMn0jFivKaeSdI6VdwGm7ANMrPfpA&scope=https://www.googleapis.com/auth/gmail.readonly%20https://www.googleapis.com/auth/gmail.compose
+  // tylko code i wyslac na "https://api.onebill.com.pl/api/token_redirect" POST body: {token: "code"} 
+  // dodaj state na load i oczekuj Promise 
+  //function extractCodeFromUrlUsingRegex(url: string): string | null {
+  // Użycie wyrażenia regularnego do wyszukania wszystkiego pomiędzy 'code=' a '&scope'
+//   const regex = /code=([^&]*)/;
+//   const match = url.match(regex);
+
+//   // match[1] zawiera wartość znalezioną przez grupę przechwytującą '([^&]*)', która odpowiada wszystkiemu pomiędzy 'code=' a pierwszym wystąpieniem '&'
+//   return match ? match[1] : null;
+// }
+
+// // Przykładowe użycie:
+// const url = 'https://onebill.com.pl/logged/scanMail/scanPeriod?state=XSV8vMAYqrTDV3L4cOpCMpH1HxtF8O&code=4/0AeaYSHDH1OcH6bo9HIKcMqw63Wawvt73NmI4T7QoMIMn0jFivKaeSdI6VdwGm7ANMrPfpA&scope=https://www.googleapis.com/auth/gmail.readonly%20https://www.googleapis.com/auth/gmail.compose';
+// const code = extractCodeFromUrlUsingRegex(url);
+
+// console.log(code); 
 
   return (
     <section className=" font-poppins">
