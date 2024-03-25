@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SlimNav from "../../../layout/SlimNav";
 
-interface SettingsData {
+export interface SettingsData {
   email: string;
   first_name: string;
   last_name: string;
