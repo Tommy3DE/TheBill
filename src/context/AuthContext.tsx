@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const refreshAccessToken = async () => {
     try {
-      const response = await fetch('https://api.onebill.com.pl/api/refresh', {
+      const response = await fetch('https://api.onebill.com.pl/api/token/refresh', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
