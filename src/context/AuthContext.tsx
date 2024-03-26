@@ -9,7 +9,7 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType>({
-  isLoggedIn: true,
+  isLoggedIn: false,
   accessToken: null,
   refreshToken: null,
   login: (_newAccessToken: string, _newRefreshToken: string) => {},
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const initialAccessToken = localStorage.getItem('accessToken');
   const initialRefreshToken = localStorage.getItem('refreshToken');
   
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!initialAccessToken && !!initialRefreshToken);
   const [accessToken, setAccessToken] = useState<string | null>(initialAccessToken);
   const [refreshToken, setRefreshToken] = useState<string | null>(initialRefreshToken);
 

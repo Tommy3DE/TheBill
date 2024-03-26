@@ -51,7 +51,7 @@ const NewUser = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      // setShowPartTwo((prev) => !prev);
+      setShowPartTwo((prev) => !prev);
 
       const apiUrl = "https://api.onebill.com.pl/api/register";
 

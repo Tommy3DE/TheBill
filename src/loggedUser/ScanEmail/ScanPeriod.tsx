@@ -1,22 +1,44 @@
 import { useEffect, useState } from "react";
 import SlimNav from "../../layout/SlimNav";
+import { useLocation } from "react-router-dom";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("");
+  const [extractedCode, setExtractedCode] = useState(""); // Renamed for clarity
+  const [extractedState, setExtractedState] = useState("");
+
+  const location = useLocation();
+
   const requestBody = {
-    month: selectedPeriod
+    month: selectedPeriod,
+  };
+  const tokenBody = {
+    code: extractedCode,
+    state: extractedState,
   };
 
   useEffect(() => {
     const today = new Date();
-    const formattedDate = today.toISOString().substring(0, 16).replace('T', ' ');
+    const formattedDate = today
+      .toISOString()
+      .substring(0, 16)
+      .replace("T", " ");
     setDate(formattedDate);
-  }, []);
+
+    const urlCode = extractCodeFromUrlUsingRegex(location.search);
+    if (urlCode) {
+      setExtractedCode(urlCode);
+    }
+    const urlState = extractStateFromUrl(location.search);
+    if (urlState) {
+      setExtractedState(urlState);
+    }
+  }, [location.search]);
 
   const handleScan = () => {
     const accessToken = localStorage.getItem("accessToken");
-  
+
     fetch("https://api.onebill.com.pl/api/scan", {
       method: "POST",
       headers: {
@@ -30,10 +52,10 @@ const ScanPeriod = () => {
           return response.json();
         } else if (response.status === 425) {
           let url = await response.text();
-          url = url.replace(/^"|"$/g, '');
+          url = url.replace(/^"|"$/g, "");
           url = decodeURIComponent(url);
-  
-          const newWindow = window.open(url, '_blank');
+
+          const newWindow = window.open(url, "_blank");
           if (newWindow) {
             newWindow.focus();
           } else {
@@ -45,85 +67,103 @@ const ScanPeriod = () => {
       })
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
+  };
+
+  const handleShowCode = () => {
+    // This function is now simpler, just a demonstration purpose
+    alert(`Extracted Code: ${extractedCode}`);
+    const accessToken = localStorage.getItem("accessToken");
+
+    fetch("https://api.onebill.com.pl/api/token_redirect", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(tokenBody),
+    });
+  };
+
+  function extractCodeFromUrlUsingRegex(url: string): string | null {
+    const regex = /code=([^&]*)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
   }
-  //z query wyciagnac https://onebill.com.pl/logged/scanMail/scanPeriod?state=XSV8vMAYqrTDV3L4cOpCMpH1HxtF8O&code=4/0AeaYSHDH1OcH6bo9HIKcMqw63Wawvt73NmI4T7QoMIMn0jFivKaeSdI6VdwGm7ANMrPfpA&scope=https://www.googleapis.com/auth/gmail.readonly%20https://www.googleapis.com/auth/gmail.compose
-  // tylko code i wyslac na "https://api.onebill.com.pl/api/token_redirect" POST body: {token: "code"} 
-  // dodaj state na load i oczekuj Promise 
-  //function extractCodeFromUrlUsingRegex(url: string): string | null {
-  // Użycie wyrażenia regularnego do wyszukania wszystkiego pomiędzy 'code=' a '&scope'
-//   const regex = /code=([^&]*)/;
-//   const match = url.match(regex);
-
-//   // match[1] zawiera wartość znalezioną przez grupę przechwytującą '([^&]*)', która odpowiada wszystkiemu pomiędzy 'code=' a pierwszym wystąpieniem '&'
-//   return match ? match[1] : null;
-// }
-
-// // Przykładowe użycie:
-// const url = 'https://onebill.com.pl/logged/scanMail/scanPeriod?state=XSV8vMAYqrTDV3L4cOpCMpH1HxtF8O&code=4/0AeaYSHDH1OcH6bo9HIKcMqw63Wawvt73NmI4T7QoMIMn0jFivKaeSdI6VdwGm7ANMrPfpA&scope=https://www.googleapis.com/auth/gmail.readonly%20https://www.googleapis.com/auth/gmail.compose';
-// const code = extractCodeFromUrlUsingRegex(url);
-
-// console.log(code); 
+  function extractStateFromUrl(url: string): string | null {
+    const regex = /state=([^&]*)/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  }
 
   return (
     <section className=" font-poppins">
       <SlimNav />
       <div className="mx-auto max-w-[1980px] ">
-      <div className="mt-36 lg:mx-[10%] mx-[2%] flex flex-col justifty-center items-center">
-        <h1 className="text-4xl font-black">
-          Wybierz miesiąc który chcesz przeskanować:
-        </h1>
-        <div className="w-2/3">
-          <div className="flex flex-row justify-between items-center mt-16 text-2xl">
-            <p className="">Dziś jest:</p>
-            <input
-              type="text"
-              className="rounded-lg w-1/3 p-2  bg-gray-300"
-              disabled
-              value={date}
-            />
+        <div className="mt-36 lg:mx-[10%] mx-[2%] flex flex-col justifty-center items-center">
+          <h1 className="text-4xl font-black">
+            Wybierz miesiąc który chcesz przeskanować:
+          </h1>
+          <div className="w-2/3">
+            <div className="flex flex-row justify-between items-center mt-16 text-2xl">
+              <p className="">Dziś jest:</p>
+              <input
+                type="text"
+                className="rounded-lg w-1/3 p-2  bg-gray-300"
+                disabled
+                value={date}
+              />
+            </div>
+            <div className="flex flex-row justify-between items-center mt-16 text-2xl">
+              <p className="">Ostatenie skanowanie miało miejsce:</p>
+              <input
+                type="text"
+                className="rounded-lg w-1/3 p-2  bg-gray-300"
+                disabled
+                value={"nigdy"}
+              />
+            </div>
           </div>
-          <div className="flex flex-row justify-between items-center mt-16 text-2xl">
-            <p className="">Ostatenie skanowanie miało miejsce:</p>
-            <input
-              type="text"
-              className="rounded-lg w-1/3 p-2  bg-gray-300"
-              disabled
-              value={"nigdy"}
-            />
+          <div className="mt-16">
+            <label htmlFor="month-picker" className="text-2xl mr-4">
+              Wybierz miesiąc:
+            </label>
+            <select
+              id="month-picker"
+              className="rounded-lg p-2 bg-gray-300 text-2xl"
+              onChange={(e) => setSelectedPeriod(e.target.value)}
+            >
+              <option value="">--Wybierz--</option>
+              <option value={1}>Styczeń</option>
+              <option value={2}>Luty</option>
+              <option value={3}>Marzec</option>
+              <option value={4}>Kwiecień</option>
+              <option value={5}>Maj</option>
+              <option value={6}>Czerwiec</option>
+              <option value={7}>Lipiec</option>
+              <option value={8}>Sierpień</option>
+              <option value={9}>Wrzesień</option>
+              <option value={10}>Październik</option>
+              <option value={11}>Listopad</option>
+              <option value={12}>Grudzień</option>
+            </select>
           </div>
+          {selectedPeriod !== "" && (
+            <>
+              <button
+                className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
+                onClick={handleScan}
+              >
+                Zsynchronizuj Skrzynkę
+              </button>
+              <button
+                onClick={handleShowCode}
+                className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
+              >
+                Skanuj
+              </button>{" "}
+            </>
+          )}
         </div>
-        <div className="mt-16">
-          <label htmlFor="month-picker" className="text-2xl mr-4">
-            Wybierz miesiąc:
-          </label>
-          <select
-            id="month-picker"
-            className="rounded-lg p-2 bg-gray-300 text-2xl"
-            onChange={(e) => setSelectedPeriod(e.target.value)}
-          >
-            <option value="">--Wybierz--</option>
-            <option value={1}>Styczeń</option>
-            <option value={2}>Luty</option>
-            <option value={3}>Marzec</option>
-            <option value={4}>Kwiecień</option>
-            <option value={5}>Maj</option>
-            <option value={6}>Czerwiec</option>
-            <option value={7}>Lipiec</option>
-            <option value={8}>Sierpień</option>
-            <option value={9}>Wrzesień</option>
-            <option value={10}>Październik</option>
-            <option value={11}>Listopad</option>
-            <option value={12}>Grudzień</option>
-          </select>
-        </div>
-        {selectedPeriod !== "" && (
-          <button
-            className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer" onClick={handleScan}
-          >
-            Skanuj
-          </button>
-        )}
-      </div>
       </div>
     </section>
   );
