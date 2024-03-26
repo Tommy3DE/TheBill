@@ -94,11 +94,11 @@ const NewUser = () => {
   });
   const getSelectedPlan = (): PricingTile | undefined => {
     const selectedNumOfInvoices = formik.values.numOfInvoices;
-    if (selectedNumOfInvoices === "Do 15") {
+    if (selectedNumOfInvoices === "Standard") {
       return pricing[0];
-    } else if (selectedNumOfInvoices === "Do 35") {
+    } else if (selectedNumOfInvoices === "Premium") {
       return pricing[1];
-    } else if (selectedNumOfInvoices === "Powyżej 35") {
+    } else if (selectedNumOfInvoices === "Biznes") {
       return pricing[2];
     }
   };
@@ -116,13 +116,13 @@ const NewUser = () => {
 
     if (selectedTile) {
       if (selectedTile.point1.includes("15")) {
-        numOfInvoicesValue = "Do 15";
+        numOfInvoicesValue = "Standard";
       } else if (selectedTile.point1.includes("35")) {
-        numOfInvoicesValue = "Do 35";
+        numOfInvoicesValue = "Premium";
       } else if (
         selectedTile.point1.toLowerCase().includes("nieograniczonej")
       ) {
-        numOfInvoicesValue = "Powyżej 35";
+        numOfInvoicesValue = "Biznes";
       }
     }
 
@@ -375,9 +375,9 @@ const NewUser = () => {
                     <option value="" disabled hidden className="">
                       Ilość miesięcznych faktur
                     </option>
-                    <option value="Do 15">Do 15</option>
-                    <option value="Do 35">Do 35</option>
-                    <option value="Powyżej 35">Powyżej 35</option>
+                    <option value="Standard">Do 15</option>
+                    <option value="Premium">Do 35</option>
+                    <option value="Biznes">Powyżej 35</option>
                   </select>
                   <ErrorMessage
                     name="numOfInvoices"
