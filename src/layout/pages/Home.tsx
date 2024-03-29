@@ -9,6 +9,7 @@ import ThreeRecInfo from "./Home/ThreeRecInfo";
 import AddBenefits from "./Home/AddBenefits";
 import PolishEnt from "./Home/PolishEnt";
 import FiveSteps from "./Home/FiveSteps";
+import SecurityInfo from "./Home/SecurityInfo";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
         <Hero />
         <BasicInfo />
         <GmailIntegration />
+        <SecurityInfo/>
         <ThreeRecInfo/>
         <AddBenefits/>
         <ShortPricing />
