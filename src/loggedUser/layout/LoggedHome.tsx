@@ -24,7 +24,7 @@ const LoggedHome = () => {
   const { logout } = useAuth();
   const [accAdded, setAccAdded] = useState<string>();
   const [settingData, setSettingData] = useState<SettingsData>()
-  const [lastScan, setLastScan] = useState<string>('')
+  const [lastScan, setLastScan] = useState<string | undefined>('')
   const homeLinks: HomeTile[] = [
     {
       id: 1,
@@ -58,60 +58,31 @@ const LoggedHome = () => {
   ];
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-
-    fetch("https://api.onebill.com.pl/api/bookkeeper", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => {
+  
+    // Funkcja pomocnicza do wykonywania żądań fetch
+    const fetchData = <T,>(url: string, setData: React.Dispatch<React.SetStateAction<T | undefined>>) => {
+      fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then(response => {
         if (response.ok) {
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
-      .then((data) => setAccAdded(data))
-      .catch((error) => console.error("Error:", error));
-  }, []);
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-
-    fetch("https://api.onebill.com.pl/api/user_data", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((data) => setSettingData(data))
-      .catch((error) => console.error("Error:", error));
-  }, []);
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-
-    fetch("https://api.onebill.com.pl/api/last_scan", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((data) => setLastScan(data))
-      .catch((error) => console.error("Error:", error));
+      .then(data => setData(data))
+      .catch(error => console.error("Error:", error));
+    };
+  
+    // Wywołanie fetch dla różnych URL-i
+    fetchData("https://api.onebill.com.pl/api/bookkeeper", setAccAdded);
+    fetchData("https://api.onebill.com.pl/api/user_data", setSettingData);
+    fetchData("https://api.onebill.com.pl/api/last_scan", setLastScan);
+  
   }, []);
 
   return (
