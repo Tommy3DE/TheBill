@@ -18,7 +18,7 @@ import point from '../../../assets/securityAssets/info.png'
 
 const DiagonalLines = () => {
   return (
-    <div className="lg:relative w-32 h-32 mx-12 mt-6">
+    <div className="lg:relative w-32 h-32 mx-12 lg:mt-6">
       <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 -rotate-45"></div>
       <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 rotate-45"></div>
     </div>
@@ -27,7 +27,7 @@ const DiagonalLines = () => {
 
 const SecurityInfo = () => {
   return (
-    <div className="flex  flex-col my-8 mx-[8%] font-poppins">
+    <div className="flex  flex-col my-8 lg:mx-[8%] mx-[2%] font-poppins">
       <div className="mx-auto font-bold font-playFair">
         <img src={roundedSec} alt="secImg" />
         <p className="text-center text-3xl my-5">
@@ -38,26 +38,26 @@ const SecurityInfo = () => {
           Jak działa One<span className="text-[#1A9367]">Bill</span>?
         </p>
       </div>
-      <div className="flex flex-col justify-center mx-[10%] items-center my-10">
+      <div className="flex lg:flex-row flex-col justify-center lg:mx-[10%] items-center my-10">
         <div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex lg:flex-row flex-col justify-center items-center">
             <img src={step1} alt="step1" className="w-24 h-24 " />
-            <h3 className="text-xl mx-10">
+            <h3 className="text-xl lg:mx-10">
               Po zalogowaniu do aplikacji, zostaniesz poproszony, o wyrażenie{" "}
               <span className="font-bold"> zgody w oknie Google.</span>
             </h3>
-            <img src={google} alt=" google" className="h-20" />
+            <img src={google} alt=" google" className="h-20  lg:block hidden" />
           </div>
-          <div className="flex flex-row justify-center">
-            <img src={api} alt="googleapi" className="h-36" />
+          <div className="flex lg:flex-row flex-col justify-center">
+            <img src={api} alt="googleapi" className="h-36 lg:block hidden" />
             <DiagonalLines />
             <img src={OBill} alt="onebill" className="h-48" />
           </div>
         </div>
         <div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex lg:flex-row flex-col justify-center items-center">
             <img src={step2} alt="step2" className="w-24 h-24 " />
-            <h3 className="text-xl ml-10">
+            <h3 className="text-xl lg:ml-10">
               Dzięki zaakceptowaniu zgody Google, umożliwisz naszemu programowi
               <span className="font-bold"> częściowy</span> dostęp do swojej
               skrzynki e-mail, w celu przeskanowania jej pod kątem załączników (
@@ -67,9 +67,9 @@ const SecurityInfo = () => {
           <img src={secScan} alt="secScan" className="mx-auto h-64" />
         </div>
         <div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex lg:flex-row flex-col justify-center items-center">
             <img src={step3} alt="step3" className="w-24 h-24 " />
-            <h3 className="text-xl ml-10">
+            <h3 className="text-xl lg:ml-10">
               Nasz algorytm znajdzie{" "}
               <span className="font-bold">załączniki</span> na Twojej skrzynce
               we wskazanym okresie rozliczeniowym a następnie
@@ -84,9 +84,9 @@ const SecurityInfo = () => {
           <img src={secCal} alt="secCal" className="mx-auto h-64" />
         </div>
         <div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex lg:flex-row flex-col justify-center items-center">
             <img src={step4} alt="step4" className="w-24 h-24 " />
-            <h3 className="text-xl ml-10">
+            <h3 className="text-xl lg:ml-10">
               Znalezione faktury będą wyświetlone w trybie podglądu. Tutaj
               możesz zdecydować, które dokumenty chcesz usunąć. Jeśli nie chcesz
               nic usuwać, kliknij “DALEJ”.
@@ -95,9 +95,9 @@ const SecurityInfo = () => {
           <img src={secInv} alt="secInv" className="mx-auto h-44" />
         </div>
         <div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex lg:flex-row flex-col justify-center items-center">
             <img src={step5} alt="step5" className="w-24 h-24 " />
-            <h3 className="text-xl ml-10">
+            <h3 className="text-xl lg:ml-10">
               Po zweryfikowaniu znalezionych plików, będziesz mógł zadecydować
               co zrobić z nimi dalej - na przykład, będziesz mógł{" "}
               <span className="font-bold">
@@ -109,7 +109,7 @@ const SecurityInfo = () => {
           <img src={finish} alt="finish" className="mx-auto h-80" />
         </div>
       </div>
-      <div className="my-5 mx-[15%]">
+      <div className="my-5 lg:mx-[15%]">
         <p className="text-3xl text-center">
           W One<span className="text-[#1A9367] font-bold">Bill</span>:
         </p>
@@ -140,7 +140,7 @@ const SecurityInfo = () => {
           </div>
         </div>
         <img src={warn} alt="warning" className="mx-auto" />
-        <p className="tracking-wider mx-[5%] text-center">
+        <p className="tracking-wider lg:mx-[5%] text-center">
           <span className="text-[#EEB524] font-bold">Usunięcie faktury </span>z
           naszego systemu spowoduje nieodwracalne utracenie jej w naszej
           aplikacji. Oznaczać to będzie, że należy wykonać{" "}
