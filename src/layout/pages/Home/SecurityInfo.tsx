@@ -38,7 +38,7 @@ const SecurityInfo = () => {
           Jak działa One<span className="text-[#1A9367]">Bill</span>?
         </p>
       </div>
-      <div className="flex lg:flex-row flex-col justify-center lg:mx-[10%] items-center my-10">
+      <div className="flex flex-col justify-center lg:mx-[10%] items-center my-10">
         <div>
           <div className="flex lg:flex-row flex-col justify-center items-center">
             <img src={step1} alt="step1" className="w-24 h-24 " />
