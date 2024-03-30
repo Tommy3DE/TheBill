@@ -32,13 +32,14 @@ const NewUserHome = () => {
             position: "top-right",
             autoClose: 7000,
           });
+          handleNextStep()
         } else {
           toast.error("Błąd dodawania biura księgowego", {
             position: "top-right",
             autoClose: 7000,
           });
         }
-        handleNextStep()
+        
         return response.json();
       })
       .catch((error) => console.error("Error:", error));
