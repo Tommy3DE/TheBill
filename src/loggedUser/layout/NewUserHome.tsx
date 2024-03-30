@@ -38,6 +38,7 @@ const NewUserHome = () => {
             autoClose: 7000,
           });
         }
+        handleNextStep()
         return response.json();
       })
       .catch((error) => console.error("Error:", error));
