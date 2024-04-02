@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import sync from "../../assets/iconsLogged/sync.png";
 import accountant from "../../assets/accountant.png";
 import calendar from "../../assets/calendar.png";
