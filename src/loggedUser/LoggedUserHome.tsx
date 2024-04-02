@@ -1,20 +1,18 @@
 import SlimNav from "../layout/SlimNav"
 import LoggedHome from "./layout/LoggedHome"
-import { useState } from "react"
-import NewUserHome from "./layout/newUserHome"
+// import NewUserHome from "./layout/newUserHome"
+// import { useAuth } from "../context/AuthContext"
 
 const LoggedUserHome = () => {
-  const [newUser, setNewUser] = useState<boolean>(true)
-  return (
+  // const { isNewUser } = useAuth()
+    return (
     <div className="h-auto lg:h-screen w-full">
         <SlimNav/>
         
-        {newUser ? <NewUserHome/> : <LoggedHome/>}
-        <button className="z-10" onClick={()=>setNewUser(prev => !prev)}>
-      chuj
-        </button>
+        {/* {isNewUser ? <NewUserHome/> : <LoggedHome/>} */}
+        <LoggedHome/>
     </div>
-  )
+  );
 }
 
 export default LoggedUserHome
