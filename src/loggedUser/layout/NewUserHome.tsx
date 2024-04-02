@@ -1,16 +1,20 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import sync from "../../assets/iconsLogged/sync.png";
 import accountant from "../../assets/accountant.png";
 import calendar from "../../assets/calendar.png";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
+
 
 const NewUserHome = () => {
   const [step, setStep] = useState<number>(0);
   const [name, setName] = useState<string>("");
   const [mail, setMail] = useState<string>("");
 
+
   const handleNextStep = () => setStep((prev) => prev + 1);
-  const handlereturn = () => setStep((prev) => prev - 1);
+  // const handlereturn = () => setStep((prev) => prev - 1);
   const handleAddAcc = async (e: FormEvent) => {
     e.preventDefault();
     const accessToken = localStorage.getItem("accessToken");
@@ -45,6 +49,8 @@ const NewUserHome = () => {
       })
       .catch((error) => console.error("Error:", error));
   };
+
+  
   return (
     <div className="lg:h-[80%] w-screen flex flex-col justify-center items-center">
       {step === 0 && (
@@ -97,42 +103,20 @@ const NewUserHome = () => {
         </form>
       )}
       {step === 2 && (
-        <form className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <img src={calendar} alt="calendar" className="mb-10 h-32" />
           <p className="text-3xl font-bold tracking-wider font-poppins">
-            Wybierz miesiąc który chcesz przeskanować{" "}
+            Przejdź do skanowania{" "}
           </p>
-          <p className="my-8 text-xl text-gray-500 font-poppins">
-            Zalecamy wybór bieżącego miesiąca rozliczeniowego.{" "}
-          </p>
-          <div className="flex flex-row just items-center text-2xl  font-poppins">
-            <label htmlFor="month" className="mr-5">Wybierz miesiąc:</label>
-            <select name="months" id="month" className="bg-gray-300 p-2 rounded-xl">
-              <option value="1" selected>Styczeń</option>
-              <option value="2">Luty</option>
-              <option value="3">Marzec</option>
-              <option value="4">Kwiecień</option>
-              <option value="5">Maj</option>
-              <option value="6">Czerwiec</option>
-              <option value="7">Lipiec</option>
-              <option value="8">Sierpień</option>
-              <option value="9">Wrzesień</option>
-              <option value="10">Październik</option>
-              <option value="11">Listopad</option>
-              <option value="12">Grudzień</option>
-            </select>
-          </div>
-          <button
-            className="bg-[#1A9367] text-white py-3 px-3 font-bold font-playFair rounded-xl text-xl"
-            onClick={handleAddAcc}
-            type="submit"
-          >
-            Skanuj
-          </button>{" "}
-        </form>
+          <Link to='/logged/scanMail'>
+            <button className="p-4 rounded-full bg-green-500 mt-8 hover:scale-105 text-white text-3xl">
+            <FaArrowRight />
+            </button>
+          </Link>
+          
+        </div>
       )}
-      <button onClick={handlereturn}>wróc</button>
-      <button onClick={handleNextStep}>force next</button>
+      {/* <button onClick={handleNextStep}>force next</button> */}
     </div>
   );
 };

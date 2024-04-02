@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("");
-  const [extractedCode, setExtractedCode] = useState(""); // Renamed for clarity
+  const [extractedCode, setExtractedCode] = useState(""); 
   const [extractedState, setExtractedState] = useState("");
 
   const location = useLocation();
