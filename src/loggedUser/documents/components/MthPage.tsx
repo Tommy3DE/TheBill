@@ -105,23 +105,23 @@ const MthPage = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-8">
-                <table className="table-auto w-full">
+            <div className="mt-8 font-poppins">
+                <table className="table-auto w-11/12 mx-auto ">
                   <thead>
-                    <tr className="bg-gray-200">
-                      <th className="px-4 py-2">ID</th>
-                      <th className="px-4 py-2">Name</th>
-                      <th className="px-4 py-2">Sender</th>
-                      <th className="px-4 py-2">Date</th>
+                    <tr className=" border-b-2 font-black">
+                      <th className="px-4 py-2 text-start">ID</th>
+                      <th className="px-4 py-2 text-start">Nazwa Pliku</th>
+                      <th className="px-4 py-2 text-start">Otrzymano od</th>
+                      <th className="px-4 py-2 text-start">Data</th>
                     </tr>
                   </thead>
                   <tbody>
                     {invoices.map((invoice, index) => (
-                      <tr key={invoice.id} className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
-                        <td className="border px-4 py-2">{invoice.id}</td>
-                        <td className="border px-4 py-2">{invoice.name}</td>
-                        <td className="border px-4 py-2">{invoice.sender}</td>
-                        <td className="border px-4 py-2">{new Date(invoice.date).toLocaleDateString()}</td>
+                      <tr key={invoice.id} className={``}>
+                        <td className=" px-4 py-2">{invoice.id}</td>
+                        <td className=" px-4 py-2">{invoice.name}</td>
+                        <td className=" px-4 py-2">{invoice.sender}</td>
+                        <td className=" px-4 py-2">{new Date(invoice.date).toLocaleDateString()}</td>
                       </tr>
                     ))}
                   </tbody>
