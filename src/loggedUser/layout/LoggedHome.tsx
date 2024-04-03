@@ -60,7 +60,6 @@ const LoggedHome = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
   
-    // Funkcja pomocnicza do wykonywania żądań fetch
     const fetchData = <T,>(url: string, setData: React.Dispatch<React.SetStateAction<T | undefined>>) => {
       fetch(url, {
         method: "GET",
@@ -88,6 +87,12 @@ const LoggedHome = () => {
   
   }, []);
 
+  const formatLastScanDate = (isoDate: string): string => {
+    const date = new Date(isoDate);
+    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+    return formattedDate;
+  };
+
   return (
     <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
       {accAdded ? (accAdded?.length > 0 ? null : (
@@ -102,7 +107,7 @@ const LoggedHome = () => {
       <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:px-10 text-lg tracking-wider font-poppins">
         <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
           <p>Ostatnie skanowanie:</p>
-          <p>{lastScan ? lastScan : '-'}</p>
+          <p>{lastScan ? formatLastScanDate(lastScan) : '-'}</p>
         </div>
         <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
           <p>Liczba faktur z <br/>poprzedniego miesiąca:</p>
@@ -114,7 +119,7 @@ const LoggedHome = () => {
         </div>
         <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
           <p>Pozostało skanowań:</p>
-          <p>{settingData ? (settingData.package === 'standard' ? '1' : null) : '-'}</p>
+          <p>{settingData ? (settingData.package === 'standard' ? '1' : '∞') : '-'}</p>
         </div>
         <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
           <p>Bieżący pakiet:</p>

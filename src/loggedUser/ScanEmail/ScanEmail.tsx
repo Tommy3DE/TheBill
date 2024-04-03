@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import scan from "../../assets/iconsLogged/scanning.png";
 import SlimNav from "../../layout/SlimNav";
+import ReturnBtn from "../../components/ReturnBtn";
 
 const ScanEmail = () => {
   return (
@@ -10,7 +10,6 @@ const ScanEmail = () => {
       <div className="mt-24 lg:mx-[10%] mx-[2%]">
         <div className="flex flex-row justify-start items-center font-black">
           <h1 className="text-4xl">Wybierz skrzynkę którą chcesz skanować</h1>
-          <img src={scan} alt="scan" className="h-14 w-14 ml-5" />
         </div>
         <div className="px-4 py-2 my-6 bg-gray-300 rounded-lg">
           Poniżej wyświetlone są adresy e-mail, połączone z aplikacją. W tabeli
@@ -53,11 +52,7 @@ const ScanEmail = () => {
           </div>
         </div>
       </div>
-      <Link to={"/logged"} className="lg:mx-10 mx-5">
-        <button className="px-4 py-2 hover:scale-105 font-extrabold text-xl rounded bg-red-400 text-white lg:w-auto w-[90%] lg:mt-72">
-          Wstecz
-        </button>
-      </Link>
+      <ReturnBtn route='/logged'/>
       </div>
     </section>
   );
