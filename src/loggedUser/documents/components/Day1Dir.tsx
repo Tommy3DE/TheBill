@@ -12,47 +12,47 @@ const Day1Dir = () => {
     {
       id: 1,
       title: "01/2024",
-      route: "012024",
+      route: "12024",
     },
     {
       id: 2,
       title: "02/2024",
-      route: "022024",
+      route: "22024",
     },
     {
       id: 3,
       title: "03/2022",
-      route: "032024",
+      route: "32024",
     },
     {
       id: 4,
       title: "04/2024",
-      route: "042024",
+      route: "42024",
     },
     {
       id: 5,
       title: "05/2024",
-      route: "052024",
+      route: "52024",
     },
     {
       id: 6,
       title: "06/2024",
-      route: "062024",
+      route: "62024",
     },
     {
       id: 7,
       title: "07/2024",
-      route: "072024",
+      route: "72024",
     },
     {
       id: 8,
       title: "08/2024",
-      route: "082024",
+      route: "82024",
     },
     {
       id: 9,
       title: "09/2024",
-      route: "092024",
+      route: "92024",
     },
     {
       id: 10,
