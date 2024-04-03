@@ -2,6 +2,10 @@ import { useParams } from "react-router-dom";
 import SlimNav from "../../../layout/SlimNav";
 // import dir from "../../../assets/docsIcons/dir.png";
 import { useEffect, useState } from "react";
+import { CiBoxList } from "react-icons/ci"; //lista
+
+import { HiOutlineSquares2X2 } from "react-icons/hi2"; // miniaturki
+
 
 type DateType = {
   date: string;
@@ -74,7 +78,7 @@ const MthPage = () => {
       <SlimNav />
       <div className="mx-auto max-w-[1980px] ">
         <div className=" mt-[10%]">
-          <h2 className="text-3xl font-poppins font-bold text-center mb-[10%]">
+          <h2 className="text-3xl font-poppins font-bold text-center mb-[8%]">
             Faktury z miesiąca:{" "}
             <span className="font-normal">
               {month}/{year}
@@ -82,7 +86,7 @@ const MthPage = () => {
           </h2>
           {isLoading ? (
             <img
-              className="w-20 h-20 animate-spin mx-auto mt-32"
+              className="w-20 h-20 animate-spin mt-32 mx-auto"
               src="https://www.svgrepo.com/show/70469/loading.svg"
               alt="Loading icon"
             />
@@ -90,25 +94,29 @@ const MthPage = () => {
             <p className="mt-[10%] text-xl text-gray-400">Brak faktur</p>
           ) : (
             <>
-            <div className="flex flex-row flex-wrap">
+            <div className="flex flex-row justify-center text-5xl">
+              <CiBoxList className={`p-2 ${!thumbView ? 'bg-green-700 text-white' : ''}`} onClick={()=>setThumbView(prev=>!prev)}/>
+              <HiOutlineSquares2X2 className={`p-2 ${thumbView ? 'bg-green-700 text-white' : ''}`} onClick={()=>setThumbView(prev=>!prev)}/>
+            </div>
+            {thumbView && <div className="flex flex-row flex-wrap justify-center items-center ">
               {invoices.map((invoice) => (
                 <div
                   key={invoice.id}
-                  className="w-1/4"
+                  className="w-1/4 "
                   onClick={() => handleImageClick(invoice.thumbnail)}
                 >
                   <img
                     src={`data:image/jpeg;base64,${invoice.thumbnail}`}
                     alt="Thumbnail"
-                    className="w-32 h-20 object-cover"
+                    className="border-2 my-2 p-1 w-42 h-64 object-cover mx-auto"
                   />
                 </div>
               ))}
-            </div>
-            <div className="mt-8 font-poppins">
+            </div>}
+            {!thumbView && <div className="mt-8 font-poppins">
                 <table className="table-auto w-11/12 mx-auto ">
                   <thead>
-                    <tr className=" border-b-2 font-black">
+                    <tr className=" border-b-2 font-black text-lg">
                       <th className="px-4 py-2 text-start">ID</th>
                       <th className="px-4 py-2 text-start">Nazwa Pliku</th>
                       <th className="px-4 py-2 text-start">Otrzymano od</th>
@@ -116,7 +124,7 @@ const MthPage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {invoices.map((invoice, index) => (
+                    {invoices.map((invoice) => (
                       <tr key={invoice.id} className={``}>
                         <td className=" px-4 py-2">{invoice.id}</td>
                         <td className=" px-4 py-2">{invoice.name}</td>
@@ -126,7 +134,7 @@ const MthPage = () => {
                     ))}
                   </tbody>
                 </table>
-              </div>
+              </div>}
             </>
           )}
           {selectedImage && (

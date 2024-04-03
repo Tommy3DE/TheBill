@@ -25,6 +25,7 @@ const LoggedHome = () => {
   const [accAdded, setAccAdded] = useState<string>();
   const [settingData, setSettingData] = useState<SettingsData>()
   const [lastScan, setLastScan] = useState<string | undefined>('')
+  
   const homeLinks: HomeTile[] = [
     {
       id: 1,
@@ -70,7 +71,9 @@ const LoggedHome = () => {
       })
       .then(response => {
         if (response.ok) {
-          return response.json();
+          console.log(response)
+          return response.json()
+          ;
         }
         throw new Error("Network response was not ok.");
       })
