@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import SlimNav from "../../../layout/SlimNav";
-// import dir from "../../../assets/docsIcons/dir.png";
 import { useEffect, useState } from "react";
-import { CiBoxList } from "react-icons/ci"; //lista
+import { CiBoxList } from "react-icons/ci";
+import { FaRegEye } from "react-icons/fa";
 
-import { HiOutlineSquares2X2 } from "react-icons/hi2"; // miniaturki
+import { HiOutlineSquares2X2 } from "react-icons/hi2";
+import ReturnBtn from "../../../components/ReturnBtn";
 
 
 type DateType = {
@@ -91,7 +92,7 @@ const MthPage = () => {
               alt="Loading icon"
             />
           ) : invoices.length === 0 ? (
-            <p className="mt-[10%] text-xl text-gray-400">Brak faktur</p>
+            <p className="text-3xl text-center my-64 text-gray-400">Brak faktur</p>
           ) : (
             <>
             <div className="flex flex-row justify-center text-5xl">
@@ -121,15 +122,19 @@ const MthPage = () => {
                       <th className="px-4 py-2 text-start">Nazwa Pliku</th>
                       <th className="px-4 py-2 text-start">Otrzymano od</th>
                       <th className="px-4 py-2 text-start">Data</th>
+                      <th className="px-4 py-2 text-start">Podgląd</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {invoices.map((invoice) => (
+                    {invoices.map((invoice, index) => (
                       <tr key={invoice.id} className={``}>
-                        <td className=" px-4 py-2">{invoice.id}</td>
+                        <td className=" px-4 py-2">{index +1}</td>
                         <td className=" px-4 py-2">{invoice.name}</td>
                         <td className=" px-4 py-2">{invoice.sender}</td>
                         <td className=" px-4 py-2">{new Date(invoice.date).toLocaleDateString()}</td>
+                        <td className="py-2 text-xl">
+                          <FaRegEye className='text-blue-400 cursor-pointer mx-auto' onClick={() => handleImageClick(invoice.thumbnail)}/>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -156,6 +161,10 @@ const MthPage = () => {
             </div>
           )}
         </div>
+      </div>
+      <div className="flex flex-row justify-center my-10">
+      <ReturnBtn route="/logged/documents"/>
+
       </div>
     </div>
   );
