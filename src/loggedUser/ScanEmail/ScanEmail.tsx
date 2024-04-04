@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import SlimNav from "../../layout/SlimNav";
 import ReturnBtn from "../../components/ReturnBtn";
 import mail from "../../assets/iconsLogged/email.png";
+import { useUserData } from "../../context/UserDataContext";
 
 const ScanEmail = () => {
+  const { userData } = useUserData();
+  // console.log(userData);
+
   return (
     <section>
       <SlimNav />
@@ -19,14 +23,19 @@ const ScanEmail = () => {
           <div className="bg-gray-300 p-4 lg:w-1/3 mx-auto rounded-3xl my-12">
             <div className="bg-white flex flex-row justify-center items-center rounded-3xl px-4 py-2">
               <img src={mail} alt="mail" />
-              <h1 className="text-2xl font-black ml-2">Cezary1998@gmail.com</h1>
+              <h1 className="text-2xl font-black ml-2">
+                {userData ? userData?.email : null}
+              </h1>
             </div>
             <div className="bg-white flex flex-col justify-between items-center rounded-3xl px-4 py-2 mt-5 text-small">
-              <div>
-                <span>Ostatnie skanowanie:</span>
-                <span></span>
+              <div className="flex flex-row items-center">
+                <div>Ostatnie skanowanie:</div>
+                <div>{userData ? userData.lastScan : ""}</div>
               </div>
-              <div>Liczba ostatnio pobranych faktur:</div>
+              <div className="flex flex-row justify-between">
+                <span>Liczba ostatnio pobranych faktur:</span>
+                <span>-</span>
+              </div>
             </div>
             <Link to={"/logged/scanMail/scanPeriod"}>
               <button className=" text-bold mt-5 rounded-3xl w-full bg-[#1A9367] uppercase font-playFair text-2xl text-white font-bold tracking-wider py-4  hover:bg-green-800">

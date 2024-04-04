@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SlimNav from "../../layout/SlimNav";
 import { useLocation } from "react-router-dom";
+import { useUserData } from "../../context/UserDataContext";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
@@ -94,6 +95,8 @@ const ScanPeriod = () => {
     const match = url.match(regex);
     return match ? match[1] : null;
   }
+  const { userData } = useUserData();
+
 
   return (
     <section className=" font-poppins">
@@ -105,34 +108,34 @@ const ScanPeriod = () => {
           </h1>
           <div className="w-2/3">
             <div className="flex flex-row justify-between items-center mt-16 text-2xl">
-              <p className="">Dziś jest:</p>
+              <p className="">Dzisiejsza data:</p>
               <input
                 type="text"
-                className="rounded-lg w-1/3 p-2  bg-gray-300"
+                className="rounded-3xl w-1/3 px-4 py-2 bg-gray-300"
                 disabled
                 value={date}
               />
             </div>
             <div className="flex flex-row justify-between items-center mt-16 text-2xl">
-              <p className="">Ostatenie skanowanie miało miejsce:</p>
+              <p className="">Ostatnie skanowanie miało miejsce: </p>
               <input
                 type="text"
-                className="rounded-lg w-1/3 p-2  bg-gray-300"
+                className="rounded-3xl w-1/3 px-4 py-2  bg-gray-300"
                 disabled
-                value={"nigdy"}
+                value={userData ? userData?.lastScan : '-'}
               />
             </div>
           </div>
-          <div className="mt-16">
-            <label htmlFor="month-picker" className="text-2xl mr-4">
+          <div className="mt-16 text-2xl flex flex-row justify-between w-2/3">
+            <label htmlFor="month-picker" className="text-2xl text-start">
               Wybierz miesiąc:
             </label>
             <select
               id="month-picker"
-              className="rounded-lg p-2 bg-gray-300 text-2xl"
+              className="rounded-3xl px-4 py-2 bg-gray-300 text-2xl w-1/3"
               onChange={(e) => setSelectedPeriod(e.target.value)}
             >
-              <option value="">--Wybierz--</option>
+              <option value="">--wybierz--</option>
               <option value={1}>Styczeń</option>
               <option value={2}>Luty</option>
               <option value={3}>Marzec</option>
