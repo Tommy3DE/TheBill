@@ -1,32 +1,26 @@
 import set from "../../../assets/innerSettingsIcons/set 1.png";
-import folder from "../../../assets/innerSettingsIcons/folder 1.png";
-import email from "../../../assets/innerSettingsIcons/email 1.png";
 import { Link } from "react-router-dom";
 
 type SettingsTiles = {
   id: number;
   title: string;
   route: string;
-  icon: string;
 };
 const SettingsRoutes = () => {
   const settings: SettingsTiles[] = [
     {
       id: 1,
       title: "Zdefiniowane adresy e-mail",
-      icon: email,
       route: "/logged/settings/definedAddress",
     },
     {
       id: 2,
       title: "Ścieżki folderów",
-      icon: folder,
       route: "",
     },
     {
       id: 3,
       title: "Ogólne ustawienia konta",
-      icon: set,
       route: "/logged/settings/appSettings",
     },
   ];
@@ -48,7 +42,6 @@ const SettingsRoutes = () => {
             key={item.id}
             className=" w-full text-xl rounded-lg flex flex-col justify-evenly py-32 items-center bg-green-300 lg:h-1/3 h-80 mb-5  hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black"
           >
-            <img src={item.icon} alt={item.title} className="h-20 w-20" />
             <p>{item.title}</p>
           </div>
           </Link>

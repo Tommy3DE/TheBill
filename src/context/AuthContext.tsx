@@ -4,7 +4,6 @@ interface AuthContextType {
   isLoggedIn: boolean;
   accessToken: string | null;
   refreshToken: string | null;
-  isNewUser: boolean;
   login: (newAccessToken: string, newRefreshToken: string) => void;
   logout: () => void;
 }
@@ -13,7 +12,6 @@ const AuthContext = createContext<AuthContextType>({
   isLoggedIn: false,
   accessToken: null,
   refreshToken: null,
-  isNewUser: true,
   login: (_newAccessToken: string, _newRefreshToken: string) => {},
   logout: () => {},
 });
@@ -26,39 +24,20 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 export const AuthProvider = ({ children }: AuthProviderProps) => {
+  // Początkowy stan oparty na wartościach z localStorage
   const initialAccessToken = localStorage.getItem('accessToken');
   const initialRefreshToken = localStorage.getItem('refreshToken');
   
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!initialAccessToken && !!initialRefreshToken);
   const [accessToken, setAccessToken] = useState<string | null>(initialAccessToken);
   const [refreshToken, setRefreshToken] = useState<string | null>(initialRefreshToken);
-  const [isNewUser, setIsNewUser] = useState<boolean>(true); 
-  const checkIfNewUser = async () => {
-
-    try {
-      const response = await fetch("https://api.onebill.com.pl/api/bookkeeper", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      const data = await response.json();
-      // Jeśli odpowiedź z API nie jest pusta lub null, ustaw isNewUser na false
-      setIsNewUser(!(data || data.length > 0));
-    } catch (error) {
-      console.error('Błąd podczas sprawdzania nowego użytkownika:', error);
-    }
-  };
 
   const login = (newAccessToken: string, newRefreshToken: string) => {
     localStorage.setItem('accessToken', newAccessToken);
     localStorage.setItem('refreshToken', newRefreshToken);
     setIsLoggedIn(true);
     setAccessToken(newAccessToken);
-    setRefreshToken(newRefreshToken);
-    checkIfNewUser()
+    setRefreshToken(newRefreshToken); 
   };
 
   const logout = () => {
@@ -71,7 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const refreshAccessToken = async () => {
     try {
-      const response = await fetch('https://api.onebill.com.pl/api/token/refresh', {
+      const response = await fetch('https://api.onebill.com.pl/api/refresh', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +86,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [isLoggedIn]);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, accessToken, refreshToken, isNewUser, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, accessToken, refreshToken, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

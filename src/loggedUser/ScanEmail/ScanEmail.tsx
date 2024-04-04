@@ -12,11 +12,11 @@ const ScanEmail = () => {
           <h1 className="text-4xl font-black">
             W tym panelu możesz rozpocząć skanowanie swojej skrzynki e-mail
           </h1>
-          <h2 className="text-2xl ">
+          <h2 className="text-2xl mt-5">
             Skanowanie rozpocznie się od momentu, w którym zakończyło się
             ostatnie skanowanie.{" "}
           </h2>
-          <div className="bg-gray-400 p-4 lg:w-1/3 mx-auto rounded-3xl">
+          <div className="bg-gray-300 p-4 lg:w-1/3 mx-auto rounded-3xl my-12">
             <div className="bg-white flex flex-row justify-center items-center rounded-3xl px-4 py-2">
               <img src={mail} alt="mail" />
               <h1 className="text-2xl font-black ml-2">Cezary1998@gmail.com</h1>
@@ -28,14 +28,16 @@ const ScanEmail = () => {
               </div>
               <div>Liczba ostatnio pobranych faktur:</div>
             </div>
+            <Link to={"/logged/scanMail/scanPeriod"}>
+              <button className=" text-bold mt-5 rounded-3xl w-full bg-[#1A9367] uppercase font-playFair text-2xl text-white font-bold tracking-wider py-4  hover:bg-green-800">
+                Rozpocznij Skanowanie
+              </button>
+            </Link>
           </div>
-          <Link to={"/logged/scanMail/scanPeriod"}>
-            <button className="bg-green-400 text-bold rounded-lg py-1 lg:w-1/3">
-              Skanuj
-            </button>
-          </Link>
 
-          <ReturnBtn route="/logged" />
+          <div className="">
+            <ReturnBtn route="/logged" />
+          </div>
         </div>
       </div>
     </section>

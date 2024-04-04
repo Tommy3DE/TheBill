@@ -33,10 +33,12 @@ import ONas from "./layout/pages/Stopka/ONas";
 import PolitykaPryw from "./layout/pages/Stopka/PolitykaPryw";
 import Regulamin from "./layout/pages/Stopka/Regulamin";
 import PageNotFound from "./layout/pages/PageNotFound";
+import { UserDataProvider } from "./context/UserDataContext";
 
 function App() {
   return (
     <AuthProvider>
+      <UserDataProvider>
       <ToastContainer/>
       <Router>
         <Routes>
@@ -70,6 +72,7 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
+      </UserDataProvider>
     </AuthProvider>
   );
 }

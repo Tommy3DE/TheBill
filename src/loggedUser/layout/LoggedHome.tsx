@@ -11,6 +11,7 @@ import bell from "../../assets/iconsLogged/bell.png";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { SettingsData } from "../Settings/components/AppSettings";
+import { useUserData } from "../../context/UserDataContext";
 
 type HomeTile = {
   id: number;
@@ -20,11 +21,29 @@ type HomeTile = {
   action?: () => void;
 };
 
+interface Bookkeeper {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface UserData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  nip: string;
+  package: string;
+  lastScan: string;
+  bookkeepers: Bookkeeper[];
+}
+
+
 const LoggedHome = () => {
   const { logout } = useAuth();
   const [accAdded, setAccAdded] = useState<string>();
   const [settingData, setSettingData] = useState<SettingsData>()
   const [lastScan, setLastScan] = useState<string | undefined>('')
+  const { setUserData, userData } = useUserData()
   
   const homeLinks: HomeTile[] = [
     {
@@ -70,7 +89,6 @@ const LoggedHome = () => {
       })
       .then(response => {
         if (response.ok) {
-          console.log(response)
           return response.json()
           ;
         }
@@ -84,8 +102,28 @@ const LoggedHome = () => {
     fetchData("https://api.onebill.com.pl/api/bookkeeper", setAccAdded);
     fetchData("https://api.onebill.com.pl/api/user_data", setSettingData);
     fetchData("https://api.onebill.com.pl/api/last_scan", setLastScan);
-  
+
   }, []);
+  useEffect(() => {
+    if (accAdded && settingData && lastScan) {
+      const bookkeepersArray: Bookkeeper[] = Array.isArray(accAdded) ? accAdded : JSON.parse(accAdded);
+      
+      const updatedUserData: UserData = {
+        email: settingData.email,
+        firstName: settingData.first_name,
+        lastName: settingData.last_name,
+        nip: settingData.NIP,
+        package: settingData.package,
+        lastScan: formatLastScanDate(lastScan), 
+        bookkeepers: bookkeepersArray, 
+      };
+    
+      if (JSON.stringify(userData) !== JSON.stringify(updatedUserData)) {
+        setUserData(updatedUserData);
+      }
+    }
+  }, [accAdded, settingData, lastScan, setUserData]);
+  
 
   const formatLastScanDate = (isoDate: string): string => {
     const date = new Date(isoDate);
