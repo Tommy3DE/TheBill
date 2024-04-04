@@ -156,7 +156,7 @@ const ScanPeriod = () => {
                 className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
                 onClick={handleScan}
               >
-                Zsynchronizuj Skrzynkę
+                Zsynchronizuj konto Google
               </button>
               <button
                 onClick={handleShowCode}
