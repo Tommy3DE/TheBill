@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import dir from '../../../assets/docsIcons/folder.png'
+import dir from "../../../assets/docsIcons/folder.png";
 import SlimNav from "../../../layout/SlimNav";
 import ReturnBtn from "../../../components/ReturnBtn";
 import { useUserData } from "../../../context/UserDataContext";
@@ -76,30 +76,45 @@ const Day1Dir = () => {
   ];
   return (
     <section className="font-poppins">
-      <SlimNav/>
+      <SlimNav />
       <div className="mx-auto max-w-[1980px]">
-        <h1 className="text-3xl font-black text-center mt-32">Poniżej wyświetlone są foldery w których przechowujemy Twoje faktury.</h1>
-        <h2 className="text-xl text-center my-4">Aby wyświetlić faktury z danego miesiąca, <span className="underline"> kliknij na wybrany folder.</span></h2>
-        <h3 className="text-lg text-center mb-12">W ramach Twojego pakietu {userData?.package} Twoje faktury są przechowywane do {userData?.package === 'Premium' ? '24' : (userData?.package === 'Biznes' ? '60' : (userData?.package === 'Standard' ? '6' : null))} miesięcy wstecz.</h3>
-      <div className="grid lg:grid-cols-6 grid-cols-2 gap-4  lg:mb-20 w-[70%] mx-auto">
-        {dirs.map((item) => (
-          <div key={item.id} className="flex flex-col items-center">
-            <Link to={`/logged/documents/${item.route}`}>
-            <div className="text-xl rounded-lg flex-col bg-[#E2FFEF] px-8 py-4 mb-5 hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black">
-              <img src={dir} alt={item.title} className="mx-auto mb-5" />
-              <p className="text-center px-2">{item.title}</p>
+        <h1 className="text-3xl font-black text-center mt-32">
+          Poniżej wyświetlone są foldery w których przechowujemy Twoje faktury.
+        </h1>
+        <h2 className="text-xl text-center my-4">
+          Aby wyświetlić faktury z danego miesiąca,{" "}
+          <span className="underline"> kliknij na wybrany folder.</span>
+        </h2>
+        <h3 className="text-lg text-center mb-12">
+          W ramach Twojego pakietu {userData?.package} Twoje faktury są
+          przechowywane do{" "}
+          {userData?.package === "Premium"
+            ? "24"
+            : userData?.package === "Biznes"
+            ? "60"
+            : userData?.package === "Standard"
+            ? "6"
+            : null}{" "}
+          miesięcy wstecz.
+        </h3>
+        <div className="grid lg:grid-cols-6 grid-cols-2 gap-4  lg:mb-20 w-[70%] mx-auto">
+          {dirs.map((item) => (
+            <div key={item.id} className="flex flex-col items-center">
+              <Link to={`/logged/documents/${item.route}`}>
+                <div className="text-xl rounded-lg flex-col bg-[#E2FFEF] px-8 py-4 mb-5 hover:scale-105 hover:bg-green-200 border-2 border-green-800 cursor-pointer font-black">
+                  <img src={dir} alt={item.title} className="mx-auto mb-5" />
+                  <p className="text-center px-2">{item.title}</p>
+                </div>
+              </Link>
             </div>
-            </Link>
-          </div>
-        ))}
-      </div>
-      <div className="flex flex-row justify-center ">
-      <ReturnBtn route={"/logged"}/>
-
-      </div>
+          ))}
+        </div>
+        <div className="flex flex-row justify-center ">
+          <ReturnBtn route={"/logged"} />
+        </div>
       </div>
     </section>
   );
 };
 
-export default Day1Dir
+export default Day1Dir;

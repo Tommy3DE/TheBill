@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import document from "../../assets/iconsLogged/document.png";
+import invoice from "../../assets/iconsLogged/invoice.png";
 import sync from "../../assets/iconsLogged/sync.png";
 // import scan from "../../assets/iconsLogged/scan.png";
 // import seller from "../../assets/iconsLogged/seller.png";
@@ -52,13 +52,18 @@ const LoggedHome = () => {
       linkTo: "/logged/scanMail",
       icon: scan,
     },
+    { 
+      id: 2, 
+      name: "Faktury", 
+      linkTo: "/logged/documents", 
+      icon: invoice 
+    },
     {
-      id: 2,
+      id: 3,
       name: "Historia ",
       linkTo: "/logged/history",
       icon: logHis,
     },
-    { id: 3, name: "Dokumenty", linkTo: "/logged/documents", icon: document },
     {
       id: 4,
       name: "Ustawienia",
@@ -188,7 +193,7 @@ const LoggedHome = () => {
             ) : link.linkTo ? (
               <Link
                 to={link.linkTo}
-                className="text-center w-full h-full flex flex-col justify-center items-center cursor-pointer bg-[#BCFEDA] border-2 border-green-500  rounded-lg"
+                className={`text-center w-full h-full flex flex-col justify-center items-center cursor-pointer ${link.id === 1 || link.id === 2  ? 'bg-[#BCFEDA] border-green-500' : 'bg-gray-300 border-gray-500' } border-2   rounded-lg`}
               >
                 <div className="bg-white rounded-lg w-[90%] border-2 border-black h-[60%] flex justify-center items-center">
                   <img

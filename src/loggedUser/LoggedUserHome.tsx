@@ -10,6 +10,7 @@ const LoggedUserHome = () => {
         <SlimNav/>
         
         {/* {isNewUser ? <NewUserHome/> : <LoggedHome/>} */}
+        {/* <NewUserHome/> */}
         <LoggedHome/>
     </div>
   );

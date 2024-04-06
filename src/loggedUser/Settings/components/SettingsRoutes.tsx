@@ -41,16 +41,8 @@ const SettingsRoutes = () => {
   ];
   return (
     <section>
-      <div className="flex flex-col mt-32 mx-10 h-1/4">
-        <div className="flex flex-row justify-start mb-5 items-center">
-          <h1 className="text-4xl font-extrabold ">Ustawienia</h1>
-          <img src={set} alt="settings" className="h-10 ml-5" />
-        </div>
-        <p className="w-full text-lg p-3 rounded-lg bg-[#A3FEE3] border border-black">
-          Wybierz sekcję którą chcesz zaktualizować
-        </p>
-      </div>
-      <div className="flex lg:flex-row flex-col justify-center items-center lg:mx-0 mx-5 py-14">
+      
+      <div className="flex lg:flex-row flex-col justify-center items-center lg:mx-0 mx-5 py-14 mt-36">
         {settings.map((item) => (
           <Link
             to={item.route}
