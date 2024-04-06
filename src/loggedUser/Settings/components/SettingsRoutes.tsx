@@ -1,4 +1,3 @@
-import set from "../../../assets/innerSettingsIcons/set 1.png";
 import { Link } from "react-router-dom";
 import acc from "../../../assets/accountant.png";
 import bell from "../../../assets/settings/bell.png";

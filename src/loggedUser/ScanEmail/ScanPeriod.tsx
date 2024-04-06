@@ -66,13 +66,21 @@ const ScanPeriod = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((data) => console.log(data))
-      .catch((error) => console.error("Error:", error));
-  };
+      .then((data) => {
+        console.log(data);
+        if (extractedCode != '') {
+          handleShowCode();
+        } else {
+          console.log('scanning');
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+      
+    };
 
   const handleShowCode = () => {
-    // This function is now simpler, just a demonstration purpose
-    alert(`Extracted Code: ${extractedCode}`);
     const accessToken = localStorage.getItem("accessToken");
 
     fetch("https://api.onebill.com.pl/api/token_redirect", {
@@ -156,14 +164,9 @@ const ScanPeriod = () => {
                 className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
                 onClick={handleScan}
               >
-                Zsynchronizuj konto Google
-              </button>
-              <button
-                onClick={handleShowCode}
-                className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
-              >
                 Skanuj
-              </button>{" "}
+              </button>
+
             </>
           )}
         </div>

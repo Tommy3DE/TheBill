@@ -28,11 +28,11 @@ const ScanEmail = () => {
               </h1>
             </div>
             <div className="bg-white flex flex-col justify-between items-center rounded-3xl px-4 py-2 mt-5 text-small">
-              <div className="flex flex-row items-center">
+              <div className="flex flex-row justify-between w-full">
                 <div>Ostatnie skanowanie:</div>
                 <div>{userData ? userData.lastScan : ""}</div>
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row justify-between w-full">
                 <span>Liczba ostatnio pobranych faktur:</span>
                 <span>-</span>
               </div>
