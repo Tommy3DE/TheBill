@@ -181,7 +181,7 @@ const ScanPeriod = () => {
                     className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-auto text-center hover:scale-105 cursor-pointer"
                     onClick={handleScan}
                   >
-                    Skanuj
+                    Przejdz do faktur
                   </button>
                 </>
               </Link>
