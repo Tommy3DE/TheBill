@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import SlimNav from "../../layout/SlimNav";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUserData } from "../../context/UserDataContext";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("");
-  const [extractedCode, setExtractedCode] = useState(""); 
+  const [extractedCode, setExtractedCode] = useState("");
   const [extractedState, setExtractedState] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [nextStep, setNextStep] = useState(false);
 
   const location = useLocation();
 
@@ -38,6 +40,7 @@ const ScanPeriod = () => {
   }, [location.search]);
 
   const handleScan = () => {
+    setLoading(true);
     const accessToken = localStorage.getItem("accessToken");
 
     fetch("https://api.onebill.com.pl/api/scan", {
@@ -50,6 +53,7 @@ const ScanPeriod = () => {
     })
       .then(async (response) => {
         if (response.ok) {
+          setNextStep(true);
           return response.json();
         } else if (response.status === 425) {
           let url = await response.text();
@@ -68,17 +72,19 @@ const ScanPeriod = () => {
       })
       .then((data) => {
         console.log(data);
-        if (extractedCode != '') {
+        if (extractedCode != "") {
           handleShowCode();
         } else {
-          console.log('scanning');
+          console.log("scanning");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-      
-    };
+  };
 
   const handleShowCode = () => {
     const accessToken = localStorage.getItem("accessToken");
@@ -105,71 +111,91 @@ const ScanPeriod = () => {
   }
   const { userData } = useUserData();
 
-
   return (
     <section className=" font-poppins">
       <SlimNav />
       <div className="mx-auto max-w-[1980px] ">
-        <div className="mt-36 lg:mx-[10%] mx-[2%] flex flex-col justifty-center items-center">
-          <h1 className="text-4xl font-black">
-            Wybierz miesiąc który chcesz przeskanować:
-          </h1>
-          <div className="w-2/3">
-            <div className="flex flex-row justify-between items-center mt-16 text-2xl">
-              <p className="">Dzisiejsza data:</p>
-              <input
-                type="text"
-                className="rounded-3xl w-1/3 px-4 py-2 bg-gray-300"
-                disabled
-                value={date}
-              />
+        {!loading ? (
+          <div className="mt-36 lg:mx-[10%] mx-[2%] flex flex-col justifty-center items-center">
+            <h1 className="text-4xl font-black">
+              Wybierz miesiąc który chcesz przeskanować:
+            </h1>
+            <div className="w-2/3">
+              <div className="flex flex-row justify-between items-center mt-16 text-2xl">
+                <p className="">Dzisiejsza data:</p>
+                <input
+                  type="text"
+                  className="rounded-3xl w-1/3 px-4 py-2 bg-gray-300"
+                  disabled
+                  value={date}
+                />
+              </div>
+              <div className="flex flex-row justify-between items-center mt-16 text-2xl">
+                <p className="">Ostatnie skanowanie miało miejsce: </p>
+                <input
+                  type="text"
+                  className="rounded-3xl w-1/3 px-4 py-2  bg-gray-300"
+                  disabled
+                  value={userData ? userData?.lastScan : "-"}
+                />
+              </div>
             </div>
-            <div className="flex flex-row justify-between items-center mt-16 text-2xl">
-              <p className="">Ostatnie skanowanie miało miejsce: </p>
-              <input
-                type="text"
-                className="rounded-3xl w-1/3 px-4 py-2  bg-gray-300"
-                disabled
-                value={userData ? userData?.lastScan : '-'}
-              />
-            </div>
-          </div>
-          <div className="mt-16 text-2xl flex flex-row justify-between w-2/3">
-            <label htmlFor="month-picker" className="text-2xl text-start">
-              Wybierz miesiąc:
-            </label>
-            <select
-              id="month-picker"
-              className="rounded-3xl px-4 py-2 bg-gray-300 text-2xl w-1/3"
-              onChange={(e) => setSelectedPeriod(e.target.value)}
-            >
-              <option value="">--wybierz--</option>
-              <option value={1}>Styczeń</option>
-              <option value={2}>Luty</option>
-              <option value={3}>Marzec</option>
-              <option value={4}>Kwiecień</option>
-              <option value={5}>Maj</option>
-              <option value={6}>Czerwiec</option>
-              <option value={7}>Lipiec</option>
-              <option value={8}>Sierpień</option>
-              <option value={9}>Wrzesień</option>
-              <option value={10}>Październik</option>
-              <option value={11}>Listopad</option>
-              <option value={12}>Grudzień</option>
-            </select>
-          </div>
-          {selectedPeriod !== "" && (
-            <>
-              <button
-                className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
-                onClick={handleScan}
+            <div className="mt-16 text-2xl flex flex-row justify-between w-2/3">
+              <label htmlFor="month-picker" className="text-2xl text-start">
+                Wybierz miesiąc:
+              </label>
+              <select
+                id="month-picker"
+                className="rounded-3xl px-4 py-2 bg-gray-300 text-2xl w-1/3"
+                onChange={(e) => setSelectedPeriod(e.target.value)}
               >
-                Skanuj
-              </button>
-
-            </>
-          )}
-        </div>
+                <option value="">--wybierz--</option>
+                <option value={1}>Styczeń</option>
+                <option value={2}>Luty</option>
+                <option value={3}>Marzec</option>
+                <option value={4}>Kwiecień</option>
+                <option value={5}>Maj</option>
+                <option value={6}>Czerwiec</option>
+                <option value={7}>Lipiec</option>
+                <option value={8}>Sierpień</option>
+                <option value={9}>Wrzesień</option>
+                <option value={10}>Październik</option>
+                <option value={11}>Listopad</option>
+                <option value={12}>Grudzień</option>
+              </select>
+            </div>
+            {selectedPeriod !== "" && !nextStep && (
+              <>
+                <button
+                  className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
+                  onClick={handleScan}
+                >
+                  Skanuj
+                </button>
+              </>
+            )}
+            {nextStep && (
+              <Link to={`/logged/documents/${selectedPeriod}2024`}>
+                <>
+                  <button
+                    className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-auto text-center hover:scale-105 cursor-pointer"
+                    onClick={handleScan}
+                  >
+                    Skanuj
+                  </button>
+                </>
+              </Link>
+            )}
+          </div>
+        ) : (
+          <div>
+            <img
+              className="w-20 h-20 animate-spin mt-32 mx-auto"
+              src="https://www.svgrepo.com/show/70469/loading.svg"
+              alt="Loading icon"
+            />
+          </div>
+        )}
       </div>
     </section>
   );
