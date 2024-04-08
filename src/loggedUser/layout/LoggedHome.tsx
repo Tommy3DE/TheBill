@@ -12,6 +12,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { SettingsData } from "../Settings/components/AppSettings";
 import { useUserData } from "../../context/UserDataContext";
+import NewUserHome from "./NewUserHome";
 
 type HomeTile = {
   id: number;
@@ -138,16 +139,7 @@ const LoggedHome = () => {
 
   return (
     <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
-      {accAdded ? (accAdded?.length > 0 ? null : (
-        <div className="w-[90%] bg-gray-300 rounded-lg mt-10 p-4 text-lg flex flex-row justify-start items-center font-bold animate-pulse ">
-          <img src={bell} alt="bell" className="mr-4" />
-          <p>
-            Logujesz się do naszego systemu po raz pierwszy. Skonfiguruj swoją
-            skrzynkę mailową
-          </p>
-        </div>
-      ) ): null}
-      <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:px-10 text-lg tracking-wider font-poppins">
+      {accAdded ? (accAdded?.length > 0 ? <><div className="w-full flex flex-col lg:flex-row justify-between items-center lg:px-10 text-lg tracking-wider font-poppins">
         <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
           <p>Ostatnie skanowanie:</p>
           <p>{lastScan ? formatLastScanDate(lastScan) : '-'}</p>
@@ -212,7 +204,11 @@ const LoggedHome = () => {
             )}
           </div>
         ))}
-      </div>
+      </div> 
+      </>: (
+        <NewUserHome/>
+      ) ): null}
+      
     </section>
   );
 };
