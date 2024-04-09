@@ -24,7 +24,6 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  // Początkowy stan oparty na wartościach z localStorage
   const initialAccessToken = localStorage.getItem('accessToken');
   const initialRefreshToken = localStorage.getItem('refreshToken');
   

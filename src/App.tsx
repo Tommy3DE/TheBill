@@ -34,6 +34,7 @@ import PolitykaPryw from "./layout/pages/Stopka/PolitykaPryw";
 import Regulamin from "./layout/pages/Stopka/Regulamin";
 import PageNotFound from "./layout/pages/PageNotFound";
 import { UserDataProvider } from "./context/UserDataContext";
+import PaymentPage from "./newUser/PaymentPage";
 
 function App() {
   return (
@@ -65,6 +66,7 @@ function App() {
           <Route path="/logged/scanMail/scanPeriod" element={<ProtectedRoute element={<ScanPeriod />} />} />
           <Route path="/logged/settings/definedAddress" element={<ProtectedRoute element={<DefinedAddresses />} />} />
           <Route path="/logged/settings/appSettings" element={<ProtectedRoute element={<AppSettings />}/>} />
+          <Route path="/newUser/paymentPage" element={<PaymentPage/>} />
           <Route path='/login' element={<Login/>} />
           <Route path="/o_nas" element={<ONas />}/>
           <Route path="/regulamin" element={<Regulamin />}/>

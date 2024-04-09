@@ -6,6 +6,8 @@ import { useState } from "react";
 import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
 import { HiOutlineEnvelope } from "react-icons/hi2";
+import { Link } from "react-router-dom";
+import Footer from "../layout/Footer";
 
 interface FormValues {
   login: string;
@@ -53,43 +55,43 @@ const NewUser = () => {
       console.log(values);
       setShowPartTwo((prev) => !prev);
 
-      const apiUrl = "https://api.onebill.com.pl/api/register";
+      // const apiUrl = "https://api.onebill.com.pl/api/register";
 
-      const requestBody = {
-        email: values.login,
-        password: values.pass,
-        NIP: values.NIP,
-        first_name: values.firstName,
-        last_name: values.lastName,
-        industry: values.industry,
-        max_invoices: values.numOfInvoices,
-        org_size: "JDG",
-        package: "Premium",
-      };
+      // const requestBody = {
+      //   email: values.login,
+      //   password: values.pass,
+      //   NIP: values.NIP,
+      //   first_name: values.firstName,
+      //   last_name: values.lastName,
+      //   industry: values.industry,
+      //   max_invoices: values.numOfInvoices,
+      //   org_size: "JDG",
+      //   package: "Premium",
+      // };
 
-      fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          setShowPartTwo((prev) => !prev);
-        })
-        .catch((error) => {
-          console.error(
-            "There was a problem with your fetch operation:",
-            error
-          );
-        });
+      // fetch(apiUrl, {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(requestBody),
+      // })
+      //   .then((response) => {
+      //     if (!response.ok) {
+      //       throw new Error("Network response was not ok");
+      //     }
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     console.log(data);
+      //     setShowPartTwo((prev) => !prev);
+      //   })
+      //   .catch((error) => {
+      //     console.error(
+      //       "There was a problem with your fetch operation:",
+      //       error
+      //     );
+      //   });
     },
   });
   const getSelectedPlan = (): PricingTile | undefined => {
@@ -191,7 +193,7 @@ const NewUser = () => {
                       <p className="font-bold text-lg w-5/6">{tile.point4}</p>
                     </div>
                   )}
-                  {tile.point5  && (
+                  {tile.point5 && (
                     <div className="flex flex-row items-center w-full mb-3">
                       <FaCheckCircle className="text-lg mr-2 w-1/6 text-green-500" />
                       <p className="font-bold text-lg w-5/6">{tile.point5}</p>
@@ -475,7 +477,11 @@ const NewUser = () => {
                         <h1 className="text-5xl text-[#35D299] font-poppins font-bold">
                           {selectedPlan.title}
                         </h1>
-                        <img src={selectedPlan.img} alt={selectedPlan.title}  className="h-24"/>
+                        <img
+                          src={selectedPlan.img}
+                          alt={selectedPlan.title}
+                          className="h-24"
+                        />
                       </div>
                       <div className="border border-green-700 my-5 w-full">
                         {" "}
@@ -493,12 +499,14 @@ const NewUser = () => {
                             <span className=" text-xl w-5/6">{value}</span>
                           </p>
                         ))}
-                        <div className="mx-auto my-5">
-                          <button className="px-4 py-2  rounded-lg text-2xl hover:scale-95 bg-green-300" onClick={()=>handlePlanChange(selectedPlan.id)}>
+                      <div className="mx-auto my-5">
+                        <button
+                          className="px-4 py-2  rounded-lg text-2xl hover:scale-95 bg-green-300"
+                          onClick={() => handlePlanChange(selectedPlan.id)}
+                        >
                           Zmien Plan
                         </button>
-                        </div>
-                        
+                      </div>
                     </div>
                   </div>
                   <p className="mb-3 mt-5">
@@ -506,25 +514,30 @@ const NewUser = () => {
                       type="checkbox"
                       name="invoice"
                       id="inv1"
-                      className=" w-6 h-6"
+                      className="mr-2 w-6 h-6"
                       onClick={handleInvoice}
                     />
                     <span className="text-[#1A9367] font-playFair text-3xl">
                       Chcę otrzymać fakturę
                     </span>
                   </p>
-                  <p>
+                  <p className="flex flex-row justify-around items-center ">
                     <input
                       type="checkbox"
                       name="regulamin"
                       id="reg1"
-                      className=" w-6 h-6"
+                      className=" w-6 h-6 mr-2"
                     />
                     <span className="text-xl">
                       Akceptuję regulamin płatności
                     </span>
                   </p>
-                  
+                  <Link to="/newUser/paymentPage">
+                    <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
+                      Zamawiam i płacę
+                    </button>
+                  </Link>
+                  <Footer />
                 </>
               );
             })()}
