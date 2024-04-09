@@ -55,43 +55,43 @@ const NewUser = () => {
       console.log(values);
       setShowPartTwo((prev) => !prev);
 
-      // const apiUrl = "https://api.onebill.com.pl/api/register";
+      const apiUrl = "https://api.onebill.com.pl/api/register";
 
-      // const requestBody = {
-      //   email: values.login,
-      //   password: values.pass,
-      //   NIP: values.NIP,
-      //   first_name: values.firstName,
-      //   last_name: values.lastName,
-      //   industry: values.industry,
-      //   max_invoices: values.numOfInvoices,
-      //   org_size: "JDG",
-      //   package: "Premium",
-      // };
+      const requestBody = {
+        email: values.login,
+        password: values.pass,
+        NIP: values.NIP,
+        first_name: values.firstName,
+        last_name: values.lastName,
+        industry: values.industry,
+        max_invoices: values.numOfInvoices,
+        org_size: "JDG",
+        package: "Premium",
+      };
 
-      // fetch(apiUrl, {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(requestBody),
-      // })
-      //   .then((response) => {
-      //     if (!response.ok) {
-      //       throw new Error("Network response was not ok");
-      //     }
-      //     return response.json();
-      //   })
-      //   .then((data) => {
-      //     console.log(data);
-      //     setShowPartTwo((prev) => !prev);
-      //   })
-      //   .catch((error) => {
-      //     console.error(
-      //       "There was a problem with your fetch operation:",
-      //       error
-      //     );
-      //   });
+      fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          setShowPartTwo((prev) => !prev);
+        })
+        .catch((error) => {
+          console.error(
+            "There was a problem with your fetch operation:",
+            error
+          );
+        });
     },
   });
   const getSelectedPlan = (): PricingTile | undefined => {

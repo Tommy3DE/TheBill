@@ -7,6 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import ReturnBtn from "../../../components/ReturnBtn";
+import { toast } from "react-toastify";
 
 type DateType = {
   date: string;
@@ -24,6 +25,18 @@ const MthPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [thumbView, setThumbView] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
+
+  const showModal = (invoiceId: number) => {
+    setInvoiceToDelete(invoiceId);
+    setIsModalOpen(true);
+  };
+
+  const hideModal = () => {
+    setIsModalOpen(false);
+    setInvoiceToDelete(null);
+  };
 
   const { date } = useParams<DateType>();
 
@@ -40,15 +53,15 @@ const MthPage = () => {
     e: React.MouseEvent<SVGElement>,
     invoiceId: number
   ) => {
-    e.stopPropagation(); // Zapobiegaj propagacji, aby kliknięcie ikony nie wywoływało kliknięcia obrazu
+    e.stopPropagation();
+    showModal(invoiceId);
 
-    // Tutaj możesz dodać logikę, np. usuwanie faktury o danym ID
     console.log(`Icon for invoice ${invoiceId} clicked`);
   };
 
   const { year, month } = interpretDate(date ?? "");
 
-  useEffect(() => {
+  const loadInvoices = () => {
     const accessToken = localStorage.getItem("accessToken");
     const url = new URL("https://api.onebill.com.pl/api/invoice");
     url.searchParams.append("month", month);
@@ -74,7 +87,54 @@ const MthPage = () => {
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
       });
-  }, [date]);
+  };
+
+  useEffect(() => {
+    loadInvoices();
+  }, [date]); // Dodaj tutaj zależności, jeśli są potrzebne
+
+  const deleteInvoice = () => {
+    if (!invoiceToDelete) return;
+    const accessToken = localStorage.getItem("accessToken");
+    fetch(`https://api.onebill.com.pl/api/invoice/${invoiceToDelete}`, {
+      method: "DELETE", 
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete invoice");
+        }
+        return response.json();
+      })
+      .then(() => {
+        toast.success("Faktura usunięta pomyślnie!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        loadInvoices(); 
+        hideModal(); // Zamyka modal
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Wystąpił problem podczas usuwania faktury.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
 
   const handleImageClick = (thumbnail: string) => {
     setSelectedImage(thumbnail);
@@ -124,37 +184,48 @@ const MthPage = () => {
               {thumbView && (
                 <div className="flex flex-row flex-wrap justify-center items-center ">
                   {invoices.map((invoice) => (
-  <div
-    key={invoice.id}
-    className="relative group m-4" // Dodano margines dla lepszego oddzielenia miniatur
-    style={{ width: "260px", height: "400px" }} // Precyzyjne wymiary kontenera
-  >
-    <img
-      src={`data:image/jpeg;base64,${invoice.thumbnail}`}
-      alt="Thumbnail"
-      className="border-2 my-2 p-1 w-full h-full object-cover"
-    />
-    <div
-      className="absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2"
-      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} // Lekkie przyciemnienie tła modala
-    >
-      {/* Kontener dla ikon, aby ułatwić centrowanie */}
-      <div className="flex space-x-4"> {/* Dodaje przestrzeń między ikonami */}
-        <AiOutlineCloseCircle
-          className="text-white bg-red-500 rounded-full cursor-pointer"
-          style={{ padding: "0.25rem", height: "40px", width: "40px" }}
-          onClick={(e: React.MouseEvent<SVGElement>) => handleIconClick(e, invoice.id)}
-        />
-        <FaRegEye
-          className="text-blue-500 cursor-pointer bg-white rounded-full"
-          style={{ padding: "0.25rem", height: "40px", width: "40px" }}
-          onClick={() => handleImageClick(invoice.thumbnail)}
-        />
-      </div>
-    </div>
-  </div>
-))}
-
+                    <div
+                      key={invoice.id}
+                      className="relative group m-4" // Dodano margines dla lepszego oddzielenia miniatur
+                      style={{ width: "260px", height: "400px" }} // Precyzyjne wymiary kontenera
+                    >
+                      <img
+                        src={`data:image/jpeg;base64,${invoice.thumbnail}`}
+                        alt="Thumbnail"
+                        className="border-2 my-2 p-1 w-full h-full object-cover"
+                      />
+                      <div
+                        className="absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2"
+                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} // Lekkie przyciemnienie tła modala
+                      >
+                        {/* Kontener dla ikon, aby ułatwić centrowanie */}
+                        <div className="flex space-x-4">
+                          {" "}
+                          {/* Dodaje przestrzeń między ikonami */}
+                          <AiOutlineCloseCircle
+                            className="text-white bg-red-500 rounded-full cursor-pointer"
+                            style={{
+                              padding: "0.25rem",
+                              height: "40px",
+                              width: "40px",
+                            }}
+                            onClick={(e: React.MouseEvent<SVGElement>) =>
+                              handleIconClick(e, invoice.id)
+                            }
+                          />
+                          <FaRegEye
+                            className="text-blue-500 cursor-pointer bg-white rounded-full"
+                            style={{
+                              padding: "0.25rem",
+                              height: "40px",
+                              width: "40px",
+                            }}
+                            onClick={() => handleImageClick(invoice.thumbnail)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
               {!thumbView && (
@@ -167,6 +238,8 @@ const MthPage = () => {
                         <th className="px-4 py-2 text-start">Otrzymano od</th>
                         <th className="px-4 py-2 text-start">Data</th>
                         <th className="px-4 py-2 text-start">Podgląd</th>
+                        <th className="px-4 py-2 text-start">Usuń</th>
+
                       </tr>
                     </thead>
                     <tbody>
@@ -178,11 +251,20 @@ const MthPage = () => {
                           <td className=" px-4 py-2">
                             {new Date(invoice.date).toLocaleDateString()}
                           </td>
-                          <td className="py-2 text-xl">
+                          <td className="py-2 text-2xl">
                             <FaRegEye
                               className="text-blue-400 cursor-pointer mx-auto"
                               onClick={() =>
                                 handleImageClick(invoice.thumbnail)
+                              }
+                            />
+                            
+                          </td>
+                          <td className="py-2 text-2xl">
+                          <AiOutlineCloseCircle
+                              className="text-red-500 cursor-pointer mx-auto"
+                              onClick={(e: React.MouseEvent<SVGElement>) =>
+                                handleIconClick(e, invoice.id)
                               }
                             />
                           </td>
@@ -217,6 +299,34 @@ const MthPage = () => {
       <div className="flex flex-row justify-center my-16">
         <ReturnBtn route="/logged/documents" />
       </div>
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+          onClick={hideModal}
+        >
+          <div
+            className="bg-white p-4 rounded-lg"
+            onClick={(e) => e.stopPropagation()} // Zapobiega zamknięciu modalu po kliknięciu w jego treść
+          >
+            <h2 className="font-bold">Potwierdzenie</h2>
+            <p>Czy na pewno chcesz usunąć tę fakturę?</p>
+            <div className="flex justify-around mt-4">
+              <button
+                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700"
+                onClick={deleteInvoice}
+              >
+                Usuń
+              </button>
+              <button
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
+                onClick={hideModal}
+              >
+                Anuluj
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
