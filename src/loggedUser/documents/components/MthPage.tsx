@@ -103,38 +103,45 @@ const MthPage = () => {
         Authorization: `Bearer ${accessToken}`,
       },
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to delete invoice");
-        }
-        return response.json();
-      })
-      .then(() => {
-        toast.success("Faktura usunięta pomyślnie!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        loadInvoices(); 
-        hideModal(); // Zamyka modal
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        toast.error("Wystąpił problem podczas usuwania faktury.", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to delete invoice");
+      }
+      // Sprawdź, czy status to 204, jeśli tak, to pomiń przetwarzanie JSON
+      if (response.status === 204) {
+        return null; // Możesz zwrócić null lub odpowiednią wartość, która będzie sygnalizować brak treści
+      } else {
+        return response.json(); // Przetwarzaj jako JSON tylko, jeśli status nie jest 204
+      }
+    })
+    .then(() => {
+      toast.success("Faktura usunięta pomyślnie!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
+      
+      loadInvoices(); 
+      hideModal()
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      toast.error("Wystąpił problem podczas usuwania faktury.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
   };
+  
 
   const handleImageClick = (thumbnail: string) => {
     setSelectedImage(thumbnail);
