@@ -52,8 +52,8 @@ const NewUser = () => {
       numOfInvoices: Yup.string().required("Proszę wybrać ilość faktur"),
     }),
     onSubmit: (values) => {
-      console.log(values);
-      setShowPartTwo((prev) => !prev);
+      // console.log(values);
+      // setShowPartTwo((prev) => !prev);
 
       const apiUrl = "https://api.onebill.com.pl/api/register";
 
