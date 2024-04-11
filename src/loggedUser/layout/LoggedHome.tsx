@@ -7,7 +7,6 @@ import logoutbtn from "../../assets/iconsLogged/log-out.png";
 import logHis from "../../assets/iconsLogged/logHis.png";
 import logsettings from "../../assets/iconsLogged/logsettings.png";
 import scan from "../../assets/iconsLogged/scanMail.png";
-import bell from "../../assets/iconsLogged/bell.png";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { SettingsData } from "../Settings/components/AppSettings";
@@ -44,6 +43,7 @@ const LoggedHome = () => {
   const [settingData, setSettingData] = useState<SettingsData>();
   const [lastScan, setLastScan] = useState<string | undefined>("");
   const { setUserData, userData } = useUserData();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const homeLinks: HomeTile[] = [
     {
@@ -84,41 +84,52 @@ const LoggedHome = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
 
-    const fetchData = <T,>(
+    let isMounted = true;
+    setIsLoading(true);
+    
+    const fetchData = async <T,>(
       url: string,
       setData: React.Dispatch<React.SetStateAction<T | undefined>>
     ) => {
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          // Sprawdza, czy kod błędu to 401 (Unauthorized)
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+  
+        if (!response.ok) {
           if (response.status === 401) {
             throw new Error("Unauthorized - Logging out");
           }
           throw new Error("Network response was not ok.");
-        })
-        .then((data) => setData(data))
-        .catch((error) => {
-          console.error("Error:", error);
-          // Wylogowuje użytkownika w przypadku błędu uwierzytelnienia
-          if (error.message === "Unauthorized - Logging out") {
-            logout();
-          }
-        });
+        }
+  
+        const data = await response.json();
+        if (isMounted) setData(data);
+      } catch (error) {
+        const errorMessage = (error as Error).message;
+        console.error("Error:", error);
+        if (errorMessage === "Unauthorized - Logging out" && isMounted) {
+          logout();
+        }
+      }
     };
-
-    // Wywołanie fetch dla różnych URL-i
-    fetchData("https://api.onebill.com.pl/api/bookkeeper", setAccAdded);
-    fetchData("https://api.onebill.com.pl/api/user_data", setSettingData);
-    fetchData("https://api.onebill.com.pl/api/last_scan", setLastScan);
+  
+    Promise.all([
+      fetchData("https://api.onebill.com.pl/api/bookkeeper", setAccAdded),
+      fetchData("https://api.onebill.com.pl/api/user_data", setSettingData),
+      fetchData("https://api.onebill.com.pl/api/last_scan", setLastScan),
+    ]).finally(() => {
+      if (isMounted) setIsLoading(false); // End loading
+    });
+  
+    // Cleanup function to set isMounted flag to false when component unmounts
+    return () => {
+      isMounted = false;
+    };
   }, []);
   useEffect(() => {
     if (accAdded && settingData && lastScan) {
@@ -154,7 +165,14 @@ const LoggedHome = () => {
 
   return (
     <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
-      {accAdded ? (
+      {isLoading ? (
+      // Ikona ładowania
+      <img
+        className="w-20 h-20 animate-spin mt-32 mx-auto"
+        src="https://www.svgrepo.com/show/70469/loading.svg"
+        alt="Loading icon"
+      />
+    ) :accAdded && accAdded.length > 0 ? (
         <>
           <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:px-10 text-lg tracking-wider font-poppins">
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">

@@ -10,6 +10,7 @@ const ScanPeriod = () => {
   const [extractedState, setExtractedState] = useState("");
   const [loading, setLoading] = useState(false);
   const [nextStep, setNextStep] = useState(false);
+  
 
   const location = useLocation();
 
@@ -70,14 +71,14 @@ const ScanPeriod = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((data) => {
-        console.log(data);
-        if (extractedCode != "") {
-          handleShowCode();
-        } else {
-          console.log("scanning");
-        }
-      })
+      // .then((data) => {
+        // console.log(data);
+        // if (extractedCode != "") {
+        //   handleShowCode();
+        // } else {
+        //   console.log("scanning");
+        // }
+      // })
       .catch((error) => {
         console.error("Error:", error);
       })
@@ -171,6 +172,12 @@ const ScanPeriod = () => {
                   onClick={handleScan}
                 >
                   Skanuj
+                </button>
+                <button
+                  className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
+                  onClick={handleShowCode}
+                >
+                  Wyslij token Paweł 1488
                 </button>
               </>
             )}

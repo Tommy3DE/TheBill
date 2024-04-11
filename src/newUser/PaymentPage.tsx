@@ -1,6 +1,6 @@
 import { useState } from "react";
 import JSEncrypt from "jsencrypt";
-import Base64 from "js-base64";
+// import Base64 from "js-base64";
 import SlimNav from "../layout/SlimNav";
 
 const PaymentPage = () => {
@@ -28,6 +28,7 @@ const PaymentPage = () => {
     // Here, replace the console.log with your actual form submission logic,
     // such as using fetch() to send encrypted data to your server.
     console.log("Encrypted Data:", encrypted);
+    setLoading(false)
 
     // Reset form fields
     // setCardNumber('');

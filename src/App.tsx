@@ -36,6 +36,7 @@ import PageNotFound from "./layout/pages/PageNotFound";
 import { UserDataProvider } from "./context/UserDataContext";
 import PaymentPage from "./newUser/PaymentPage";
 
+
 function App() {
   return (
     <AuthProvider>

@@ -24,9 +24,11 @@ const MthPage = () => {
   const [invoices, setInvoices] = useState<InvoiceType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [thumbView, setThumbView] = useState<boolean>(false);
+  const [thumbView, setThumbView] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
+  const accessToken = localStorage.getItem("accessToken");
+
 
   const showModal = (invoiceId: number) => {
     setInvoiceToDelete(invoiceId);
@@ -62,7 +64,6 @@ const MthPage = () => {
   const { year, month } = interpretDate(date ?? "");
 
   const loadInvoices = () => {
-    const accessToken = localStorage.getItem("accessToken");
     const url = new URL("https://api.onebill.com.pl/api/invoice");
     url.searchParams.append("month", month);
     url.searchParams.append("year", year);
@@ -95,7 +96,6 @@ const MthPage = () => {
 
   const deleteInvoice = () => {
     if (!invoiceToDelete) return;
-    const accessToken = localStorage.getItem("accessToken");
     fetch(`https://api.onebill.com.pl/api/invoice/${invoiceToDelete}`, {
       method: "DELETE", 
       headers: {
@@ -107,11 +107,10 @@ const MthPage = () => {
       if (!response.ok) {
         throw new Error("Failed to delete invoice");
       }
-      // Sprawdź, czy status to 204, jeśli tak, to pomiń przetwarzanie JSON
       if (response.status === 204) {
-        return null; // Możesz zwrócić null lub odpowiednią wartość, która będzie sygnalizować brak treści
+        return null; 
       } else {
-        return response.json(); // Przetwarzaj jako JSON tylko, jeśli status nie jest 204
+        return response.json(); 
       }
     })
     .then(() => {
@@ -151,6 +150,20 @@ const MthPage = () => {
     setSelectedImage(null);
   };
 
+  const handleDownload = () => {
+    const url = new URL("https://api.onebill.com.pl/api/zip");
+    url.searchParams.append("month", month);
+
+    fetch(url.toString(), {
+      method: "GET", 
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      
+    })
+  }
+
   return (
     <div>
       <SlimNav />
@@ -175,15 +188,16 @@ const MthPage = () => {
           ) : (
             <>
               <div className="flex flex-row justify-center text-5xl">
-                <CiBoxList
-                  className={`p-2 ${
-                    !thumbView ? "bg-green-700 text-white" : ""
-                  }`}
-                  onClick={() => setThumbView((prev) => !prev)}
-                />
+                
                 <HiOutlineSquares2X2
                   className={`p-2 ${
                     thumbView ? "bg-green-700 text-white" : ""
+                  }`}
+                  onClick={() => setThumbView((prev) => !prev)}
+                />
+                <CiBoxList
+                  className={`p-2 ${
+                    !thumbView ? "bg-green-700 text-white" : ""
                   }`}
                   onClick={() => setThumbView((prev) => !prev)}
                 />
@@ -193,8 +207,8 @@ const MthPage = () => {
                   {invoices.map((invoice) => (
                     <div
                       key={invoice.id}
-                      className="relative group m-4" // Dodano margines dla lepszego oddzielenia miniatur
-                      style={{ width: "260px", height: "400px" }} // Precyzyjne wymiary kontenera
+                      className="relative group m-4"
+                      style={{ width: "260px", height: "400px" }} 
                     >
                       <img
                         src={`data:image/jpeg;base64,${invoice.thumbnail}`}
@@ -203,12 +217,10 @@ const MthPage = () => {
                       />
                       <div
                         className="absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2"
-                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} // Lekkie przyciemnienie tła modala
+                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} 
                       >
-                        {/* Kontener dla ikon, aby ułatwić centrowanie */}
+
                         <div className="flex space-x-4">
-                          {" "}
-                          {/* Dodaje przestrzeń między ikonami */}
                           <AiOutlineCloseCircle
                             className="text-white bg-red-500 rounded-full cursor-pointer"
                             style={{
@@ -305,6 +317,12 @@ const MthPage = () => {
       </div>
       <div className="flex flex-row justify-center my-16">
         <ReturnBtn route="/logged/documents" />
+        <button className="mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500">
+          Wyślij do Ksiegowego
+        </button>
+        <button className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500" onClick={handleDownload}>
+          Pobierz
+        </button>
       </div>
       {isModalOpen && (
         <div
@@ -313,7 +331,7 @@ const MthPage = () => {
         >
           <div
             className="bg-white p-4 rounded-lg"
-            onClick={(e) => e.stopPropagation()} // Zapobiega zamknięciu modalu po kliknięciu w jego treść
+            onClick={(e) => e.stopPropagation()} 
           >
             <h2 className="font-bold">Potwierdzenie</h2>
             <p>Czy na pewno chcesz usunąć tę fakturę?</p>
