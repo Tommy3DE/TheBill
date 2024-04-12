@@ -28,7 +28,7 @@ const MthPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
   const accessToken = localStorage.getItem("accessToken");
-
+  const [sendAccOpen, setSendAccOpen] = useState<boolean>(false);
 
   const showModal = (invoiceId: number) => {
     setInvoiceToDelete(invoiceId);
@@ -38,6 +38,10 @@ const MthPage = () => {
   const hideModal = () => {
     setIsModalOpen(false);
     setInvoiceToDelete(null);
+  };
+
+  const handleAccModal = () => {
+    setSendAccOpen((prev) => !prev);
   };
 
   const { date } = useParams<DateType>();
@@ -57,8 +61,6 @@ const MthPage = () => {
   ) => {
     e.stopPropagation();
     showModal(invoiceId);
-
-    console.log(`Icon for invoice ${invoiceId} clicked`);
   };
 
   const { year, month } = interpretDate(date ?? "");
@@ -97,50 +99,49 @@ const MthPage = () => {
   const deleteInvoice = () => {
     if (!invoiceToDelete) return;
     fetch(`https://api.onebill.com.pl/api/invoice/${invoiceToDelete}`, {
-      method: "DELETE", 
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
     })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to delete invoice");
-      }
-      if (response.status === 204) {
-        return null; 
-      } else {
-        return response.json(); 
-      }
-    })
-    .then(() => {
-      toast.success("Faktura usunięta pomyślnie!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete invoice");
+        }
+        if (response.status === 204) {
+          return null;
+        } else {
+          return response.json();
+        }
+      })
+      .then(() => {
+        toast.success("Faktura usunięta pomyślnie!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        loadInvoices();
+        hideModal();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Wystąpił problem podczas usuwania faktury.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
-      
-      loadInvoices(); 
-      hideModal()
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      toast.error("Wystąpił problem podczas usuwania faktury.", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    });
   };
-  
 
   const handleImageClick = (thumbnail: string) => {
     setSelectedImage(thumbnail);
@@ -155,14 +156,44 @@ const MthPage = () => {
     url.searchParams.append("month", month);
 
     fetch(url.toString(), {
-      method: "GET", 
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      
     })
-  }
+      .then((response) => {
+        if (response.ok) return response.blob();
+        throw new Error("Network response was not ok");
+      })
+      .then((blob) => {
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const downloadAnchorNode = document.createElement("a");
+        downloadAnchorNode.href = downloadUrl;
+        downloadAnchorNode.download = `faktury_${month}/${year}.zip`;
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+        window.URL.revokeObjectURL(downloadUrl);
+        toast.success("Pobieranie faktur powiodło się", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  };
+
+  const handleBookSend = () => {
+    const url = new URL("https://api.onebill.com.pl/api/zip");
+    url.searchParams.append("month", month);
+  };
 
   return (
     <div>
@@ -188,7 +219,6 @@ const MthPage = () => {
           ) : (
             <>
               <div className="flex flex-row justify-center text-5xl">
-                
                 <HiOutlineSquares2X2
                   className={`p-2 ${
                     thumbView ? "bg-green-700 text-white" : ""
@@ -208,7 +238,7 @@ const MthPage = () => {
                     <div
                       key={invoice.id}
                       className="relative group m-4"
-                      style={{ width: "260px", height: "400px" }} 
+                      style={{ width: "260px", height: "400px" }}
                     >
                       <img
                         src={`data:image/jpeg;base64,${invoice.thumbnail}`}
@@ -217,9 +247,8 @@ const MthPage = () => {
                       />
                       <div
                         className="absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2"
-                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} 
+                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                       >
-
                         <div className="flex space-x-4">
                           <AiOutlineCloseCircle
                             className="text-white bg-red-500 rounded-full cursor-pointer"
@@ -258,7 +287,6 @@ const MthPage = () => {
                         <th className="px-4 py-2 text-start">Data</th>
                         <th className="px-4 py-2 text-start">Podgląd</th>
                         <th className="px-4 py-2 text-start">Usuń</th>
-
                       </tr>
                     </thead>
                     <tbody>
@@ -277,10 +305,9 @@ const MthPage = () => {
                                 handleImageClick(invoice.thumbnail)
                               }
                             />
-                            
                           </td>
                           <td className="py-2 text-2xl">
-                          <AiOutlineCloseCircle
+                            <AiOutlineCloseCircle
                               className="text-red-500 cursor-pointer mx-auto"
                               onClick={(e: React.MouseEvent<SVGElement>) =>
                                 handleIconClick(e, invoice.id)
@@ -317,10 +344,16 @@ const MthPage = () => {
       </div>
       <div className="flex flex-row justify-center my-16">
         <ReturnBtn route="/logged/documents" />
-        <button className="mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500">
+        <button
+          className="mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500"
+          onClick={handleAccModal}
+        >
           Wyślij do Ksiegowego
         </button>
-        <button className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500" onClick={handleDownload}>
+        <button
+          className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
+          onClick={handleDownload}
+        >
           Pobierz
         </button>
       </div>
@@ -331,7 +364,7 @@ const MthPage = () => {
         >
           <div
             className="bg-white p-4 rounded-lg"
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <h2 className="font-bold">Potwierdzenie</h2>
             <p>Czy na pewno chcesz usunąć tę fakturę?</p>
@@ -345,6 +378,31 @@ const MthPage = () => {
               <button
                 className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
                 onClick={hideModal}
+              >
+                Anuluj
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {sendAccOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+          onClick={handleAccModal}
+        >
+          <div
+            className="bg-white p-4 rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="font-bold">Wybierz Księgowego</h2>
+            <p>Czy na pewno chcesz usunąć tę fakturę?</p>
+            <div className="flex justify-around mt-4">
+              <button className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700" onClick={handleBookSend}>
+                Wyślij
+              </button>
+              <button
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
+                onClick={handleAccModal}
               >
                 Anuluj
               </button>
