@@ -8,6 +8,7 @@ import { FaRegEye } from "react-icons/fa";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import ReturnBtn from "../../../components/ReturnBtn";
 import { toast } from "react-toastify";
+import { useUserData } from "../../../context/UserDataContext";
 
 type DateType = {
   date: string;
@@ -19,6 +20,11 @@ type InvoiceType = {
   sender: string;
   thumbnail: string;
 };
+export interface Bookkeeper {
+  id: number;
+  name: string;
+  email: string;
+}
 
 const MthPage = () => {
   const [invoices, setInvoices] = useState<InvoiceType[]>([]);
@@ -29,6 +35,9 @@ const MthPage = () => {
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
   const accessToken = localStorage.getItem("accessToken");
   const [sendAccOpen, setSendAccOpen] = useState<boolean>(false);
+  const [selectedBookkeeperId, setSelectedBookkeeperId] = useState<number | ''>('');
+  const [wantsZip, setWantsZip] = useState<boolean>(false)
+  const { userData } = useUserData();
 
   const showModal = (invoiceId: number) => {
     setInvoiceToDelete(invoiceId);
@@ -94,7 +103,7 @@ const MthPage = () => {
 
   useEffect(() => {
     loadInvoices();
-  }, [date]); // Dodaj tutaj zależności, jeśli są potrzebne
+  }, [date]); 
 
   const deleteInvoice = () => {
     if (!invoiceToDelete) return;
@@ -190,9 +199,19 @@ const MthPage = () => {
       });
   };
 
-  const handleBookSend = () => {
-    const url = new URL("https://api.onebill.com.pl/api/zip");
-    url.searchParams.append("month", month);
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedBookkeeperId(Number(e.target.value));
+  };
+
+  const handleBookSend = (bookkeeperId: number) => {
+    const url = "https://api.onebill.com.pl/api/send"
+    console.log(bookkeeperId)
+
+    const reqData = {
+      month: month,
+      bookkeeper: bookkeeperId,
+      zip: wantsZip
+    }
   };
 
   return (
@@ -386,29 +405,27 @@ const MthPage = () => {
         </div>
       )}
       {sendAccOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
-          onClick={handleAccModal}
-        >
-          <div
-            className="bg-white p-4 rounded-lg"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 className="font-bold">Wybierz Księgowego</h2>
-            <p>Czy na pewno chcesz usunąć tę fakturę?</p>
-            <div className="flex justify-around mt-4">
-              <button className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700" onClick={handleBookSend}>
-                Wyślij
-              </button>
-              <button
-                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
-                onClick={handleAccModal}
-              >
-                Anuluj
-              </button>
-            </div>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" onClick={handleAccModal}>
+        <div className="bg-white p-4 rounded-lg" onClick={(e) => e.stopPropagation()}>
+          <h2 className="font-bold">Wybierz Księgowego</h2>
+          <select value={selectedBookkeeperId} onChange={handleSelectChange} className="mb-4 p-2 border border-gray-300 rounded">
+  <option value="">Wybierz księgowego...</option>
+  {userData?.bookkeepers.map((bookkeeper: Bookkeeper) => (
+    <option key={bookkeeper.id} value={bookkeeper.id}>
+      {bookkeeper.email}
+    </option>
+  ))}
+</select>
+          <div className="flex justify-around mt-4">
+          <button className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700" onClick={() => handleBookSend(selectedBookkeeperId as number)}>
+              Wyślij
+            </button>
+            <button className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700" onClick={handleAccModal}>
+              Anuluj
+            </button>
           </div>
         </div>
+      </div>
       )}
     </div>
   );
