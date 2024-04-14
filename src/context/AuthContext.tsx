@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
   
   const scheduleTokenRefresh = () => {
-    const refreshTime = 1 * 60 * 1000; 
+    const refreshTime = 5 * 60 * 1000; 
     setTimeout(refreshAccessToken, refreshTime);
   };
 

@@ -35,8 +35,10 @@ const MthPage = () => {
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
   const accessToken = localStorage.getItem("accessToken");
   const [sendAccOpen, setSendAccOpen] = useState<boolean>(false);
-  const [selectedBookkeeperId, setSelectedBookkeeperId] = useState<number | ''>('');
-  const [wantsZip, setWantsZip] = useState<boolean>(false)
+  const [selectedBookkeeperId, setSelectedBookkeeperId] = useState<number | "">(
+    ""
+  );
+  const [wantsZip, setWantsZip] = useState<boolean>(false);
   const { userData } = useUserData();
 
   const showModal = (invoiceId: number) => {
@@ -103,7 +105,7 @@ const MthPage = () => {
 
   useEffect(() => {
     loadInvoices();
-  }, [date]); 
+  }, []);
 
   const deleteInvoice = () => {
     if (!invoiceToDelete) return;
@@ -203,17 +205,44 @@ const MthPage = () => {
     setSelectedBookkeeperId(Number(e.target.value));
   };
 
-  const handleBookSend = (bookkeeperId: number) => {
-    const url = "https://api.onebill.com.pl/api/send"
-    console.log(bookkeeperId)
+  const handleCheckboxChange = () => {
+    setWantsZip((prev) => !prev);
+  };
 
+  const handleBookSend = (bookkeeperId: number) => {
+    const url = "https://api.onebill.com.pl/api/send";
+    // const numericMth = Number(month);
     const reqData = {
       month: month,
       bookkeeper: bookkeeperId,
-      zip: wantsZip
-    }
+      zip: wantsZip,
+    };
+    // console.log(reqData);
+    https://mail.google.com/mail/u/0/#drafts?compose=${draft_id}
+  
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(reqData)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();  // Zmienione z response.json() na response.text(), ponieważ oczekujemy ciągu tekstowego
+    })
+    .then(draftId => {
+      console.log('Success:', draftId);
+      const draftUrl = `https://mail.google.com/mail/u/0/#drafts?compose=${draftId}`;
+      window.open(draftUrl, '_blank');
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   };
-
   return (
     <div>
       <SlimNav />
@@ -389,13 +418,13 @@ const MthPage = () => {
             <p>Czy na pewno chcesz usunąć tę fakturę?</p>
             <div className="flex justify-around mt-4">
               <button
-                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700"
+                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 text-xl"
                 onClick={deleteInvoice}
               >
                 Usuń
               </button>
               <button
-                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700"
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 text-xl"
                 onClick={hideModal}
               >
                 Anuluj
@@ -405,27 +434,54 @@ const MthPage = () => {
         </div>
       )}
       {sendAccOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center" onClick={handleAccModal}>
-        <div className="bg-white p-4 rounded-lg" onClick={(e) => e.stopPropagation()}>
-          <h2 className="font-bold">Wybierz Księgowego</h2>
-          <select value={selectedBookkeeperId} onChange={handleSelectChange} className="mb-4 p-2 border border-gray-300 rounded">
-  <option value="">Wybierz księgowego...</option>
-  {userData?.bookkeepers.map((bookkeeper: Bookkeeper) => (
-    <option key={bookkeeper.id} value={bookkeeper.id}>
-      {bookkeeper.email}
-    </option>
-  ))}
-</select>
-          <div className="flex justify-around mt-4">
-          <button className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700" onClick={() => handleBookSend(selectedBookkeeperId as number)}>
-              Wyślij
-            </button>
-            <button className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700" onClick={handleAccModal}>
-              Anuluj
-            </button>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+          onClick={handleAccModal}
+        >
+          <div
+            className="bg-white p-4 rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="font-bold text-2xl">Wybierz Księgowego</h2>
+            <select
+              value={selectedBookkeeperId}
+              onChange={handleSelectChange}
+              className="my-4 p-2 border border-gray-300 w-full rounded"
+            >
+              <option value="">Wybierz księgowego...</option>
+              {userData?.bookkeepers.map((bookkeeper: Bookkeeper) => (
+                <option key={bookkeeper.id} value={bookkeeper.id}>
+                  {bookkeeper.email}
+                </option>
+              ))}
+            </select>
+            <div style={{ visibility: 'visible', opacity: 1 }} className="flex flex-row items-center justify-center">
+            <input
+                type="checkbox"
+                checked={wantsZip}
+                onChange={handleCheckboxChange}
+                id="zip"
+                className="h-4 w-4"
+              />
+              <label htmlFor="zip" className="ml-2">Spakować faktury w zip?</label>
+              
+            </div>
+            <div className="flex justify-around mt-4">
+              <button
+                className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 text-xl"
+                onClick={() => handleBookSend(selectedBookkeeperId as number)}
+              >
+                Wyślij
+              </button>
+              <button
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 text-xl"
+                onClick={handleAccModal}
+              >
+                Anuluj
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       )}
     </div>
   );
