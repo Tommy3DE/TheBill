@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import invoice from "../../assets/iconsLogged/invoice.png";
-import sync from "../../assets/iconsLogged/sync.png";
+import card from "../../assets/settings/card.png";
 // import scan from "../../assets/iconsLogged/scan.png";
 // import seller from "../../assets/iconsLogged/seller.png";
 import logoutbtn from "../../assets/iconsLogged/log-out.png";
@@ -72,9 +72,9 @@ const LoggedHome = () => {
     },
     {
       id: 5,
-      name: "Synchronizuj skrzynkę",
+      name: "Subskrypcja",
       linkTo: "/logged/syncMail",
-      icon: sync,
+      icon: card,
     },
     { id: 6, name: "Wyloguj", action: logout, icon: logoutbtn },
 
