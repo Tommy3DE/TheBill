@@ -39,7 +39,7 @@ const NewUser = () => {
       login: Yup.string()
         .email("Podaj poprawny adres email")
         .required("Email jest wymagany"),
-      pass: Yup.string().required("Hasło jest wymagane"),
+      pass: Yup.string().min(7, "Hasło musi zawierać co najmniej 7 znaków").required("Hasło jest wymagane"),
       pass2: Yup.string()
         .oneOf([Yup.ref("pass")], "Hasła muszą się zgadzać")
         .required("Potwierdzenie jest wymagane"),
@@ -532,9 +532,11 @@ const NewUser = () => {
                       Akceptuję regulamin płatności
                     </span>
                   </p>
-                  <Link to="/newUser/paymentPage">
+                  {/* <Link to="/newUser/paymentPage"> */}
+                  <Link to='/login'>
                     <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
-                      Zamawiam i płacę
+                      {/* Zamawiam i płacę */}
+                      Przejdź do logowania
                     </button>
                   </Link>
                   <Footer />
