@@ -87,9 +87,9 @@ const ScanPeriod = () => {
       });
   };
 
-  const handleShowCode = () => {
+  useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-
+    if(tokenBody.code != ''){
     fetch("https://api.onebill.com.pl/api/token_redirect", {
       method: "POST",
       headers: {
@@ -97,8 +97,8 @@ const ScanPeriod = () => {
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(tokenBody),
-    });
-  };
+    })}
+  },[]);
 
   function extractCodeFromUrlUsingRegex(url: string): string | null {
     const regex = /code=([^&]*)/;
@@ -173,12 +173,12 @@ const ScanPeriod = () => {
                 >
                   Skanuj
                 </button>
-                <button
+                {/* <button
                   className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
                   onClick={handleShowCode}
                 >
                   Wyslij token
-                </button>
+                </button> */}
               </>
             )}
             {nextStep && (
