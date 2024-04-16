@@ -213,7 +213,7 @@ const LoggedHome = () => {
             {homeLinks.map((link) => (
               <div
                 key={link.id}
-                className=" h-80 w-72 lg:mx-1 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center hover:scale-105 hover:bg-green-200 "
+                className=" h-80 lg:w-72 w-full lg:mx-1 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center hover:scale-105 hover:bg-green-200 "
               >
                 {link.action ? (
                   <div
