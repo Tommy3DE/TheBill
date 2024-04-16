@@ -18,12 +18,13 @@ import point from '../../../assets/securityAssets/info.png'
 
 const DiagonalLines = () => {
   return (
-    <div className="lg:relative w-32 h-32 mx-12 lg:mt-6">
-      <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 -rotate-45"></div>
-      <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 rotate-45"></div>
-    </div>
+      <div className="lg:relative w-32 h-32 mx-12 mt-6 lg:flex hidden">
+          <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 -rotate-45"></div>
+          <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 rotate-45"></div>
+      </div>
   );
 };
+
 
 const SecurityInfo = () => {
   return (

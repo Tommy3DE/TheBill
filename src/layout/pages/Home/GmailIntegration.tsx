@@ -1,14 +1,15 @@
 import logo from "../../../assets/logo.png";
 import gmail from "../../../assets/gmail.png";
 const GmailIntegration = () => {
-    const DiagonalLines = () => {
-        return (
-          <div className="lg:relative w-32 h-32 mx-12 mt-6 ">
+  const DiagonalLines = () => {
+    return (
+        <div className="lg:relative w-32 h-32 mx-12 mt-6 lg:flex hidden">
             <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 -rotate-45"></div>
             <div className="absolute w-full h-1 bg-green-700 transform -translate-y-1/2 top-1/2 rotate-45"></div>
-          </div>
-        );
-      };
+        </div>
+    );
+};
+
   return (
     <div className="mx-[8%] border-b-2 border-t-2 border-green-700  py-10">
       <div className="flex flex-row justify-center">
