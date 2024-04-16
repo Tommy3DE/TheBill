@@ -11,6 +11,7 @@ const ScanPeriod = () => {
   const [loading, setLoading] = useState(false);
   const [nextStep, setNextStep] = useState(false);
   
+  // const accessToken = localStorage.getItem("accessToken");
 
   const location = useLocation();
 
@@ -40,65 +41,121 @@ const ScanPeriod = () => {
     }
   }, [location.search]);
 
-  const handleScan = () => {
+  // const handleScan = () => {
+  //   setLoading(true);
+    
+  //   fetch("https://api.onebill.com.pl/api/scan", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${accessToken}`,
+  //     },
+  //     body: JSON.stringify(requestBody),
+  //   })
+  //     .then(async (response) => {
+  //       if (response.ok) {
+  //         setNextStep(true);
+  //         return response.json();
+  //       } else if (response.status === 425) {
+  //         let url = await response.text();
+  //         url = url.replace(/^"|"$/g, "");
+  //         url = decodeURIComponent(url);
+
+  //         const newWindow = window.open(url, "_blank");
+  //         if (newWindow) {
+  //           newWindow.focus();
+  //         } else {
+  //           console.error("Nie udało się otworzyć nowego okna");
+  //         }
+  //         throw new Error(`Network response was Too Early. URL: ${url}`);
+  //       }
+  //       throw new Error("Network response was not ok.");
+  //     })
+  //     // .then((data) => {
+  //       // console.log(data);
+  //       // if (extractedCode != "") {
+  //       //   handleShowCode();
+  //       // } else {
+  //       //   console.log("scanning");
+  //       // }
+  //     // })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // };
+  // const handletoken = () => {if(tokenBody.code != ''){
+  //   fetch("https://api.onebill.com.pl/api/token_redirect", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${accessToken}`,
+  //     },
+  //     body: JSON.stringify(tokenBody),
+  //   })}}
+
+  const handleCombinedScan = async () => {
     setLoading(true);
-    const accessToken = localStorage.getItem("accessToken");
-
-    fetch("https://api.onebill.com.pl/api/scan", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then(async (response) => {
-        if (response.ok) {
-          setNextStep(true);
-          return response.json();
-        } else if (response.status === 425) {
-          let url = await response.text();
-          url = url.replace(/^"|"$/g, "");
-          url = decodeURIComponent(url);
-
-          const newWindow = window.open(url, "_blank");
-          if (newWindow) {
-            newWindow.focus();
-          } else {
-            console.error("Nie udało się otworzyć nowego okna");
-          }
-          throw new Error(`Network response was Too Early. URL: ${url}`);
-        }
-        throw new Error("Network response was not ok.");
-      })
-      // .then((data) => {
-        // console.log(data);
-        // if (extractedCode != "") {
-        //   handleShowCode();
-        // } else {
-        //   console.log("scanning");
-        // }
-      // })
-      .catch((error) => {
-        console.error("Error:", error);
-      })
-      .finally(() => {
-        setLoading(false);
+  
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) throw new Error("Access token not found.");
+  
+      // First, handle the token redirect if the condition is met
+      if (tokenBody.code !== '') {
+        const tokenResponse = await fetch("https://api.onebill.com.pl/api/token_redirect", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify(tokenBody),
+        });
+  
+        if (!tokenResponse.ok) throw new Error("Failed to handle token redirect.");
+        // You may need to handle the response data from tokenResponse if needed
+      }
+  
+      // Then, proceed to handle the scan
+      const scanResponse = await fetch("https://api.onebill.com.pl/api/scan", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(requestBody),
       });
+  
+      if (scanResponse.ok) {
+        setNextStep(true);
+        const data = await scanResponse.json();
+        console.log(data)
+        // Additional logic to handle data from scan
+      } else if (scanResponse.status === 425) {
+        let url = await scanResponse.text();
+        url = url.replace(/^"|"$/g, "");
+        url = decodeURIComponent(url);
+  
+        const newWindow = window.open(url, "_blank");
+        if (newWindow) {
+          newWindow.focus();
+        } else {
+          console.error("Nie udało się otworzyć nowego okna");
+        }
+        throw new Error(`Network response was Too Early. URL: ${url}`);
+      } else {
+        throw new Error("Network response was not ok.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+  
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if(tokenBody.code != ''){
-    fetch("https://api.onebill.com.pl/api/token_redirect", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(tokenBody),
-    })}
-  },[]);
 
   function extractCodeFromUrlUsingRegex(url: string): string | null {
     const regex = /code=([^&]*)/;
@@ -169,13 +226,13 @@ const ScanPeriod = () => {
               <>
                 <button
                   className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
-                  onClick={handleScan}
+                  onClick={handleCombinedScan}
                 >
                   Skanuj
                 </button>
                 {/* <button
                   className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
-                  onClick={handleShowCode}
+                  onClick={handletoken}
                 >
                   Wyslij token
                 </button> */}
