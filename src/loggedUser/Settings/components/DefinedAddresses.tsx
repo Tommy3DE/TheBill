@@ -47,7 +47,7 @@ const DefinedAddresses = () => {
           Możesz dodać tutaj adres e-mail swojego biura księgowego...
         </div>
         <h1 className="text-3xl font-bold mx-[5%] my-10">Moje biuro księgowe</h1>
-        <div className="mx-[5%] h-24 border-2 rounded-lg border-black">
+        <div className="mx-[5%] h-auto border-2 rounded-lg border-black">
           <ul className="flex justify-around lg:text-2xl font-bold flex-row list-none w-full border-b-4 border-green-700">
             <li className="text-center border-r-4 border-green-700 w-1/4">Nazwa</li>
             <li className="text-center border-r-4 border-green-700 w-1/4">E-mail</li>
