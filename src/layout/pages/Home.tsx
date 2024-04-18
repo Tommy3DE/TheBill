@@ -10,22 +10,29 @@ import AddBenefits from "./Home/AddBenefits";
 import PolishEnt from "./Home/PolishEnt";
 import FiveSteps from "./Home/FiveSteps";
 import SecurityInfo from "./Home/SecurityInfo";
+import FadeInWhenVisible from "../../components/FadeInWhenVisible";
 
 const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="mx-auto max-w-[1980px] ">
-        <Hero />
+      <div className="mx-auto max-w-[1980px]">
+        <FadeInWhenVisible>
+          <Hero />
+        </FadeInWhenVisible>
         <BasicInfo />
         <GmailIntegration />
-        <SecurityInfo/>
-        <ThreeRecInfo/>
-        <AddBenefits/>
+        <SecurityInfo />
+        <FadeInWhenVisible>
+          <ThreeRecInfo />
+        </FadeInWhenVisible>
+        <AddBenefits />
         <ShortPricing />
-        <PolishEnt/>
+        <PolishEnt />
         <FiveSteps />
-        <FeedbackForm />
+        <FadeInWhenVisible>
+          <FeedbackForm />
+        </FadeInWhenVisible>
         <Footer />
       </div>
     </>
