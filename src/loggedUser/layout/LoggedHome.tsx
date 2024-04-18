@@ -40,6 +40,19 @@ interface UserData {
 }
 
 const tileVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50  // Przesunięcie początkowe w dół
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 70,
+      damping: 10
+    }
+  },
   hover: {
     scale: 1.1,
     transition: { type: 'spring', stiffness: 300 },
@@ -228,7 +241,7 @@ const LoggedHome = () => {
               key={link.id}
               whileHover="hover"
               whileTap="tap"
-              className="h-80 lg:w-72 w-full lg:mx-1 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center cursor-pointer"
+              className="h-80 lg:w-72 w-full lg:mx-3 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center cursor-pointer"
               variants={tileVariants}
             >
                 {link.action ? (

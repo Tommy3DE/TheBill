@@ -20,7 +20,6 @@ const ONas = lazy(() => import("./layout/pages/Stopka/ONas"));
 const PolitykaPryw = lazy(() => import("./layout/pages/Stopka/PolitykaPryw"));
 const Regulamin = lazy(() => import("./layout/pages/Stopka/Regulamin"));
 const PageNotFound = lazy(() => import("./layout/pages/PageNotFound"));
-const BlogArticle = lazy(() => import("./layout/pages/Blog"));
 const ScanEmail = lazy(() => import("./loggedUser/ScanEmail/ScanEmail"));
 // const SyncMail = lazy(() => import("./loggedUser/syncMail/SyncMail"));
 const ScanPeriod = lazy(() => import("./loggedUser/ScanEmail/ScanPeriod"));
