@@ -146,9 +146,12 @@ const ScanPeriod = () => {
         }
         throw new Error(`Network response was Too Early. URL: ${url}`);
       } else {
+        setLoading(false)
         throw new Error("Network response was not ok.");
+        
       }
     } catch (error) {
+      setLoading(false)
       console.error("Error:", error);
     } finally {
       setLoading(false);

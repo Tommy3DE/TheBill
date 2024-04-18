@@ -13,6 +13,7 @@ import { useUserData } from "../../../context/UserDataContext";
 type DateType = {
   date: string;
 };
+
 type InvoiceType = {
   date: string;
   id: number;
@@ -20,6 +21,7 @@ type InvoiceType = {
   sender: string;
   thumbnail: string;
 };
+
 export interface Bookkeeper {
   id: number;
   name: string;
@@ -390,10 +392,10 @@ const MthPage = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-row justify-center my-16">
+      <div className="flex lg:flex-row justify-center my-16 flex-col">
         <ReturnBtn route="/logged/documents" />
         <button
-          className="mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500"
+          className="mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500 lg:my-0 my-5"
           onClick={handleAccModal}
         >
           Wyślij do Ksiegowego
