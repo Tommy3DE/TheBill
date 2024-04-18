@@ -20,7 +20,9 @@ const Home = () => {
         <FadeInWhenVisible>
           <Hero />
         </FadeInWhenVisible>
+        <FadeInWhenVisible>
         <BasicInfo />
+        </FadeInWhenVisible>
         <GmailIntegration />
         <SecurityInfo />
         <FadeInWhenVisible>

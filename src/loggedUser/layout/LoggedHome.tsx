@@ -12,6 +12,8 @@ import { useEffect, useState } from "react";
 import { SettingsData } from "../Settings/components/AppSettings";
 import { useUserData } from "../../context/UserDataContext";
 import NewUserHome from "./NewUserHome";
+import { motion } from 'framer-motion';
+
 
 type HomeTile = {
   id: number;
@@ -36,6 +38,17 @@ interface UserData {
   lastScan: string;
   bookkeepers: Bookkeeper[];
 }
+
+const tileVariants = {
+  hover: {
+    scale: 1.1,
+    transition: { type: 'spring', stiffness: 300 },
+    backgroundColor: "#BCFEDA"  // Przykładowy kolor tła po najechaniu
+  },
+  tap: {
+    scale: 0.9
+  }
+};
 
 const LoggedHome = () => {
   const { logout } = useAuth();
@@ -211,10 +224,13 @@ const LoggedHome = () => {
           </div>
           <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
             {homeLinks.map((link) => (
-              <div
-                key={link.id}
-                className=" h-80 lg:w-72 w-full lg:mx-1 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center hover:scale-105 hover:bg-green-200 "
-              >
+              <motion.div
+              key={link.id}
+              whileHover="hover"
+              whileTap="tap"
+              className="h-80 lg:w-72 w-full lg:mx-1 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center cursor-pointer"
+              variants={tileVariants}
+            >
                 {link.action ? (
                   <div
                     onClick={link.action}
@@ -257,7 +273,7 @@ const LoggedHome = () => {
                     <span className="mt-8">{link.name}</span>
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </>
