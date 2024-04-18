@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
+import FadeInWhenVisible from "../../components/FadeInWhenVisible";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -46,6 +47,7 @@ const Login = () => {
   return (
     <section className="h-screen">
       <Navbar />
+      <FadeInWhenVisible>
       <div className="mt-32 flex flex-col w-full items-center text-2xl mx-auto max-w-[1980px]">
         <form
           onSubmit={handleLogin}
@@ -78,6 +80,7 @@ const Login = () => {
           </button>
         </form>
       </div>
+      </FadeInWhenVisible>
     </section>
   );
 };

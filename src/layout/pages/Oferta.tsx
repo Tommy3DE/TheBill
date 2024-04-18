@@ -1,3 +1,4 @@
+import FadeInWhenVisible from "../../components/FadeInWhenVisible";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
 import BiuroRachOffer from "./Oferta/BiuroRachOffer";
@@ -14,6 +15,7 @@ const Oferta = () => {
     <>
       <Navbar />
       <div className="mx-auto max-w-[1980px] ">
+        <FadeInWhenVisible>
         <TestMac />
         <Usage />
         <EasyBanner />
@@ -23,6 +25,7 @@ const Oferta = () => {
         <Movie/>
         <BiuroRachOffer/>
         <Footer />
+        </FadeInWhenVisible>
       </div>
     </>
   );

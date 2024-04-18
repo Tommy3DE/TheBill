@@ -8,6 +8,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import Footer from "../layout/Footer";
+import FadeInWhenVisible from "../components/FadeInWhenVisible";
 
 interface FormValues {
   login: string;
@@ -137,6 +138,7 @@ const NewUser = () => {
   return (
     <>
       <SlimNav />
+      <FadeInWhenVisible>
       <div className="mx-auto max-w-[1980px]">
         {changePlan && (
           <div className="h-screen w-full bg-gray-300 bg-opacity-80 fixed top-0 left-0 flex flex-row justify-center">
@@ -546,6 +548,7 @@ const NewUser = () => {
           </section>
         )}
       </div>
+      </FadeInWhenVisible>
     </>
   );
 };

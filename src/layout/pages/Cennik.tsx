@@ -5,6 +5,7 @@ import PricingOptions from "./Cennik/PricingOptions";
 import Footer from "../Footer";
 import FreeTrial from "./Cennik/FreeTrial";
 import CennikFAQ from "./Cennik/CennikFAQ";
+import FadeInWhenVisible from "../../components/FadeInWhenVisible";
 
 const Cennik = () => {
   const [yearly, setYearly] = useState<boolean>(false);
@@ -13,11 +14,13 @@ const Cennik = () => {
     <>
       <Navbar />
       <div className="mx-auto max-w-[1980px] ">
+        <FadeInWhenVisible>
         <PricingIntro setYearly={setYearly} yearly={yearly} />
         <PricingOptions yearly={yearly} />
         <FreeTrial/>
         <CennikFAQ/>
         <Footer />
+        </FadeInWhenVisible>
       </div>
     </>
   );
