@@ -506,7 +506,7 @@ const NewUser = () => {
                           className="px-4 py-2  rounded-lg text-2xl hover:scale-95 bg-green-300"
                           onClick={() => handlePlanChange(selectedPlan.id)}
                         >
-                          Zmien Plan
+                          Zmień Plan
                         </button>
                       </div>
                     </div>

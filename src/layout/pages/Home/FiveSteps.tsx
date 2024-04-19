@@ -19,7 +19,7 @@ const steps: StepTile[] = [
         id: 1,
         pic: s1,
         title: <>W pierwszym kroku | <span className='text-[#34D399]'>Załóż konto</span></>,
-        text: 'Zostaniesz poproszony o podstawowe informacje takie jak imię, nazwisko, e-mail, NIP oraz informację ile faktur miesięczne procesujesz.'
+        text: 'Zostaniesz poproszony o podstawowe informacje takie jak imię, nazwisko, e-mail, NIP oraz informację ile faktur miesięczne otrzymujesz.'
     },
     {
         id: 2,

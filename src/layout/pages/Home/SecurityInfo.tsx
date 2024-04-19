@@ -158,7 +158,7 @@ const SecurityInfo = () => {
           <div className="text-xl flex mb-5 items-center ">
             <img src={point} alt="point" />
             <h3 className="ml-5">
-              <span className="font-bold underline">Nie czyta</span>,treści wiadomości e-mail.
+              <span className="font-bold underline">Nie czyta</span>, treści wiadomości e-mail.
             </h3>
           </div>
           <div className="text-xl flex mb-5 items-center ">

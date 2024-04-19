@@ -57,12 +57,12 @@ const NewUserHome = () => {
         <>
           <img src={sync} alt="sync" className="mb-10 h-32" />
           <p className="text-3xl font-bold tracking-wider font-poppins">
-            Witaj! Zacznimy od połączenia Twojej skrzynki mailowej z kontem{" "}
+            Witaj! Zacznijmy od połączenia Twojej skrzynki mailowej z kontem{" "}
             <span className="text-[#1A9367]">OneBill</span>
           </p>
           <p className="my-8 text-xl text-gray-500">
             Dzięki temu będziesz mógł skanować swoją skrzynkę w poszukiwaniu
-            faktur.
+            faktur
           </p>
           <button
             className="bg-[#1A9367] text-white py-3 px-3 font-bold font-playFair rounded-xl"
