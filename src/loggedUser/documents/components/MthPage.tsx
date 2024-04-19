@@ -36,6 +36,7 @@ const MthPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
   const accessToken = localStorage.getItem("accessToken");
+  const [addModal, setAddModal] = useState<boolean>(false);
   const [sendAccOpen, setSendAccOpen] = useState<boolean>(false);
   const [selectedBookkeeperId, setSelectedBookkeeperId] = useState<number | "">(
     ""
@@ -55,6 +56,10 @@ const MthPage = () => {
 
   const handleAccModal = () => {
     setSendAccOpen((prev) => !prev);
+  };
+
+  const handleAddDocModal = () => {
+    setAddModal((prev) => !prev);
   };
 
   const { date } = useParams<DateType>();
@@ -220,31 +225,45 @@ const MthPage = () => {
       zip: wantsZip,
     };
     // console.log(reqData);
-    https://mail.google.com/mail/u/0/#drafts?compose=${draft_id}
-  
-    fetch(url, {
+    //mail.google.com/mail/u/0/#drafts?compose=${draft_id}
+
+    https: fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify(reqData)
+      body: JSON.stringify(reqData),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.text();  // Zmienione z response.json() na response.text(), ponieważ oczekujemy ciągu tekstowego
-    })
-    .then(draftId => {
-      console.log('Success:', draftId);
-      const draftUrl = `https://mail.google.com/mail/u/0/#drafts?compose=${draftId}`;
-      window.open(draftUrl, '_blank');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text(); // Zmienione z response.json() na response.text(), ponieważ oczekujemy ciągu tekstowego
+      })
+      .then((draftId) => {
+        console.log("Success:", draftId);
+        const draftUrl = `https://mail.google.com/mail/u/0/#drafts?compose=${draftId}`;
+        window.open(draftUrl, "_blank");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
+
+  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (loadEvent: ProgressEvent<FileReader>) => {
+        const base64 = loadEvent.target?.result;
+        console.log(base64);
+
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div>
       <SlimNav />
@@ -395,10 +414,16 @@ const MthPage = () => {
       <div className="flex lg:flex-row justify-center my-16 flex-col">
         <ReturnBtn route="/logged/documents" />
         <button
-          className="mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500 lg:my-0 my-5"
+          className="lg:mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500 lg:my-0 my-5"
           onClick={handleAccModal}
         >
           Wyślij do Ksiegowego
+        </button>
+        <button
+          className="lg:mr-5 uppercase font-playFair text-3xl font-black text-white bg-green-400 px-10 py-4 rounded-2xl hover:bg-green-500 lg:my-0 my-5"
+          onClick={handleAddDocModal}
+        >
+          Dodaj dokument
         </button>
         <button
           className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
@@ -457,16 +482,20 @@ const MthPage = () => {
                 </option>
               ))}
             </select>
-            <div style={{ visibility: 'visible', opacity: 1 }} className="flex flex-row items-center justify-center">
-            <input
+            <div
+              style={{ visibility: "visible", opacity: 1 }}
+              className="flex flex-row items-center justify-center"
+            >
+              <input
                 type="checkbox"
                 checked={wantsZip}
                 onChange={handleCheckboxChange}
                 id="zip"
                 className="h-4 w-4"
               />
-              <label htmlFor="zip" className="ml-2">Spakować faktury w zip?</label>
-              
+              <label htmlFor="zip" className="ml-2">
+                Spakować faktury w zip?
+              </label>
             </div>
             <div className="flex justify-around mt-4">
               <button
@@ -478,6 +507,50 @@ const MthPage = () => {
               <button
                 className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 text-xl"
                 onClick={handleAccModal}
+              >
+                Anuluj
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {addModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+          onClick={handleAddDocModal}
+        >
+          <div
+            className="bg-white p-4 rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="font-bold text-2xl">
+              Wybierz fakturę którą chcesz dodać
+            </h2>
+            <div className="mx-auto my-5 ">
+              <input
+                type="file"
+                id="fileInput"
+                accept=".pdf,.jpg,.jpeg"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
+              <label
+                htmlFor="fileInput"
+                className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 cursor-pointer text-xl hover:scale-105"
+              >
+                +
+              </label>
+            </div>
+            <div className="flex justify-around mt-4">
+              <button
+                className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 text-xl"
+                onClick={() => console.log("ping")}
+              >
+                Wyślij
+              </button>
+              <button
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 text-xl"
+                onClick={handleAddDocModal}
               >
                 Anuluj
               </button>

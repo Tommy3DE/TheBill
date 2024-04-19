@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Day1Dir from "./loggedUser/documents/components/Day1Dir";
 import MthPage from "./loggedUser/documents/components/MthPage";
+import ResetPassPage from "./layout/pages/ResetPassPage";
 
 const Home = lazy(() => import("./layout/pages/Home"));
 const Cennik = lazy(() => import("./layout/pages/Cennik"));
@@ -60,6 +61,7 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path='/resetPass/:token' element={<ResetPassPage/>} />
               <Route path="/cennik" element={<Cennik />} />
               <Route path="/newUser" element={<NewUser />} />
               <Route path="/funkcje" element={<Oferta />} />

@@ -22,19 +22,11 @@ const PaymentPage = () => {
     const cd = `${cardNumberClean}|${expiryClean}|${cvcClean}|${document.location.origin}`;
 
     const encrypt = new JSEncrypt();
-    encrypt.setPublicKey(pubkey); // Use the pubkey directly without decoding
+    encrypt.setPublicKey(pubkey); 
     const encrypted = encrypt.encrypt(cd);
 
-    // Here, replace the console.log with your actual form submission logic,
-    // such as using fetch() to send encrypted data to your server.
     console.log("Encrypted Data:", encrypted);
     setLoading(false)
-
-    // Reset form fields
-    // setCardNumber('');
-    // setExpiryInput('');
-    // setCvcInput('');
-    // setLoading(false);
   };
 
   return (
