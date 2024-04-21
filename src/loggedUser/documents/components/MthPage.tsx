@@ -407,24 +407,27 @@ const MthPage = () => {
       </div>
       <div className="flex lg:flex-row justify-center my-16 flex-col">
         <ReturnBtn route="/logged/documents" />
+        {invoices.length > 0 && 
         <button
-          className="lg:mx-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500 lg:my-0 my-5"
+          className="lg:ml-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500 lg:my-0 my-5"
           onClick={handleAccModal}
         >
           Wyślij do Ksiegowego
         </button>
+        }
         <button
-          className="lg:mr-5 uppercase font-playFair text-3xl font-black text-white bg-green-400 px-10 py-4 rounded-2xl hover:bg-green-500 lg:my-0 my-5"
+          className="lg:mx-5 uppercase font-playFair text-3xl font-black text-white bg-green-400 px-10 py-4 rounded-2xl hover:bg-green-500 lg:my-0 my-5"
           onClick={handleAddDocModal}
         >
           Dodaj dokument
         </button>
-        <button
+        {invoices.length > 0 && <button
           className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
           onClick={handleDownload}
         >
           Pobierz
         </button>
+}
       </div>
       {isModalOpen && (
         <div
