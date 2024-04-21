@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SlimNav from "../../../layout/SlimNav";
 import { useEffect, useState } from "react";
 import { CiBoxList } from "react-icons/ci";
@@ -39,6 +39,8 @@ const MthPage = () => {
   const [addModal, setAddModal] = useState<boolean>(false);
   const [sendAccOpen, setSendAccOpen] = useState<boolean>(false);
   const [wantsZip, setWantsZip] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
   const { userData } = useUserData();
 
   const showModal = (invoiceId: number) => {
@@ -56,6 +58,7 @@ const MthPage = () => {
   };
 
   const handleAddDocModal = () => {
+    setFile(null);
     setAddModal((prev) => !prev);
   };
 
@@ -205,7 +208,6 @@ const MthPage = () => {
       });
   };
 
-
   const handleCheckboxChange = () => {
     setWantsZip((prev) => !prev);
   };
@@ -221,7 +223,7 @@ const MthPage = () => {
     // console.log(reqData);
     //mail.google.com/mail/u/0/#drafts?compose=${draft_id}
 
-    https: fetch(url, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -245,24 +247,88 @@ const MthPage = () => {
       });
   };
 
-  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    const file = event.target.files?.[0];
-    if (file) {
+  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (
+    event
+  ) => {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
       const reader = new FileReader();
-      reader.onload = (loadEvent: ProgressEvent<FileReader>) => {
-        const base64 = loadEvent.target?.result;
-        console.log(base64);
 
+      reader.onload = (loadEvent: ProgressEvent<FileReader>) => {
+        const base64String = loadEvent.target?.result;
+        if (base64String !== undefined) {
+          setBase64(base64String);
+        }
       };
-      reader.readAsDataURL(file);
+
+      reader.readAsDataURL(selectedFile);
+      setFile(selectedFile);
     }
+  };
+
+  const handleInvSend = () => {
+    const url = "https://api.onebill.com.pl/api/invoice";
+    const today = new Date();
+    const formattedDate = today.toISOString();
+    const reqData = {
+      month: month,
+      year: year,
+      name: file?.name,
+      invoice: base64,
+      sender: userData?.email,
+      date: formattedDate,
+    };
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(reqData),
+    }).then(response => {
+      if (response.ok) {
+        toast.success("Dodawanie faktury powiodło się", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        loadInvoices()
+      } else {
+        toast.error("Wystąpił błąd przy dodawaniu faktury", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+  })
+  .catch(error => {
+    console.error(error)
+      // Obsługa innych błędów sieciowych
+      toast.error("Problem sieciowy przy wysyłaniu faktury", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+  });
   };
 
   return (
     <div>
       <SlimNav />
       <div className="mx-auto max-w-[1980px] ">
-        <div className=" mt-[10%]">
+        <div className=" lg:mt-[10%] mt-[25%]">
           <h2 className="text-3xl font-poppins font-bold text-center mb-[8%]">
             Faktury z miesiąca:{" "}
             <span className="font-normal">
@@ -407,27 +473,36 @@ const MthPage = () => {
       </div>
       <div className="flex lg:flex-row justify-center my-16 flex-col">
         <ReturnBtn route="/logged/documents" />
-        {invoices.length > 0 && 
-        <button
-          className="lg:ml-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500 lg:my-0 my-5"
-          onClick={handleAccModal}
-        >
-          Wyślij do Ksiegowego
-        </button>
-        }
+        {invoices.length > 0 && (
+          <button
+            className="lg:ml-5 uppercase font-playFair text-3xl font-black text-white bg-yellow-400 px-10 py-4 rounded-2xl hover:bg-yellow-500 lg:my-0 my-5"
+            onClick={handleAccModal}
+          >
+            Wyślij do Ksiegowego
+          </button>
+        )}
         <button
           className="lg:mx-5 uppercase font-playFair text-3xl font-black text-white bg-green-400 px-10 py-4 rounded-2xl hover:bg-green-500 lg:my-0 my-5"
           onClick={handleAddDocModal}
         >
           Dodaj dokument
         </button>
-        {invoices.length > 0 && <button
-          className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
-          onClick={handleDownload}
-        >
-          Pobierz
-        </button>
-}
+        {invoices.length > 0 && (
+          <button
+            className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
+            onClick={handleDownload}
+          >
+            Pobierz
+          </button>
+        )}
+        
+          {(invoices.length === 0 && !isLoading) && <Link to='/logged/scanMail/scanPeriod'>
+            <button
+            className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
+          >
+            Skanuj miesiąc
+          </button>
+          </Link>}
       </div>
       {isModalOpen && (
         <div
@@ -466,7 +541,7 @@ const MthPage = () => {
             className="bg-white p-4 rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="font-bold text-3xl">Wybierz Księgowego</h2>
+            <h2 className="font-bold text-3xl">Wyślij do biura księgowego</h2>
             <div
               style={{ visibility: "visible", opacity: 1 }}
               className="flex flex-row items-center justify-center my-5"
@@ -511,25 +586,32 @@ const MthPage = () => {
             <h2 className="font-bold text-3xl">
               Wybierz fakturę którą chcesz dodać
             </h2>
-            <div className="mx-auto my-5 ">
-              <input
-                type="file"
-                id="fileInput"
-                accept=".pdf,.jpg,.jpeg"
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-              />
-              <label
-                htmlFor="fileInput"
-                className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 cursor-pointer text-xl hover:scale-105"
-              >
-                +
-              </label>
-            </div>
+
+            {file ? (
+              <div className="text-xl text-black text-center my-5">
+                {file.name}
+              </div>
+            ) : (
+              <div className="flex justify-center items-center my-5 ">
+                <input
+                  type="file"
+                  id="fileInput"
+                  accept=".pdf,.jpg,.jpeg"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
+                <label
+                  htmlFor="fileInput"
+                  className="bg-green-600 text-white py-2 px-4 rounded-xl hover:bg-green-700 cursor-pointer text-3xl hover:scale-105"
+                >
+                  +
+                </label>
+              </div>
+            )}
             <div className="flex justify-around mt-4">
               <button
                 className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 text-xl"
-                onClick={() => console.log("ping")}
+                onClick={handleInvSend}
               >
                 Wyślij
               </button>

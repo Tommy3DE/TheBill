@@ -135,21 +135,14 @@ const ScanPeriod = () => {
         // Additional logic to handle data from scan
       } else if (scanResponse.status === 425) {
         let url = await scanResponse.text();
-        url = url.replace(/^"|"$/g, "");
-        url = decodeURIComponent(url);
-  
-        const newWindow = window.open(url, "_blank");
-        if (newWindow) {
-          newWindow.focus();
+    url = url.replace(/^"|"$/g, "");
+    url = decodeURIComponent(url);
+
+    // Otwieranie URL w tym samym oknie
+    window.location.href = url;
         } else {
-          console.error("Nie udało się otworzyć nowego okna");
+          setLoading(false)
         }
-        throw new Error(`Network response was Too Early. URL: ${url}`);
-      } else {
-        setLoading(false)
-        throw new Error("Network response was not ok.");
-        
-      }
     } catch (error) {
       setLoading(false)
       console.error("Error:", error);
