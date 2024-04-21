@@ -38,9 +38,6 @@ const MthPage = () => {
   const accessToken = localStorage.getItem("accessToken");
   const [addModal, setAddModal] = useState<boolean>(false);
   const [sendAccOpen, setSendAccOpen] = useState<boolean>(false);
-  const [selectedBookkeeperId, setSelectedBookkeeperId] = useState<number | "">(
-    ""
-  );
   const [wantsZip, setWantsZip] = useState<boolean>(false);
   const { userData } = useUserData();
 
@@ -208,20 +205,17 @@ const MthPage = () => {
       });
   };
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedBookkeeperId(Number(e.target.value));
-  };
 
   const handleCheckboxChange = () => {
     setWantsZip((prev) => !prev);
   };
 
-  const handleBookSend = (bookkeeperId: number) => {
+  const handleBookSend = () => {
     const url = "https://api.onebill.com.pl/api/send";
     // const numericMth = Number(month);
     const reqData = {
       month: month,
-      bookkeeper: bookkeeperId,
+      bookkeeper: 1,
       zip: wantsZip,
     };
     // console.log(reqData);
@@ -469,22 +463,10 @@ const MthPage = () => {
             className="bg-white p-4 rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="font-bold text-2xl">Wybierz Księgowego</h2>
-            <select
-              value={selectedBookkeeperId}
-              onChange={handleSelectChange}
-              className="my-4 p-2 border border-gray-300 w-full rounded"
-            >
-              <option value="">Wybierz księgowego...</option>
-              {userData?.bookkeepers.map((bookkeeper: Bookkeeper) => (
-                <option key={bookkeeper.id} value={bookkeeper.id}>
-                  {bookkeeper.email}
-                </option>
-              ))}
-            </select>
+            <h2 className="font-bold text-3xl">Wybierz Księgowego</h2>
             <div
               style={{ visibility: "visible", opacity: 1 }}
-              className="flex flex-row items-center justify-center"
+              className="flex flex-row items-center justify-center my-5"
             >
               <input
                 type="checkbox"
@@ -493,14 +475,14 @@ const MthPage = () => {
                 id="zip"
                 className="h-4 w-4"
               />
-              <label htmlFor="zip" className="ml-2">
+              <label htmlFor="zip" className="ml-2 text-xl">
                 Spakować faktury w zip?
               </label>
             </div>
             <div className="flex justify-around mt-4">
               <button
                 className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 text-xl"
-                onClick={() => handleBookSend(selectedBookkeeperId as number)}
+                onClick={() => handleBookSend}
               >
                 Wyślij
               </button>
@@ -523,7 +505,7 @@ const MthPage = () => {
             className="bg-white p-4 rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="font-bold text-2xl">
+            <h2 className="font-bold text-3xl">
               Wybierz fakturę którą chcesz dodać
             </h2>
             <div className="mx-auto my-5 ">
