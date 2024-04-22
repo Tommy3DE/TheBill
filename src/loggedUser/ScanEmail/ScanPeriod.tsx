@@ -130,8 +130,8 @@ const ScanPeriod = () => {
   
       if (scanResponse.ok) {
         setNextStep(true);
-        const data = await scanResponse.json();
-        console.log(data)
+        // const data = await scanResponse.json();
+        // console.log(data)
         // Additional logic to handle data from scan
       } else if (scanResponse.status === 425) {
         let url = await scanResponse.text();

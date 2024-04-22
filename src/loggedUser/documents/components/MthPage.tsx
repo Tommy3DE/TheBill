@@ -43,6 +43,8 @@ const MthPage = () => {
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
   const { userData } = useUserData();
 
+  // console.log(userData)
+
   const showModal = (invoiceId: number) => {
     setInvoiceToDelete(invoiceId);
     setIsModalOpen(true);
@@ -263,8 +265,12 @@ const MthPage = () => {
 
       reader.readAsDataURL(selectedFile);
       setFile(selectedFile);
-    }
+      console.log(base64)    }
   };
+
+  console.log(base64)
+
+
 
   const handleInvSend = () => {
     const url = "https://api.onebill.com.pl/api/invoice";
@@ -275,7 +281,7 @@ const MthPage = () => {
       year: year,
       name: file?.name,
       invoice: base64,
-      sender: userData?.email,
+      sender: 'Dodano ręcznie',
       date: formattedDate,
     };
     fetch(url, {
