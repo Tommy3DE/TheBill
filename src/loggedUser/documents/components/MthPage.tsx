@@ -8,7 +8,7 @@ import { FaRegEye } from "react-icons/fa";
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import ReturnBtn from "../../../components/ReturnBtn";
 import { toast } from "react-toastify";
-import { useUserData } from "../../../context/UserDataContext";
+// import { useUserData } from "../../../context/UserDataContext";
 
 type DateType = {
   date: string;
@@ -41,7 +41,7 @@ const MthPage = () => {
   const [wantsZip, setWantsZip] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
-  const { userData } = useUserData();
+  // const { userData } = useUserData();
 
   // console.log(userData)
 
@@ -265,10 +265,11 @@ const MthPage = () => {
 
       reader.readAsDataURL(selectedFile);
       setFile(selectedFile);
-      console.log(base64)    }
+      // console.log(base64)    
+    }
   };
 
-  console.log(base64)
+  // console.log(base64)
 
 
 

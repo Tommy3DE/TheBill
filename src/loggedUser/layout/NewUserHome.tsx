@@ -5,12 +5,14 @@ import calendar from "../../assets/calendar.png";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { useAuth } from "../../context/AuthContext";
 
 
 const NewUserHome = () => {
   const [step, setStep] = useState<number>(0);
   const [name, setName] = useState<string>("");
   const [mail, setMail] = useState<string>("");
+  const { logout } = useAuth();
 
 
   const handleNextStep = () => setStep((prev) => prev + 1);
@@ -65,11 +67,14 @@ const NewUserHome = () => {
             faktur
           </p>
           <button
-            className="bg-[#1A9367] text-white py-3 px-3 font-bold font-playFair rounded-xl"
+            className="bg-[#1A9367] text-white py-3 px-3 font-bold font-playFair rounded-xl hover:scale-105"
             onClick={handleNextStep}
           >
             + DODAJ SKRZYNKĘ
           </button>{" "}
+          <button className="mt-16 bg-red-400 text-white rounded-xl p-3 font-playFair text-lg hover:scale-105 uppercase font-bold" onClick={logout}>
+            Wyloguj
+          </button>
         </>
       )}
       {step === 1 && (
