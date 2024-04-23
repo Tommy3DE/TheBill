@@ -220,12 +220,12 @@ const LoggedHome = () => {
               <p>-</p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
-              <p>Pozostało skanowań:</p>
+              <p>Ilość skanowań:</p>
               <p>
                 {settingData
-                  ? settingData.package === "standard"
-                    ? "1"
-                    : "∞"
+                  ? settingData.package === "Standard"
+                    ? "3"
+                    : (settingData.package === 'Premium' ? '5' : (settingData.package === 'Biznes' ? "∞" : null))
                   : "-"}
               </p>
             </div>
