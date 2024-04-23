@@ -19,6 +19,7 @@ interface FormValues {
   NIP: number | undefined;
   industry: string;
   numOfInvoices?: string;
+  invoice: boolean
 }
 
 const NewUser = () => {
@@ -35,6 +36,7 @@ const NewUser = () => {
       NIP: undefined,
       industry: "",
       numOfInvoices: "",
+      invoice: false
     },
     validationSchema: Yup.object().shape({
       login: Yup.string()
@@ -51,6 +53,7 @@ const NewUser = () => {
         .required("NIP jest wymagany"),
       industry: Yup.string().required("Branża jest wymagana"),
       numOfInvoices: Yup.string().required("Proszę wybrać ilość faktur"),
+      invoice: Yup.boolean()
     }),
     onSubmit: (values) => {
       // console.log(values);
@@ -68,6 +71,7 @@ const NewUser = () => {
         max_invoices: values.numOfInvoices,
         org_size: "JDG",
         package: "Premium",
+        invoice: values.invoice
       };
 
       fetch(apiUrl, {
@@ -388,6 +392,20 @@ const NewUser = () => {
                     component="div"
                     className="text-sm text-red-600"
                   />
+                </div>
+                <div className="mb-6 w-full flex flex-col items-center">
+                <label htmlFor="invoice" className="flex items-center cursor-pointer">
+    <input
+      id="invoice"
+      name="invoice"
+      type="checkbox"
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      checked={formik.values.invoice}
+      className="form-checkbox h-8 w-8 text-indigo-500 transition duration-150 ease-in-out"
+    />
+    <span className="ml-2 text-gray-700">Chcę otrzymać fakturę</span>
+  </label>
                 </div>
 
                 <button
