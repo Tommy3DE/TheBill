@@ -3,11 +3,50 @@ import SlimNav from "../../layout/SlimNav";
 import ReturnBtn from "../../components/ReturnBtn";
 import mail from "../../assets/iconsLogged/email.png";
 import { useUserData } from "../../context/UserDataContext";
+import { useEffect, useState } from "react";
+
+interface UserData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  nip: string;
+  package: string;
+  lastScan: string;
+  bookkeepers: Bookkeeper[];
+}
+
+interface Bookkeeper {
+  id: number;
+  name: string;
+  email: string;
+}
 
 const ScanEmail = () => {
   const { userData } = useUserData();
-  // console.log(userData);
+  const [data, setData] = useState<UserData>()
+  const accessToken = localStorage.getItem("accessToken");
 
+
+  useEffect(() => {
+      fetch("https://api.onebill.com.pl/api/user_data",
+      {
+        method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      })
+    },[])
+
+    
   return (
     <section>
       <SlimNav />
@@ -24,7 +63,7 @@ const ScanEmail = () => {
             <div className="bg-white flex flex-row justify-center items-center rounded-3xl px-4 py-2">
               <img src={mail} alt="mail" />
               <h1 className="text-2xl font-black ml-2">
-                {userData ? userData?.email : null}
+                {userData ? userData?.email : data?.email}
               </h1>
             </div>
             <div className="bg-white flex flex-col justify-between items-center rounded-3xl px-4 py-2 mt-5 text-small">
