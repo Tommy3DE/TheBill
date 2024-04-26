@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { CiBoxList } from "react-icons/ci";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
+import { GrDocumentPdf } from "react-icons/gr";
+import { GrDocumentZip } from "react-icons/gr";
+import locked from '../../../assets/locked 1.png'
+
 
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import ReturnBtn from "../../../components/ReturnBtn";
@@ -89,7 +93,7 @@ const MthPage = () => {
     const url = new URL("https://api.onebill.com.pl/api/invoice");
     url.searchParams.append("month", month);
     url.searchParams.append("year", year);
-
+    setIsLoading(true)
     fetch(url.toString(), {
       method: "GET",
       headers: {
@@ -109,6 +113,16 @@ const MthPage = () => {
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
+        setIsLoading(false)
+        toast.error("Błąd podczas pobierania faktur", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
       });
   };
 
@@ -145,9 +159,10 @@ const MthPage = () => {
           draggable: true,
           progress: undefined,
         });
-
-        loadInvoices();
+        
         hideModal();
+        loadInvoices();
+      
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -304,6 +319,7 @@ const MthPage = () => {
           progress: undefined,
         });
         loadInvoices()
+        handleAddDocModal()
       } else {
         toast.error("Wystąpił błąd przy dodawaniu faktury", {
           position: "top-right",
@@ -377,12 +393,12 @@ const MthPage = () => {
                       style={{ width: "260px", height: "400px" }}
                     >
                       <img
-                        src={`data:image/jpeg;base64,${invoice.thumbnail}`}
+                        src={`${invoice.thumbnail.length > 0 ? `data:image/jpeg;base64,${invoice.thumbnail}` : locked} `}
                         alt="Thumbnail"
-                        className="border-2 my-2 p-1 w-full h-full object-cover"
+                        className={`border-2 my-2 p-1 w-full ${invoice.thumbnail.length > 0 ? 'h-full object-cover': ''}`}
                       />
                       <div
-                        className="absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2"
+                        className={`absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 ${invoice.thumbnail.length > 0 ? '-mb-2' : 'mb-32'} `}
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                       >
                         <div className="flex space-x-4">
@@ -551,18 +567,21 @@ const MthPage = () => {
             <h2 className="font-bold text-3xl">Wyślij do biura księgowego</h2>
             <div
               style={{ visibility: "visible", opacity: 1 }}
-              className="flex flex-row items-center justify-center my-5"
+              className="my-5"
             >
-              <input
+              {/* <input
                 type="checkbox"
                 checked={wantsZip}
                 onChange={handleCheckboxChange}
                 id="zip"
                 className="h-4 w-4"
-              />
-              <label htmlFor="zip" className="ml-2 text-xl">
-                Spakować faktury w zip?
-              </label>
+              /> */}
+                <p className="text-xl my-2">Wybierz format w jakim chcesz wysłać pliki:</p>
+
+              <div className="ml-2 text-5xl flex flex-row justify-evenly my-5 ">
+              <GrDocumentPdf onClick={handleCheckboxChange} className={`${!wantsZip ? 'scale-110 text-green-700' : 'scale-90 text-gray-400'} cursor-pointer`}/>    
+              <GrDocumentZip onClick={handleCheckboxChange} className={`${wantsZip ? 'scale-110 text-green-700' : 'scale-90 text-gray-400'} cursor-pointer`}/>
+          </div>
             </div>
             <div className="flex justify-around mt-4">
               <button

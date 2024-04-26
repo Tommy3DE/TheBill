@@ -59,18 +59,17 @@ const NewUserHome = () => {
         <>
           <img src={sync} alt="sync" className="mb-10 h-32" />
           <p className="text-3xl font-bold tracking-wider font-poppins">
-            Witaj! Zacznijmy od połączenia Twojej skrzynki mailowej z kontem{" "}
+            Witaj! Dziekujemy że wybrałeś{" "}
             <span className="text-[#1A9367]">OneBill</span>
           </p>
           <p className="my-8 text-xl text-gray-500">
-            Dzięki temu będziesz mógł skanować swoją skrzynkę w poszukiwaniu
-            faktur
+          Skonfiguruj swoje konto aby automatycznie pobierać faktury ze swojej skrzynki mailowej.
           </p>
           <button
             className="bg-[#1A9367] text-white py-3 px-3 font-bold font-playFair rounded-xl hover:scale-105"
             onClick={handleNextStep}
           >
-            + DODAJ SKRZYNKĘ
+            Dalej
           </button>{" "}
           <button className="mt-16 bg-red-400 text-white rounded-xl p-3 font-playFair text-lg hover:scale-105 uppercase font-bold" onClick={logout}>
             Wyloguj
@@ -111,7 +110,7 @@ const NewUserHome = () => {
         <div className="flex flex-col justify-center items-center">
           <img src={calendar} alt="calendar" className="mb-10 h-32" />
           <p className="text-3xl font-bold tracking-wider font-poppins">
-            Przejdź do skanowania{" "}
+          Przejdź do panelu “skanuj e-mail” {" "}
           </p>
           <Link to='/logged/scanMail'>
             <button className="p-4 rounded-full bg-green-500 mt-8 hover:scale-105 text-white text-3xl">

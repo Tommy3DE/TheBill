@@ -2,7 +2,7 @@ import { ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import SlimNav from "../layout/SlimNav";
 
-import {  useState } from "react";
+import { useState } from "react";
 import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
 import { HiOutlineEnvelope } from "react-icons/hi2";
@@ -396,18 +396,17 @@ const NewUser = () => {
                       htmlFor="invoice"
                       className="flex items-center cursor-pointer"
                     >
-<input
-  id="invoice"
-  name="wants_invoice" // Ensure the name matches the Formik state
-  type="checkbox"
-  onChange={formik.handleChange}
-  checked={formik.values.wants_invoice}
-  className="form-checkbox h-8 w-8 text-indigo-500 transition duration-150 ease-in-out"
-/>
-<span className="ml-2 text-gray-700">
-  Chcę otrzymać fakturę
-</span>
-
+                      <input
+                        id="invoice"
+                        name="wants_invoice" // Ensure the name matches the Formik state
+                        type="checkbox"
+                        onChange={formik.handleChange}
+                        checked={formik.values.wants_invoice}
+                        className="form-checkbox h-8 w-8 text-indigo-500 transition duration-150 ease-in-out"
+                      />
+                      <span className="ml-2 text-gray-700">
+                        Chcę otrzymać fakturę
+                      </span>
                     </label>
                   </div>
 
