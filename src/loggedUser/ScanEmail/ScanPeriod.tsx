@@ -6,6 +6,7 @@ import { InvoiceType } from "../documents/components/MthPage";
 import locked from "../../assets/locked 1.png";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
@@ -19,8 +20,15 @@ const ScanPeriod = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
 
+  const accessToken = localStorage.getItem("accessToken");
+
+
   const handleImageClick = (thumbnail: string) => {
     setSelectedImage(thumbnail);
+  };
+  const hideModal = () => {
+    setIsModalOpen(false);
+    setInvoiceToDelete(null);
   };
 
   const handleCloseModal = () => {
@@ -30,6 +38,56 @@ const ScanPeriod = () => {
   const showModal = (invoiceId: number) => {
     setInvoiceToDelete(invoiceId);
     setIsModalOpen(true);
+  };
+
+  const deleteInvoice = () => {
+    if (!invoiceToDelete) return;
+    fetch(`https://api.onebill.com.pl/api/invoice/${invoiceToDelete}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete invoice");
+        }
+        if (response.status === 204) {
+          return null;
+        } else {
+          return response.json();
+        }
+      })
+      .then(() => {
+        setInvoices((prevInvoices) =>
+        prevInvoices.filter((invoice) => invoice.id !== invoiceToDelete)
+      );
+        toast.success("Faktura usunięta pomyślnie!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        
+        hideModal();
+      
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Wystąpił problem podczas usuwania faktury.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   const handleIconClick = (
@@ -72,7 +130,6 @@ const ScanPeriod = () => {
     setLoading(true);
 
     try {
-      const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) throw new Error("Access token not found.");
 
       // First, handle the token redirect if the condition is met
@@ -262,12 +319,12 @@ const ScanPeriod = () => {
                   <option value={12}>Grudzień</option>
                 </select>
               </div>
-              <button
+              {selectedPeriod !== '' && <button
                 className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
                 onClick={handleCombinedScan}
               >
                 Skanuj
-              </button>
+              </button>}
             </div>
           )
         ) : (
@@ -280,6 +337,34 @@ const ScanPeriod = () => {
           </div>
         )}
       </div>
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+          onClick={hideModal}
+        >
+          <div
+            className="bg-white p-4 rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="font-bold text-3xl">Potwierdzenie</h2>
+            <p className='my-5 text-lg'>Czy na pewno chcesz usunąć tę fakturę?</p>
+            <div className="flex justify-around mt-4">
+              <button
+                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 text-xl"
+                onClick={deleteInvoice}
+              >
+                Usuń
+              </button>
+              <button
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700 text-xl"
+                onClick={hideModal}
+              >
+                Anuluj
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
