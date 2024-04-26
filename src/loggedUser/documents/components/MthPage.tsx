@@ -18,7 +18,7 @@ type DateType = {
   date: string;
 };
 
-type InvoiceType = {
+export type InvoiceType = {
   date: string;
   id: number;
   name: string;
