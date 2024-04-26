@@ -3,8 +3,9 @@ import SlimNav from "../../layout/SlimNav";
 import { useLocation } from "react-router-dom";
 import { useUserData } from "../../context/UserDataContext";
 import { InvoiceType } from "../documents/components/MthPage";
-import locked from '../../assets/locked 1.png'
-
+import locked from "../../assets/locked 1.png";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { FaRegEye } from "react-icons/fa";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
@@ -14,8 +15,30 @@ const ScanPeriod = () => {
   const [loading, setLoading] = useState(false);
   const [nextStep, setNextStep] = useState(false);
   const [invoices, setInvoices] = useState<InvoiceType[]>([]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
 
-  // const accessToken = localStorage.getItem("accessToken");
+  const handleImageClick = (thumbnail: string) => {
+    setSelectedImage(thumbnail);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+  };
+
+  const showModal = (invoiceId: number) => {
+    setInvoiceToDelete(invoiceId);
+    setIsModalOpen(true);
+  };
+
+  const handleIconClick = (
+    e: React.MouseEvent<SVGElement>,
+    invoiceId: number
+  ) => {
+    e.stopPropagation();
+    showModal(invoiceId);
+  };
 
   const location = useLocation();
 
@@ -44,61 +67,6 @@ const ScanPeriod = () => {
       setExtractedState(urlState);
     }
   }, [location.search]);
-
-  // const handleScan = () => {
-  //   setLoading(true);
-
-  //   fetch("https://api.onebill.com.pl/api/scan", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //     body: JSON.stringify(requestBody),
-  //   })
-  //     .then(async (response) => {
-  //       if (response.ok) {
-  //         setNextStep(true);
-  //         return response.json();
-  //       } else if (response.status === 425) {
-  //         let url = await response.text();
-  //         url = url.replace(/^"|"$/g, "");
-  //         url = decodeURIComponent(url);
-
-  //         const newWindow = window.open(url, "_blank");
-  //         if (newWindow) {
-  //           newWindow.focus();
-  //         } else {
-  //           console.error("Nie udało się otworzyć nowego okna");
-  //         }
-  //         throw new Error(`Network response was Too Early. URL: ${url}`);
-  //       }
-  //       throw new Error("Network response was not ok.");
-  //     })
-  //     // .then((data) => {
-  //       // console.log(data);
-  //       // if (extractedCode != "") {
-  //       //   handleShowCode();
-  //       // } else {
-  //       //   console.log("scanning");
-  //       // }
-  //     // })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // };
-  // const handletoken = () => {if(tokenBody.code != ''){
-  //   fetch("https://api.onebill.com.pl/api/token_redirect", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${accessToken}`,
-  //     },
-  //     body: JSON.stringify(tokenBody),
-  //   })}}
 
   const handleCombinedScan = async () => {
     setLoading(true);
@@ -138,8 +106,8 @@ const ScanPeriod = () => {
 
       if (scanResponse.ok) {
         const data = await scanResponse.json();
-      setInvoices(data);  // Update state with the fetched data
-      setNextStep(true);
+        setInvoices(data); // Update state with the fetched data
+        setNextStep(true);
         // Additional logic to handle data from scan
       } else if (scanResponse.status === 425) {
         let url = await scanResponse.text();
@@ -175,52 +143,76 @@ const ScanPeriod = () => {
     <section className=" font-poppins">
       <SlimNav />
       <div className="mx-auto max-w-[1980px] ">
+      {selectedImage && (
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10"
+              onClick={handleCloseModal}
+            >
+              <img
+                src={`data:image/jpeg;base64,${selectedImage}`}
+                alt="Enlarged thumbnail"
+                className="max-w-3/4 max-h-3/4"
+                style={{
+                  width: "auto",
+                  height: "auto",
+                  maxWidth: "75%",
+                  maxHeight: "75%",
+                }}
+              />
+            </div>
+          )}
         {!loading ? (
           nextStep ? (
-            <div className="h-screen w-full flex justify-center items-center">
-
-{invoices.map((invoice) => (
-                    <div
-                      key={invoice.id}
-                      className="relative group m-4"
-                      style={{ width: "260px", height: "400px" }}
-                    >
-                      <img
-                        src={`${invoice.thumbnail.length > 0 ? `data:image/jpeg;base64,${invoice.thumbnail}` : locked} `}
-                        alt="Thumbnail"
-                        className={`border-2 my-2 p-1 w-full ${invoice.thumbnail.length > 0 ? 'h-full object-cover': ''}`}
+            <div className=" lg:mt-[7%] mt-[25%] flex flex-row flex-wrap justify-center items-center ">
+              {invoices.map((invoice) => (
+                <div
+                  key={invoice.id}
+                  className="relative group m-4"
+                  style={{ width: "260px", height: "400px" }}
+                >
+                  <img
+                    src={`${
+                      invoice.thumbnail.length > 0
+                        ? `data:image/jpeg;base64,${invoice.thumbnail}`
+                        : locked
+                    } `}
+                    alt="Thumbnail"
+                    className={`border-2 my-2 p-1 w-full ${
+                      invoice.thumbnail.length > 0 ? "h-full object-cover" : ""
+                    }`}
+                  />
+                  <div
+                    className={`absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 ${
+                      invoice.thumbnail.length > 0 ? "-mb-2" : "mb-32"
+                    } `}
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+                  >
+                    <div className="flex space-x-4">
+                      <AiOutlineCloseCircle
+                        className="text-white bg-red-500 rounded-full cursor-pointer"
+                        style={{
+                          padding: "0.25rem",
+                          height: "40px",
+                          width: "40px",
+                        }}
+                        onClick={(e: React.MouseEvent<SVGElement>) =>
+                          handleIconClick(e, invoice.id)
+                        }
                       />
-                      <div
-                        className={`absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 ${invoice.thumbnail.length > 0 ? '-mb-2' : 'mb-32'} `}
-                        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-                      >
-                        {/* <div className="flex space-x-4">
-                          <AiOutlineCloseCircle
-                            className="text-white bg-red-500 rounded-full cursor-pointer"
-                            style={{
-                              padding: "0.25rem",
-                              height: "40px",
-                              width: "40px",
-                            }}
-                            onClick={(e: React.MouseEvent<SVGElement>) =>
-                              handleIconClick(e, invoice.id)
-                            }
-                          />
-                          <FaRegEye
-                            className="text-blue-500 cursor-pointer bg-white rounded-full"
-                            style={{
-                              padding: "0.25rem",
-                              height: "40px",
-                              width: "40px",
-                            }}
-                            onClick={() => handleImageClick(invoice.thumbnail)}
-                          />
-                        </div> */}
-                      </div>
+                      <FaRegEye
+                        className="text-blue-500 cursor-pointer bg-white rounded-full"
+                        style={{
+                          padding: "0.25rem",
+                          height: "40px",
+                          width: "40px",
+                        }}
+                        onClick={() => handleImageClick(invoice.thumbnail)}
+                      />
                     </div>
-                  ))}
+                  </div>
+                </div>
+              ))}
             </div>
-            
           ) : (
             <div className="mt-36 lg:mx-[10%] mx-[2%] flex flex-col justifty-center items-center">
               <h1 className="text-4xl font-black">
