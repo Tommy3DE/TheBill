@@ -7,6 +7,7 @@ import logoutbtn from "../../assets/iconsLogged/log-out.png";
 import logHis from "../../assets/iconsLogged/logHis.png";
 import logsettings from "../../assets/iconsLogged/logsettings.png";
 import scan from "../../assets/iconsLogged/scanMail.png";
+import automate from '../../assets/iconsLogged/automate.png'
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { SettingsData } from "../Settings/components/AppSettings";
@@ -39,7 +40,7 @@ interface UserData {
   bookkeepers: Bookkeeper[];
 }
 
-const tileVariants = {
+export const tileVariants = {
   hidden: {
     opacity: 0,
     y: 50  // Przesunięcie początkowe w dół
@@ -98,9 +99,9 @@ const LoggedHome = () => {
     },
     {
       id: 5,
-      name: "Subskrypcja",
-      linkTo: "/logged/syncMail",
-      icon: card,
+      name: "Auto scan",
+      linkTo: "/logged/automate",
+      icon: automate,
     },
     { id: 6, name: "Wyloguj", action: logout, icon: logoutbtn },
 
