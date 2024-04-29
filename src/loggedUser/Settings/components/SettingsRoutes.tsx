@@ -23,7 +23,7 @@ const SettingsRoutes = () => {
     {
       id: 2,
       title: "Zarządzaj subskrypcją",
-      route: "",
+      route: "/logged/subscription",
       img: card,
     },
     {

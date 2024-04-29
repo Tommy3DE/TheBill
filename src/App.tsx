@@ -24,6 +24,7 @@ const PageNotFound = lazy(() => import("./layout/pages/PageNotFound"));
 const ScanEmail = lazy(() => import("./loggedUser/ScanEmail/ScanEmail"));
 const AutoScan = lazy(() => import("./loggedUser/AutoScan"));
 const ScanPeriod = lazy(() => import("./loggedUser/ScanEmail/ScanPeriod"));
+const Subscription = lazy(() => import("./loggedUser/Settings/components/Subscription"))
 const BlogArticle1 = lazy(
   () => import("./layout/pages/Blog/BlogArticles/BlogArticle1")
 );
@@ -79,6 +80,7 @@ function App() {
               <Route path="/polityka_prywatnosci" element={<PolitykaPryw />} />
               <Route path="*" element={<PageNotFound />} />
               <Route path="/logged/automate" element={<AutoScan />}/>
+              <Route path='/logged/subscription' element={<Subscription/>} />
               <Route
                 path="/logged"
                 element={<ProtectedRoute element={<LoggedUserHome />} />}
