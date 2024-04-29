@@ -22,7 +22,7 @@ const PolitykaPryw = lazy(() => import("./layout/pages/Stopka/PolitykaPryw"));
 const Regulamin = lazy(() => import("./layout/pages/Stopka/Regulamin"));
 const PageNotFound = lazy(() => import("./layout/pages/PageNotFound"));
 const ScanEmail = lazy(() => import("./loggedUser/ScanEmail/ScanEmail"));
-// const SyncMail = lazy(() => import("./loggedUser/syncMail/SyncMail"));
+const AutoScan = lazy(() => import("./loggedUser/AutoScan"));
 const ScanPeriod = lazy(() => import("./loggedUser/ScanEmail/ScanPeriod"));
 const BlogArticle1 = lazy(
   () => import("./layout/pages/Blog/BlogArticles/BlogArticle1")
@@ -78,6 +78,7 @@ function App() {
               <Route path="/regulamin" element={<Regulamin />} />
               <Route path="/polityka_prywatnosci" element={<PolitykaPryw />} />
               <Route path="*" element={<PageNotFound />} />
+              <Route path="/logged/automate" element={<AutoScan />}/>
               <Route
                 path="/logged"
                 element={<ProtectedRoute element={<LoggedUserHome />} />}
