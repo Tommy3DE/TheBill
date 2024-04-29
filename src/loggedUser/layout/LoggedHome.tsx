@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import invoice from "../../assets/iconsLogged/invoice.png";
-import card from "../../assets/settings/card.png";
 // import scan from "../../assets/iconsLogged/scan.png";
 // import seller from "../../assets/iconsLogged/seller.png";
 import logoutbtn from "../../assets/iconsLogged/log-out.png";
