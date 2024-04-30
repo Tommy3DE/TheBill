@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Day1Dir from "./loggedUser/documents/components/Day1Dir";
 import MthPage from "./loggedUser/documents/components/MthPage";
 import ResetPassPage from "./layout/pages/ResetPassPage";
+import { FormDataProvider } from "./context/FormDataProvider";
 
 const Home = lazy(() => import("./layout/pages/Home"));
 const Cennik = lazy(() => import("./layout/pages/Cennik"));
@@ -24,7 +25,10 @@ const PageNotFound = lazy(() => import("./layout/pages/PageNotFound"));
 const ScanEmail = lazy(() => import("./loggedUser/ScanEmail/ScanEmail"));
 const AutoScan = lazy(() => import("./loggedUser/AutoScan"));
 const ScanPeriod = lazy(() => import("./loggedUser/ScanEmail/ScanPeriod"));
-const Subscription = lazy(() => import("./loggedUser/Settings/components/Subscription"))
+const Subscription = lazy(
+  () => import("./loggedUser/Settings/components/Subscription")
+);
+const PaymentPage = lazy(() => import("./newUser/PaymentPage"));
 const BlogArticle1 = lazy(
   () => import("./layout/pages/Blog/BlogArticles/BlogArticle1")
 );
@@ -62,9 +66,12 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/resetPass" element={<ResetPassPage/>} />
+              <Route path="/resetPass" element={<ResetPassPage />} />
               <Route path="/cennik" element={<Cennik />} />
-              <Route path="/newUser" element={<NewUser />} />
+
+                <Route path="/newUser" element={<FormDataProvider><NewUser /></FormDataProvider>} />
+                <Route path="/newUser/paymentPage" element={<FormDataProvider><PaymentPage /></FormDataProvider>} />
+              
               <Route path="/funkcje" element={<Oferta />} />
               <Route path="/pomoc" element={<Pomoc />} />
               <Route path="/blog" element={<Blog />} />
@@ -79,8 +86,8 @@ function App() {
               <Route path="/regulamin" element={<Regulamin />} />
               <Route path="/polityka_prywatnosci" element={<PolitykaPryw />} />
               <Route path="*" element={<PageNotFound />} />
-              <Route path="/logged/automate" element={<AutoScan />}/>
-              <Route path='/logged/subscription' element={<Subscription/>} />
+              <Route path="/logged/automate" element={<AutoScan />} />
+              <Route path="/logged/subscription" element={<Subscription />} />
               <Route
                 path="/logged"
                 element={<ProtectedRoute element={<LoggedUserHome />} />}

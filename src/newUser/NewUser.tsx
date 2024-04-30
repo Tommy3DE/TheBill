@@ -2,13 +2,14 @@ import { ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import SlimNav from "../layout/SlimNav";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
 import { HiOutlineEnvelope } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import Footer from "../layout/Footer";
 import FadeInWhenVisible from "../components/FadeInWhenVisible";
+import { useFormData } from "../context/FormDataProvider";
 
 interface FormValues {
   login: string;
@@ -25,6 +26,7 @@ interface FormValues {
 const NewUser = () => {
   const [showPartTwo, setShowPartTwo] = useState(false);
   const [changePlan, setChangePlan] = useState(false);
+  const { setFormData, formData } = useFormData();
   const formik = useFormik<FormValues>({
     initialValues: {
       login: "",
@@ -89,6 +91,7 @@ const NewUser = () => {
           return response.json();
         })
         .then((data) => {
+          setFormData(values);
           console.log(data);
           setShowPartTwo((prev) => !prev);
         })
@@ -100,6 +103,9 @@ const NewUser = () => {
         });
     },
   });
+
+  useEffect(() => console.log(formData), [formData]);
+
   const getSelectedPlan = (): PricingTile | undefined => {
     const selectedNumOfInvoices = formik.values.numOfInvoices;
     if (selectedNumOfInvoices === "Standard") {
@@ -133,6 +139,7 @@ const NewUser = () => {
 
     if (numOfInvoicesValue !== "") {
       formik.setFieldValue("numOfInvoices", numOfInvoicesValue);
+      setFormData({ ...formData, numOfInvoices: numOfInvoicesValue });
     }
     handlePlan();
   };
@@ -529,13 +536,14 @@ const NewUser = () => {
                         Akceptuję regulamin płatności
                       </span>
                     </p>
-                    {/* <Link to="/newUser/paymentPage"> */}
                     <Link to="/login">
                       <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
-                        {/* Zamawiam i płacę */}
                         Przejdź do logowania
                       </button>
                     </Link>
+                    <Link to="/newUser/paymentPage">                      <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
+Zamawiam i płacę
+</button></Link>
                     <Footer />
                   </>
                 );
