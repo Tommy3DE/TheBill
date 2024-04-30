@@ -3,22 +3,21 @@ import JSEncrypt from "jsencrypt";
 // import Base64 from "js-base64";
 import SlimNav from "../layout/SlimNav";
 
-
 const PaymentPage = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryInput, setExpiryInput] = useState("");
   const [cvcInput, setCvcInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const publicKey = `-----BEGIN PUBLIC KEY-----
+  const pubkey = `-----BEGIN PUBLIC KEY-----
   MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr7wIWj+ESa+1ZbAXU/3J
   YKIsj5jGBO2dMZAg8mC5GT7+EJrehLQGulgDIdC7JfRjgV+7sDBUAdf2qgBZ76hR
   Fz2hUnDemSKczC+vpZ6l+HMB3oXeYzCq3fiG4BqVZ+chZxSkj+JtjLovbk3j7N3Z
   60qzWlN/HgxJ6qgdD4iJTzYYPn15z5+3Hz4WHFJLCP7iQtH6HzMUnMATsXX+qWlw
   cz0XPhoLn6IhRt2jf2scQUpC6mKHy2PKB3k7G0x0BbOGktfwCAD6qpYr1EJVzta9
   KAZFmg8C+viBcC7EJZgiElqKeg7tTjeHU4JqIjECQQDYEwIDAQAB
-  -----END PUBLIC KEY-----`;
-  
+  -----END PUBLIC KEY-----
+  `;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,8 +26,14 @@ const PaymentPage = () => {
     const cardNumberClean = cardNumber.replace(/\s/g, '');
     const expiryClean = expiryInput.replace(/\s/g, '');
     const cvcClean = cvcInput.replace(/\s/g, '');
+    const cd = `${cardNumberClean}|${expiryClean}|${cvcClean}|${document.location.origin}`;
 
+    const encrypt = new JSEncrypt();
+    encrypt.setPublicKey(pubkey); 
+    const encrypted = encrypt.encrypt(cd);
 
+    console.log("Encrypted Data:", encrypted);
+    setLoading(false)
   };
 
   return (
@@ -76,7 +81,7 @@ const PaymentPage = () => {
           disabled={loading}
           className={`mt-4 p-2 rounded bg-blue-500 text-white ${loading ? 'opacity-50' : ''}`}
         >
-          {loading ? 'Przetwarzanie...' : 'Opłać'}
+          {loading ? 'Processing...' : 'Submit Payment'}
         </button>
       </form>
     </div>

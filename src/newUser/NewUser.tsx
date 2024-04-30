@@ -541,9 +541,12 @@ const NewUser = () => {
                         Przejdź do logowania
                       </button>
                     </Link>
-                    <Link to="/newUser/paymentPage">                      <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
-Zamawiam i płacę
-</button></Link>
+                    <Link to="/newUser/paymentPage">
+                      {" "}
+                      <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
+                        Zamawiam i płacę
+                      </button>
+                    </Link>
                     <Footer />
                   </>
                 );
