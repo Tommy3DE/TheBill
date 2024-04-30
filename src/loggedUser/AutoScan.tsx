@@ -6,7 +6,7 @@ const AutoScan = () => {
   return (
     <section className="mx-auto font-poppins">
       <SlimNav />
-      <div className="max-w-[1980px]">
+      <div className="max-w-[1980px] mx-auto">
         <h1 className="text-4xl text-center font-bold tracking-wider mt-[7%]">
           Ustaw automatyczne skanowanie skrzynki na swoim koncie
         </h1>
@@ -19,7 +19,7 @@ const AutoScan = () => {
         <h1 className="text-4xl text-center my-10 font-bold">
           Skanowanie ma się odbywać każdego{" "}
           <span>
-            <select>
+            <select className="bg-gray-200 rounded">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

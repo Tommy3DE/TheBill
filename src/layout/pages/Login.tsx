@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleForgotPass = async () => {
-    const emailParam = encodeURIComponent(email); // Kodowanie adresu e-mail do URL
+    const emailParam = encodeURIComponent(email); 
     const url = `https://api.onebill.com.pl/api/reset_pass?email=${emailParam}`;
   
     const response = await fetch(url, {
@@ -22,7 +22,7 @@ const Login = () => {
       }
     });
   
-    if (response.ok) { // Sprawdzenie, czy odpowiedź jest pozytywna
+    if (response.ok) {
       toast.info(
         "Jeżeli konto powiązane z tym adresem istnieje, otrzymasz link do zrestartowania hasła",
         {
@@ -31,7 +31,6 @@ const Login = () => {
         }
       );
     } else {
-      // Obsługa potencjalnych błędów odpowiedzi
       toast.error("Wystąpił problem podczas wysyłania prośby o reset hasła");
     }
   };

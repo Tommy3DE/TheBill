@@ -62,7 +62,7 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path='/resetPass/:token' element={<ResetPassPage/>} />
+              <Route path="/resetPass" element={<ResetPassPage/>} />
               <Route path="/cennik" element={<Cennik />} />
               <Route path="/newUser" element={<NewUser />} />
               <Route path="/funkcje" element={<Oferta />} />

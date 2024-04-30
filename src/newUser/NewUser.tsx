@@ -42,7 +42,7 @@ const NewUser = () => {
         .email("Podaj poprawny adres email")
         .required("Email jest wymagany"),
       pass: Yup.string()
-        .min(7, "Hasło musi zawierać co najmniej 7 znaków")
+        .min(8, "Hasło musi zawierać co najmniej 8 znaków")
         .required("Hasło jest wymagane"),
       pass2: Yup.string()
         .oneOf([Yup.ref("pass")], "Hasła muszą się zgadzać")

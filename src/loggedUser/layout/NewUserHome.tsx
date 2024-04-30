@@ -59,7 +59,7 @@ const NewUserHome = () => {
         <>
           <img src={sync} alt="sync" className="mb-10 h-32" />
           <p className="text-3xl font-bold tracking-wider font-poppins">
-            Witaj! Dziekujemy że wybrałeś{" "}
+            Witaj! Dziękujemy że wybrałeś{" "}
             <span className="text-[#1A9367]">OneBill</span>
           </p>
           <p className="my-8 text-xl text-gray-500">
