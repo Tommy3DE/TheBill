@@ -11,6 +11,31 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const handleForgotPass = async () => {
+    const emailParam = encodeURIComponent(email); // Kodowanie adresu e-mail do URL
+    const url = `https://api.onebill.com.pl/api/reset_pass?email=${emailParam}`;
+  
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+  
+    if (response.ok) { // Sprawdzenie, czy odpowiedź jest pozytywna
+      toast.info(
+        "Jeżeli konto powiązane z tym adresem istnieje, otrzymasz link do zrestartowania hasła",
+        {
+          position: "top-right",
+          autoClose: 7000,
+        }
+      );
+    } else {
+      // Obsługa potencjalnych błędów odpowiedzi
+      toast.error("Wystąpił problem podczas wysyłania prośby o reset hasła");
+    }
+  };
+  
 
   const requestBody = {
     email: email,
@@ -31,9 +56,9 @@ const Login = () => {
       if (response.ok) {
         const { refresh, access } = await response.json();
         login(access, refresh);
-        localStorage.setItem('accessToken', access);
-        localStorage.setItem('refreshToken', refresh);
-        navigate('/logged')
+        localStorage.setItem("accessToken", access);
+        localStorage.setItem("refreshToken", refresh);
+        navigate("/logged");
       } else {
         toast.error("Błędne dane logowania", {
           position: "top-right",
@@ -48,38 +73,41 @@ const Login = () => {
     <section className="h-screen">
       <Navbar />
       <FadeInWhenVisible>
-      <div className="mt-32 flex flex-col w-full items-center text-2xl mx-auto max-w-[1980px]">
-        <form
-          onSubmit={handleLogin}
-          className="p-5 lg:border-4 border-green-700 lg:w-1/4 lg:h-1/6 flex flex-col justify-center items-center rounded-lg"
-        >
-          <label htmlFor="mail">Email</label>
-          <input
-            type="email"
-            id="mail"
-            className="bg-slate-200 p-2 mt-2 mb-4 rounded-lg"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label htmlFor="pass">Hasło</label>
-          <input
-            type="password"
-            id="pass"
-            className="bg-slate-200 p-2 mt-2 rounded-lg"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <a href="#" className="text-lg mt-2 underline hover:text-purple-700">
-            Zapomniałeś hasła?
-          </a>
-          <button
-            type="submit"
-            className="w-full lg:w-auto lg:mt-5 mt-10 bg-green-700 text-white p-2 rounded-lg"
+        <div className="mt-32 flex flex-col w-full items-center text-2xl mx-auto max-w-[1980px]">
+          <form
+            onSubmit={handleLogin}
+            className="p-5 lg:border-4 border-green-700 lg:w-1/4 lg:h-1/6 flex flex-col justify-center items-center rounded-lg"
           >
-            Zaloguj
-          </button>
-        </form>
-      </div>
+            <label htmlFor="mail">Email</label>
+            <input
+              type="email"
+              id="mail"
+              className="bg-slate-200 p-2 mt-2 mb-4 rounded-lg"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="pass">Hasło</label>
+            <input
+              type="password"
+              id="pass"
+              className="bg-slate-200 p-2 mt-2 rounded-lg"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div
+              onClick={handleForgotPass}
+              className="text-lg mt-2 underline hover:text-blue-700 cursor-pointer"
+            >
+              Zapomniałeś hasła?
+            </div>
+            <button
+              type="submit"
+              className="w-full lg:w-auto lg:mt-5 mt-10 bg-green-700 text-white p-2 rounded-lg"
+            >
+              Zaloguj
+            </button>
+          </form>
+        </div>
       </FadeInWhenVisible>
     </section>
   );
