@@ -3,6 +3,8 @@ import SlimNav from "../../../layout/SlimNav";
 import card from "../../../assets/settings/card.png";
 import { useUserData } from "../../../context/UserDataContext";
 import { pricing } from "../../../layout/pages/Cennik/PricingOptions";
+import { motion } from 'framer-motion';
+import { tileVariants } from "../../layout/LoggedHome";
 
 const Subscription = () => {
   const { userData } = useUserData();
@@ -26,6 +28,21 @@ const Subscription = () => {
     );
   };
 
+  const tiles = [
+    {
+        id: 1,
+        text:'Zakończ subskrypcję'
+    },
+    {
+        id: 2,
+        text: 'Zmień dane płatnicze'
+    },
+    {
+        id: 3,
+        text: 'Zmień plan'
+    }
+  ]
+
   return (
     <section className="mx-auto font-poppins">
       <SlimNav />
@@ -42,10 +59,16 @@ const Subscription = () => {
           </span>
         </h2>
         {userData?.package ? packageDetails(userData.package) : null}
-        <div className="flex w-full justify-center items-center">
-          <div className=" flex flex-col bg-gray-200 justify-evenly items-center font-black border-2 border-gray-400 px-2 py-5 w-48">
-            zakończ subskrypcję
-          </div>
+        <div className="flex w-full justify-center items-center my-10">
+          {tiles.map((x)=>(
+            <motion.div className={` flex flex-col text-lg bg-green-500 justify-evenly items-center font-black border-2 border-gray-400 px-2 py-5 mx-10 w-64 h-20 rounded-lg text-black font-playFair`} variants={tileVariants} key={x.id}
+            whileHover="hover"
+            whileTap="tap">
+            {x.text}
+          </motion.div>
+          ))}
+          
+          
         </div>
         <div className="flex justify-center mt-12">
           <ReturnBtn route="/logged" />

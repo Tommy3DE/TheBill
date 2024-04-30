@@ -123,8 +123,8 @@ const LoggedHome = () => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
-          },
-        });
+          }
+        }, );
   
         if (!response.ok) {
           if (response.status === 401) {
