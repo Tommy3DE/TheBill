@@ -10,12 +10,13 @@ const PaymentPage = () => {
   const [loading, setLoading] = useState(false);
 
   const pubkey = `-----BEGIN PUBLIC KEY-----
-  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr7wIWj+ESa+1ZbAXU/3J
-  YKIsj5jGBO2dMZAg8mC5GT7+EJrehLQGulgDIdC7JfRjgV+7sDBUAdf2qgBZ76hR
-  Fz2hUnDemSKczC+vpZ6l+HMB3oXeYzCq3fiG4BqVZ+chZxSkj+JtjLovbk3j7N3Z
-  60qzWlN/HgxJ6qgdD4iJTzYYPn15z5+3Hz4WHFJLCP7iQtH6HzMUnMATsXX+qWlw
-  cz0XPhoLn6IhRt2jf2scQUpC6mKHy2PKB3k7G0x0BbOGktfwCAD6qpYr1EJVzta9
-  KAZFmg8C+viBcC7EJZgiElqKeg7tTjeHU4JqIjECQQDYEwIDAQAB
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Fng6mBS289IiOEaNVY3
+  QZuu8/XpKyHfVH+O5aJRRyf30dmIl+UQwjoYmP2gZNasIaHoTetExopd6JcgCVvR
+  mBDaA544tC1FY158LNq5F9dQ2B1Yb6q6iDqL13Ai86ZNCriqYAJoxe66bxTtmXJl
+  DVlf7YgJFvPOPNxZkmig5sKtUcAYr6S+LtsY8hHYbM2wRuSrPBj+i0JQntjgGSxN
+  GlIOzf1X6zFB2jimcD84S1NFcK2tEEpgFL8JP33PS15eKjByg5Dpz6WjU8cISy6c
+  2JTvdDFiktNIcNEtrerh2WRymWmoKiUd1tqa0Vh+9pTjiZAua2nR4Er5+wmsJwru
+  lQIDAQAB
   -----END PUBLIC KEY-----
   `;
 
@@ -31,6 +32,7 @@ const PaymentPage = () => {
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(pubkey); 
     const encrypted = encrypt.encrypt(cd);
+    console.log(cd)
 
     console.log("Encrypted Data:", encrypted);
     setLoading(false)
