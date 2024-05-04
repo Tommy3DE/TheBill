@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import acc from "../../../assets/accountant.png";
 import card from "../../../assets/settings/card.png";
-import tax from "../../../assets/settings/tax.png";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { tileVariants } from "../../layout/LoggedHome";
@@ -17,7 +16,7 @@ const SettingsRoutes = () => {
     {
       id: 1,
       title: "Zmień adres biura księgowego",
-      route: "/logged/settings/definedAddress",
+      route: "/logged/settings/accountant",
       img: acc,
     },
     {
@@ -25,13 +24,7 @@ const SettingsRoutes = () => {
       title: "Zarządzaj subskrypcją",
       route: "/logged/subscription",
       img: card,
-    },
-    {
-      id: 3,
-      title: "Dane do faktury",
-      route: "-",
-      img: tax,
-    },
+    }
   ];
   return (
     <section>

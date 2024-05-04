@@ -9,11 +9,18 @@ import scan from "../../assets/iconsLogged/scanMail.png";
 import automate from '../../assets/iconsLogged/automate.png'
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
-import { SettingsData } from "../Settings/components/AppSettings";
 import { useUserData } from "../../context/UserDataContext";
 import NewUserHome from "./NewUserHome";
 import { motion } from 'framer-motion';
 
+
+export interface SettingsData {
+  email: string;
+  first_name: string;
+  last_name: string;
+  NIP: string;
+  package: string;
+}
 
 export type HomeTile = {
   id: number;

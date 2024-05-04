@@ -31,6 +31,9 @@ const ScanPeriod = lazy(() => import("./loggedUser/ScanEmail/ScanPeriod"));
 const Subscription = lazy(
   () => import("./loggedUser/Settings/components/Subscription")
 );
+const SettingsAcc = lazy(
+  () => import("./loggedUser/Settings/components/SettingsAcc")
+);
 const PaymentPage = lazy(() => import("./newUser/PaymentPage"));
 const BlogArticle1 = lazy(
   () => import("./layout/pages/Blog/BlogArticles/BlogArticle1")
@@ -142,6 +145,10 @@ function App() {
             <Route
             path="/logged/history/correnspondence"
             element={<ProtectedRoute element={<HistoryCorrespondence />} />}
+          />
+          <Route
+          path="/logged/settings/accountant"
+          element={<ProtectedRoute element={<SettingsAcc/>}/>}
           />
             </Routes>
           </Suspense>
