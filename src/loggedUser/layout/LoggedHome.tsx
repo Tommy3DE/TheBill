@@ -15,7 +15,7 @@ import NewUserHome from "./NewUserHome";
 import { motion } from 'framer-motion';
 
 
-type HomeTile = {
+export type HomeTile = {
   id: number;
   name: string;
   linkTo?: string;

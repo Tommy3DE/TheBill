@@ -1,5 +1,5 @@
 import SlimNav from "../../layout/SlimNav";
-import { HomeTile, tileVariants } from "../layout/LoggedHome";
+import { tileVariants } from "../layout/LoggedHome";
 import hour from "../../assets/history/hourglass.png";
 import fast from "../../assets/history/fast.png";
 import receipt from "../../assets/history/receipt.png";

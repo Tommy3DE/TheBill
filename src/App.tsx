@@ -10,6 +10,9 @@ import Day1Dir from "./loggedUser/documents/components/Day1Dir";
 import MthPage from "./loggedUser/documents/components/MthPage";
 import ResetPassPage from "./layout/pages/ResetPassPage";
 import { FormDataProvider } from "./context/FormDataProvider";
+import HistoryScan from "./loggedUser/history/components/HistoryScan";
+import HistoryDownload from "./loggedUser/history/components/HistoryDownload";
+import HistoryCorrespondence from "./loggedUser/history/components/HistoryCorrespondence";
 
 const Home = lazy(() => import("./layout/pages/Home"));
 const Cennik = lazy(() => import("./layout/pages/Cennik"));
@@ -68,10 +71,22 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/resetPass" element={<ResetPassPage />} />
               <Route path="/cennik" element={<Cennik />} />
-
-                <Route path="/newUser" element={<FormDataProvider><NewUser /></FormDataProvider>} />
-                <Route path="/newUser/paymentPage" element={<FormDataProvider><PaymentPage /></FormDataProvider>} />
-              
+              <Route
+                path="/newUser"
+                element={
+                  <FormDataProvider>
+                    <NewUser />
+                  </FormDataProvider>
+                }
+              />
+              <Route
+                path="/newUser/paymentPage"
+                element={
+                  <FormDataProvider>
+                    <PaymentPage />
+                  </FormDataProvider>
+                }
+              />
               <Route path="/funkcje" element={<Oferta />} />
               <Route path="/pomoc" element={<Pomoc />} />
               <Route path="/blog" element={<Blog />} />
@@ -116,6 +131,18 @@ function App() {
                 path="/logged/documents/:date"
                 element={<ProtectedRoute element={<MthPage />} />}
               />
+              <Route
+                path="/logged/history/scan"
+                element={<ProtectedRoute element={<HistoryScan />} />}
+              />
+              <Route
+              path="/logged/history/download"
+              element={<ProtectedRoute element={<HistoryDownload />} />}
+            />
+            <Route
+            path="/logged/history/correnspondence"
+            element={<ProtectedRoute element={<HistoryCorrespondence />} />}
+          />
             </Routes>
           </Suspense>
         </Router>
