@@ -78,8 +78,8 @@ const OfferBenefits = () => {
             </p>
             {benefit.miniPic1 !== undefined && (
               <div className="flex flex-row mt-2">
-                <img src={benefit.miniPic1} alt="Mini Picture 1" className="h-20 w-20 mr-5" />
-                <img src={benefit.miniPic2} alt="Mini Picture 2" className="h-20 w-20" />
+                <img src={benefit.miniPic1} alt="Mini Picture 1" className="h-16 w-18 mr-5" />
+                <img src={benefit.miniPic2} alt="Mini Picture 2" className="h-16 w-18" />
               </div>
             )}
           </div>

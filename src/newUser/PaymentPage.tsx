@@ -10,15 +10,11 @@ const PaymentPage = () => {
   const [loading, setLoading] = useState(false);
 
   const pubkey = `-----BEGIN PUBLIC KEY-----
-  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Fng6mBS289IiOEaNVY3
-  QZuu8/XpKyHfVH+O5aJRRyf30dmIl+UQwjoYmP2gZNasIaHoTetExopd6JcgCVvR
-  mBDaA544tC1FY158LNq5F9dQ2B1Yb6q6iDqL13Ai86ZNCriqYAJoxe66bxTtmXJl
-  DVlf7YgJFvPOPNxZkmig5sKtUcAYr6S+LtsY8hHYbM2wRuSrPBj+i0JQntjgGSxN
-  GlIOzf1X6zFB2jimcD84S1NFcK2tEEpgFL8JP33PS15eKjByg5Dpz6WjU8cISy6c
-  2JTvdDFiktNIcNEtrerh2WRymWmoKiUd1tqa0Vh+9pTjiZAua2nR4Er5+wmsJwru
-  lQIDAQAB
-  -----END PUBLIC KEY-----
-  `;
+  MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCBB+jeV/CthQcGFltHV2lueSNc
+  W30zxbI9hjkpwIgEyfY3e63+0ISIBts8/k3U7Qg+HHmqy+6fciicM2pxt9hvGvPy
+  /lssbd2pYksGh8yzB8JJj8HaQQ/RzYEZ72FAn1Z6R7C9hgZORl7JV+W47GEUNixp
+  PuzozDsBeq9PcZMaEQIDAQAB
+  -----END PUBLIC KEY-----`
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

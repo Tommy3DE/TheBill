@@ -17,7 +17,7 @@ export type PricingTile = {
   point2: string;
   point3: string;
   point4: string;
-  point5: string;
+  point5?: string;
   point6?: string;
   point7?: string;
   point8?: string;
@@ -43,10 +43,9 @@ export const pricing: PricingTile[] = [
     ),
     img: standard,
     point1: "Skanowanie do 15 dokumentów miesięcznie",
-    point2: "integracja z 1 kontem mailowym",
-    point3: "informacje o nowych fakturach w ujęciu miesięcznym",
-    point4: "dostęp do aplikacji mobilnej",
-    point5: "historia w chmurze do 6 miesięcy wstecz",
+    point2: "5 skanowań na miesiąc",
+    point3: "Integracja z 1 kontem mailowym",
+    point4: "Historia w chmurze do 6 miesięcy wstecz"
   },
   {
     id: 2,
@@ -63,11 +62,11 @@ export const pricing: PricingTile[] = [
     ),
     img: prem,
     point1: "Skanowanie do 35 dokumentów miesięcznie",
-    point2: "integracja z 2 kontami mailowymi",
-    point3: "informacje o nowych fakturach w ujęciu miesięcznym",
-    point4: "dostęp do aplikacji mobilnej",
-    point5: "historia w chmurze do 2 lat wstecz",
-    point6: "priorytetowe naprawianie błędów/obsługa",
+    point2: "10 skanowań na miesiąc",
+    point3: "Integracja z 1 kontem mailowym",
+    point4: "Historia w chmurze do 24 miesięcy wstecz",
+    point5: "Priorytetowa obsługa zgłoszeń",
+    point6: "Dostęp do narzędzi automatyzacyjnych",
   },
   {
     id: 3,
@@ -84,14 +83,13 @@ export const pricing: PricingTile[] = [
       </>
     ),
     img: fab,
-    point1: "Skanowanie nieograniczonej liczby dokumentów",
-    point2: "integracja z 2 kontami mailowym",
-    point3: "informacje o nowych fakturach w ujęciu miesięcznym.",
-    point4: "dostęp do aplikacji mobilnej",
-    point5: "historia w chmurze do 5 lat wstecz",
-    point6: "priorytetowe naprawianie błędów/ obsługa",
-    point7: "raporty i analityka konta",
-    point8: "alerty dot. ważnych terminów i nowych faktur",
+    point1: "Nielimitowana liczba dokumentów",
+    point2: "Nielimitowana liczba skanowań",
+    point3: "Integracja z 1 kontem mailowym",
+    point4: "Historia w chmurze do 60 miesięcy wstecz",
+    point5: "Priorytetowa obsługa zgłoszeń",
+    point6: "Dostęp do narzędzi automatyzacyjnych",
+    point7: "Wcześniejszy dostęp do nowych funkcjonalności"
   },
 ];
 
@@ -147,7 +145,7 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
                 {tile.opis}
               </h1>
             </div>
-            <div className="flex flex-col mt-5 justify-start items-start h-[50%]">
+            <div className="flex flex-col mt-5 justify-start items-start h-[45%]">
               <div className="flex flex-row items-start w-full mb-5">
                 <FaCheckCircle className="text-3xl mr-2 w-1/6 text-green-500" />
                 <p className="font-bold text-lg w-5/6">{tile.point1}</p>
