@@ -97,7 +97,7 @@ const Day1Dir = () => {
             : null}{" "}
           miesięcy wstecz.
         </h3>
-        <div className="grid lg:grid-cols-6 grid-cols-2 gap-4  lg:mb-20 w-[70%] mx-auto">
+        <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 lg:mb-20 lg:w-[70%] mx-auto">
           {dirs.map((item) => (
             <div key={item.id} className="flex flex-col items-center">
               <Link to={`/logged/documents/${item.route}`}>

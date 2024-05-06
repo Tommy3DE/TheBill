@@ -7,7 +7,7 @@ const HistoryScan = () => {
     <div className="h-auto lg:h-screen w-full">
       <SlimNav />
       <div className="mx-auto max-w-[1980px] flex flex-col justify-center items-center">
-        <h1 className="text-4xl text-center font-bold tracking-wider mt-[7%]">
+        <h1 className="text-4xl text-center font-bold tracking-wider lg:mt-[7%] mt-[30%]">
           Historia skanowania adresu e-mail
         </h1>
         <img src={hour} alt="hour" className="my-10 h-36" />

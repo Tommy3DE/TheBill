@@ -104,8 +104,8 @@ function App() {
               <Route path="/regulamin" element={<Regulamin />} />
               <Route path="/polityka_prywatnosci" element={<PolitykaPryw />} />
               <Route path="*" element={<PageNotFound />} />
-              <Route path="/logged/automate" element={<AutoScan />} />
-              <Route path="/logged/subscription" element={<Subscription />} />
+              <Route path="/logged/automate" element={<ProtectedRoute element={<AutoScan />} />} />
+              <Route path="/logged/subscription" element={<ProtectedRoute element={<Subscription />} />} />
               <Route
                 path="/logged"
                 element={<ProtectedRoute element={<LoggedUserHome />} />}

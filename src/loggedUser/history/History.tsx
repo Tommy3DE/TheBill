@@ -39,14 +39,14 @@ const History = () => {
     <div className="h-auto lg:h-screen w-full">
       <SlimNav />
       <div className="mx-auto max-w-[1980px] ">
-        <h1 className="text-4xl text-center font-bold tracking-wider mt-[7%]">
+        <h1 className="text-4xl text-center font-bold tracking-wider lg:mt-[7%] mt-[30%]">
           Historia
         </h1>
         <h2 className="text-2xl text-gray-700 text-center tracking-wider mt-5">
           Poniżej możesz sprawdzić historię skanowania, pobranych faktur, oraz
           maili wysłanych do księgowości.
         </h2>
-        <div className="flex flex-row justify-center items-center my-10">
+        <div className="flex lg:flex-row flex-col justify-center items-center my-10">
           {tiles.map((x) => (
             <motion.div
               key={x.id}

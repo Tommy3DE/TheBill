@@ -519,9 +519,10 @@ const MthPage = () => {
           </button>
         )}
         
-          {(invoices.length === 0 && !isLoading) && <Link to='/logged/scanMail/scanPeriod'>
-            <button
+          {(invoices.length === 0 && !isLoading) && <Link to='/logged/scanMail/scanPeriod'
             className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
+            >
+            <button
           >
             Skanuj miesiąc
           </button>
@@ -536,11 +537,11 @@ const MthPage = () => {
             className="bg-white p-4 rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="font-bold">Potwierdzenie</h2>
+            <h2 className="font-bold text-3xl lg:text-lg">Potwierdzenie</h2>
             <p>Czy na pewno chcesz usunąć tę fakturę?</p>
-            <div className="flex justify-around mt-4">
+            <div className="flex lg:flex-row flex-col justify-around mt-4">
               <button
-                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 text-xl"
+                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 text-xl lg:mb-0 mb-5"
                 onClick={deleteInvoice}
               >
                 Usuń

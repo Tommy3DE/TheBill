@@ -8,12 +8,14 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
 import { toast } from "react-toastify";
 import ReturnBtn from "../../components/ReturnBtn";
-import gifScan from '../../assets/Email capture.gif'
+import gifScan from "../../assets/Email capture.gif";
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("");
-  const [yearSuffix, setYearSuffix] = useState<number>(new Date().getFullYear());
+  const [yearSuffix, setYearSuffix] = useState<number>(
+    new Date().getFullYear()
+  );
   const [extractedCode, setExtractedCode] = useState("");
   const [extractedState, setExtractedState] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,13 +26,16 @@ const ScanPeriod = () => {
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
 
   const accessToken = localStorage.getItem("accessToken");
-  console.log(yearSuffix)
+  console.log(yearSuffix);
 
   const today = new Date();
   const currentMonth = today.getMonth() + 1;
 
   useEffect(() => {
-    const formattedDate = today.toISOString().substring(0, 10).replace("T", " ");
+    const formattedDate = today
+      .toISOString()
+      .substring(0, 10)
+      .replace("T", " ");
     setDate(formattedDate);
   }, []);
 
@@ -42,7 +47,10 @@ const ScanPeriod = () => {
   };
 
   useEffect(() => {
-    const formattedDate = today.toISOString().substring(0, 10).replace("T", " ");
+    const formattedDate = today
+      .toISOString()
+      .substring(0, 10)
+      .replace("T", " ");
     setDate(formattedDate);
   }, []);
 
@@ -170,7 +178,7 @@ const ScanPeriod = () => {
 
         if (!tokenResponse.ok)
           throw new Error("Failed to handle token redirect.");
-        
+
         // You may need to handle the response data from tokenResponse if needed
       }
 
@@ -216,8 +224,6 @@ const ScanPeriod = () => {
     }
   };
 
-  
-
   function extractCodeFromUrlUsingRegex(url: string): string | null {
     const regex = /code=([^&]*)/;
     const match = url.match(regex);
@@ -258,8 +264,10 @@ const ScanPeriod = () => {
               {invoices.length > 0 && (
                 <p className="text-2xl mx-[5%] text-center text-gray-600 leading-loose lg:mt-[7%] mt-[25%] tracking-wider">
                   Poniżej, wyświetlone zostały faktury znalezione na Twojej
-                  skrzynce.<br/> Zdecyduj, czy któreś z nich chcesz usunąć – jeżeli
-                  nie, to wybierz <span className="text-gray-800 font-bold">ZATWIERDŹ</span>
+                  skrzynce.
+                  <br /> Zdecyduj, czy któreś z nich chcesz usunąć – jeżeli nie,
+                  to wybierz{" "}
+                  <span className="text-gray-800 font-bold">ZATWIERDŹ</span>
                 </p>
               )}
               <div className="  flex flex-row mt-5 flex-wrap justify-center items-center ">
@@ -339,49 +347,52 @@ const ScanPeriod = () => {
                 Wybierz miesiąc który chcesz przeskanować:
               </h1>
               <div className="w-2/3">
-                <div className="flex flex-row justify-between items-center mt-16 text-2xl">
+                <div className="flex lg:flex-row flex-col justify-between items-center mt-16 text-2xl">
                   <p className="">Dzisiejsza data:</p>
                   <input
                     type="text"
-                    className="rounded-3xl w-1/3 px-4 py-2 bg-gray-300"
+                    className="rounded-3xl lg:w-1/3 px-4 py-2 bg-gray-300"
                     disabled
                     value={date}
                   />
                 </div>
-                <div className="flex flex-row justify-between items-center mt-16 text-2xl">
+                <div className="flex lg:flex-row flex-col justify-between items-center mt-16 text-2xl">
                   <p className="">Ostatnie skanowanie miało miejsce: </p>
                   <input
                     type="text"
-                    className="rounded-3xl w-1/3 px-4 py-2  bg-gray-300"
+                    className="rounded-3xl lg:w-1/3 px-4 py-2  bg-gray-300"
                     disabled
                     value={userData ? userData?.lastScan : "-"}
                   />
                 </div>
               </div>
-              <div className="mt-16 text-2xl flex flex-row justify-between w-2/3">
+              <div className="mt-16 text-2xl flex lg:flex-row flex-col justify-between w-2/3">
                 <label htmlFor="month-picker" className="text-2xl text-start">
                   Wybierz miesiąc:
                 </label>
                 <select
-        id="month-picker"
-        className="rounded-3xl px-4 py-2 bg-gray-300 text-2xl w-1/3"
-        onChange={handleMonthChange}
-      >
-        <option value="">--wybierz--</option>
-        {Array.from({ length: 12 }, (_, i) => {
-          const month = i + 1;
-          const year = month <= currentMonth ? 2024 : 2023;
-          return (
-            <option key={month} value={month}>
-              {new Date(0, i).toLocaleString('default', { month: 'long' })} {year}
-            </option>
-          );
-        })}
-      </select>
+                  id="month-picker"
+                  className="rounded-3xl px-4 py-2 bg-gray-300 text-2xl lg:w-1/3"
+                  onChange={handleMonthChange}
+                >
+                  <option value="">--wybierz--</option>
+                  {Array.from({ length: 12 }, (_, i) => {
+                    const month = i + 1;
+                    const year = month <= currentMonth ? 2024 : 2023;
+                    return (
+                      <option key={month} value={month}>
+                        {new Date(0, i).toLocaleString("default", {
+                          month: "long",
+                        })}{" "}
+                        {year}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
               {selectedPeriod !== "" && (
                 <button
-                  className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white w-1/5 text-center hover:scale-105 cursor-pointer"
+                  className="mt-16 text-3xl bg-green-500 p-3 rounded-lg text-white lg:w-1/5 w-full text-center hover:scale-105 cursor-pointer"
                   onClick={handleCombinedScan}
                 >
                   Skanuj
@@ -391,15 +402,12 @@ const ScanPeriod = () => {
           )
         ) : (
           <div className="mt-32 flex justify-center items-center flex-col font-poppins">
-            <img
-              className="w-1/3"
-              src={gifScan}
-              alt="Loading icon"
-            />
+            <img className="lg:w-1/3" src={gifScan} alt="Loading icon" />
             <h1 className="font-black text-2xl">
-            Prosimy o chwilę cierpliwości.            </h1>
-            <h3 className="text-xl">
-            Nasz algorytm szuka faktur na Twojej skrzynce e-mail.
+              Prosimy o chwilę cierpliwości.{" "}
+            </h1>
+            <h3 className="text-xl lg:text-start text-center">
+              Nasz algorytm szuka faktur na Twojej skrzynce e-mail.
             </h3>
           </div>
         )}

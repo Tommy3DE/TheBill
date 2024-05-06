@@ -39,7 +39,7 @@ const PaymentPage = () => {
         },
         body: JSON.stringify({
           payer: {
-            name: 'Tom Kun',
+            name: 'Paweł Fornalik',
             email: 'ta8341082@gmail.com'
           },
           card: encrypted

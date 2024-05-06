@@ -7,7 +7,7 @@ const AutoScan = () => {
     <section className="mx-auto font-poppins">
       <SlimNav />
       <div className="max-w-[1980px] mx-auto">
-        <h1 className="text-4xl text-center font-bold tracking-wider mt-[7%]">
+        <h1 className="lg:text-4xl text-2xl text-center font-bold tracking-wider lg:mt-[7%] mt-[30%]">
           Ustaw automatyczne skanowanie skrzynki na swoim koncie
         </h1>
         <img src={gruop} alt="auto" className="mx-auto my-7" />
@@ -16,7 +16,7 @@ const AutoScan = () => {
           <br />
           Wybierz dzień, w którym ma odbyć się skanowanie.
         </h2>
-        <h1 className="text-4xl text-center my-10 font-bold">
+        <h1 className="lg:text-4xl text-3xl text-center my-10 font-bold">
           Skanowanie ma się odbywać każdego{" "}
           <span>
             <select className="bg-gray-200 rounded">
@@ -59,9 +59,9 @@ const AutoScan = () => {
           Po zakończonym skanowaniu, prześlemy do Ciebie maila, że gotowy skan
           czeka na zatwierdzenie.
         </h2>
-        <div className="flex justify-center mt-12">
+        <div className="flex lg:flex-row flex-col justify-center mt-12">
           <ReturnBtn route="/logged" />
-          <button className="font-playFair text-3xl font-black text-center items-center text-white bg-green-500 px-10 py-4 rounded-2xl hover:bg-green-600 ml-5 uppercase">
+          <button className="font-playFair text-3xl font-black text-center items-center text-white bg-green-500 px-10 py-4 rounded-2xl hover:bg-green-600 lg:ml-5 mt-5 lg:mt-0 uppercase">
             Zaakeceptuj
           </button>
         </div>
