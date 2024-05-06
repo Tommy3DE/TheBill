@@ -1,6 +1,5 @@
 import { useState } from "react";
 import JSEncrypt from "jsencrypt";
-// import Base64 from "js-base64";
 import SlimNav from "../layout/SlimNav";
 
 const PaymentPage = () => {
@@ -28,11 +27,35 @@ const PaymentPage = () => {
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(pubkey); 
     const encrypted = encrypt.encrypt(cd);
-    console.log(cd)
 
-    console.log("Encrypted Data:", encrypted);
+    const url = 'https://secure.tpay.com/api/gw/'
+    const apiKey = '56574bb37b9585038952e261f48ecdcf55642ed3'
+
+  
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          encryptedData: encrypted,
+          // Dodaj inne wymagane dane, jeśli to konieczne
+        })
+      });
+      if (response.ok) {
+        // Pomyślna odpowiedź - przekieruj użytkownika lub wykonaj inne czynności
+      } else {
+        // Obsłuż błąd
+        console.error('Błąd podczas wysyłania danych do tpay.com');
+      }
+    } catch (error) {
+      console.error('Wystąpił błąd:', error);
+    }
     setLoading(false)
-  };
+    
+  }
 
   return (
     <div>
