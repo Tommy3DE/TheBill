@@ -63,7 +63,7 @@ const ScanEmail = () => {
             <div className="bg-white flex flex-row justify-center items-center rounded-3xl px-4 py-2">
               <img src={mail} alt="mail" />
               <h1 className="lg:text-2xl text-xl font-black ml-2">
-                {userData ? userData?.email : data?.email}
+                {data?.email}
               </h1>
             </div>
             <div className="bg-white flex flex-col justify-between items-center rounded-3xl px-4 py-2 mt-5 text-small">
