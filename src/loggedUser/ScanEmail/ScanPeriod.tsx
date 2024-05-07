@@ -139,12 +139,10 @@ const ScanPeriod = () => {
   };
 
   useEffect(() => {
-    const today = new Date();
-    const formattedDate = today
-      .toISOString()
-      .substring(0, 16)
-      .replace("T", " ");
-    setDate(formattedDate);
+    const today: Date = new Date();
+    const offset: number = today.getTimezoneOffset() * 60000; // offset w milisekundach
+    const localISOTime: string = (new Date(today.getTime() - offset)).toISOString().slice(0, 16).replace('T', ' ');
+  setDate(localISOTime);
 
     const urlCode = extractCodeFromUrlUsingRegex(location.search);
     if (urlCode) {
@@ -211,7 +209,7 @@ const ScanPeriod = () => {
       setLoading(false);
       toast.error("Błąd w skanowaniu", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: false,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
