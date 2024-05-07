@@ -237,8 +237,7 @@ const MthPage = () => {
       bookkeeper: 1,
       zip: wantsZip,
     };
-    // console.log(reqData);
-    //mail.google.com/mail/u/0/#drafts?compose=${draft_id}
+
 
     fetch(url, {
       method: "POST",
@@ -446,7 +445,7 @@ const MthPage = () => {
                         <tr key={invoice.id} className={``}>
                           <td className=" px-4 py-2">{index + 1}</td>
                           <td className=" px-4 py-2">{invoice.name}</td>
-                          <td className=" px-4 py-2">{invoice.sender}</td>
+                          <td className=" px-4 py-2 max-w-[20%]">{invoice.sender}</td>
                           <td className=" px-4 py-2">
                             {new Date(invoice.date).toLocaleDateString()}
                           </td>
@@ -587,7 +586,7 @@ const MthPage = () => {
             <div className="flex justify-around mt-4">
               <button
                 className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 text-xl"
-                onClick={() => handleBookSend}
+                onClick={handleBookSend}
               >
                 Wyślij
               </button>
