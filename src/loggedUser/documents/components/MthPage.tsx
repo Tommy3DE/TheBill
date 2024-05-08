@@ -436,8 +436,8 @@ const MthPage = () => {
                         <th className="px-4 py-2 text-start">Nazwa Pliku</th>
                         <th className="px-4 py-2 text-start">Otrzymano od</th>
                         <th className="px-4 py-2 text-start">Data</th>
-                        <th className="px-4 py-2 text-start">Podgląd</th>
-                        <th className="px-4 py-2 text-start">Usuń</th>
+                        <th className="px-4 py-2 text-center">Podgląd</th>
+                        <th className="px-4 py-2 text-center">Usuń</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -445,11 +445,11 @@ const MthPage = () => {
                         <tr key={invoice.id} className={``}>
                           <td className=" px-4 py-2">{index + 1}</td>
                           <td className=" px-4 py-2">{invoice.name}</td>
-                          <td className=" px-4 py-2 max-w-[20%]">{invoice.sender}</td>
-                          <td className=" px-4 py-2">
+                          <td className=" px-4 py-2 lg:max-w-[20%]">{invoice.sender}</td>
+                          <td className=" px-4 py-2 ">
                             {new Date(invoice.date).toLocaleDateString()}
                           </td>
-                          <td className="py-2 text-2xl">
+                          <td className="py-2 px-4 text-2xl ">
                             <FaRegEye
                               className="text-blue-400 cursor-pointer mx-auto"
                               onClick={() =>
@@ -457,7 +457,7 @@ const MthPage = () => {
                               }
                             />
                           </td>
-                          <td className="py-2 text-2xl">
+                          <td className="py-2 px-4 text-2xl ">
                             <AiOutlineCloseCircle
                               className="text-red-500 cursor-pointer mx-auto"
                               onClick={(e: React.MouseEvent<SVGElement>) =>
