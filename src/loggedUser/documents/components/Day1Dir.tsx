@@ -154,15 +154,15 @@ const Day1Dir = () => {
           <span className="underline"> kliknij na wybrany folder.</span>
         </h2>
         <h3 className="text-lg text-center mb-12">
-          W ramach Twojego pakietu {userData?.package} Twoje faktury są
-          przechowywane do{" "}
+          W ramach Twojego pakietu <span className="font-black">{userData?.package}</span> Twoje faktury są
+          przechowywane do{" "}<span className="font-black">
           {userData?.package === "Premium"
             ? "24"
             : userData?.package === "Biznes"
             ? "60"
             : userData?.package === "Standard"
             ? "6"
-            : null}{" "}
+            : null}{" "}</span>
           miesięcy wstecz.
         </h3>
         <div className="flex justify-center items-center">
