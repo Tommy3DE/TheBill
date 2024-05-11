@@ -150,6 +150,9 @@ const MthPage = () => {
         }
       })
       .then(() => {
+        setInvoices((prevInvoices) =>
+          prevInvoices.filter((invoice) => invoice.id !== invoiceToDelete)
+        );
         toast.success("Faktura usunięta pomyślnie!", {
           position: "top-right",
           autoClose: 5000,
@@ -161,7 +164,7 @@ const MthPage = () => {
         });
         
         hideModal();
-        loadInvoices();
+        
       
       })
       .catch((error) => {
@@ -519,9 +522,9 @@ const MthPage = () => {
         )}
         
           {(invoices.length === 0 && !isLoading) && <Link to='/logged/scanMail/scanPeriod'
-            className="uppercase font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
+            className="font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
             >
-            <button
+            <button className="uppercase"
           >
             Skanuj miesiąc
           </button>

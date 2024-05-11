@@ -210,7 +210,7 @@ const LoggedHome = () => {
           <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:px-10 text-lg tracking-wider font-poppins">
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ostatnie skanowanie:</p>
-              <p>{lastScan ? formatLastScanDate(lastScan) : "-"}</p>
+              <p className="font-bold">{lastScan ? formatLastScanDate(lastScan) : "-"}</p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>
@@ -228,7 +228,7 @@ const LoggedHome = () => {
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ilość skanowań:</p>
-              <p>
+              <p  className="font-bold">
                 {settingData
                   ? settingData.package === "Standard"
                     ? "3"
@@ -238,7 +238,7 @@ const LoggedHome = () => {
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Bieżący pakiet:</p>
-              <p>{settingData ? settingData.package : "-"}</p>
+              <p className="font-bold">{settingData ? settingData.package : "-"}</p>
             </div>
             <div className="bg-white rounded-lg shadow-2xl p-3 w-72 mt-36"></div>
           </div>
