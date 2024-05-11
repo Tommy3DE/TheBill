@@ -160,7 +160,6 @@ const ScanPeriod = () => {
     try {
       if (!accessToken) throw new Error("Access token not found.");
 
-      // First, handle the token redirect if the condition is met
       if (tokenBody.code !== "") {
         const tokenResponse = await fetch(
           "https://api.onebill.com.pl/api/token_redirect",
@@ -177,10 +176,8 @@ const ScanPeriod = () => {
         if (!tokenResponse.ok)
           throw new Error("Failed to handle token redirect.");
 
-        // You may need to handle the response data from tokenResponse if needed
       }
 
-      // Then, proceed to handle the scan
       const scanResponse = await fetch("https://api.onebill.com.pl/api/scan", {
         method: "POST",
         headers: {
@@ -192,9 +189,8 @@ const ScanPeriod = () => {
 
       if (scanResponse.ok) {
         const data = await scanResponse.json();
-        setInvoices(data); // Update state with the fetched data
+        setInvoices(data);
         setNextStep(true);
-        // Additional logic to handle data from scan
       } else if (scanResponse.status === 425) {
         let url = await scanResponse.text();
         url = url.replace(/^"|"$/g, "");
@@ -329,7 +325,7 @@ const ScanPeriod = () => {
               <div className="flex lg:flex-row justify-center my-16 flex-col">
                 <ReturnBtn route="/logged" />
                 {invoices.length > 0 && (
-                  <Link to={`/logged/documents/${selectedPeriod}2024`}>
+                  <Link to={`/logged/documents/${selectedPeriod}${yearSuffix}`}>
                     <>
                       <button className="uppercase ml-5 font-playFair text-3xl font-black text-center items-center text-white bg-green-400 px-10 py-4 rounded-2xl hover:bg-green-500">
                         Zatwierdź{" "}
