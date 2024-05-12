@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const Subscription = () => {
   const { userData } = useUserData();
-  console.log(pricing);
+  // console.log(pricing);
 
   const packageDetails = (packageName: string): JSX.Element | null => {
     const details = pricing.find((p) => p.title.includes(packageName));
