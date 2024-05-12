@@ -3,8 +3,12 @@ import SlimNav from "../../../layout/SlimNav";
 import card from "../../../assets/settings/card.png";
 import { useUserData } from "../../../context/UserDataContext";
 import { pricing } from "../../../layout/pages/Cennik/PricingOptions";
-import { motion } from 'framer-motion';
-import { tileVariants } from "../../layout/LoggedHome";
+import { motion } from "framer-motion";
+import { tileVariants2 } from "../../documents/components/Day1Dir";
+import cross from "../../../assets/settings/cross 1.png";
+import debit from "../../../assets/settings/debit-card 1.png";
+import payment from "../../../assets/settings/payment-day 2.png";
+import { Link } from "react-router-dom";
 
 const Subscription = () => {
   const { userData } = useUserData();
@@ -30,18 +34,24 @@ const Subscription = () => {
 
   const tiles = [
     {
-        id: 1,
-        text:'Zakończ subskrypcję'
+      id: 1,
+      img: cross,
+      text: "Zakończ subskrypcję",
+      route: "/logged/subscription/cancel-sub",
     },
     {
-        id: 2,
-        text: 'Zmień dane płatnicze'
+      id: 2,
+      img: debit,
+      text: "Zmień dane płatnicze",
+      route: "/logged/subscription/change-payment-data",
     },
     {
-        id: 3,
-        text: 'Zmień plan'
-    }
-  ]
+      id: 3,
+      img: payment,
+      text: "Zmień plan",
+      route: "/logged/subscription/change-plan",
+    },
+  ];
 
   return (
     <section className="mx-auto font-poppins">
@@ -60,15 +70,20 @@ const Subscription = () => {
         </h2>
         {userData?.package ? packageDetails(userData.package) : null}
         <div className="flex w-full justify-center items-center my-10">
-          {tiles.map((x)=>(
-            <motion.div className={` flex flex-col text-lg bg-green-500 justify-evenly items-center font-black border-2 border-gray-400 px-2 py-5 mx-10 w-64 h-20 rounded-lg text-black font-playFair`} variants={tileVariants} key={x.id}
-            whileHover="hover"
-            whileTap="tap">
-            {x.text}
-          </motion.div>
+          {tiles.map((x) => (
+            <Link to={x.route}>
+              <motion.div
+                className={` flex flex-col text-xl bg-gray-100 justify-evenly items-center font-black border-2 border-gray-500 cursor-pointer px-2 py-5 mx-10 w-64 h-56 rounded-xl text-black font-poppins uppercase`}
+                variants={tileVariants2}
+                key={x.id}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <img src={x.img} alt="pic" />
+                <p>{x.text}</p>
+              </motion.div>
+            </Link>
           ))}
-          
-          
         </div>
         <div className="flex justify-center mt-12">
           <ReturnBtn route="/logged" />

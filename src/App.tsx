@@ -13,6 +13,9 @@ import { FormDataProvider } from "./context/FormDataProvider";
 import HistoryScan from "./loggedUser/history/components/HistoryScan";
 import HistoryDownload from "./loggedUser/history/components/HistoryDownload";
 import HistoryCorrespondence from "./loggedUser/history/components/HistoryCorrespondence";
+import ChangePlan from "./loggedUser/Settings/components/ChangePlan";
+import ChangePayment from "./loggedUser/Settings/components/ChangePayment";
+import CancelSub from "./loggedUser/Settings/components/CancelSub";
 
 const Home = lazy(() => import("./layout/pages/Home"));
 const Cennik = lazy(() => import("./layout/pages/Cennik"));
@@ -104,8 +107,14 @@ function App() {
               <Route path="/regulamin" element={<Regulamin />} />
               <Route path="/polityka_prywatnosci" element={<PolitykaPryw />} />
               <Route path="*" element={<PageNotFound />} />
-              <Route path="/logged/automate" element={<ProtectedRoute element={<AutoScan />} />} />
-              <Route path="/logged/subscription" element={<ProtectedRoute element={<Subscription />} />} />
+              <Route
+                path="/logged/automate"
+                element={<ProtectedRoute element={<AutoScan />} />}
+              />
+              <Route
+                path="/logged/subscription"
+                element={<ProtectedRoute element={<Subscription />} />}
+              />
               <Route
                 path="/logged"
                 element={<ProtectedRoute element={<LoggedUserHome />} />}
@@ -139,17 +148,21 @@ function App() {
                 element={<ProtectedRoute element={<HistoryScan />} />}
               />
               <Route
-              path="/logged/history/download"
-              element={<ProtectedRoute element={<HistoryDownload />} />}
-            />
-            <Route
-            path="/logged/history/correnspondence"
-            element={<ProtectedRoute element={<HistoryCorrespondence />} />}
-          />
-          <Route
-          path="/logged/settings/accountant"
-          element={<ProtectedRoute element={<SettingsAcc/>}/>}
-          />
+                path="/logged/history/download"
+                element={<ProtectedRoute element={<HistoryDownload />} />}
+              />
+              <Route
+                path="/logged/history/correnspondence"
+                element={<ProtectedRoute element={<HistoryCorrespondence />} />}
+              />
+              <Route
+                path="/logged/settings/accountant"
+                element={<ProtectedRoute element={<SettingsAcc />} />}
+              />
+              <Route path="/logged/subscription/cancel-sub" element={<ProtectedRoute element={<CancelSub />} />} />
+              <Route path="/logged/subscription/change-payment-data" element={<ProtectedRoute element={<ChangePayment />} />} />
+              <Route path="/logged/subscription/change-plan" element={<ProtectedRoute element={<ChangePlan />} />} />
+
             </Routes>
           </Suspense>
         </Router>

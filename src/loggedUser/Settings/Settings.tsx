@@ -9,7 +9,7 @@ const Settings = () => {
       <div className="max-w-[1980px]">
         <SettingsRoutes />
         <div className="flex justify-center">
-                  <ReturnBtn route="/logged" />
+          <ReturnBtn route="/logged" />
         </div>
       </div>
     </section>

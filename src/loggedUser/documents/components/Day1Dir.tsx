@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 import { useState } from "react";
 
-const tileVariants2 = {
+export const tileVariants2 = {
   hidden: {
     opacity: 0,
     y: 50,
@@ -171,13 +171,11 @@ const Day1Dir = () => {
   dirs.map((item) => (
     <div key={item.id} className="flex flex-col items-center">
       {currentYear === new Date().getFullYear() && Number(item.route.slice(0, 2)) > currentMonth ? (
-        // Render non-clickable for future months
         <div className={`text-xl rounded-lg flex-col bg-gray-200 px-8 py-4 mb-5 cursor-not-allowed font-black border-2 border-gray-600`}>
           <img src={dir} alt={item.title} className="mx-auto mb-5" />
           <p className="text-center px-2">{item.title}</p>
         </div>
       ) : (
-        // Render clickable for past months and the current month
         <Link to={`/logged/documents/${item.route}`}>
           <div className="text-xl rounded-lg flex-col bg-[#E2FFEF] px-8 py-4 mb-5 hover:scale-105 hover:bg-green-200 cursor-pointer font-black border-2 border-green-800">
             <img src={dir} alt={item.title} className="mx-auto mb-5" />
