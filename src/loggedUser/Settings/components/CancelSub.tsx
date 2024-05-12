@@ -61,8 +61,8 @@ const CancelSub = () => {
       {
         nextStep && <div className="max-w-[1980px] flex flex-col justify-center items-center mt-32 font-poppins">
             <img src={tick} alt="tick" />
-            <h1 className="text-4xl font-black mt-5">Twoje zlecenie zostało pomyślnie przyjęte.</h1>
-            <h1 className="text-3xl mt-2 mb-5">Twoje konto One
+            <h1 className="text-4xl font-black mt-10">Twoje zlecenie zostało pomyślnie przyjęte.</h1>
+            <h1 className="text-3xl mt-2 mb-10">Twoje konto One
           <span className="text-[#1A9367]">Bill</span>? będzie aktywne do: </h1> 
           <input type="text" className="rounded-full bg-gray-200 w-1/4 p-2" disabled={true} />
           <div className="flex flex-row justify-evenly mt-10">

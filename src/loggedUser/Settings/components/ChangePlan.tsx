@@ -4,16 +4,25 @@ import { useUserData } from "../../../context/UserDataContext";
 import { pricing } from "../../../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
 import { useState } from "react";
+import ReturnBtn from "../../../components/ReturnBtn";
+import tick from '../../../assets/settings/check-box 1.png'
+import { Link } from "react-router-dom";
+
 
 const ChangePlan = () => {
   const { userData } = useUserData();
   const [selectedPackage, setSelectedPackage] = useState(userData?.package);
   const [changePlan, setChangePlan] = useState(false);
+  const [nextStep, setNextStep] = useState(false)
 
   const handleSelectPlan = (packageName: string): void => {
-    setSelectedPackage(packageName); // Update the local state to show selected plan details
-    setChangePlan(false); // Optionally close the modal
+    setSelectedPackage(packageName); 
+    setChangePlan(false); 
   };
+
+  const handleNextStep = () => {
+    setNextStep(true)
+  }
 
   const packageDetails = (packageName: string): JSX.Element | null => {
     const details = pricing.find((p) => p.title.includes(packageName));
@@ -36,7 +45,7 @@ const ChangePlan = () => {
   return (
     <section className="mx-auto font-poppins">
       <SlimNav />
-      <div className="max-w-[1980px] flex flex-col justify-center items-center mt-32 font-poppins">
+      {!nextStep && <div className="max-w-[1980px] flex flex-col justify-center items-center mt-32 font-poppins">
         <img src={payment} alt="payment" />
         <h1 className="text-4xl tracking-wider font-black my-5">
           Aby zmienić swój plan, wybierz z dostępnych poniżej:
@@ -48,9 +57,31 @@ const ChangePlan = () => {
           className="uppercase font-playFair text-2xl px-10 py-2 text-white bg-[#1A9367] mb-12 rounded-xl"
         >
           {" "}
-          zmien plan
+          Zmien plan
         </button>
-      </div>
+        <div className="flex flex-row justify-center mt-10">
+          <ReturnBtn route="/logged/subscription" />
+          <button className="uppercase tracking-wider text-center font-playFair text-3xl font-black items-center text-white bg-[#1A9367] ml-5 px-10 py-4 rounded-2xl hover:bg-green-800" onClick={handleNextStep}>
+            Zapisz
+          </button>
+        </div>
+      </div>}
+      {
+        nextStep && <div className="max-w-[1980px] flex flex-col justify-center items-center mt-32 font-poppins"> 
+          <img src={tick} alt="tick" />
+            <h1 className="text-4xl font-black mt-5">Twoje zlecenie zostało pomyślnie przyjęte.</h1>
+            <h1 className="text-3xl mt-2 mb-5">Twoje konto OneBill od kolejnego okresu rozliczeniowego zostanie ulepszone do:</h1> 
+            {selectedPackage ? packageDetails(selectedPackage) : null}
+            <p>Przy kolejnym rozliczeniu pobierzemy z Twojego konta zaktualizowaną kwotę.</p>
+          <div className="flex flex-row justify-evenly mt-10">
+          <Link to={'/logged/subscription'} className=" font-playFair text-3xl font-black text-center items-center text-white bg-gray-400 px-10 py-4 rounded-2xl hover:bg-gray-500">
+        <button className="uppercase tracking-wider text-center">
+            powrót do ustawień
+        </button>
+    </Link>
+        </div>
+        </div>
+      }
       {changePlan && (
         <div className="h-screen w-full bg-gray-300 bg-opacity-80 fixed top-0 left-0 flex flex-row justify-center">
           {pricing.map((tile) => (
@@ -135,6 +166,7 @@ const ChangePlan = () => {
           ))}
         </div>
       )}
+      
     </section>
   );
 };
