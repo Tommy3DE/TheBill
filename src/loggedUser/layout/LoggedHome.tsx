@@ -70,6 +70,16 @@ export const tileVariants = {
   }
 };
 
+export const formatLastScanDate = (isoDate: string): string => {
+  const date = new Date(isoDate);
+  const formattedDate = `${date.getFullYear()}-${String(
+    date.getMonth() + 1
+  ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")} ${String(
+    date.getHours()
+  ).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+  return formattedDate;
+};
+
 const LoggedHome = () => {
   const { logout } = useAuth();
   const [accAdded, setAccAdded] = useState<string>();
@@ -186,20 +196,11 @@ const LoggedHome = () => {
     }
   }, [accAdded, settingData, lastScan, setUserData]);
 
-  const formatLastScanDate = (isoDate: string): string => {
-    const date = new Date(isoDate);
-    const formattedDate = `${date.getFullYear()}-${String(
-      date.getMonth() + 1
-    ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")} ${String(
-      date.getHours()
-    ).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
-    return formattedDate;
-  };
+
 
   return (
     <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
       {isLoading ? (
-      // Ikona ładowania
       <img
         className="w-20 h-20 animate-spin mt-32 mx-auto"
         src="https://www.svgrepo.com/show/70469/loading.svg"
