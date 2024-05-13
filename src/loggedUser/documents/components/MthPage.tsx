@@ -359,10 +359,14 @@ const MthPage = () => {
             <span className="font-normal">
               {month}/{year}
             </span>
+            <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
+              <img src={locked} alt="locked" className="w-8 mr-2"/>
+              <h3>Ikona kłódki oznacza zabezpieczony plik. Sprawdź jego nazwę w widoku <span className="font-black">“lista”</span>.</h3>
+            </div>
           </h2>
           {isLoading ? (
             <img
-              className="w-20 h-20 animate-spin mt-32 mx-auto"
+              className="w-20 h-20 animate-spin mx-auto"
               src="https://www.svgrepo.com/show/70469/loading.svg"
               alt="Loading icon"
             />

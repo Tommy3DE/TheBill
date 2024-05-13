@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Footer from "../layout/Footer";
 import FadeInWhenVisible from "../components/FadeInWhenVisible";
 import { useFormData } from "../context/FormDataProvider";
+import { toast } from "react-toastify";
 
 interface FormValues {
   login: string;
@@ -86,6 +87,17 @@ const NewUser = () => {
       })
         .then((response) => {
           if (!response.ok) {
+            if (response.status === 409) {
+              toast.error("Konto z podanym adresem email już istnieje", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              })
+            }
             throw new Error("Network response was not ok");
           }
           return response.json();
