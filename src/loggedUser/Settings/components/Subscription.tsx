@@ -80,7 +80,7 @@ const Subscription = () => {
                 whileTap="tap"
               >
                 <img src={x.img} alt="pic" />
-                <p>{x.text}</p>
+                <p className="text-center">{x.text}</p>
               </motion.div>
             </Link>
           ))}
