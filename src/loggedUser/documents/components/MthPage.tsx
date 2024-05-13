@@ -404,7 +404,7 @@ const MthPage = () => {
                         className={`border-2 my-2 ${invoice.thumbnail.length < 0 ? 'p-1 w-full h-full object-cover' : 'p-2 w-full h-full object-contain'}`} // Użycie 'object-cover' dla obrazów z miniaturami i 'object-contain' z dodatkowym paddingiem dla obrazu z kłódką
                         />
                       <div
-                        className={`absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 ${invoice.thumbnail.length > 0 ? '-mb-2' : 'mb-32'} `}
+                        className='absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2'
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                       >
                         <div className="flex space-x-4">
