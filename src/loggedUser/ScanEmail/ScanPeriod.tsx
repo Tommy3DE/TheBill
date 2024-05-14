@@ -264,6 +264,10 @@ const ScanPeriod = () => {
                   <br /> Zdecyduj, czy któreś z nich chcesz usunąć – jeżeli nie,
                   to wybierz{" "}
                   <span className="text-gray-800 font-bold">ZATWIERDŹ</span>
+                  <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
+              <img src={locked} alt="locked" className="w-8 mr-2"/>
+              <h3>Ikona kłódki oznacza zabezpieczony hasłem plik.</h3>
+            </div>
                 </p>
               )}
               <div className="  flex flex-row mt-5 flex-wrap justify-center items-center ">
@@ -275,22 +279,12 @@ const ScanPeriod = () => {
                       style={{ width: "260px", height: "400px" }}
                     >
                       <img
-                        src={`${
-                          invoice.thumbnail.length > 0
-                            ? `data:image/jpeg;base64,${invoice.thumbnail}`
-                            : locked
-                        } `}
+                        src={`${invoice.thumbnail.length > 0 ? `data:image/jpeg;base64,${invoice.thumbnail}` : locked} `}
                         alt="Thumbnail"
-                        className={`border-2 my-2 p-1 w-full ${
-                          invoice.thumbnail.length > 0
-                            ? "h-full object-cover"
-                            : ""
-                        }`}
-                      />
+                        className={`border-2 my-2 ${invoice.thumbnail.length < 0 ? 'p-1 w-full h-full object-cover' : 'p-2 w-full h-full object-contain'}`} // Użycie 'object-cover' dla obrazów z miniaturami i 'object-contain' z dodatkowym paddingiem dla obrazu z kłódką
+                        />
                       <div
-                        className={`absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 ${
-                          invoice.thumbnail.length > 0 ? "-mb-2" : "mb-32"
-                        } `}
+                        className='absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2'
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                       >
                         <div className="flex space-x-4">
@@ -305,6 +299,7 @@ const ScanPeriod = () => {
                               handleIconClick(e, invoice.id)
                             }
                           />
+                          {invoice.thumbnail.length > 0 ?
                           <FaRegEye
                             className="text-blue-500 cursor-pointer bg-white rounded-full"
                             style={{
@@ -313,7 +308,7 @@ const ScanPeriod = () => {
                               width: "40px",
                             }}
                             onClick={() => handleImageClick(invoice.thumbnail)}
-                          />
+                          /> : null}
                         </div>
                       </div>
                     </div>

@@ -361,7 +361,7 @@ const MthPage = () => {
             </span>
             <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
               <img src={locked} alt="locked" className="w-8 mr-2"/>
-              <h3>Ikona kłódki oznacza zabezpieczony plik. Sprawdź jego nazwę w widoku <span className="font-black">“lista”</span>.</h3>
+              <h3>Ikona kłódki oznacza zabezpieczony hasłem plik. Sprawdź jego nazwę w widoku <span className="font-black">“lista”</span>.</h3>
             </div>
           </h2>
           {isLoading ? (
@@ -419,6 +419,7 @@ const MthPage = () => {
                               handleIconClick(e, invoice.id)
                             }
                           />
+                          {invoice.thumbnail.length > 0 ?
                           <FaRegEye
                             className="text-blue-500 cursor-pointer bg-white rounded-full"
                             style={{
@@ -427,7 +428,7 @@ const MthPage = () => {
                               width: "40px",
                             }}
                             onClick={() => handleImageClick(invoice.thumbnail)}
-                          />
+                          /> : null}
                         </div>
                       </div>
                     </div>
