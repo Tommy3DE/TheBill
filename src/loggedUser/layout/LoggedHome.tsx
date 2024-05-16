@@ -87,6 +87,8 @@ const LoggedHome = () => {
   const [lastScan, setLastScan] = useState<string | undefined>("");
   const { setUserData, userData } = useUserData();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [invoiceCount, setInvoiceCount] = useState<number>(0)
+  const [mailDate ,setMailDate] = useState<string | undefined>('')
 
   const homeLinks: HomeTile[] = [
     {
@@ -165,6 +167,9 @@ const LoggedHome = () => {
       fetchData("https://api.onebill.com.pl/api/bookkeeper", setAccAdded),
       fetchData("https://api.onebill.com.pl/api/user_data", setSettingData),
       fetchData("https://api.onebill.com.pl/api/last_scan", setLastScan),
+      fetchData("https://api.onebill.com.pl/api/invoice_count", setInvoiceCount),
+      fetchData("https://api.onebill.com.pl/api/last_mail", setMailDate),
+
     ]).finally(() => {
       if (isMounted) setIsLoading(false); // End loading
     });
@@ -218,14 +223,14 @@ const LoggedHome = () => {
                 Liczba faktur z <br />
                 poprzedniego miesiąca:
               </p>
-              <p>-</p>
+              <p>{invoiceCount}</p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>
                 Ostatni e-mail <br />
                 do księgowości:
               </p>
-              <p>-</p>
+              <p>{lastScan ? formatLastScanDate(mailDate) : "-"}</p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ilość skanowań:</p>
