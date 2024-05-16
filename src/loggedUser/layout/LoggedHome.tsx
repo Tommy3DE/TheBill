@@ -6,13 +6,12 @@ import logoutbtn from "../../assets/iconsLogged/log-out.png";
 import logHis from "../../assets/iconsLogged/logHis.png";
 import logsettings from "../../assets/iconsLogged/logsettings.png";
 import scan from "../../assets/iconsLogged/scanMail.png";
-import automate from '../../assets/iconsLogged/automate.png'
+import automate from "../../assets/iconsLogged/automate.png";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import { useUserData } from "../../context/UserDataContext";
 import NewUserHome from "./NewUserHome";
-import { motion } from 'framer-motion';
-
+import { motion } from "framer-motion";
 
 export interface SettingsData {
   email: string;
@@ -49,25 +48,25 @@ interface UserData {
 export const tileVariants = {
   hidden: {
     opacity: 0,
-    y: 50  // Przesunięcie początkowe w dół
+    y: 50, // Przesunięcie początkowe w dół
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      type: 'spring',
+      type: "spring",
       stiffness: 70,
-      damping: 10
-    }
+      damping: 10,
+    },
   },
   hover: {
     scale: 1.1,
-    transition: { type: 'spring', stiffness: 300 },
-    backgroundColor: "#BCFEDA"  // Przykładowy kolor tła po najechaniu
+    transition: { type: "spring", stiffness: 300 },
+    backgroundColor: "#BCFEDA", 
   },
   tap: {
-    scale: 0.9
-  }
+    scale: 0.9,
+  },
 };
 
 export const formatLastScanDate = (isoDate: string): string => {
@@ -87,8 +86,8 @@ const LoggedHome = () => {
   const [lastScan, setLastScan] = useState<string | undefined>("");
   const { setUserData, userData } = useUserData();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [invoiceCount, setInvoiceCount] = useState<number>(0)
-  const [mailDate ,setMailDate] = useState<string | undefined>('')
+  const [invoiceCount, setInvoiceCount] = useState<number | undefined>(0);
+  const [mailDate, setMailDate] = useState<string | undefined>("");
 
   const homeLinks: HomeTile[] = [
     {
@@ -131,7 +130,7 @@ const LoggedHome = () => {
 
     let isMounted = true;
     setIsLoading(true);
-    
+
     const fetchData = async <T,>(
       url: string,
       setData: React.Dispatch<React.SetStateAction<T | undefined>>
@@ -142,16 +141,16 @@ const LoggedHome = () => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
-          }
-        }, );
-  
+          },
+        });
+
         if (!response.ok) {
           if (response.status === 401) {
             throw new Error("Unauthorized - Logging out");
           }
           throw new Error("Network response was not ok.");
         }
-  
+
         const data = await response.json();
         if (isMounted) setData(data);
       } catch (error) {
@@ -162,18 +161,20 @@ const LoggedHome = () => {
         }
       }
     };
-  
+
     Promise.all([
       fetchData("https://api.onebill.com.pl/api/bookkeeper", setAccAdded),
       fetchData("https://api.onebill.com.pl/api/user_data", setSettingData),
       fetchData("https://api.onebill.com.pl/api/last_scan", setLastScan),
-      fetchData("https://api.onebill.com.pl/api/invoice_count", setInvoiceCount),
+      fetchData(
+        "https://api.onebill.com.pl/api/invoice_count",
+        setInvoiceCount
+      ),
       fetchData("https://api.onebill.com.pl/api/last_mail", setMailDate),
-
     ]).finally(() => {
       if (isMounted) setIsLoading(false); // End loading
     });
-  
+
     // Cleanup function to set isMounted flag to false when component unmounts
     return () => {
       isMounted = false;
@@ -201,22 +202,22 @@ const LoggedHome = () => {
     }
   }, [accAdded, settingData, lastScan, setUserData]);
 
-
-
   return (
     <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
       {isLoading ? (
-      <img
-        className="w-20 h-20 animate-spin mt-32 mx-auto"
-        src="https://www.svgrepo.com/show/70469/loading.svg"
-        alt="Loading icon"
-      />
-    ) :accAdded && accAdded.length > 0 ? (
+        <img
+          className="w-20 h-20 animate-spin mt-32 mx-auto"
+          src="https://www.svgrepo.com/show/70469/loading.svg"
+          alt="Loading icon"
+        />
+      ) : accAdded && accAdded.length > 0 ? (
         <>
           <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:px-10 text-lg tracking-wider font-poppins">
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ostatnie skanowanie:</p>
-              <p className="font-bold">{lastScan ? formatLastScanDate(lastScan) : "-"}</p>
+              <p className="font-bold">
+                {lastScan ? formatLastScanDate(lastScan) : "-"}
+              </p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>
@@ -230,33 +231,41 @@ const LoggedHome = () => {
                 Ostatni e-mail <br />
                 do księgowości:
               </p>
-              <p>{lastScan ? formatLastScanDate(mailDate) : "-"}</p>
+              <p>
+                {lastScan && mailDate ? formatLastScanDate(mailDate) : "-"}
+              </p>{" "}
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ilość skanowań:</p>
-              <p  className="font-bold">
+              <p className="font-bold">
                 {settingData
                   ? settingData.package === "Standard"
                     ? "3"
-                    : (settingData.package === 'Premium' ? '5' : (settingData.package === 'Biznes' ? "∞" : null))
+                    : settingData.package === "Premium"
+                    ? "5"
+                    : settingData.package === "Biznes"
+                    ? "∞"
+                    : null
                   : "-"}
               </p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Bieżący pakiet:</p>
-              <p className="font-bold">{settingData ? settingData.package : "-"}</p>
+              <p className="font-bold">
+                {settingData ? settingData.package : "-"}
+              </p>
             </div>
             <div className="bg-white rounded-lg shadow-2xl p-3 w-72 mt-36"></div>
           </div>
           <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
             {homeLinks.map((link) => (
               <motion.div
-              key={link.id}
-              whileHover="hover"
-              whileTap="tap"
-              className="h-80 lg:w-72 w-full lg:mx-3 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center cursor-pointer"
-              variants={tileVariants}
-            >
+                key={link.id}
+                whileHover="hover"
+                whileTap="tap"
+                className="h-80 lg:w-72 w-full lg:mx-3 text-2xl my-5 lg:my-0 rounded-lg font-black flex flex-col justify-center items-center cursor-pointer"
+                variants={tileVariants}
+              >
                 {link.action ? (
                   <div
                     onClick={link.action}
@@ -274,11 +283,7 @@ const LoggedHome = () => {
                 ) : link.linkTo ? (
                   <Link
                     to={link.linkTo}
-                    className={`text-center w-full h-full flex flex-col justify-center items-center cursor-pointer ${
-                      link.id === 1 || link.id === 2
-                        ? "bg-[#BCFEDA] border-green-500"
-                        : "bg-gray-300 border-gray-500"
-                    } border-2   rounded-lg`}
+                    className="text-center w-full h-full flex flex-col justify-center items-center cursor-pointer bg-[#BCFEDA] border-green-500 border-2 rounded-lg"
                   >
                     <div className="bg-white rounded-lg w-[90%] border-2 border-black h-[60%] flex justify-center items-center">
                       <img
