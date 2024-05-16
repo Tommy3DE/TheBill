@@ -18,7 +18,7 @@ const HistoryScan = () => {
           <thead>
             <tr className=" border-b-2 font-black text-lg">
               <th className="px-4 py-2 text-start">#</th>
-              <th className="px-4 py-2 text-start">Data Skanowania</th>
+              <th className="px-4 py-2 text-start">Miesiąc Skanowania</th>
               <th className="px-4 py-2 text-start">Liczba faktur</th>
               <th className="px-4 py-2 text-start">Usunięte dokumenty</th>
               <th className="px-4 py-2 text-start">Dodane dokumenty</th>

@@ -19,7 +19,7 @@ const HistoryDownload = () => {
           <thead>
             <tr className=" border-b-2 font-black text-lg">
               <th className="px-4 py-2 text-start">#</th>
-              <th className="px-4 py-2 text-start">Data Skanowania</th>
+              <th className="px-4 py-2 text-start">Miesiąc Skanowania</th>
               <th className="px-4 py-2 text-start">Czy pobrano faktury?</th>
               <th className="px-4 py-2 text-start">Liczba pobranych faktur</th>
               <th className="px-4 py-2 text-start">Przejdź do folderu</th>
