@@ -63,7 +63,7 @@ export const tileVariants = {
   hover: {
     scale: 1.1,
     transition: { type: "spring", stiffness: 300 },
-    backgroundColor: "#BCFEDA", 
+    backgroundColor: "#BCFEDA",
   },
   tap: {
     scale: 0.9,
@@ -83,16 +83,20 @@ export const formatLastScanDate = (isoDate: string): string => {
 const ToastNotification = () => {
   useEffect(() => {
     const today = new Date();
-    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    const lastDay = new Date(
+      today.getFullYear(),
+      today.getMonth() + 1,
+      0
+    ).getDate();
     const secondLastDay = lastDay - 1;
 
     if (today.getDate() === lastDay || today.getDate() === secondLastDay) {
       toast.info(
         "Niedługo usuniemy Twoje najstarsze faktury. Jeśli nie chcesz żeby zostały usunięte, zwiększ swój plan lub pobierz dokumenty na swój dysk lokalny.",
-        { 
+        {
           position: "top-right",
-          autoClose: false
-      }
+          autoClose: false,
+        }
       );
     }
   }, []);
@@ -231,7 +235,8 @@ const LoggedHome = () => {
           alt="Loading icon"
         />
       ) : accAdded && accAdded.length > 0 ? (
-        <><ToastNotification/>
+        <>
+          {settingData && settingData.package === "Standard" && <ToastNotification />}
           <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
             <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ostatnie skanowanie:</p>
@@ -240,17 +245,11 @@ const LoggedHome = () => {
               </p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
-              <p>
-                Liczba faktur z
-                poprzedniego miesiąca:
-              </p>
+              <p>Liczba faktur z poprzedniego miesiąca:</p>
               <p className="font-bold">{invoiceCount}</p>
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
-              <p>
-                Ostatni e-mail
-                do księgowości:
-              </p>
+              <p>Ostatni e-mail do księgowości:</p>
               <p className="font-bold">
                 {lastScan && mailDate ? formatLastScanDate(mailDate) : "-"}
               </p>{" "}
