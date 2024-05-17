@@ -47,7 +47,6 @@ const MthPage = () => {
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
   // const { userData } = useUserData();
 
-  // console.log(userData)
 
   const showModal = (invoiceId: number) => {
     setInvoiceToDelete(invoiceId);

@@ -2,7 +2,7 @@ import { ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import SlimNav from "../layout/SlimNav";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
 import { HiOutlineEnvelope } from "react-icons/hi2";
@@ -116,7 +116,7 @@ const NewUser = () => {
     },
   });
 
-  useEffect(() => console.log(formData), [formData]);
+  // useEffect(() => console.log(formData), [formData]);
 
   const getSelectedPlan = (): PricingTile | undefined => {
     const selectedNumOfInvoices = formik.values.numOfInvoices;

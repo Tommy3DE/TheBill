@@ -26,12 +26,12 @@ const ScanPeriod = () => {
   const [invoiceToDelete, setInvoiceToDelete] = useState<number | null>(null);
 
   const accessToken = localStorage.getItem("accessToken");
-  console.log(yearSuffix);
 
   const today = new Date();
   const currentMonth = today.getMonth() + 1;
 
   useEffect(() => {
+
     const formattedDate = today
       .toISOString()
       .substring(0, 10)
