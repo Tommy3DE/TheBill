@@ -227,7 +227,7 @@ const LoggedHome = () => {
   }, [accAdded, settingData, lastScan, setUserData]);
 
   return (
-    <section className="w-full lg:h-[80%] mt-20 flex flex-col justify-center items-center mx-auto max-w-[1980px]">
+    <section className="w-full mt-10 lg:h-[80%] flex flex-col justify-center items-center mx-auto max-w-[1980px]">
       {isLoading ? (
         <img
           className="w-20 h-20 animate-spin mt-32 mx-auto"
@@ -237,24 +237,24 @@ const LoggedHome = () => {
       ) : accAdded && accAdded.length > 0 ? (
         <>
           {settingData && settingData.package === "Standard" && <ToastNotification />}
-          <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+          <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10 font-poppins">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-24 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ostatnie skanowanie:</p>
               <p className="font-bold">
                 {lastScan ? formatLastScanDate(lastScan) : "-"}
               </p>
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-24 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Liczba faktur z poprzedniego miesiąca:</p>
               <p className="font-bold">{invoiceCount}</p>
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-24 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ostatni e-mail do księgowości:</p>
               <p className="font-bold">
                 {lastScan && mailDate ? formatLastScanDate(mailDate) : "-"}
               </p>{" "}
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-24 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ilość skanowań:</p>
               <p className="font-bold">
                 {settingData
@@ -268,13 +268,13 @@ const LoggedHome = () => {
                   : "-"}
               </p>
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-24 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Bieżący pakiet:</p>
               <p className="font-bold">
                 {settingData ? settingData.package : "-"}
               </p>
             </div>
-            <div className=" bg-transparent rounded-lg shadow-2xl p-3 w-72 mt-36"></div>
+            <div className=" bg-transparent rounded-lg shadow-2xl p-3 w-72 mt-24"></div>
           </div>
           <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
             {homeLinks.map((link) => (
