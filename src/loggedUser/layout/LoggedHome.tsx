@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useUserData } from "../../context/UserDataContext";
 import NewUserHome from "./NewUserHome";
 import { motion } from "framer-motion";
+import { toast, ToastContainer } from "react-toastify";
 
 export interface SettingsData {
   email: string;
@@ -79,6 +80,25 @@ export const formatLastScanDate = (isoDate: string): string => {
   return formattedDate;
 };
 
+const ToastNotification = () => {
+  useEffect(() => {
+    const today = new Date();
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+    const secondLastDay = lastDay - 1;
+
+    if (today.getDate() === lastDay || today.getDate() === secondLastDay) {
+      toast.info(
+        "Niedługo usuniemy Twoje najstarsze faktury. Jeśli nie chcesz żeby zostały usunięte, zwiększ swój plan lub pobierz dokumenty na swój dysk lokalny.",
+        { 
+          position: "top-right",
+          autoClose: false
+      }
+      );
+    }
+  }, []);
+
+  return <ToastContainer />;
+};
 const LoggedHome = () => {
   const { logout } = useAuth();
   const [accAdded, setAccAdded] = useState<string>();
@@ -211,7 +231,7 @@ const LoggedHome = () => {
           alt="Loading icon"
         />
       ) : accAdded && accAdded.length > 0 ? (
-        <>
+        <><ToastNotification/>
           <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
             <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ostatnie skanowanie:</p>

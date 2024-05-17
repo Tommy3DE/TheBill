@@ -85,7 +85,6 @@ const HistoryDownload = () => {
                 <td className="px-4 py-2 text-center">
                 <Link to={getLinkPath(item.month)} className="flex justify-center text-xl text-blue-400 cursor-pointer hover:scale-110">
                 <FaArrowCircleRight />
-
                   </Link>
                 </td>
               </tr>
