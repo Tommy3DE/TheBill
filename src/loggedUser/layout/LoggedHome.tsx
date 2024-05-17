@@ -92,7 +92,7 @@ const ToastNotification = () => {
 
     if (today.getDate() === lastDay || today.getDate() === secondLastDay) {
       toast.info(
-        "Niedługo usuniemy Twoje najstarsze faktury. Jeśli nie chcesz żeby zostały usunięte, zwiększ swój plan lub pobierz dokumenty na swój dysk lokalny.",
+        "Zbliża się koniec miesiąca. Wkrótce usuniemy Twoje najstarsze faktury. Jeśli nie chcesz, aby zostały usunięte, zwiększ swój plan lub pobierz dokumenty na swój dysk lokalny.",
         {
           position: "top-right",
           autoClose: false,
