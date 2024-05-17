@@ -212,30 +212,30 @@ const LoggedHome = () => {
         />
       ) : accAdded && accAdded.length > 0 ? (
         <>
-          <div className="w-full flex flex-col lg:flex-row justify-between items-center lg:px-10 text-lg tracking-wider font-poppins">
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+          <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ostatnie skanowanie:</p>
               <p className="font-bold">
                 {lastScan ? formatLastScanDate(lastScan) : "-"}
               </p>
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>
-                Liczba faktur z <br />
+                Liczba faktur z
                 poprzedniego miesiąca:
               </p>
-              <p>{invoiceCount}</p>
+              <p className="font-bold">{invoiceCount}</p>
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>
-                Ostatni e-mail <br />
+                Ostatni e-mail
                 do księgowości:
               </p>
-              <p>
+              <p className="font-bold">
                 {lastScan && mailDate ? formatLastScanDate(mailDate) : "-"}
               </p>{" "}
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Ilość skanowań:</p>
               <p className="font-bold">
                 {settingData
@@ -249,13 +249,13 @@ const LoggedHome = () => {
                   : "-"}
               </p>
             </div>
-            <div className="bg-gray-300 rounded-lg shadow-2xl p-3 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
+            <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-36 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Bieżący pakiet:</p>
               <p className="font-bold">
                 {settingData ? settingData.package : "-"}
               </p>
             </div>
-            <div className="bg-white rounded-lg shadow-2xl p-3 w-72 mt-36"></div>
+            <div className=" bg-transparent rounded-lg shadow-2xl p-3 w-72 mt-36"></div>
           </div>
           <div className="w-full lg:w-70% h-full flex flex-col lg:flex-row justify-between items-center lg:px-10">
             {homeLinks.map((link) => (
