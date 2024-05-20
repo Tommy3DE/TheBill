@@ -143,7 +143,7 @@ const NewUser = () => {
       } else if (selectedTile.point1.includes("35")) {
         numOfInvoicesValue = "Premium";
       } else if (
-        selectedTile.point1.toLowerCase().includes("nieograniczonej")
+        selectedTile.point1.toLowerCase().includes("Nielimitowana")
       ) {
         numOfInvoicesValue = "Biznes";
       }
@@ -417,7 +417,7 @@ const NewUser = () => {
                     >
                       <input
                         id="invoice"
-                        name="wants_invoice" // Ensure the name matches the Formik state
+                        name="wants_invoice" 
                         type="checkbox"
                         onChange={formik.handleChange}
                         checked={formik.values.wants_invoice}
