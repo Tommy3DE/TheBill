@@ -46,14 +46,6 @@ const ScanPeriod = () => {
     setYearSuffix(calculatedYear);
   };
 
-  useEffect(() => {
-    const formattedDate = today
-      .toISOString()
-      .substring(0, 10)
-      .replace("T", " ");
-    setDate(formattedDate);
-  }, []);
-
   const handleImageClick = (thumbnail: string) => {
     setSelectedImage(thumbnail);
   };
@@ -191,6 +183,16 @@ const ScanPeriod = () => {
         const data = await scanResponse.json();
         setInvoices(data);
         setNextStep(true);
+        toast.success("Skanowanie przebiegło pomyślnie", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        window.alert("Skanowanie przebiegło pomyślnie");
       } else if (scanResponse.status === 425) {
         let url = await scanResponse.text();
         url = url.replace(/^"|"$/g, "");
