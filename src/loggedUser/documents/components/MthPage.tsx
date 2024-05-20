@@ -272,6 +272,17 @@ const MthPage = () => {
     })
       .then((response) => {
         if (!response.ok) {
+          if (response.status === 409) {
+            toast.error("Podana faktura została już dodana", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            })
+          }
           throw new Error("Network response was not ok");
         }
         return response.text(); // Zmienione z response.json() na response.text(), ponieważ oczekujemy ciągu tekstowego

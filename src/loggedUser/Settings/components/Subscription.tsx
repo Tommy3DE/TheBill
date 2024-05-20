@@ -48,7 +48,7 @@ const Subscription = () => {
     {
       id: 3,
       img: payment,
-      text: "Zmień plan",
+      text: "Zmień pakiet",
       route: "/logged/subscription/change-plan",
     },
   ];
