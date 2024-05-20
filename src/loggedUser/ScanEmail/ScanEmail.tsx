@@ -22,21 +22,20 @@ interface Bookkeeper {
 }
 
 const ScanEmail = () => {
-  const [data, setData] = useState<UserData>()
-  const [lastScan, setLastScan] = useState<string>('')
-  const [scan, setScan] = useState<string>()
+  const [data, setData] = useState<UserData>();
+  const [lastScan, setLastScan] = useState<string>("");
+  const [scan, setScan] = useState<string>();
   const accessToken = localStorage.getItem("accessToken");
 
-
   useEffect(() => {
-      fetch("https://api.onebill.com.pl/api/user_data",
-      {
-        method: "GET",
+    fetch("https://api.onebill.com.pl/api/user_data", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      }).then((response) => {
+    })
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -44,15 +43,15 @@ const ScanEmail = () => {
       })
       .then((data) => {
         setData(data);
-      })
-      fetch("https://api.onebill.com.pl/api/invoice_count",
-      {
-        method: "GET",
+      });
+    fetch("https://api.onebill.com.pl/api/invoice_count", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      }).then((response) => {
+    })
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -60,15 +59,15 @@ const ScanEmail = () => {
       })
       .then((data) => {
         setScan(data);
-      })
-      fetch("https://api.onebill.com.pl/api/last_scan",
-      {
-        method: "GET",
+      });
+    fetch("https://api.onebill.com.pl/api/last_scan", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      }).then((response) => {
+    })
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -76,10 +75,9 @@ const ScanEmail = () => {
       })
       .then((data) => {
         setLastScan(data);
-      })
-    },[])
+      });
+  }, []);
 
-    
   return (
     <section>
       <SlimNav />

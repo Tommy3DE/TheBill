@@ -45,6 +45,7 @@ const MthPage = () => {
   const [wantsZip, setWantsZip] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
   const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
+  const [book, setBook] = useState()
   // const { userData } = useUserData();
 
 
@@ -125,8 +126,28 @@ const MthPage = () => {
       });
   };
 
+  const loadBook = () => {
+    const url = "https://api.onebill.com.pl/api/bookkeeper"
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setBook(data[0].id);
+    });
+  }
+
   useEffect(() => {
     loadInvoices();
+    loadBook()
   }, []);
 
   const deleteInvoice = () => {
@@ -236,7 +257,7 @@ const MthPage = () => {
     // const numericMth = Number(month);
     const reqData = {
       month: month,
-      bookkeeper: 1,
+      bookkeeper: book,
       zip: wantsZip,
     };
 
