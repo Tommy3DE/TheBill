@@ -399,6 +399,8 @@ const ScanPeriod = () => {
             <h1 className="font-black text-2xl">
               Prosimy o chwilę cierpliwości.{" "}
             </h1>
+            <h2 className="text-xl lg:text-start text-center">
+            Skanowanie może zająć do 15 minut. Otrzymasz powiadomienie kiedy się zakończy.            </h2>
             <h3 className="text-xl lg:text-start text-center">
               Nasz algorytm szuka faktur na Twojej skrzynce e-mail.
             </h3>
