@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import SlimNav from "../../layout/SlimNav";
 import ReturnBtn from "../../components/ReturnBtn";
 import mail from "../../assets/iconsLogged/email.png";
-import { useUserData } from "../../context/UserDataContext";
 import { useEffect, useState } from "react";
+import { formatLastScanDate } from "../layout/LoggedHome";
 
 interface UserData {
   email: string;
@@ -22,8 +22,9 @@ interface Bookkeeper {
 }
 
 const ScanEmail = () => {
-  const { userData } = useUserData();
   const [data, setData] = useState<UserData>()
+  const [lastScan, setLastScan] = useState<string>('')
+  const [scan, setScan] = useState<string>()
   const accessToken = localStorage.getItem("accessToken");
 
 
@@ -43,6 +44,38 @@ const ScanEmail = () => {
       })
       .then((data) => {
         setData(data);
+      })
+      fetch("https://api.onebill.com.pl/api/invoice_count",
+      {
+        method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setScan(data);
+      })
+      fetch("https://api.onebill.com.pl/api/last_scan",
+      {
+        method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setLastScan(data);
       })
     },[])
 
@@ -69,11 +102,11 @@ const ScanEmail = () => {
             <div className="bg-white flex flex-col justify-between items-center rounded-3xl px-4 py-2 mt-5 text-small">
               <div className="flex flex-row justify-between w-full">
                 <div>Ostatnie skanowanie:</div>
-                <div>{userData ? userData.lastScan : ""}</div>
+                <div>{formatLastScanDate(lastScan)}</div>
               </div>
               <div className="flex flex-row justify-between w-full">
-                <span>Liczba ostatnio pobranych faktur:</span>
-                <span>-</span>
+                <span>Liczba faktur z zeszłego miesiąca:</span>
+                <span>{scan}</span>
               </div>
             </div>
             <Link to={"/logged/scanMail/scanPeriod"}>

@@ -25,7 +25,6 @@ const SettingsAcc = () => {
       })
       .then((data) => {
         setAccName(data[0].email);
-        //   console.log(accName)
       });
   }, []);
   return (

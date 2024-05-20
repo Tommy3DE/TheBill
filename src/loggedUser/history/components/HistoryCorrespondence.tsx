@@ -62,6 +62,7 @@ const HistoryCorrespondence = () => {
             <tr className=" border-b-2 font-black text-lg">
               <th className="px-4 py-2 text-center">#</th>
               <th className="px-4 py-2 text-center">Miesiąc Skanowania</th>
+              <th className="px-4 py-2 text-center">Data</th>
               <th className="px-4 py-2 text-center">Wysłano do księgowości?</th>
               <th className="px-4 py-2 text-center">Liczba faktur</th>
               <th className="px-4 py-2 text-center">Format</th>
@@ -72,6 +73,7 @@ const HistoryCorrespondence = () => {
               <tr key={item.id}>
                 <td className="px-4 py-2 text-center">{index + 1}</td>
                 <td className="px-4 py-2 text-center">{formatDate(item.month)}</td>
+                <td className="px-4 py-2 text-center">TBP</td>
                 <td className="px-4 py-2 text-center">Tak</td>
                 <td className="px-4 py-2 text-center">{item.count}</td>
                 <td className="px-4 py-2 text-center">{item.zip === false ? 'PDF' : 'ZIP'}</td>
