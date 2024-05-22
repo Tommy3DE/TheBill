@@ -175,6 +175,16 @@ const PolitykaPryw = () => {
               przepisów o ochronie danych osobowych. Oznacza to, że nie
               przesyłamy ich poza teren Unii Europejskiej.
             </li>
+            <li>
+              Nie przekazujemy ani nie ujawniamy informacji o użytkowniku
+              stronom trzecim w celach innych niż podane.
+            </li>
+            <li>
+            Dane, które zebraliśmy na Twój temat, to dane, które nam przekazałeś, w tym imię i nazwisko, numer telefonu komórkowego, adres itp.
+            </li>
+            <li>
+            Możemy gromadzić lub przetwarzać w imieniu naszych klientów następujące kategorie danych osobowych, gdy użytkownik korzysta z naszych produktów i usług lub wchodzi z nimi w interakcję.
+            </li>
             <h3 className="text-3xl font-black text-start my-3">
               Informacje w formularzach{" "}
             </h3>
@@ -371,9 +381,7 @@ const PolitykaPryw = () => {
                   </a>
                 </li>
               </ul>
-              <li>
-              Urządzenia mobilne:
-              </li>
+              <li>Urządzenia mobilne:</li>
               <ul className="list-disc">
                 <li>
                   <a
@@ -405,7 +413,7 @@ const PolitykaPryw = () => {
                     Windows Phone
                   </a>
                 </li>
-                </ul>
+              </ul>
             </ol>
           </ol>
         </div>
