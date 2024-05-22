@@ -60,7 +60,7 @@ const NewUser = () => {
       wants_invoice: Yup.boolean(),
     }),
     onSubmit: (values) => {
-      // console.log(values);
+      console.log(values);
       // setShowPartTwo((prev) => !prev);
 
       const apiUrl = "https://api.onebill.com.pl/api/register";
@@ -495,9 +495,13 @@ const NewUser = () => {
                             Razem:
                           </h1>
                           <h1 className="text-2xl font-bold text-[#1A9367]">
-                            {selectedPlan.priceMth}
+                            <span className="line-through">{selectedPlan.priceMth}</span>{'   '}<span>0 zł</span>
                           </h1>
+                          
                         </div>
+                        <h1 className="text-xl text-center text-red-600 animate-pulse">
+                            Pierwszy miesiąc darmowy
+                          </h1>
                       </div>
 
                       <div className="lg:w-2/3 rounded-xl flex flex-col bg-white mt-5 lg:mt-0">
