@@ -18,10 +18,10 @@ const AutoScan = () => {
         </h2>
         <h1 className="lg:text-4xl text-3xl text-center my-10 font-bold">
           Skanowanie ma się odbywać:
-          <span>
+          <span className="ml-2">
             <select className="bg-gray-200 rounded">
               <option value="1">codziennie</option>
-              <option value="2">co tygodzień</option>
+              <option value="2">co tydzień</option>
               <option value="3">co 2 tygodnie</option>
               <option value="4">na koniec miesiąca</option>
               
