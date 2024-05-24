@@ -1,5 +1,5 @@
 import { useState } from "react";
-import JSEncrypt from "jsencrypt";
+import { JSEncrypt } from "jsencrypt"; // Importing a library that supports RSA encryption
 import SlimNav from "../layout/SlimNav";
 import { toast } from "react-toastify";
 
@@ -9,28 +9,28 @@ const PaymentPage = () => {
   const [cvcInput, setCvcInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const pubkey = `-----BEGIN PUBLIC KEY-----
-  MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCBB+jeV/CthQcGFltHV2lueSNc
-  W30zxbI9hjkpwIgEyfY3e63+0ISIBts8/k3U7Qg+HHmqy+6fciicM2pxt9hvGvPy
-  /lssbd2pYksGh8yzB8JJj8HaQQ/RzYEZ72FAn1Z6R7C9hgZORl7JV+W47GEUNixp
-  PuzozDsBeq9PcZMaEQIDAQAB
-  -----END PUBLIC KEY-----`
+  const pubkey = `-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCBB+jeV/CthQcGFltHV2lueSNcW30zxbI9hjkpwIgEyfY3e63+0ISIBts8/k3U7Qg+HHmqy+6fciicM2pxt9hvGvPy/lssbd2pYksGh8yzB8JJj8HaQQ/RzYEZ72FAn1Z6R7C9hgZORl7JV+W47GEUNixpPuzozDsBeq9PcZMaEQIDAQAB-----END PUBLIC KEY-----`;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    const cardNumberClean = cardNumber.replace(/\s/g, '');
-    const expiryClean = expiryInput.replace(/\s/g, '');
-    const cvcClean = cvcInput.replace(/\s/g, '');
-    const cd = `${cardNumberClean}|${expiryClean}|${cvcClean}|${document.location.origin}`;
+    const cardNumberClean = cardNumber.replace(/\s/g, "");
+    const cd = `${cardNumberClean}|${expiryInput}|${cvcInput}|${document.location.origin}`;
 
+    // Using JSEncrypt for RSA encryption
     const encrypt = new JSEncrypt();
-    encrypt.setPublicKey(pubkey); 
+    encrypt.setPublicKey(pubkey);
     const encrypted = encrypt.encrypt(cd);
 
-    const url = 'https://api.onebill.com.pl/api/payment_init'
-  
+    if (!encrypted) {
+      console.error("Encryption failed.");
+      setLoading(false);
+      return;
+    }
+
+    const url = "https://api.onebill.com.pl/api/payment_init";
+
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -39,26 +39,30 @@ const PaymentPage = () => {
         },
         body: JSON.stringify({
           payer: {
-            name: 'Paweł Fornalik',
-            email: 'ta8341082@gmail.com'
+            name: "Paweł Fornalik",
+            email: "ta8341082@gmail.com",
           },
-          card: encrypted
-        })
+          card: encrypted,
+        }),
       });
       if (response.ok) {
-        toast.success('poszlo')
+        toast.success("poszło");
+      } else {
+        console.error("Server error:", response.statusText);
       }
     } catch (error) {
-      console.error('Wystąpił błąd:', error);
+      console.error("Wystąpił błąd:", error);
     }
-    setLoading(false)
-    
-  }
+    setLoading(false);
+  };
 
   return (
     <div>
       <SlimNav />
-      <form className="flex flex-col justify-center items-center mt-32" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col justify-center items-center mt-32"
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="cardNumber" className="mt-8 mb-2">
           Numer Karty
         </label>
@@ -66,7 +70,7 @@ const PaymentPage = () => {
           id="cardNumber"
           type="text"
           value={cardNumber}
-          onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, ''))}
+          onChange={(e) => setCardNumber(e.target.value)}
           className="bg-gray-300 p-2 rounded mb-10 w-1/3"
         />
         <div className="flex flex-row w-1/3 justify-between">
@@ -78,7 +82,7 @@ const PaymentPage = () => {
               id="cvcInput"
               type="text"
               value={cvcInput}
-              onChange={(e) => setCvcInput(e.target.value.replace(/\D/g, ''))}
+              onChange={(e) => setCvcInput(e.target.value)}
               className="bg-gray-300 p-2 rounded"
             />
           </div>
@@ -90,7 +94,8 @@ const PaymentPage = () => {
               id="expiryInput"
               type="text"
               value={expiryInput}
-              onChange={(e) => setExpiryInput(e.target.value.replace(/\D/g, ''))}
+              onChange={(e) => setExpiryInput((e.target.value))}
+                
               className="bg-gray-300 p-2 rounded mb-10"
             />
           </div>
@@ -98,9 +103,11 @@ const PaymentPage = () => {
         <button
           type="submit"
           disabled={loading}
-          className={`mt-4 p-2 rounded bg-blue-500 text-white ${loading ? 'opacity-50' : ''}`}
+          className={`mt-4 p-2 rounded bg-blue-500 text-white ${
+            loading ? "opacity-50" : ""
+          }`}
         >
-          {loading ? 'Processing...' : 'Submit Payment'}
+          {loading ? "Processing..." : "Submit Payment"}
         </button>
       </form>
     </div>
