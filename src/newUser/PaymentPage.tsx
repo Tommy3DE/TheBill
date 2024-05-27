@@ -7,6 +7,8 @@ const PaymentPage = () => {
   const [cardNumber, setCardNumber] = useState("");
   const [expiryInput, setExpiryInput] = useState("");
   const [cvcInput, setCvcInput] = useState("");
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false);
 
   const pubkey = `-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCBB+jeV/CthQcGFltHV2lueSNcW30zxbI9hjkpwIgEyfY3e63+0ISIBts8/k3U7Qg+HHmqy+6fciicM2pxt9hvGvPy/lssbd2pYksGh8yzB8JJj8HaQQ/RzYEZ72FAn1Z6R7C9hgZORl7JV+W47GEUNixpPuzozDsBeq9PcZMaEQIDAQAB-----END PUBLIC KEY-----`;
@@ -18,7 +20,6 @@ const PaymentPage = () => {
     const cardNumberClean = cardNumber.replace(/\s/g, "");
     const cd = `${cardNumberClean}|${expiryInput}|${cvcInput}|${document.location.origin}`;
 
-    // Using JSEncrypt for RSA encryption
     const encrypt = new JSEncrypt();
     encrypt.setPublicKey(pubkey);
     const encrypted = encrypt.encrypt(cd);
@@ -39,8 +40,8 @@ const PaymentPage = () => {
         },
         body: JSON.stringify({
           payer: {
-            name: "Paweł Fornalik",
-            email: "ta8341082@gmail.com",
+            name: {name},
+            email: {email},
           },
           card: encrypted,
         }),
@@ -63,7 +64,33 @@ const PaymentPage = () => {
         className="flex flex-col justify-center items-center mt-32"
         onSubmit={handleSubmit}
       >
-        <label htmlFor="cardNumber" className="mt-8 mb-2">
+        <div className="flex flex-row w-1/3 justify-between">
+          <div className="flex flex-col w-1/2 mr-5">
+            <label htmlFor="nameSurname" className="mt-4 mb-2">
+              Imię i Nazwisko
+            </label>
+            <input
+              id="nameSurname"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="bg-gray-300 p-2 rounded"
+            />
+          </div>
+          <div className="flex flex-col w-1/2">
+            <label htmlFor="email" className="mt-4 mb-2">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail((e.target.value))}
+              className="bg-gray-300 p-2 rounded mb-10"
+            />
+          </div>
+        </div>
+        <label htmlFor="cardNumber" className="my-2">
           Numer Karty
         </label>
         <input
@@ -95,7 +122,6 @@ const PaymentPage = () => {
               type="text"
               value={expiryInput}
               onChange={(e) => setExpiryInput((e.target.value))}
-                
               className="bg-gray-300 p-2 rounded mb-10"
             />
           </div>
