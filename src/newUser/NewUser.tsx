@@ -74,7 +74,7 @@ const NewUser = () => {
         industry: values.industry,
         max_invoices: values.numOfInvoices,
         org_size: "JDG",
-        package: "Premium",
+        package: getSelectedPlan(),
         wants_invoice: values.wants_invoice,
       };
 

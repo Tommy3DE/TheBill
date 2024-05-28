@@ -90,7 +90,7 @@ const PaymentPage = () => {
             />
           </div>
         </div>
-        <label htmlFor="cardNumber" className="my-2">
+        <label htmlFor="cardNumber" className="my-2 w-1/3">
           Numer Karty
         </label>
         <input
@@ -133,7 +133,7 @@ const PaymentPage = () => {
             loading ? "opacity-50" : ""
           }`}
         >
-          {loading ? "Processing..." : "Submit Payment"}
+          {loading ? "Przetwarzanie..." : "Zapłać"}
         </button>
       </form>
     </div>
