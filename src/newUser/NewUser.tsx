@@ -27,6 +27,7 @@ interface FormValues {
 const NewUser = () => {
   const [showPartTwo, setShowPartTwo] = useState(false);
   const [changePlan, setChangePlan] = useState(false);
+  const [yearly, setYearly] = useState(false);
   const { setFormData, formData } = useFormData();
   const formik = useFormik<FormValues>({
     initialValues: {
@@ -59,64 +60,10 @@ const NewUser = () => {
       numOfInvoices: Yup.string().required("Proszę wybrać ilość faktur"),
       wants_invoice: Yup.boolean(),
     }),
-    onSubmit: (values) => {
-      console.log(values);
-      // setShowPartTwo((prev) => !prev);
-
-      const apiUrl = "https://api.onebill.com.pl/api/register";
-
-      const requestBody = {
-        email: values.login,
-        password: values.pass,
-        NIP: values.NIP,
-        first_name: values.firstName,
-        last_name: values.lastName,
-        industry: values.industry,
-        max_invoices: values.numOfInvoices,
-        org_size: "JDG",
-        package: getSelectedPlan(),
-        wants_invoice: values.wants_invoice,
-      };
-
-      fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            if (response.status === 409) {
-              toast.error("Konto z podanym adresem email już istnieje", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              })
-            }
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setFormData(values);
-          console.log(data);
-          setShowPartTwo((prev) => !prev);
-        })
-        .catch((error) => {
-          console.error(
-            "There was a problem with your fetch operation:",
-            error
-          );
-        });
+    onSubmit: () => {
+      setShowPartTwo((prev) => !prev);
     },
   });
-
-  // useEffect(() => console.log(formData), [formData]);
 
   const getSelectedPlan = (): PricingTile | undefined => {
     const selectedNumOfInvoices = formik.values.numOfInvoices;
@@ -142,9 +89,7 @@ const NewUser = () => {
         numOfInvoicesValue = "Standard";
       } else if (selectedTile.point1.includes("35")) {
         numOfInvoicesValue = "Premium";
-      } else if (
-        selectedTile.point1.toLowerCase().includes("Nielimitowana")
-      ) {
+      } else if (selectedTile.point1.toLowerCase().includes("Nielimitowana")) {
         numOfInvoicesValue = "Biznes";
       }
     }
@@ -154,6 +99,54 @@ const NewUser = () => {
       setFormData({ ...formData, numOfInvoices: numOfInvoicesValue });
     }
     handlePlan();
+  };
+
+  const registerHandler = () => {
+    const selectedPlan = getSelectedPlan();
+    const apiUrl = "https://api.onebill.com.pl/api/register";
+
+    const requestBody = {
+      email: formik.values.login,
+      password: formik.values.pass,
+      NIP: formik.values.NIP,
+      first_name: formik.values.firstName,
+      last_name: formik.values.lastName,
+      industry: formik.values.industry,
+      package: selectedPlan ? selectedPlan.title : "",
+      wants_invoice: formik.values.wants_invoice,
+      yearly: yearly,
+    };
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          if (response.status === 409) {
+            toast.error("Konto z podanym adresem email już istnieje", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("There was a problem with your fetch operation:", error);
+      });
+  };
+  const handleClick = () => {
+    setYearly((prev) => !prev);
   };
 
   return (
@@ -417,7 +410,7 @@ const NewUser = () => {
                     >
                       <input
                         id="invoice"
-                        name="wants_invoice" 
+                        name="wants_invoice"
                         type="checkbox"
                         onChange={formik.handleChange}
                         checked={formik.values.wants_invoice}
@@ -494,14 +487,28 @@ const NewUser = () => {
                           <h1 className="text-2xl font-bold text-[#1A9367]">
                             Razem:
                           </h1>
-                          <h1 className="text-2xl font-bold text-[#1A9367]">
-                            <span className="line-through">{selectedPlan.priceMth}</span>{'   '}<span>0 zł</span>
-                          </h1>
-                          
+                          {!yearly && (<h1 className="text-2xl font-bold text-[#1A9367]">
+                            <span className="line-through">
+                              {selectedPlan.priceMth}
+                            </span>
+                            {"   "}
+                            <span>0 zł</span>
+                          </h1>)}
+                          {yearly && <h1 className="text-2xl font-bold text-[#1A9367]">{selectedPlan.priceYrl}</h1>}
                         </div>
-                        <h1 className="text-xl text-center text-red-600 animate-pulse">
+                        {!yearly && (
+                          <h1 className="text-xl text-center text-red-600 ">
                             Pierwszy miesiąc darmowy
                           </h1>
+                        )}
+                        <div className="text-2xl flex flex-row justify-center items-center ">
+                          <input
+                            type="checkbox"
+                            onClick={handleClick}
+                            className="w-8 h-8"
+                          />
+                          <span>Plan roczny</span>
+                        </div>
                       </div>
 
                       <div className="lg:w-2/3 rounded-xl flex flex-col bg-white mt-5 lg:mt-0">
@@ -559,7 +566,10 @@ const NewUser = () => {
                     </Link>
                     <Link to="/newUser/paymentPage">
                       {" "}
-                      <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
+                      <button
+                        className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10"
+                        onClick={registerHandler}
+                      >
                         Zamawiam i płacę
                       </button>
                     </Link>
