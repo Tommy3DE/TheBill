@@ -559,11 +559,11 @@ const NewUser = () => {
                         Akceptuję regulamin płatności
                       </span>
                     </p>
-                    <Link to="/login">
+                    {/* <Link to="/login">
                       <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
                         Przejdź do logowania
                       </button>
-                    </Link>
+                    </Link> */}
                     <Link to="/newUser/paymentPage">
                       {" "}
                       <button

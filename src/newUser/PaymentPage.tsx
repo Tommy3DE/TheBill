@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { JSEncrypt } from "jsencrypt"; // Importing a library that supports RSA encryption
 import SlimNav from "../layout/SlimNav";
-import { toast } from "react-toastify";
 
 const PaymentPage = () => {
   const [cardNumber, setCardNumber] = useState("");
@@ -40,14 +39,16 @@ const PaymentPage = () => {
         },
         body: JSON.stringify({
           payer: {
-            name: {name},
-            email: {email},
+            name: name,
+            email: email,
           },
           card: encrypted,
         }),
       });
+    
       if (response.ok) {
-        toast.success("poszło");
+        const link = await response.text(); // Read the response as plain text
+        window.location.href = link; // Open the link
       } else {
         console.error("Server error:", response.statusText);
       }
@@ -55,7 +56,7 @@ const PaymentPage = () => {
       console.error("Wystąpił błąd:", error);
     }
     setLoading(false);
-  };
+  }
 
   return (
     <div>
