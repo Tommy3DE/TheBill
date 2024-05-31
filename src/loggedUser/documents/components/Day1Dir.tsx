@@ -59,11 +59,11 @@ const Day1Dir = () => {
 
   const monthsBack = useMemo(() => {
     switch (userData?.package) {
-      case "Standard":
+      case "Pakiet Standard":
         return 6;
-      case "Premium":
+      case "Pakiet Premium":
         return 24;
-      case "Biznes":
+      case "Pakiet Biznes":
         return 60;
       default:
         return 12;

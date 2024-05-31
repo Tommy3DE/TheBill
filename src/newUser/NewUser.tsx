@@ -67,11 +67,11 @@ const NewUser = () => {
 
   const getSelectedPlan = (): PricingTile | undefined => {
     const selectedNumOfInvoices = formik.values.numOfInvoices;
-    if (selectedNumOfInvoices === "Standard") {
+    if (selectedNumOfInvoices === "Pakiet Standard") {
       return pricing[0];
-    } else if (selectedNumOfInvoices === "Premium") {
+    } else if (selectedNumOfInvoices === "Pakiet Premium") {
       return pricing[1];
-    } else if (selectedNumOfInvoices === "Biznes") {
+    } else if (selectedNumOfInvoices === "Pakiet Biznes") {
       return pricing[2];
     }
   };
@@ -86,11 +86,11 @@ const NewUser = () => {
 
     if (selectedTile) {
       if (selectedTile.point1.includes("15")) {
-        numOfInvoicesValue = "Standard";
+        numOfInvoicesValue = "Pakiet Standard";
       } else if (selectedTile.point1.includes("35")) {
-        numOfInvoicesValue = "Premium";
+        numOfInvoicesValue = "Pakiet Premium";
       } else if (selectedTile.point1.toLowerCase().includes("Nielimitowana")) {
-        numOfInvoicesValue = "Biznes";
+        numOfInvoicesValue = "Pakiet Biznes";
       }
     }
 

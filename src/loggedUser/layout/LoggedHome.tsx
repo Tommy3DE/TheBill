@@ -258,11 +258,11 @@ const LoggedHome = () => {
               <p>Ilość skanowań:</p>
               <p className="font-bold">
                 {settingData
-                  ? settingData.package === "Standard"
+                  ? settingData.package === "Pakiet Standard"
                     ? "3"
-                    : settingData.package === "Premium"
+                    : settingData.package === "Pakiet Premium"
                     ? "5"
-                    : settingData.package === "Biznes"
+                    : settingData.package === "Pakiet Biznes"
                     ? "∞"
                     : null
                   : "-"}

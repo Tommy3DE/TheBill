@@ -47,8 +47,9 @@ const PaymentPage = () => {
       });
     
       if (response.ok) {
-        const link = await response.text(); // Read the response as plain text
-        window.location.href = link; // Open the link
+        let link = await response.text(); // Read the response as plain text
+        link = link.replace(/"/g, ''); // Remove the quotes from the link
+        window.open(link, '_blank')
       } else {
         console.error("Server error:", response.statusText);
       }
