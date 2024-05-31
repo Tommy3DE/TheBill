@@ -1,19 +1,39 @@
 import SlimNav from "../../../layout/SlimNav";
 import payment from "../../../assets/settings/payment-day 2.png";
-import { useUserData } from "../../../context/UserDataContext";
 import { pricing } from "../../../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReturnBtn from "../../../components/ReturnBtn";
-import tick from '../../../assets/settings/check-box 1.png'
+import tick from '../../../assets/settings/check-box 1.png';
 import { Link } from "react-router-dom";
-
+import { SettingsData } from "../../layout/LoggedHome";
 
 const ChangePlan = () => {
-  const { userData } = useUserData();
-  const [selectedPackage, setSelectedPackage] = useState(userData?.package);
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
   const [changePlan, setChangePlan] = useState(false);
-  const [nextStep, setNextStep] = useState(false)
+  const [nextStep, setNextStep] = useState(false);
+  const [data, setData] = useState<SettingsData | null>(null);
+  const accessToken = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    fetch("https://api.onebill.com.pl/api/user_data", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+        setSelectedPackage(data.package); // Update selectedPackage with fetched data
+      });
+  }, [accessToken]);
 
   const handleSelectPlan = (packageName: string): void => {
     setSelectedPackage(packageName); 
@@ -56,7 +76,6 @@ const ChangePlan = () => {
           onClick={() => setChangePlan(true)}
           className="uppercase font-playFair text-2xl px-10 py-2 text-white bg-[#1A9367] mb-12 rounded-xl"
         >
-          {" "}
           Zmien plan
         </button>
         <div className="flex flex-row justify-center mt-10">
@@ -166,7 +185,6 @@ const ChangePlan = () => {
           ))}
         </div>
       )}
-      
     </section>
   );
 };

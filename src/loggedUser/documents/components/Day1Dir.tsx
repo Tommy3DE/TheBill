@@ -54,7 +54,7 @@ const Day1Dir = () => {
   const { userData } = useUserData();
   const [prevYear, setPrevYear] = useState(false);
   const currentDate = useMemo(() => new Date(), []);
-  const currentMonth = currentDate.getMonth() + 1; // 1-based month index
+  const currentMonth = currentDate.getMonth() + 1; 
   const currentYear = currentDate.getFullYear();
 
   const monthsBack = useMemo(() => {

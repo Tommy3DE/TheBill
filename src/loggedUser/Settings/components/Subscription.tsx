@@ -9,10 +9,13 @@ import cross from "../../../assets/settings/cross 1.png";
 import debit from "../../../assets/settings/debit-card 1.png";
 import payment from "../../../assets/settings/payment-day 2.png";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { SettingsData } from "../../layout/LoggedHome";
 
 const Subscription = () => {
   const { userData } = useUserData();
-  // console.log(pricing);
+  const [data, setData] = useState<SettingsData>()
+  const accessToken = localStorage.getItem("accessToken");
 
   const packageDetails = (packageName: string): JSX.Element | null => {
     const details = pricing.find((p) => p.title.includes(packageName));
@@ -31,6 +34,24 @@ const Subscription = () => {
       </div>
     );
   };
+
+  useEffect(() => {
+    fetch("https://api.onebill.com.pl/api/user_data", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });},[])
 
   const tiles = [
     {
@@ -53,11 +74,12 @@ const Subscription = () => {
     },
   ];
 
+
   return (
     <section className="mx-auto font-poppins">
       <SlimNav />
       <div className="max-w-[1980px]">
-        <h1 className="text-4xl text-center font-bold tracking-wider mt-[7%]">
+        <h1 className="text-4xl text-center font-bold tracking-wider lg:mt-[7%] mt-36">
           Zarządzaj swoją subskrypcją
         </h1>
         <img src={card} alt="subscription" className="mx-auto my-7" />
@@ -65,7 +87,7 @@ const Subscription = () => {
           Dane subskrypcji dla konta sparowanego z adresem:
           <br />
           <span className="text-bold text-black text-2xl">
-            {userData?.email}
+            {data && data?.email}
           </span>
         </h2>
         {userData?.package ? packageDetails(userData.package) : null}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 interface CorrHistoryItem {
   id: number;
   month: string;
+  date: string;
   zip: boolean;
   user: number;
   count: number;
@@ -45,6 +46,21 @@ const HistoryCorrespondence = () => {
       });
   }, []);
 
+  function formatDatePres(dateString:string) {
+    const date = new Date(dateString);
+    
+    const pad = (num:number) => (num < 10 ? '0' : '') + num;
+  
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1); 
+    const day = pad(date.getDate());
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    const seconds = pad(date.getSeconds());
+  
+    return `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
+  }
+
   return (
     <div className="h-auto lg:h-screen w-full">
       <SlimNav />
@@ -73,7 +89,7 @@ const HistoryCorrespondence = () => {
               <tr key={item.id}>
                 <td className="px-4 py-2 text-center">{index + 1}</td>
                 <td className="px-4 py-2 text-center">{formatDate(item.month)}</td>
-                <td className="px-4 py-2 text-center">TBP</td>
+                <td className="px-4 py-2 text-center">{formatDatePres(item.date)}</td>
                 <td className="px-4 py-2 text-center">Tak</td>
                 <td className="px-4 py-2 text-center">{item.count}</td>
                 <td className="px-4 py-2 text-center">{item.zip === false ? 'PDF' : 'ZIP'}</td>
