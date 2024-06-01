@@ -16,6 +16,7 @@ import HistoryCorrespondence from "./loggedUser/history/components/HistoryCorres
 import ChangePlan from "./loggedUser/Settings/components/ChangePlan";
 import ChangePayment from "./loggedUser/Settings/components/ChangePayment";
 import CancelSub from "./loggedUser/Settings/components/CancelSub";
+import ForgotPassPage from "./layout/pages/ForgotPassPage";
 
 const Home = lazy(() => import("./layout/pages/Home"));
 const Cennik = lazy(() => import("./layout/pages/Cennik"));
@@ -94,6 +95,7 @@ function App() {
                 }
               />
               <Route path="/funkcje" element={<Oferta />} />
+              <Route path="/forgotPass" element={<ForgotPassPage />} />
               <Route path="/pomoc" element={<Pomoc />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog" element={<Blog />} />

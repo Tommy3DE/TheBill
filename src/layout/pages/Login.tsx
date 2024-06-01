@@ -1,5 +1,5 @@
 import Navbar from "../Navbar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
@@ -10,30 +10,6 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const { login } = useAuth();
   const navigate = useNavigate();
-
-  const handleForgotPass = async () => {
-    const emailParam = encodeURIComponent(email); 
-    const url = `https://api.onebill.com.pl/api/reset_pass?email=${emailParam}`;
-  
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      }
-    });
-  
-    if (response.ok) {
-      toast.info(
-        "Jeżeli konto powiązane z tym adresem istnieje, otrzymasz link do zrestartowania hasła",
-        {
-          position: "top-right",
-          autoClose: 7000,
-        }
-      );
-    } else {
-      toast.error("Wystąpił problem podczas wysyłania prośby o reset hasła");
-    }
-  };
   
 
   const requestBody = {
@@ -93,12 +69,13 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <Link to='/forgotPass'>
             <div
-              onClick={handleForgotPass}
               className="text-lg mt-2 underline hover:text-blue-700 cursor-pointer"
             >
               Zapomniałeś hasła?
             </div>
+            </Link>
             <button
               type="submit"
               className="w-full lg:w-auto lg:mt-5 mt-10 bg-green-700 text-white p-2 rounded-lg"
