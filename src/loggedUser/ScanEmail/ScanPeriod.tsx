@@ -9,6 +9,7 @@ import { FaRegEye } from "react-icons/fa";
 import { toast } from "react-toastify";
 import ReturnBtn from "../../components/ReturnBtn";
 import gifScan from "../../assets/Email capture.gif";
+import info from '../../assets/info.png'
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
@@ -360,9 +361,18 @@ const ScanPeriod = () => {
                 </div>
               </div>
               <div className="mt-16 text-2xl flex lg:flex-row flex-col justify-between w-2/3">
-                <label htmlFor="month-picker" className="text-2xl text-start">
+                <div className="flex flex-row">
+                  <label htmlFor="month-picker" className="text-2xl text-start">
                   Wybierz miesiąc:
                 </label>
+                <div className="relative group">
+      <img src={info} alt="info" className="w-[20px] h-[20px] ml-2 cursor-pointer" />
+      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-2 bg-gray-700 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        Pamiętaj! Algorytm skanuje cały zakończony miesiąc kalendarzowy. Jeżeli otrzymałeś jakieś faktury na początku kolejnego miesiąca, to zeskanuj również kolejny miesiąc. Na przykład: Jeżeli chcę zebrać wszystkie faktury dotyczące miesiąca rozliczeniowego maja, ale kilka z nich zostały do mnie przesłane na początku czerwca, to muszę zeskanować maj oraz czerwiec.
+      </div>
+    </div>
+                </div>
+                
                 <select
                   id="month-picker"
                   className="rounded-3xl px-4 py-2 bg-gray-300 text-2xl lg:w-1/3"
