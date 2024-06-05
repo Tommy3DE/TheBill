@@ -1,7 +1,6 @@
 import { ErrorMessage, useFormik, FormikProvider } from "formik";
 import * as Yup from "yup";
 import SlimNav from "../layout/SlimNav";
-
 import { useState } from "react";
 import { PricingTile, pricing } from "../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
@@ -18,7 +17,7 @@ interface FormValues {
   pass2: string;
   firstName: string;
   lastName: string;
-  NIP: number | undefined;
+  NIP: string;
   industry: string;
   numOfInvoices?: string;
   wants_invoice: boolean;
@@ -29,6 +28,7 @@ const NewUser = () => {
   const [changePlan, setChangePlan] = useState(false);
   const [yearly, setYearly] = useState(false);
   const { setFormData, formData } = useFormData();
+
   const formik = useFormik<FormValues>({
     initialValues: {
       login: "",
@@ -36,7 +36,7 @@ const NewUser = () => {
       pass2: "",
       firstName: "",
       lastName: "",
-      NIP: undefined,
+      NIP: "",
       industry: "",
       numOfInvoices: "",
       wants_invoice: false,
@@ -61,7 +61,7 @@ const NewUser = () => {
       wants_invoice: Yup.boolean(),
     }),
     onSubmit: () => {
-      setShowPartTwo((prev) => !prev);
+      setShowPartTwo(true);
     },
   });
 
@@ -75,6 +75,7 @@ const NewUser = () => {
       return pricing[2];
     }
   };
+
   const handlePlan = () => {
     setChangePlan((prev) => !prev);
   };
@@ -145,6 +146,7 @@ const NewUser = () => {
         console.error("There was a problem with your fetch operation:", error);
       });
   };
+
   const handleClick = () => {
     setYearly((prev) => !prev);
   };
@@ -238,7 +240,7 @@ const NewUser = () => {
               ))}
             </div>
           )}
-          {showPartTwo === false && (
+          {!showPartTwo && (
             <FormikProvider value={formik}>
               <section className="lg:mt-14 mt-24 flex flex-col items-center font-poppins w-full">
                 <form
@@ -296,7 +298,6 @@ const NewUser = () => {
                       className="text-sm text-red-600"
                     />
                   </div>
-
                   <div className="mb-6 w-full flex flex-col items-center">
                     <input
                       id="firstName"
@@ -314,7 +315,6 @@ const NewUser = () => {
                       className="text-sm text-red-600"
                     />
                   </div>
-
                   <div className="mb-6 w-full flex flex-col items-center">
                     <input
                       id="lastName"
@@ -332,12 +332,11 @@ const NewUser = () => {
                       className="text-sm text-red-600"
                     />
                   </div>
-
                   <div className="mb-6 w-full flex flex-col items-center">
                     <input
                       id="nip"
                       name="NIP"
-                      type="number"
+                      type="text"
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.NIP}
@@ -350,7 +349,6 @@ const NewUser = () => {
                       className="text-sm text-red-600"
                     />
                   </div>
-
                   <div className="mb-6 w-full flex flex-col items-center">
                     <select
                       id="industry"
@@ -379,7 +377,6 @@ const NewUser = () => {
                       className="text-sm text-red-600"
                     />
                   </div>
-
                   <div className="mb-6 w-full flex flex-col items-center">
                     <select
                       id="numOfInvoices"
@@ -393,9 +390,9 @@ const NewUser = () => {
                       <option value="" disabled hidden className="">
                         Ilość miesięcznych faktur
                       </option>
-                      <option value="Standard">Do 15</option>
-                      <option value="Premium">Do 35</option>
-                      <option value="Biznes">Powyżej 35</option>
+                      <option value="Pakiet Standard">Do 15</option>
+                      <option value="Pakiet Premium">Do 35</option>
+                      <option value="Pakiet Biznes">Powyżej 35</option>
                     </select>
                     <ErrorMessage
                       name="numOfInvoices"
@@ -421,7 +418,6 @@ const NewUser = () => {
                       </span>
                     </label>
                   </div>
-
                   <button
                     type="submit"
                     className="bg-blue-500 text-white p-2 rounded mt-4"
@@ -487,14 +483,19 @@ const NewUser = () => {
                           <h1 className="text-2xl font-bold text-[#1A9367]">
                             Razem:
                           </h1>
-                          {!yearly && (<h1 className="text-2xl font-bold text-[#1A9367]">
-                            <span className="line-through">
-                              {selectedPlan.priceMth}
-                            </span>
-                            {"   "}
-                            <span>0 zł</span>
-                          </h1>)}
-                          {yearly && <h1 className="text-2xl font-bold text-[#1A9367]">{selectedPlan.priceYrl}</h1>}
+                          {!yearly && (
+                            <h1 className="text-2xl font-bold text-[#1A9367]">
+                              <span className="line-through">
+                                {selectedPlan.priceMth}
+                              </span>{" "}
+                              0 zł
+                            </h1>
+                          )}
+                          {yearly && (
+                            <h1 className="text-2xl font-bold text-[#1A9367]">
+                              {selectedPlan.priceYrl}
+                            </h1>
+                          )}
                         </div>
                         {!yearly && (
                           <h1 className="text-xl text-center text-red-600 ">
@@ -559,11 +560,6 @@ const NewUser = () => {
                         Akceptuję regulamin płatności
                       </span>
                     </p>
-                    {/* <Link to="/login">
-                      <button className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10">
-                        Przejdź do logowania
-                      </button>
-                    </Link> */}
                     <Link to="/newUser/paymentPage">
                       {" "}
                       <button
