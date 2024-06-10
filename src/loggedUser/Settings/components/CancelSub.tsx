@@ -30,10 +30,9 @@ const CancelSub = () => {
   }
 
   const handleCancel = () => {
-    fetch("https://api.onebill.com.pl/api/scan_history", {
+    fetch("https://api.onebill.com.pl/api/cancel_sub", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
     })
