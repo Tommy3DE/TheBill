@@ -4,6 +4,7 @@ import cross from  '../../../assets/settings/cross 1.png'
 import ReturnBtn from "../../../components/ReturnBtn";
 import { useState } from "react";
 import tick from '../../../assets/settings/check-box 1.png'
+import { toast } from "react-toastify";
 
 const points = [
   {
@@ -21,9 +22,32 @@ const points = [
 ]
 
 const CancelSub = () => {
+  const accessToken = localStorage.getItem("accessToken");
+
   const [nextStep, setNextStep] = useState(false)
   const handleNextStep = () => {
     setNextStep(true)
+  }
+
+  const handleCancel = () => {
+    fetch("https://api.onebill.com.pl/api/scan_history", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(response => {
+      if (response.ok) {
+        handleNextStep()
+      }else{
+        toast.error("Błąd podczas usuwania", {
+          position: "top-right",
+          autoClose: 7000,
+        });
+      }
+      
+    })
   }
   return (
     <section className="mx-auto font-poppins">
@@ -53,7 +77,7 @@ const CancelSub = () => {
         Twoje dane zostaną usunięte z naszej bazy w momencie wygaśnięcia Twojej subskrypcji.        </h1>
         <div className="flex flex-row justify-evenly mt-10">
           <ReturnBtn route="/logged/subscription" />
-          <button className="uppercase tracking-wider text-center font-playFair text-3xl font-black items-center text-white bg-[#1A9367] ml-5 px-10 py-4 rounded-2xl hover:bg-green-800" onClick={handleNextStep}>
+          <button className="uppercase tracking-wider text-center font-playFair text-3xl font-black items-center text-white bg-[#1A9367] ml-5 px-10 py-4 rounded-2xl hover:bg-green-800" onClick={handleCancel}>
             Zapisz
           </button>
         </div>
