@@ -196,10 +196,9 @@ const LoggedHome = () => {
       ),
       fetchData("https://api.onebill.com.pl/api/last_mail", setMailDate),
     ]).finally(() => {
-      if (isMounted) setIsLoading(false); // End loading
+      if (isMounted) setIsLoading(false); 
     });
 
-    // Cleanup function to set isMounted flag to false when component unmounts
     return () => {
       isMounted = false;
     };
@@ -259,9 +258,9 @@ const LoggedHome = () => {
               <p className="font-bold">
                 {settingData
                   ? settingData.package === "Pakiet Standard"
-                    ? "3"
-                    : settingData.package === "Pakiet Premium"
                     ? "5"
+                    : settingData.package === "Pakiet Premium"
+                    ? "10"
                     : settingData.package === "Pakiet Biznes"
                     ? "∞"
                     : null

@@ -1,8 +1,40 @@
 import ReturnBtn from "../components/ReturnBtn";
 import SlimNav from "../layout/SlimNav";
 import gruop from "../assets/icons/Group.png";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AutoScan = () => {
+  const accessToken = localStorage.getItem("accessToken");
+  const [val, setVal] = useState('1')
+  const reqData = {
+    value: val
+  };
+
+  const autoscanHandler = () => {
+    fetch("https://api.onebill.com.pl/api/auto_scan", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(reqData)
+    })
+    .then(response => {
+      if (response.ok) {
+        toast.success("Autoscan zlecony poprawnie", {
+          position: "top-right",
+          autoClose: 7000,
+        });
+      }else{
+        toast.error("Błąd podczas ustawiania autoscan", {
+          position: "top-right",
+          autoClose: 7000,
+        });
+      }
+      
+    })
+  }
   return (
     <section className="mx-auto font-poppins">
       <SlimNav />
@@ -19,7 +51,7 @@ const AutoScan = () => {
         <h1 className="lg:text-4xl text-3xl text-center my-10 font-bold">
           Skanowanie ma się odbywać:
           <span className="ml-2">
-            <select className="bg-gray-200 rounded">
+            <select className="bg-gray-200 rounded" value={val} onChange={(e)=>setVal(e.target.value)}>
               <option value="1">codziennie</option>
               <option value="2">co tydzień</option>
               <option value="3">co 2 tygodnie</option>
@@ -34,7 +66,7 @@ const AutoScan = () => {
         </h2>
         <div className="flex lg:flex-row flex-col-reverse justify-center mt-12">
           <ReturnBtn route="/logged" />
-          <button className="font-playFair text-3xl font-black text-center items-center text-white bg-green-500 px-10 py-4 rounded-2xl hover:bg-green-600 lg:ml-5 mb-5 lg:mb-0 uppercase">
+          <button className="font-playFair text-3xl font-black text-center items-center text-white bg-green-500 px-10 py-4 rounded-2xl hover:bg-green-600 lg:ml-5 mb-5 lg:mb-0 uppercase" onClick={autoscanHandler}>
             Zaakeceptuj
           </button>
         </div>
