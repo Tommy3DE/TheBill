@@ -4,14 +4,19 @@ import { pricing } from "../../../layout/pages/Cennik/PricingOptions";
 import { FaCheckCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import ReturnBtn from "../../../components/ReturnBtn";
-import tick from '../../../assets/settings/check-box 1.png';
+import tick from "../../../assets/settings/check-box 1.png";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ChangePlan = () => {
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
   const [changePlan, setChangePlan] = useState(false);
   const [nextStep, setNextStep] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
+
+  const reqBody = {
+    package: selectedPackage,
+  };
 
   useEffect(() => {
     fetch("https://api.onebill.com.pl/api/user_data", {
@@ -33,8 +38,31 @@ const ChangePlan = () => {
   }, [accessToken]);
 
   const handleSelectPlan = (packageName: string): void => {
-    setSelectedPackage(packageName); 
-    setChangePlan(false); 
+    setSelectedPackage(packageName);
+    setChangePlan(false);
+  };
+
+  const handleChangePlan = () => {
+    fetch("https://api.onebill.com.pl/api/change_package", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(reqBody),
+    }).then((response) => {
+      if (response.ok) {
+        toast.success("Zlecenie przyjęte pomyślnie", {
+          position: "top-right",
+          autoClose: 7000,
+        });
+        handleNextStep()
+      } else {
+        toast.error("Błąd podczas zlecania", {
+          position: "top-right",
+          autoClose: 7000,
+        });
+      }
+    });
   };
 
   const handleNextStep = () => {
@@ -80,7 +108,7 @@ const ChangePlan = () => {
             <ReturnBtn route="/logged/subscription" />
             <button
               className="uppercase tracking-wider text-center font-playFair text-3xl font-black items-center text-white bg-[#1A9367] ml-5 px-10 py-4 rounded-2xl hover:bg-green-800"
-              onClick={handleNextStep}
+              onClick={handleChangePlan}
             >
               Zapisz
             </button>
@@ -90,12 +118,23 @@ const ChangePlan = () => {
       {nextStep && (
         <div className="max-w-[1980px] flex flex-col justify-center items-center mt-32 font-poppins">
           <img src={tick} alt="tick" />
-          <h1 className="text-4xl font-black mt-5">Twoje zlecenie zostało pomyślnie przyjęte.</h1>
-          <h1 className="text-3xl mt-2 mb-5">Twoje konto OneBill od kolejnego okresu rozliczeniowego zostanie ulepszone do:</h1> 
+          <h1 className="text-4xl font-black mt-5">
+            Twoje zlecenie zostało pomyślnie przyjęte.
+          </h1>
+          <h1 className="text-3xl mt-2 mb-5">
+            Twoje konto OneBill od kolejnego okresu rozliczeniowego zostanie
+            ulepszone do:
+          </h1>
           {selectedPackage ? packageDetails(selectedPackage) : null}
-          <p>Przy kolejnym rozliczeniu pobierzemy z Twojego konta zaktualizowaną kwotę.</p>
+          <p>
+            Przy kolejnym rozliczeniu pobierzemy z Twojego konta zaktualizowaną
+            kwotę.
+          </p>
           <div className="flex flex-row justify-evenly mt-10">
-            <Link to="/logged/subscription" className="font-playFair text-3xl font-black text-center items-center text-white bg-gray-400 px-10 py-4 rounded-2xl hover:bg-gray-500">
+            <Link
+              to="/logged/subscription"
+              className="font-playFair text-3xl font-black text-center items-center text-white bg-gray-400 px-10 py-4 rounded-2xl hover:bg-gray-500"
+            >
               <button className="uppercase tracking-wider text-center">
                 powrót do ustawień
               </button>
@@ -127,10 +166,16 @@ const ChangePlan = () => {
                 >
                   {tile.title}
                 </h1>
-                <img src={tile.img} alt={tile.title} className="mt-10 rounded-lg h-72" />
+                <img
+                  src={tile.img}
+                  alt={tile.title}
+                  className="mt-10 rounded-lg h-72"
+                />
                 <div className="h-1 bg-green-700 w-full my-5" />
                 <h1 className=" text-[#1A9367]">
-                  {tile.priceMth === 0 ? "Plan darmowy" : `${tile.priceMth} miesięcznie lub ${tile.priceYrl} rocznie`}
+                  {tile.priceMth === 0
+                    ? "Plan darmowy"
+                    : `${tile.priceMth} miesięcznie lub ${tile.priceYrl} rocznie`}
                 </h1>
               </div>
               <div className="flex flex-col mt-5 justify-start h-1/2">
