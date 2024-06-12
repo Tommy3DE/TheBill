@@ -499,7 +499,7 @@ const NewUser = () => {
                         </div>
                         {!yearly && (
                           <h1 className="text-xl text-center text-red-600 ">
-                            Pierwszy miesiąc darmowy
+                            14 dni gratis
                           </h1>
                         )}
                         <div className="text-2xl flex flex-row justify-center items-center ">
