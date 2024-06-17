@@ -556,7 +556,7 @@ const NewUser = () => {
                         name="regulamin"
                         id="reg1"
                         className=" w-6 h-6 mr-2"
-                        onClick={()=>setVis((prev) => !prev)}
+                        onClick={() => setVis((prev) => !prev)}
                       />
                       <span className="text-xl">
                         Akceptuję regulamin płatności
