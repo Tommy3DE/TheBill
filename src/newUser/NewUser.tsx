@@ -27,7 +27,7 @@ const NewUser = () => {
   const [showPartTwo, setShowPartTwo] = useState(false);
   const [changePlan, setChangePlan] = useState(false);
   const [yearly, setYearly] = useState(false);
-  const [vis, setVis] = useState(false)
+  const [vis, setVis] = useState(false);
   const { setFormData, formData } = useFormData();
 
   const formik = useFormik<FormValues>({
@@ -550,27 +550,29 @@ const NewUser = () => {
                         </div>
                       </div>
                     </div>
-                    <p className="flex flex-row justify-around items-center  mt-8">
+                    <div className="flex flex-row justify-around items-center  mt-8">
                       <input
                         type="checkbox"
                         name="regulamin"
                         id="reg1"
                         className=" w-6 h-6 mr-2"
+                        onClick={()=>setVis((prev) => !prev)}
                       />
-                      <span className="text-xl" onClick={(prev)=>setVis(!prev)}>
+                      <span className="text-xl">
                         Akceptuję regulamin płatności
                       </span>
-                    </p>
+                    </div>
 
-                    {vis && <Link to="/newUser/paymentPage">
-                      {" "}
-                      <button
-                        className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10"
-                        onClick={registerHandler}
-                      >
-                        Zamawiam i płacę
-                      </button>
-                    </Link>}
+                    {vis && (
+                      <Link to="/newUser/paymentPage">
+                        <button
+                          className="bg-[#1A9367] mx-auto px-10 py-4 font-playFair text-3xl rounded-full text-white my-10"
+                          onClick={registerHandler}
+                        >
+                          Zamawiam i płacę
+                        </button>
+                      </Link>
+                    )}
                     <Footer />
                   </>
                 );
