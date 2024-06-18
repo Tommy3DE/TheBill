@@ -91,7 +91,7 @@ const NewUser = () => {
         numOfInvoicesValue = "Pakiet Standard";
       } else if (selectedTile.point1.includes("35")) {
         numOfInvoicesValue = "Pakiet Premium";
-      } else if (selectedTile.point1.toLowerCase().includes("Nielimitowana")) {
+      } else if (selectedTile.point1.includes("Nielimitowana")) {
         numOfInvoicesValue = "Pakiet Biznes";
       }
     }
