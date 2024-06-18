@@ -27,7 +27,7 @@ const AutoScan = () => {
           autoClose: 7000,
         });
       }else{
-        toast.error("Błąd podczas ustawiania autoscan", {
+        toast.error("Autoscan nie jest dostepny dla twojego pakietu", {
           position: "top-right",
           autoClose: 7000,
         });

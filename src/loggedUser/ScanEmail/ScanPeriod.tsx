@@ -9,7 +9,8 @@ import { FaRegEye } from "react-icons/fa";
 import { toast } from "react-toastify";
 import ReturnBtn from "../../components/ReturnBtn";
 import gifScan from "../../assets/Email capture.gif";
-import info from '../../assets/info.png'
+import info from "../../assets/info.png";
+import block from '../../assets/block.png'
 
 const ScanPeriod = () => {
   const [date, setDate] = useState("");
@@ -32,7 +33,6 @@ const ScanPeriod = () => {
   const currentMonth = today.getMonth() + 1;
 
   useEffect(() => {
-
     const formattedDate = today
       .toISOString()
       .substring(0, 10)
@@ -134,8 +134,11 @@ const ScanPeriod = () => {
   useEffect(() => {
     const today: Date = new Date();
     const offset: number = today.getTimezoneOffset() * 60000; // offset w milisekundach
-    const localISOTime: string = (new Date(today.getTime() - offset)).toISOString().slice(0, 16).replace('T', ' ');
-  setDate(localISOTime);
+    const localISOTime: string = new Date(today.getTime() - offset)
+      .toISOString()
+      .slice(0, 16)
+      .replace("T", " ");
+    setDate(localISOTime);
 
     const urlCode = extractCodeFromUrlUsingRegex(location.search);
     if (urlCode) {
@@ -168,7 +171,6 @@ const ScanPeriod = () => {
 
         if (!tokenResponse.ok)
           throw new Error("Failed to handle token redirect.");
-
       }
 
       const scanResponse = await fetch("https://api.onebill.com.pl/api/scan", {
@@ -232,8 +234,6 @@ const ScanPeriod = () => {
     return match ? match[1] : null;
   }
   const { userData } = useUserData();
-  
-
 
   return (
     <section className=" font-poppins">
@@ -267,10 +267,14 @@ const ScanPeriod = () => {
                   <br /> Zdecyduj, czy któreś z nich chcesz usunąć – jeżeli nie,
                   to wybierz{" "}
                   <span className="text-gray-800 font-bold">ZATWIERDŹ</span>
+                  <div className="flex flex-row justify-center text-xl my-6 items-center font-normal text-gray-700">
+                    <img src={locked} alt="locked" className="w-8 mr-2" />
+                    <h3>Ikona kłódki oznacza zabezpieczony hasłem plik.</h3>
+                  </div>
                   <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
-              <img src={locked} alt="locked" className="w-8 mr-2"/>
-              <h3>Ikona kłódki oznacza zabezpieczony hasłem plik.</h3>
-            </div>
+                    <img src={block} alt="limit" className="w-8 mr-2" />
+                    <h3>Ikona blokady oznacza przekroczenie ilości dostępnych miesięcznie dokumentów</h3>
+                  </div>
                 </p>
               )}
               <div className="  flex flex-row mt-5 flex-wrap justify-center items-center ">
@@ -281,13 +285,25 @@ const ScanPeriod = () => {
                       className="relative group m-4"
                       style={{ width: "260px", height: "400px" }}
                     >
-                      <img
-                        src={`${invoice.thumbnail.length > 0 ? `data:image/jpeg;base64,${invoice.thumbnail}` : locked} `}
-                        alt="Thumbnail"
-                        className={`border-2 my-2 ${invoice.thumbnail.length < 0 ? 'p-1 w-full h-full object-cover' : 'p-2 w-full h-full object-contain'}`} // Użycie 'object-cover' dla obrazów z miniaturami i 'object-contain' z dodatkowym paddingiem dla obrazu z kłódką
+                      {invoice.thumbnail === "LIMIT" ? (
+                        <img src={block} className="p-2 w-full h-full object-contain border-2 my-2" alt='limit'/>
+                      ) : (
+                        <img
+                          src={`${
+                            invoice.thumbnail.length > 0
+                              ? `data:image/jpeg;base64,${invoice.thumbnail}`
+                              : locked
+                          } `}
+                          alt="Thumbnail"
+                          className={`border-2 my-2 ${
+                            invoice.thumbnail.length < 0
+                              ? "p-1 w-full h-full object-cover"
+                              : "p-2 w-full h-full object-contain"
+                          }`} 
                         />
+                      )}
                       <div
-                        className='absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2'
+                        className="absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2"
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                       >
                         <div className="flex space-x-4">
@@ -302,16 +318,19 @@ const ScanPeriod = () => {
                               handleIconClick(e, invoice.id)
                             }
                           />
-                          {invoice.thumbnail.length > 0 ?
-                          <FaRegEye
-                            className="text-blue-500 cursor-pointer bg-white rounded-full"
-                            style={{
-                              padding: "0.25rem",
-                              height: "40px",
-                              width: "40px",
-                            }}
-                            onClick={() => handleImageClick(invoice.thumbnail)}
-                          /> : null}
+                          {invoice.thumbnail.length > 0 ? (
+                            <FaRegEye
+                              className="text-blue-500 cursor-pointer bg-white rounded-full"
+                              style={{
+                                padding: "0.25rem",
+                                height: "40px",
+                                width: "40px",
+                              }}
+                              onClick={() =>
+                                handleImageClick(invoice.thumbnail)
+                              }
+                            />
+                          ) : null}
                         </div>
                       </div>
                     </div>
@@ -363,16 +382,26 @@ const ScanPeriod = () => {
               <div className="mt-16 text-2xl flex lg:flex-row flex-col justify-between w-2/3">
                 <div className="flex flex-row">
                   <label htmlFor="month-picker" className="text-2xl text-start">
-                  Wybierz miesiąc:
-                </label>
-                <div className="relative group">
-      <img src={info} alt="info" className="w-[20px] h-[20px] ml-2 cursor-pointer" />
-      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-2 bg-gray-700 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        Pamiętaj! Algorytm skanuje cały zakończony miesiąc kalendarzowy. Jeżeli otrzymałeś jakieś faktury na początku kolejnego miesiąca, to zeskanuj również kolejny miesiąc. Na przykład: Jeżeli chcę zebrać wszystkie faktury dotyczące miesiąca rozliczeniowego maja, ale kilka z nich zostały do mnie przesłane na początku czerwca, to muszę zeskanować maj oraz czerwiec.
-      </div>
-    </div>
+                    Wybierz miesiąc:
+                  </label>
+                  <div className="relative group">
+                    <img
+                      src={info}
+                      alt="info"
+                      className="w-[20px] h-[20px] ml-2 cursor-pointer"
+                    />
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-2 bg-gray-700 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Pamiętaj! Algorytm skanuje cały zakończony miesiąc
+                      kalendarzowy. Jeżeli otrzymałeś jakieś faktury na początku
+                      kolejnego miesiąca, to zeskanuj również kolejny miesiąc.
+                      Na przykład: Jeżeli chcę zebrać wszystkie faktury
+                      dotyczące miesiąca rozliczeniowego maja, ale kilka z nich
+                      zostały do mnie przesłane na początku czerwca, to muszę
+                      zeskanować maj oraz czerwiec.
+                    </div>
+                  </div>
                 </div>
-                
+
                 <select
                   id="month-picker"
                   className="rounded-3xl px-4 py-2 bg-gray-300 text-2xl lg:w-1/3"
@@ -410,7 +439,9 @@ const ScanPeriod = () => {
               Prosimy o chwilę cierpliwości.{" "}
             </h1>
             <h2 className="text-xl lg:text-start text-center">
-            Skanowanie może zająć do 15 minut. Otrzymasz powiadomienie kiedy się zakończy.            </h2>
+              Skanowanie może zająć do 15 minut. Otrzymasz powiadomienie kiedy
+              się zakończy.{" "}
+            </h2>
             <h3 className="text-xl lg:text-start text-center">
               Nasz algorytm szuka faktur na Twojej skrzynce e-mail.
             </h3>

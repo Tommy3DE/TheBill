@@ -7,6 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 import { GrDocumentPdf } from "react-icons/gr";
 import { GrDocumentZip } from "react-icons/gr";
 import locked from '../../../assets/locked 1.png'
+import block from '../../../assets/block.png'
 
 
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
@@ -390,10 +391,14 @@ const MthPage = () => {
             <span className="font-normal">
               {month}/{year}
             </span>
-            <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
-              <img src={locked} alt="locked" className="w-8 mr-2"/>
-              <h3>Ikona kłódki oznacza zabezpieczony hasłem plik. Sprawdź jego nazwę w widoku <span className="font-black">“lista”</span>.</h3>
-            </div>
+            <div className="flex flex-row justify-center text-xl my-6 items-center font-normal text-gray-700">
+                    <img src={locked} alt="locked" className="w-8 mr-2" />
+                    <h3>Ikona kłódki oznacza zabezpieczony hasłem plik.</h3>
+                  </div>
+                  <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
+                    <img src={block} alt="limit" className="w-8 mr-2" />
+                    <h3>Ikona blokady oznacza przekroczenie ilości dostępnych miesięcznie dokumentów</h3>
+                  </div>
           </h2>
           {isLoading ? (
             <img
@@ -429,11 +434,23 @@ const MthPage = () => {
                       className="relative group m-4"
                       style={{ width: "260px", height: "400px" }}
                     >
-                      <img
-                        src={`${invoice.thumbnail.length > 0 ? `data:image/jpeg;base64,${invoice.thumbnail}` : locked} `}
-                        alt="Thumbnail"
-                        className={`border-2 my-2 ${invoice.thumbnail.length < 0 ? 'p-1 w-full h-full object-cover' : 'p-2 w-full h-full object-contain'}`} // Użycie 'object-cover' dla obrazów z miniaturami i 'object-contain' z dodatkowym paddingiem dla obrazu z kłódką
+                      {invoice.thumbnail === "LIMIT" ? (
+                        <img src={block} className="p-2 w-full h-full object-contain border-2 my-2" alt='limit'/>
+                      ) : (
+                        <img
+                          src={`${
+                            invoice.thumbnail.length > 0
+                              ? `data:image/jpeg;base64,${invoice.thumbnail}`
+                              : locked
+                          } `}
+                          alt="Thumbnail"
+                          className={`border-2 my-2 ${
+                            invoice.thumbnail.length < 0
+                              ? "p-1 w-full h-full object-cover"
+                              : "p-2 w-full h-full object-contain"
+                          }`} 
                         />
+                      )}
                       <div
                         className='absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2'
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
