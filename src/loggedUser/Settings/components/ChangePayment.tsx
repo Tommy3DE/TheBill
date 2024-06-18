@@ -32,7 +32,7 @@ const ChangePayment = () => {
     const encrypted = encrypt.encrypt(cd);
 
     try {
-      const response = await fetch("/api/payment/change", {
+      const response = await fetch("https://api.onebill.com.pl/api/payment_init", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,18 @@ const ChangePayment = () => {
         <p className="text-3xl font-black">Zmień dane płatnicze</p>
         <img src={debit} alt="card" />
         <div className="w-1/3 bg-gray-100 rounded-xl flex flex-col justify-evenly px-5 text-xl">
-          <label htmlFor="numer">Numer karty</label>
+        <label htmlFor="email" className="mt-4 mb-2">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-1 rounded-xl"
+
+          />
+          <label htmlFor="numer"  className="mt-4 mb-2">Numer karty</label>
           <input
             type="text"
             id="numer"
@@ -78,26 +89,18 @@ const ChangePayment = () => {
             onChange={handleCardNumberChange}
             maxLength={19}
           />
-          <label htmlFor="imie">Imię i nazwisko</label>
+          <label htmlFor="imie"  className="mt-4 mb-2">Imię i nazwisko</label>
           <input
             type="text"
             id="imie"
             className="p-1 rounded-xl"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            
           />
-          <label htmlFor="email" className="mt-4 mb-2">
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-gray-300 p-2 rounded mb-10"
-          />
-          <div className="flex flex-row justify-between py-5 px-2">
-            <div className="flex flex-col w-[49%]">
+          
+          <div className="flex flex-row justify-between py-5">
+            <div className="flex flex-col">
               <label htmlFor="cvv">CVV</label>
               <input
                 type="number"
@@ -107,7 +110,7 @@ const ChangePayment = () => {
                 onChange={(e) => setCvv(e.target.value)}
               />
             </div>
-            <div className="flex flex-col w-[49%]">
+            <div className="flex flex-col">
               <label htmlFor="exp">Data ważności (miesiąc/rok)</label>
               <input
                 type="text"

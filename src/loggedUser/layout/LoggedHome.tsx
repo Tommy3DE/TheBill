@@ -254,7 +254,7 @@ const LoggedHome = () => {
               </p>{" "}
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-24 lg:mx-1 h-24 flex flex-col justify-between">
-              <p>Ilość skanowań:</p>
+              <p>Ilość skanowań w pakiecie:</p>
               <p className="font-bold">
                 {settingData
                   ? settingData.package === "Pakiet Standard"
