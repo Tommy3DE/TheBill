@@ -669,11 +669,11 @@ const MthPage = () => {
               Wybierz fakturę którą chcesz dodać
             </h2>
 
-            {file ? (
+            {file && (
               <div className="text-xl text-black text-center my-5">
                 {file.name}
               </div>
-            ) : (
+            )}
               <div className="flex justify-center items-center my-5 ">
                 <input
                   type="file"
@@ -689,7 +689,7 @@ const MthPage = () => {
                   +
                 </label>
               </div>
-            )}
+            
             <div className="flex justify-around mt-4">
               <button
                 className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 text-xl"

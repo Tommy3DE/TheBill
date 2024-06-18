@@ -46,6 +46,7 @@ const ChangePlan = () => {
     fetch("https://api.onebill.com.pl/api/change_package", {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(reqBody),

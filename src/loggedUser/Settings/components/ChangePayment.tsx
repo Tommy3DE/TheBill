@@ -46,15 +46,19 @@ const ChangePayment = () => {
         }),
       });
       if(response.ok){
+        let link = await response.text();
+        link = link.replace(/"/g, '');
+        window.open(link, '_blank')
         toast.success("Dane zmienione pomyślnie", {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: false,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
         })
+        
       }
     } catch (error) {
       console.error("Failed to update payment information:", error);
