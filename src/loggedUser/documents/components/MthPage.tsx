@@ -6,9 +6,8 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
 import { GrDocumentPdf } from "react-icons/gr";
 import { GrDocumentZip } from "react-icons/gr";
-import locked from '../../../assets/locked 1.png'
-import block from '../../../assets/block.png'
-
+import locked from "../../../assets/locked 1.png";
+import block from "../../../assets/block.png";
 
 import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import ReturnBtn from "../../../components/ReturnBtn";
@@ -44,11 +43,11 @@ const MthPage = () => {
   const [addModal, setAddModal] = useState<boolean>(false);
   const [sendAccOpen, setSendAccOpen] = useState<boolean>(false);
   const [wantsZip, setWantsZip] = useState<boolean>(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [base64, setBase64] = useState<string | ArrayBuffer | null>(null);
-  const [book, setBook] = useState()
-  // const { userData } = useUserData();
-
+  const [files, setFiles] = useState<File[]>([]);
+  const [base64Files, setBase64Files] = useState<
+    Array<{ name: string; content: string | ArrayBuffer | null }>
+  >([]);
+  const [book, setBook] = useState();
 
   const showModal = (invoiceId: number) => {
     setInvoiceToDelete(invoiceId);
@@ -65,7 +64,7 @@ const MthPage = () => {
   };
 
   const handleAddDocModal = () => {
-    setFile(null);
+    setFiles([]);
     setAddModal((prev) => !prev);
   };
 
@@ -94,7 +93,7 @@ const MthPage = () => {
     const url = new URL("https://api.onebill.com.pl/api/invoice");
     url.searchParams.append("month", month);
     url.searchParams.append("year", year);
-    setIsLoading(true)
+    setIsLoading(true);
     fetch(url.toString(), {
       method: "GET",
       headers: {
@@ -114,7 +113,7 @@ const MthPage = () => {
       })
       .catch((error) => {
         console.error("There was a problem with your fetch operation:", error);
-        setIsLoading(false)
+        setIsLoading(false);
         toast.error("Błąd podczas pobierania faktur", {
           position: "top-right",
           autoClose: 5000,
@@ -123,32 +122,33 @@ const MthPage = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        })
+        });
       });
   };
 
   const loadBook = () => {
-    const url = "https://api.onebill.com.pl/api/bookkeeper"
+    const url = "https://api.onebill.com.pl/api/bookkeeper";
     fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-    }).then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
     })
-    .then((data) => {
-      setBook(data[0].id);
-    });
-  }
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBook(data[0].id);
+      });
+  };
 
   useEffect(() => {
     loadInvoices();
-    loadBook()
+    loadBook();
   }, []);
 
   const deleteInvoice = () => {
@@ -183,10 +183,8 @@ const MthPage = () => {
           draggable: true,
           progress: undefined,
         });
-        
+
         hideModal();
-        
-      
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -262,7 +260,6 @@ const MthPage = () => {
       zip: wantsZip,
     };
 
-
     fetch(url, {
       method: "POST",
       headers: {
@@ -282,7 +279,7 @@ const MthPage = () => {
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-            })
+            });
           }
           throw new Error("Network response was not ok");
         }
@@ -297,53 +294,67 @@ const MthPage = () => {
         console.error("Error:", error);
       });
   };
-
   const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (
     event
   ) => {
-    const selectedFile = event.target.files?.[0];
-    if (selectedFile) {
-      const reader = new FileReader();
+    const selectedFiles = event.target.files;
+    if (selectedFiles) {
+      const fileArray = Array.from(selectedFiles);
+      setFiles((prevFiles) => [...prevFiles, ...fileArray]);
 
-      reader.onload = (loadEvent: ProgressEvent<FileReader>) => {
-        const base64String = loadEvent.target?.result;
-        if (base64String !== undefined) {
-          setBase64(base64String);
-        }
-      };
+      const base64ArrayPromises = fileArray.map((file) => {
+        return new Promise<{
+          name: string;
+          content: string | ArrayBuffer | null;
+        }>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (loadEvent: ProgressEvent<FileReader>) => {
+            const base64String = loadEvent.target?.result ?? null;
+            resolve({ name: file.name, content: base64String });
+          };
+          reader.readAsDataURL(file);
+        });
+      });
 
-      reader.readAsDataURL(selectedFile);
-      setFile(selectedFile);
-      // console.log(base64)    
+      Promise.all(base64ArrayPromises).then((base64Contents) => {
+        setBase64Files((prevBase64Files) => [
+          ...prevBase64Files,
+          ...base64Contents,
+        ]);
+      });
     }
   };
 
-  // console.log(base64)
-
-
-
   const handleInvSend = () => {
-    const url = "https://api.onebill.com.pl/api/invoice";
+    const url = "https://api.onebill.com.pl/api/invoices";
     const today = new Date();
     const formattedDate = today.toISOString();
-    const reqData = {
+
+    const reqDataArray = base64Files.map((file) => ({
       month: month,
       year: year,
-      name: file?.name,
-      invoice: base64,
-      sender: 'Dodano ręcznie',
+      name: file.name,
+      invoice: file.content,
+      sender: "Dodano ręcznie",
       date: formattedDate,
-    };
+    }));
+
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify(reqData),
-    }).then(response => {
-      if (response.ok) {
-        toast.success("Dodawanie faktury powiodło się", {
+      body: JSON.stringify(reqDataArray),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error in sending invoices");
+        }
+        return response.json();
+      })
+      .then(() => {
+        toast.success("Dodawanie faktur powiodło się", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -352,10 +363,12 @@ const MthPage = () => {
           draggable: true,
           progress: undefined,
         });
-        loadInvoices()
-        handleAddDocModal()
-      } else {
-        toast.error("Wystąpił błąd przy dodawaniu faktury", {
+        loadInvoices();
+        handleAddDocModal();
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Wystąpił błąd przy dodawaniu faktur", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -364,21 +377,7 @@ const MthPage = () => {
           draggable: true,
           progress: undefined,
         });
-      }
-  })
-  .catch(error => {
-    console.error(error)
-      // Obsługa innych błędów sieciowych
-      toast.error("Problem sieciowy przy wysyłaniu faktury", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
       });
-  });
   };
 
   return (
@@ -392,13 +391,16 @@ const MthPage = () => {
               {month}/{year}
             </span>
             <div className="flex flex-row justify-center text-xl my-6 items-center font-normal text-gray-700">
-                    <img src={locked} alt="locked" className="w-8 mr-2" />
-                    <h3>Ikona kłódki oznacza zabezpieczony hasłem plik.</h3>
-                  </div>
-                  <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
-                    <img src={block} alt="limit" className="w-8 mr-2" />
-                    <h3>Ikona blokady oznacza przekroczenie ilości dostępnych miesięcznie dokumentów</h3>
-                  </div>
+              <img src={locked} alt="locked" className="w-8 mr-2" />
+              <h3>Ikona kłódki oznacza zabezpieczony hasłem plik.</h3>
+            </div>
+            <div className="flex flex-row justify-center text-xl mb-12 mt-6 items-center font-normal text-gray-700">
+              <img src={block} alt="limit" className="w-8 mr-2" />
+              <h3>
+                Ikona blokady oznacza przekroczenie ilości dostępnych
+                miesięcznie dokumentów
+              </h3>
+            </div>
           </h2>
           {isLoading ? (
             <img
@@ -435,7 +437,11 @@ const MthPage = () => {
                       style={{ width: "260px", height: "400px" }}
                     >
                       {invoice.thumbnail === "LIMIT" ? (
-                        <img src={block} className="p-2 w-full h-full object-contain border-2 my-2" alt='limit'/>
+                        <img
+                          src={block}
+                          className="p-2 w-full h-full object-contain border-2 my-2"
+                          alt="limit"
+                        />
                       ) : (
                         <img
                           src={`${
@@ -448,11 +454,11 @@ const MthPage = () => {
                             invoice.thumbnail.length < 0
                               ? "p-1 w-full h-full object-cover"
                               : "p-2 w-full h-full object-contain"
-                          }`} 
+                          }`}
                         />
                       )}
                       <div
-                        className='absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2'
+                        className="absolute inset-0  justify-center items-center hidden group-hover:flex mt-2 -mb-2"
                         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                       >
                         <div className="flex space-x-4">
@@ -467,16 +473,19 @@ const MthPage = () => {
                               handleIconClick(e, invoice.id)
                             }
                           />
-                          {invoice.thumbnail.length > 0 ?
-                          <FaRegEye
-                            className="text-blue-500 cursor-pointer bg-white rounded-full"
-                            style={{
-                              padding: "0.25rem",
-                              height: "40px",
-                              width: "40px",
-                            }}
-                            onClick={() => handleImageClick(invoice.thumbnail)}
-                          /> : null}
+                          {invoice.thumbnail.length > 0 ? (
+                            <FaRegEye
+                              className="text-blue-500 cursor-pointer bg-white rounded-full"
+                              style={{
+                                padding: "0.25rem",
+                                height: "40px",
+                                width: "40px",
+                              }}
+                              onClick={() =>
+                                handleImageClick(invoice.thumbnail)
+                              }
+                            />
+                          ) : null}
                         </div>
                       </div>
                     </div>
@@ -501,7 +510,9 @@ const MthPage = () => {
                         <tr key={invoice.id} className={``}>
                           <td className=" px-4 py-2">{index + 1}</td>
                           <td className=" px-4 py-2">{invoice.name}</td>
-                          <td className=" px-4 py-2 lg:max-w-[20%]">{invoice.sender}</td>
+                          <td className=" px-4 py-2 lg:max-w-[20%]">
+                            {invoice.sender}
+                          </td>
                           <td className=" px-4 py-2 ">
                             {new Date(invoice.date).toLocaleDateString()}
                           </td>
@@ -573,15 +584,15 @@ const MthPage = () => {
             Pobierz
           </button>
         )}
-        
-          {(invoices.length === 0 && !isLoading) && <Link to='/logged/scanMail/scanPeriod'
+
+        {invoices.length === 0 && !isLoading && (
+          <Link
+            to="/logged/scanMail/scanPeriod"
             className="font-playFair text-3xl font-black text-white bg-blue-400 px-10 py-4 rounded-2xl hover:bg-blue-500"
-            >
-            <button className="uppercase"
           >
-            Skanuj miesiąc
-          </button>
-          </Link>}
+            <button className="uppercase">Skanuj miesiąc</button>
+          </Link>
+        )}
       </div>
       {isModalOpen && (
         <div
@@ -621,23 +632,29 @@ const MthPage = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <h2 className="font-bold text-3xl">Wyślij do biura księgowego</h2>
-            <div
-              style={{ visibility: "visible", opacity: 1 }}
-              className="my-5"
-            >
-              {/* <input
-                type="checkbox"
-                checked={wantsZip}
-                onChange={handleCheckboxChange}
-                id="zip"
-                className="h-4 w-4"
-              /> */}
-                <p className="text-xl my-2">Wybierz format w jakim chcesz wysłać pliki:</p>
+            <div style={{ visibility: "visible", opacity: 1 }} className="my-5">
+              <p className="text-xl my-2">
+                Wybierz format w jakim chcesz wysłać pliki:
+              </p>
 
               <div className="ml-2 text-5xl flex flex-row justify-evenly my-5 ">
-              <GrDocumentPdf onClick={handleCheckboxChange} className={`${!wantsZip ? 'scale-110 text-green-700' : 'scale-90 text-gray-400'} cursor-pointer`}/>    
-              <GrDocumentZip onClick={handleCheckboxChange} className={`${wantsZip ? 'scale-110 text-green-700' : 'scale-90 text-gray-400'} cursor-pointer`}/>
-          </div>
+                <GrDocumentPdf
+                  onClick={handleCheckboxChange}
+                  className={`${
+                    !wantsZip
+                      ? "scale-110 text-green-700"
+                      : "scale-90 text-gray-400"
+                  } cursor-pointer`}
+                />
+                <GrDocumentZip
+                  onClick={handleCheckboxChange}
+                  className={`${
+                    wantsZip
+                      ? "scale-110 text-green-700"
+                      : "scale-90 text-gray-400"
+                  } cursor-pointer`}
+                />
+              </div>
             </div>
             <div className="flex justify-around mt-4">
               <button
@@ -668,28 +685,32 @@ const MthPage = () => {
             <h2 className="font-bold text-3xl">
               Wybierz fakturę którą chcesz dodać
             </h2>
-
-            {file && (
+            {files.length > 0 && (
               <div className="text-xl text-black text-center my-5">
-                {file.name}
+                {files.map((file) => (
+                  <div key={file.name}>{file.name}</div>
+                ))}
               </div>
             )}
-              <div className="flex justify-center items-center my-5 ">
-                <input
-                  type="file"
-                  id="fileInput"
-                  accept=".pdf,.jpg,.jpeg"
-                  style={{ display: "none" }}
-                  onChange={handleFileChange}
-                />
-                <label
-                  htmlFor="fileInput"
-                  className="bg-green-600 text-white py-2 px-4 rounded-xl hover:bg-green-700 cursor-pointer text-3xl hover:scale-105"
-                >
-                  +
-                </label>
-              </div>
-            
+
+            <div className="flex justify-center items-center my-5 ">
+              <input
+                type="file"
+                id="fileInput"
+                accept=".pdf,.jpg,.jpeg"
+                multiple
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
+
+              <label
+                htmlFor="fileInput"
+                className="bg-green-600 text-white py-2 px-4 rounded-xl hover:bg-green-700 cursor-pointer text-3xl hover:scale-105"
+              >
+                +
+              </label>
+            </div>
+
             <div className="flex justify-around mt-4">
               <button
                 className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 text-xl"
