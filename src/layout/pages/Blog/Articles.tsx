@@ -6,6 +6,8 @@ import pic2 from "../../../assets/articlesThumbnail/simon-kadula-8gr6bObQLOI-uns
 import pic3 from "../../../assets/articlesThumbnail/towfiqu-barbhuiya-bwOAixLG0uc-unsplash 1.png";
 import pic4 from "../../../assets/articlesThumbnail/sajad-nori-oPRU2Cne0Pw-unsplash 1.png";
 import pic5 from "../../../assets/articlesThumbnail/image 1.png";
+import pic6 from  '../../../assets/articlesThumbnail/scott-graham-5fNmWej4tAA-unsplash (2) 1.png'
+import pic7 from '../../../assets/articlesThumbnail/towfiqu-barbhuiya-3aGZ7a97qwA-unsplash 1.png'
 
 export interface ArticleTile {
   id: number;
@@ -50,7 +52,7 @@ const Articles = () => {
     {
       id: 4,
       category: "Technologia",
-      date: "2.02.2024",
+      date: "2.03.2024",
       title:
         "Cyfryzacja Twojej firmy - od papierkowej dokumentacji do zarządzania online",
       img: pic4,
@@ -60,12 +62,32 @@ const Articles = () => {
     {
       id: 5,
       category: "Zarządzanie",
-      date: "7.02.2024",
+      date: "7.05.2024",
       title:
         "Analiza przypadków użycia OneBill - jak klienci korzystają z naszego narzędzia?",
       img: pic5,
       shortV:
         "W dzisiejszym dynamicznym świecie biznesu, mikroprzedsiębiorcy szukają rozwiązań, które ułatwią im codzienne zarządzanie finansami. Aplikacja OneBill, z jej innowacyjnym podejściem do zarządzania dokumentacją kosztową, pomogła wielu przedsiębiorcom usprawnić ich działania. Oto kilka studiów przypadków, które pokazują, jak OneBill zmienił sposób, w jaki prowadzą oni swoje firmy.",
+    },
+    {
+      id: 6,
+      category: "Finanse",
+      date: "12.06.2024",
+      title:
+        "Zarządzanie dokumentacją kosztową - najlepsze praktyki.",
+      img: pic6,
+      shortV:
+        "Zarządzanie dokumentacją kosztową jest kluczowym elementem prowadzenia skutecznego biznesu. Niezależnie od tego, czy prowadzisz małą firmę, czy zarządzasz dużym przedsiębiorstwem, dokładne i zorganizowane zarządzanie kosztami może znacząco wpłynąć na rentowność i sukces Twojej działalności.",
+    },
+    {
+      id: 7,
+      category: "Finanse",
+      date: "1.07.2024",
+      title:
+        "Jak zarządzać przepływem pieniężnym w małej firmie: strategie i narzędzie",
+      img: pic7,
+      shortV:
+        "Zarządzanie przepływem pieniędzy (cash flow) to kluczowy aspekt prowadzenia małej firmy. Efektywne zarządzanie cash flow pozwala utrzymać płynność finansową, unikać problemów z wypłacalnością i planować rozwój firmy. Poniżej przedstawiamy strategie oraz narzędzia, które pomogą małym przedsiębiorstwom skutecznie zarządzać przepływem pieniędzy.",
     },
   ];
 
