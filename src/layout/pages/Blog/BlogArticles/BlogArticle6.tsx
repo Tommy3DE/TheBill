@@ -115,13 +115,13 @@ Efektywne zarządzanie dokumentacją kosztową w jednoosobowej działalności go
       </div>
       <div className="flex flex-row justify-center">
         <a
-          href="https://www.facebook.com/sharer/sharer.php?u=http://onebill.com.pl/blog/1"
+          href="https://www.facebook.com/sharer/sharer.php?u=http://onebill.com.pl/blog/6"
           target="_blank"
         >
           <img src={fb} alt="Udostępnij na Facebooku" className=" h-16" />
         </a>
         <a
-          href="https://twitter.com/intent/tweet?url=http://onebill.com.pl/blog/1&text=Polecam"
+          href="https://twitter.com/intent/tweet?url=http://onebill.com.pl/blog/6&text=Polecam"
           target="_blank"
           className="mx-10"
         >
