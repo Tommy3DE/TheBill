@@ -269,8 +269,8 @@ const LoggedHome = () => {
             </div>
             <div className="bg-gray-300 rounded-lg shadow-2xl p-1 w-72 mt-24 lg:mx-1 h-24 flex flex-col justify-between">
               <p>Bieżący pakiet:</p>
-              <p className="font-bold">
-                {settingData ? settingData.package : "-"}
+              <p className="font-bold uppercase">
+                {settingData ? settingData.package.replace('Pakiet', '') : "-"}
               </p>
             </div>
             <div className=" bg-transparent rounded-lg shadow-2xl p-3 w-72 mt-24"></div>
