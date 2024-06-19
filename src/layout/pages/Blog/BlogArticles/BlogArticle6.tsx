@@ -62,29 +62,52 @@ Cyfrowe archiwa – skanowanie dokumentów i przechowywanie ich w formie elektro
           Rozważ wdrożenie oprogramowania do zarządzania kosztami, które automatycznie rejestruje i przetwarza dokumenty. Systemy te mogą zautomatyzować wiele rutynowych czynności, takich jak skanowanie faktur, przypisywanie kategorii kosztów i generowanie raportów, co zwiększa dokładność i oszczędza czas.
           </p>
           <p className="font-black text-[#1A9367] mt-5">
-            Brak Dostatecznej Rezerwy Kapitałowej
+          III. Bezpieczeństwo Danych          </p>
+          <p className=" font-black">
+          a. Ochrona Fizyczna        </p>
+          <p>
+          Jeśli przechowujesz dokumenty w formie papierowej, zadbaj o odpowiednie zabezpieczenia, takie jak zamykane szafki i pomieszczenia archiwalne. Dostęp do nich powinny mieć tylko upoważnione osoby.          </p>
+          <p className=" font-black">
+          b. Ochrona Cyfrowa
           </p>
           <p>
-            Błąd: Brak rezerw finansowych na niespodziewane wydatki lub
-            spowolnienie działalności. Rozwiązanie: Zbuduj "poduszkę finansową"
-            na wypadek nieprzewidzianych sytuacji. Idealnie, powinna ona
-            pokrywać koszty funkcjonowania firmy przez kilka miesięcy.
+          W przypadku archiwizacji cyfrowej, zabezpiecz dane przed nieautoryzowanym dostępem za pomocą silnych haseł, szyfrowania i regularnych kopii zapasowych. Pamiętaj również o aktualizowaniu oprogramowania i systemów zabezpieczeń, aby chronić się przed cyberatakami.          </p>
+          <p className="font-black text-[#1A9367] mt-5">
+          IV. Samodzielne Doskonalenie         </p>
+          <p>
+          W przypadku jednoosobowej działalności gospodarczej (JDG), to Ty jesteś odpowiedzialny za wszystkie aspekty zarządzania dokumentacją kosztową. Oto kilka wskazówek, które mogą Ci pomóc:
+          </p>
+          <p className=" font-black">
+          a. Konsultacje z Ekspertami
+          </p>
+          <p>
+          Nie wahaj się korzystać z pomocy ekspertów, takich jak księgowi czy doradcy podatkowi. Regularne konsultacje mogą pomóc w uniknięciu błędów i znalezieniu najlepszych praktyk dla Twojej działalności.
           </p>
           <p className="font-black text-[#1A9367] mt-5">
-            Niekorzystanie z Nowoczesnych Narzędzi Finansowych
+          V. Regularne Przeglądy i Samokontrola       </p>
+          <p>
+          Jako osoba prowadząca JDG, musisz regularnie przeglądać swoją dokumentację kosztową i samodzielnie kontrolować jej poprawność. Oto, jak możesz to robić skutecznie:
+          </p>
+          <p className=" font-black">
+          a.  Systematyczne Przeglądy
           </p>
           <p>
-            Poleganie na przestarzałych metodach księgowych, co może prowadzić
-            do błędów i opóźnień. Rozwiązanie: Wykorzystaj nowoczesne
-            oprogramowanie do zarządzania finansami, takie jak OneBill, które
-            oferuje automatyzację i lepszy przegląd finansów firmy.
+          Ustal harmonogram regularnych przeglądów dokumentacji, np. co tydzień lub co miesiąc. Taki systematyczny przegląd pozwoli Ci szybko wychwycić ewentualne błędy i upewnić się, że wszystkie dokumenty są na swoim miejscu.
+          </p><p className=" font-black">
+          b. Samodzielne Audyty
           </p>
-          <p className=" mt-5">
-            Zarządzanie finansami małej firmy wymaga świadomości i odpowiednich
-            narzędzi. Unikając tych typowych błędów i korzystając z nowoczesnych
-            rozwiązań, takich jak OneBill, możesz znacząco poprawić stabilność
-            finansową i potencjał wzrostu swojej firmy.
+          <p>
+          Co kilka miesięcy przeprowadzaj wewnętrzne audyty, aby upewnić się, że wszystkie wydatki są prawidłowo udokumentowane i zaksięgowane. Możesz stworzyć prostą listę kontrolną, która pomoże Ci upewnić się, że niczego nie pominąłeś.          </p><p className=" font-black">
+          c. Wykorzystanie Narzędzi Online
           </p>
+          <p>
+          Skorzystaj z dostępnych narzędzi online i aplikacji do zarządzania kosztami i księgowością. Wiele z nich oferuje funkcje automatycznego monitorowania i raportowania, które mogą znacznie ułatwić Twoją pracę i zapewnić zgodność z przepisami.          </p>
+          <p className="font-black text-[#1A9367] mt-5">
+          Podsumowanie
+</p>
+<p>
+Efektywne zarządzanie dokumentacją kosztową w jednoosobowej działalności gospodarczej wymaga samodyscypliny i regularnych działań. Inwestowanie w własne kompetencje, korzystanie z pomocy ekspertów oraz systematyczne przeglądy i audyty mogą znacząco zwiększyć efektywność zarządzania kosztami. Pamiętaj, że porządek i dokładność w dokumentacji kosztowej to podstawa sukcesu Twojego biznesu.
+</p>
         </div>
       </div>
       <div className="text-center my-14 font-playFair font-black text-gray-700 text-3xl">
@@ -129,14 +152,12 @@ Cyfrowe archiwa – skanowanie dokumentów i przechowywanie ich w formie elektro
         <div className=" shadow-2xl flex flex-col justify-between w-1/3">
           <img src={pic7} alt="thumb2" />
           <p className="text-lg font-black mx-[3%] my-5">
-            Automatyzacja procesów biznesowych w firmach{" "}
-          </p>
+          Jak zarządzać przepływem pieniężnym w małej firmie: strategie i narzędzie          </p>
           <p className="mx-[3%] ">
-            W erze cyfryzacji, automatyzacja procesów finansowych stała się
-            kluczowym elementem efektywnego zarządzania małą firmą.
+          W dzisiejszym szybko rozwijającym się świecie biznesu, cyfryzacja stała się kluczowa dla efektywności i wzrostu. 
           </p>
           <Link
-            to={`/blog/2`}
+            to={`/blog/7`}
             className="flex flex-row items-center font-bold mt-5 hover:text-green-700 border-t-2 py-3 mx-[3%]"
           >
             Czytaj dalej <FaArrowRight className="ml-1" />
