@@ -326,7 +326,7 @@ const MthPage = () => {
   };
 
   const handleInvSend = () => {
-    const url = "https://api.onebill.com.pl/api/invoices";
+    const url = "https://api.onebill.com.pl/api/invoice";
     const today = new Date();
     const formattedDate = today.toISOString();
 
