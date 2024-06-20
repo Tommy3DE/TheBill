@@ -18,6 +18,7 @@ const PaymentPage = () => {
     setLoading(true);
 
     setTimeout(() => {
+      console.log(block)
       setLoading(false);
     }, 300000);
 
