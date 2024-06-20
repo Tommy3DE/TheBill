@@ -559,7 +559,8 @@ const NewUser = () => {
                         onClick={() => setVis((prev) => !prev)}
                       />
                       <span className="text-xl">
-                        Akceptuję regulamin płatności
+                        Akceptuję 
+                        <a href="https://tpay.com/user/assets/files_for_download/regulamin.pdf" target="_blank">regulamin płatności</a>
                       </span>
                     </div>
 
