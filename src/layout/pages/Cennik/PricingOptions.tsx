@@ -23,9 +23,6 @@ export type PricingTile = {
   point8?: string;
 };
 
-interface PricingOptionsProps {
-  yearly: boolean;
-}
 export const pricing: PricingTile[] = [
   {
     id: 1,
@@ -93,7 +90,7 @@ export const pricing: PricingTile[] = [
   },
 ];
 
-const PricingOptions = ({ yearly }: PricingOptionsProps) => {
+const PricingOptions = () => {
   return (
     <section className=" items-center lg:mx-[8%] font-poppins mt-10">
       <div className="flex flex-col lg:flex-row justify-evenly">
@@ -136,7 +133,7 @@ const PricingOptions = ({ yearly }: PricingOptionsProps) => {
                     : ""
                 }`}
               >
-                {yearly !== true ? tile.priceMth : tile.priceYrl} zł
+                {tile.priceMth}
               </h1>
               <h3 className="mt-5 font-black text-2xl text-center ">
                 {tile.text}
