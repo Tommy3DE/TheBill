@@ -26,7 +26,6 @@ interface FormValues {
 const NewUser = () => {
   const [showPartTwo, setShowPartTwo] = useState(false);
   const [changePlan, setChangePlan] = useState(false);
-  const [yearly, setYearly] = useState(false);
   const [vis, setVis] = useState(false);
   const { setFormData, formData } = useFormData();
 
@@ -116,7 +115,7 @@ const NewUser = () => {
       industry: formik.values.industry,
       package: selectedPlan ? selectedPlan.title : "",
       wants_invoice: formik.values.wants_invoice,
-      yearly: yearly,
+      yearly: false,
     };
 
     fetch(apiUrl, {
@@ -148,9 +147,7 @@ const NewUser = () => {
       });
   };
 
-  const handleClick = () => {
-    setYearly((prev) => !prev);
-  };
+
 
   return (
     <>
@@ -484,33 +481,18 @@ const NewUser = () => {
                           <h1 className="text-2xl font-bold text-[#1A9367]">
                             Razem:
                           </h1>
-                          {!yearly && (
+
                             <h1 className="text-2xl font-bold text-[#1A9367]">
                               <span className="line-through">
                                 {selectedPlan.priceMth}
                               </span>{" "}
                               0 zł
                             </h1>
-                          )}
-                          {yearly && (
-                            <h1 className="text-2xl font-bold text-[#1A9367]">
-                              {selectedPlan.priceYrl}
-                            </h1>
-                          )}
                         </div>
-                        {!yearly && (
+
                           <h1 className="text-xl text-center text-red-600 ">
                             14 dni gratis
                           </h1>
-                        )}
-                        <div className="text-2xl flex flex-row justify-center items-center ">
-                          <input
-                            type="checkbox"
-                            onClick={handleClick}
-                            className="w-8 h-8"
-                          />
-                          <span>Plan roczny</span>
-                        </div>
                       </div>
 
                       <div className="lg:w-2/3 rounded-xl flex flex-col bg-white mt-5 lg:mt-0">
