@@ -54,6 +54,12 @@ const BlogArticle4 = lazy(
 const BlogArticle5 = lazy(
   () => import("./layout/pages/Blog/BlogArticles/BlogArticle5")
 );
+const BlogArticle6 = lazy(
+  () => import("./layout/pages/Blog/BlogArticles/BlogArticle6")
+);
+const BlogArticle7 = lazy(
+  () => import("./layout/pages/Blog/BlogArticles/BlogArticle7")
+);
 
 const LoggedUserHome = lazy(() => import("./loggedUser/LoggedUserHome"));
 const Settings = lazy(() => import("./loggedUser/Settings/Settings"));
@@ -104,6 +110,8 @@ function App() {
               <Route path="/blog/3" element={<BlogArticle3 />} />
               <Route path="/blog/4" element={<BlogArticle4 />} />
               <Route path="/blog/5" element={<BlogArticle5 />} />
+              <Route path="/blog/6" element={<BlogArticle6 />} />
+              <Route path="/blog/7" element={<BlogArticle7 />} />
               <Route path="/login" element={<Login />} />
               <Route path="/o_nas" element={<ONas />} />
               <Route path="/regulamin" element={<Regulamin />} />
