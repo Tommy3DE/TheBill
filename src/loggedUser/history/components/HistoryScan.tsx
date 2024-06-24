@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 interface ScanHistoryItem {
   id: number;
   date: string;
-  invoice_count: number;
+  found_count: number;
   deleted_count: number;
   added_count: number;
   limit: number;
@@ -64,7 +64,7 @@ const HistoryScan = () => {
               <th className="px-4 py-2 text-center">Liczba faktur</th>
               <th className="px-4 py-2 text-center">Usunięte dokumenty</th>
               <th className="px-4 py-2 text-center">Dodane dokumenty</th>
-              <th className="px-4 py-2 text-center">Pozostało skanowań</th>
+              <th className="px-4 py-2 text-center">Liczba skanowań</th>
             </tr>
           </thead>
           <tbody>
@@ -72,7 +72,7 @@ const HistoryScan = () => {
               <tr key={item.id}>
                 <td className="px-4 py-2 text-center">{index + 1}</td>
                 <td className="px-4 py-2 text-center">{formatDate(item.date)}</td>
-                <td className="px-4 py-2 text-center">{item.invoice_count}</td>
+                <td className="px-4 py-2 text-center">{item.found_count}</td>
                 <td className="px-4 py-2 text-center">{item.deleted_count}</td>
                 <td className="px-4 py-2 text-center">{item.added_count}</td>
                 <td className="px-4 py-2 text-center">{item.limit}</td>
