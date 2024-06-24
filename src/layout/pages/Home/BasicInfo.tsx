@@ -43,7 +43,7 @@ const BasicInfo = () => {
     <section className=" mt-10 items-center lg:mx-[8%] font-poppins">
       <div className="bg-[#83F9CE] flex flex-col p-6 rounded-lg lg:w-[60%] mx-auto text-center py-8 animate-pulse ">
         <h3 className="text-3xl font-bold font-playFair ">
-          Wypróbuj za darmo przez okres 30 dni!
+          Wypróbuj za darmo przez okres 14 dni!
         </h3>
       </div>
       <div className=" flex flex-col justify-center">

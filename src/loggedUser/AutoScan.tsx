@@ -11,6 +11,10 @@ const AutoScan = () => {
     value: val
   };
 
+  const cancelData = {
+    value: 0
+  }
+
   const autoscanHandler = () => {
     fetch("https://api.onebill.com.pl/api/auto_scan", {
       method: "POST",
@@ -32,7 +36,30 @@ const AutoScan = () => {
           autoClose: 7000,
         });
       }
-      
+    })
+  }
+
+  const handleCancel = () => {
+    fetch("https://api.onebill.com.pl/api/auto_scan", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(cancelData)
+    })
+    .then(response => {
+      if (response.ok) {
+        toast.success("Autoscan anulowany pomyślnie", {
+          position: "top-right",
+          autoClose: 7000,
+        });
+      }else{
+        toast.error("Błąd poczas anulowania autoscan'u", {
+          position: "top-right",
+          autoClose: 7000,
+        });
+      }
     })
   }
   return (
@@ -68,6 +95,9 @@ const AutoScan = () => {
           <ReturnBtn route="/logged" />
           <button className="font-playFair text-3xl font-black text-center items-center text-white bg-green-500 px-10 py-4 rounded-2xl hover:bg-green-600 lg:ml-5 mb-5 lg:mb-0 uppercase" onClick={autoscanHandler}>
             Zaakeceptuj
+          </button>
+          <button className="font-playFair text-3xl font-black text-center items-center text-white bg-red-500 px-10 py-4 rounded-2xl hover:bg-red-600 lg:ml-5 mb-5 lg:mb-0 uppercase" onClick={handleCancel}>
+            Anuluj 
           </button>
         </div>
       </div>
