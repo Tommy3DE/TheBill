@@ -541,8 +541,10 @@ const NewUser = () => {
                         onClick={() => setVis((prev) => !prev)}
                       />
                       <span className="text-xl">
-                        Akceptuję 
-                        <a href="https://tpay.com/user/assets/files_for_download/regulamin.pdf" target="_blank">regulamin płatności</a>
+                        Akceptuję {' '}
+                        <a href="https://tpay.com/user/assets/files_for_download/regulamin.pdf" target="_blank" className="underline text-blue-500 font-black hover:text-violet-700">regulamin płatności</a>
+                        {' '} oraz {' '}
+                        <a href="https://www.onebill.com.pl/regulamin" target="_blank" className="underline text-blue-500 font-black hover:text-violet-700">regulamin serwisu</a>
                       </span>
                     </div>
 
