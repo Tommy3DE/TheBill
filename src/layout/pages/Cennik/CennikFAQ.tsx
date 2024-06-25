@@ -89,16 +89,6 @@ const CennikFAQ = () => {
           </>
         ),
       },
-      {
-        id: 7,
-        title: "Czy podane ceny są cenami netto czy brutto?",
-        text: (
-          <>
-            Plan roczny już zawiera zniżkę - użytkownik płaci za 10 miesięcy a dostaje 12.
-Jeśli chodzi o akcje promocyjne, na przestrzeni roku organizujemy akcje promocyjne, o których nasi użytkownicy będą informowani za pośrednictwem maila oraz notyfikacji systemowych (tylko zarejestrowani użytkownicy)
-          </>
-        ),
-      },
   ];
 
   return (
