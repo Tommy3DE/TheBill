@@ -7,14 +7,15 @@ const PricingIntro = () => {
 
   return (
     <section className="lg:mt-40 mt-12">
-      <img src={bg} alt="bg" className="w-full" />
-      <h1 className=" font-black text-6xl font-playFair text-center my-12">
+      <h1 className=" font-black text-6xl font-playFair text-center mt-10">
         Ile kosztuje osobisty asystent{" "}
         <span className="text-[#1A9367]">OneBill?</span>
       </h1>
-      <h3 className="text-gray-400 font-poppins text-center text-2xl">
+      <h3 className="text-gray-400 font-poppins text-center text-2xl mb-10">
         Znajdź plan najlepiej dopasowany do Twoich potrzeb biznesowych.
       </h3>
+      <img src={bg} alt="bg" className="w-full" />
+
       <div className="flex lg:flex-row flex-col justify-center items-center">
         <img src={image} alt="finance_bro" className="" />
         <div className="flex flex-col lg:w-1/4">
