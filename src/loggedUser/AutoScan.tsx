@@ -1,12 +1,14 @@
 import ReturnBtn from "../components/ReturnBtn";
 import SlimNav from "../layout/SlimNav";
 import gruop from "../assets/icons/Group.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const AutoScan = () => {
   const accessToken = localStorage.getItem("accessToken");
   const [val, setVal] = useState('1')
+  const [currVal, setCurrVal] = useState(null)
+
   const reqData = {
     value: val
   };
@@ -14,6 +16,25 @@ const AutoScan = () => {
   const cancelData = {
     value: 0
   }
+
+  useEffect(()=>{
+    fetch("https://api.onebill.com.pl/api/auto_scan", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCurrVal(data)
+      });
+      console.log(currVal)
+  },[])
 
   const autoscanHandler = () => {
     fetch("https://api.onebill.com.pl/api/auto_scan", {
