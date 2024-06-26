@@ -294,15 +294,30 @@ const MthPage = () => {
         console.error("Error:", error);
       });
   };
-  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleFileChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const selectedFiles = event.target.files;
+    const allowedFormats = ['application/pdf', 'image/jpeg', 'image/jpg'];
+  
     if (selectedFiles) {
       const fileArray = Array.from(selectedFiles);
-      setFiles((prevFiles) => [...prevFiles, ...fileArray]);
-
-      const base64ArrayPromises = fileArray.map((file) => {
+      const validFiles = fileArray.filter(file => allowedFormats.includes(file.type));
+      const invalidFiles = fileArray.filter(file => !allowedFormats.includes(file.type));
+  
+      if (invalidFiles.length > 0) {
+        toast.error("Nie można dodać plików w tym formacie", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+  
+      setFiles((prevFiles) => [...prevFiles, ...validFiles]);
+  
+      const base64ArrayPromises = validFiles.map((file) => {
         return new Promise<{
           name: string;
           content: string | ArrayBuffer | null;
@@ -315,7 +330,7 @@ const MthPage = () => {
           reader.readAsDataURL(file);
         });
       });
-
+  
       Promise.all(base64ArrayPromises).then((base64Contents) => {
         setBase64Files((prevBase64Files) => [
           ...prevBase64Files,
@@ -324,6 +339,7 @@ const MthPage = () => {
       });
     }
   };
+  
 
   const handleInvSend = () => {
     const url = "https://api.onebill.com.pl/api/invoice";
