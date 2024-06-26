@@ -7,7 +7,6 @@ const SettingsAcc = () => {
   const accessToken = localStorage.getItem("accessToken");
 
   const [accName, setAccName] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     fetch("https://api.onebill.com.pl/api/bookkeeper", {
@@ -43,13 +42,13 @@ const SettingsAcc = () => {
           type="text"
           className="lg:w-1/4 w-full bg-gray-300 text-black rounded-full py-2 my-10 text-center text-2xl  tracking-wider"
           value={accName}
-          disabled={!isEditing}
+          onChange={(e)=>setAccName(e.target.value)}
         />
         <button
           className="uppercase font-playFair text-2xl px-10 py-2 text-white bg-[#1A9367] mb-12 rounded-xl"
-          onClick={() => setIsEditing((prev) => !prev)}
+          onClick={()=>console.log('dfupa')}
         >
-          Edytuj
+          Zapisz Zmiany
         </button>
         <div className="flex justify-center">
           <ReturnBtn route="/logged" />

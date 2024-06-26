@@ -110,16 +110,19 @@ const AutoScan = () => {
         </h1>
         <h1 className="lg:text-4xl text-3xl text-center mb-10 font-bold">
         Ustawiona częstotliwość autscanu:
-          <span className="ml-2">
-            <select className="bg-green-400 rounded text-black" disabled={true} value={currVal}>
-              <option value="0">-</option>
-              <option value="1">codziennie</option>
-              <option value="2">co tydzień</option>
-              <option value="3">co 2 tygodnie</option>
-              <option value="4">na koniec miesiąca</option>
-              
-            </select>
-          </span>{" "}
+        <span className="ml-2">
+            <input
+              className="bg-green-300 rounded text-black text-left p-1"
+              type="text"
+              value={
+                currVal === '1' ? 'codziennie' :
+                currVal === '2' ? 'co tydzień' :
+                currVal === '3' ? 'co 2 tygodnie' :
+                currVal === '4' ? 'na koniec miesiąca' : '-'
+              }
+              disabled
+            />
+          </span>
         </h1>
         <h2 className="text-xl text-gray-700 text-center tracking-wider">
           Po zakończonym skanowaniu, prześlemy do Ciebie maila, że gotowy skan
