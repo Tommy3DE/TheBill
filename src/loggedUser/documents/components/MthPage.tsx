@@ -271,7 +271,7 @@ const MthPage = () => {
       .then((response) => {
         if (!response.ok) {
           if (response.status === 409) {
-            toast.error("Podana faktura została już dodana", {
+            toast.error("Błąd", {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -631,8 +631,8 @@ const MthPage = () => {
             className="bg-white p-4 rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="font-bold text-3xl">Wyślij do biura księgowego</h2>
-            <div style={{ visibility: "visible", opacity: 1 }} className="my-5">
+            <h2 className="font-bold text-3xl text-center">Wyślij do biura księgowego</h2>
+            <div style={{ visibility: "visible", opacity: 1 }} className="my-5 flex flex-col justify-between items-center">
               <p className="text-xl my-2">
                 Wybierz format w jakim chcesz wysłać pliki:
               </p>
@@ -644,7 +644,7 @@ const MthPage = () => {
                     !wantsZip
                       ? "scale-110 text-green-700"
                       : "scale-90 text-gray-400"
-                  } cursor-pointer`}
+                  } cursor-pointer mr-5`}
                 />
                 <GrDocumentZip
                   onClick={handleCheckboxChange}
@@ -655,6 +655,7 @@ const MthPage = () => {
                   } cursor-pointer`}
                 />
               </div>
+              <p className="text-gray-500 italic">Jeżeli Twoja skrzynka nie otworzyła się automatycznie, prawdopodobnie <br/>masz otwartego e-maila w tle. Sprawdź wersje robocze.</p>
             </div>
             <div className="flex justify-around mt-4">
               <button
