@@ -7,6 +7,19 @@ const SettingsAcc = () => {
   const accessToken = localStorage.getItem("accessToken");
 
   const [accName, setAccName] = useState("");
+  const handleChangeAcc = () => {
+    fetch("https://api.onebill.com.pl/api/bookkeeper", {
+      method: "Post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({
+        name: 'Księgowy',
+        email: accName,
+      }),
+    })
+  }
 
   useEffect(() => {
     fetch("https://api.onebill.com.pl/api/bookkeeper", {
@@ -46,7 +59,7 @@ const SettingsAcc = () => {
         />
         <button
           className="uppercase font-playFair text-2xl px-10 py-2 text-white bg-[#1A9367] mb-12 rounded-xl"
-          onClick={()=>console.log('dfupa')}
+          onClick={handleChangeAcc}
         >
           Zapisz Zmiany
         </button>
