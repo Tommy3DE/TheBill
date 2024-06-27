@@ -49,7 +49,7 @@ export const pricing: PricingTile[] = [
     priceMth: 69.99,
     priceYrl: 699.99,
     title: "Pakiet Premium",
-    text: "Doświadczony przedsiębiorca",
+    text: "Biegły przedsiębiorca",
     opis: (
       <>
         <span className="font-black">Pakiet Premium,</span> kierowany jest do
