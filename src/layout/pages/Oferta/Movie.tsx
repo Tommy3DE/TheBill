@@ -20,7 +20,7 @@ const Movie = () => {
                 minHeight: "15px",
                 maxHeight: "60vh", 
               }}
-              src="https://www.youtube.com/embed/3dipU_Yt9tg?si=ZExe3bame-nAUmoe" // Upewnij się, że link jest poprawny
+              src="https://www.youtube.com/embed/3dipU_Yt9tg?si=ZExe3bame-nAUmoe"
               title="Onebill software"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
