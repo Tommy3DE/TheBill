@@ -19,15 +19,23 @@ const Footer = () => {
               <li>O Nas</li>
             </Link>
             <Link to="/pomoc" className="ml-8">
-              <li >Pomoc</li>
+              <li>Pomoc</li>
             </Link>
           </ul>
           <div className="lg:flex lg:flex-row hidden text-2xl">
-            <FaFacebook />
-            <FaInstagram className="mx-2" />
-            <FaXTwitter />
-            <FaLinkedin className="mx-2" />
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            <a href="https://www.facebook.com/profile.php?id=61557439187905">
+              <FaFacebook />
+            </a>
+            <a href="https://www.instagram.com/one_bill_/" className="mx-2">
+              <FaInstagram />
+            </a>
+            <a href="https://x.com/One_Bill_">
+              <FaXTwitter />
+            </a>
+            <a href="https://www.linkedin.com/company/onebill-kvxds" className="mx-2" >
+              <FaLinkedin/>
+            </a>
+            <a href="https://www.youtube.com/channel/UCMotQYkeghBG7klY4QavVzg">
               <FaYoutube />
             </a>
           </div>
