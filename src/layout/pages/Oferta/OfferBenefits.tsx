@@ -67,9 +67,24 @@ const OfferBenefits = () => {
   return (
     <div className="mx-[8%] flex flex-col">
       {benefits.map((benefit) => (
-        <div className="flex lg:flex-row flex-col lg:items-start lg:justify-start items-center justify-center mb-10" key={benefit.id}>
-          <img src={benefit.pic} alt={benefit.title} className="w-[150px] h-[150px]" />
+        <div
+          className="flex lg:flex-row flex-col lg:items-start lg:justify-start items-center justify-center mb-10"
+          key={benefit.id}
+        >
+          <img
+            src={benefit.pic}
+            alt={benefit.title}
+            className="w-[150px] h-[150px]"
+          />
           <div className="ml-10">
+            {benefit.id === 7 ? (
+              <div className="w-full">
+                <div className="bg-violet-500 rounded-full text-white lg:w-2/12 w-1/2 py-1 text-center uppercase font-bold ">
+                Już Wkrótce
+              </div>
+              </div>
+              
+            ) : null}
             <h1 className="text-3xl font-playFair text-[#1A9367] font-black tracking-wider">
               {benefit.title}
             </h1>
@@ -78,8 +93,16 @@ const OfferBenefits = () => {
             </p>
             {benefit.miniPic1 !== undefined && (
               <div className="flex flex-row mt-2">
-                <img src={benefit.miniPic1} alt="Mini Picture 1" className="h-16 w-18 mr-5" />
-                <img src={benefit.miniPic2} alt="Mini Picture 2" className="h-16 w-18" />
+                <img
+                  src={benefit.miniPic1}
+                  alt="Mini Picture 1"
+                  className="h-16 w-18 mr-5"
+                />
+                <img
+                  src={benefit.miniPic2}
+                  alt="Mini Picture 2"
+                  className="h-16 w-18"
+                />
               </div>
             )}
           </div>
@@ -87,7 +110,6 @@ const OfferBenefits = () => {
       ))}
     </div>
   );
-  
 };
 
 export default OfferBenefits;
