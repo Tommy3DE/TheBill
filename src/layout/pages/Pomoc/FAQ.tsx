@@ -128,7 +128,7 @@ const FAQ = () => {
     {
       id: 14,
       title: "Czy OneBill oferuje wersję demonstracyjną lub okres próbny?",
-      text: (<>Wychodząc naprzeciw naszym użytkownikom, oferujemy 30 dniowy darmowy okres próbny. W trakcie trwania tego okresu, użytkownik ma pełny dostęp do wybranego przez siebie pakietu. Po tym okresie, zaczynamy naliczać opłatę za użytkowanie aplikacji.</>),
+      text: (<>Wychodząc naprzeciw naszym użytkownikom, oferujemy 14 dniowy darmowy okres próbny. W trakcie trwania tego okresu, użytkownik ma pełny dostęp do wybranego przez siebie pakietu. Po tym okresie, zaczynamy naliczać opłatę za użytkowanie aplikacji.</>),
     },
     {
       id: 15,

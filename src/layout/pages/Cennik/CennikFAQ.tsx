@@ -59,7 +59,7 @@ const CennikFAQ = () => {
         title: "Czy OneBill jest dostępny za darmo?",
         text: (
           <>
-            Nie, jednak oferujemy naszym klientom 30- dniowy darmowy okres próbny, podczas którego będą mieli pełen dostęp do wybranego przez siebie pakietu. Po tym okresie zacznie się płatna subskrypcja.
+            Nie, jednak oferujemy naszym klientom 14 - dniowy darmowy okres próbny, podczas którego będą mieli pełen dostęp do wybranego przez siebie pakietu. Po tym okresie zacznie się płatna subskrypcja.
           </>
         ),
       },
