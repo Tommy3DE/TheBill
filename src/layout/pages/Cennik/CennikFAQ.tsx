@@ -35,15 +35,7 @@ const CennikFAQ = () => {
       title: "Jakie są dostępne metody płatności?",
       text: (
         <>
-          Płatności na naszej witrynie obsługuje firma PayU. Nasi klienci mają
-          następujące formy płatności do wyboru:
-          <br />
-          Przelew tradycyjny,
-          <br />
-          Kartą płatniczą,
-          <br />
-          BLIK,
-          <br /> ApplePay, GooglePay.
+          Płatności na naszej stronie obsługuje firma t-pay. W ofercie mamy płatności kartą płatniczą.
         </>
       ),
     },
