@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import finger from "../../../assets/icons/finger.png";
 import main from "../../../assets/main.png";
 
@@ -13,7 +14,7 @@ const Hero = () => {
           </h1>
           <div className="flex lg:flex-row flex-col my-14 justify-between mx-1">
             <button className="bg-[#B4FFDB] border-2 rounded-full font-playFair text-black font-bold lg:text-3xl text-2xl py-2 px-6 hover:text-white hover:scale-105 flex flex-row ">
-              <span> SPRAWDŹ ONEBILL! </span>
+              <Link to='/funkcje'> SPRAWDŹ ONEBILL! </Link>
               <img src={finger} alt="finger" className="ml-5" />
             </button>
           </div>

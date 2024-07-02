@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import mail from "../../../assets/usageIcons/mail.png";
 import pc from "../../../assets/usageIcons/pc.png";
 import secure from "../../../assets/usageIcons/secure.png";
+import { Link } from "react-router-dom";
 
 type Info = {
   id: number;
@@ -42,9 +43,11 @@ const BasicInfo = () => {
   return (
     <section className=" mt-10 items-center lg:mx-[8%] font-poppins">
       <div className="bg-[#83F9CE] flex flex-col p-6 rounded-lg lg:w-[60%] mx-auto text-center py-8 animate-pulse ">
-        <h3 className="text-3xl font-bold font-playFair ">
+        <Link to='/newUser'><h3 className="text-3xl font-bold font-playFair ">
           Wypróbuj za darmo przez okres 14 dni!
         </h3>
+        </Link>
+        
       </div>
       <div className=" flex flex-col justify-center">
         {infoTiles.map((tile) => (
