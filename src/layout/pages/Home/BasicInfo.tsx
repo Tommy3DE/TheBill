@@ -31,10 +31,8 @@ const BasicInfo = () => {
       title: "Bezpieczeństwo i prywatność",
       text: (
         <>
-          Twoje dane są dla nas bardzo ważne, dlatego też zapewniamy najwyższy
-          poziom bezpieczeństwa i prywatności Twoich informacji. Więcej
-          informacji znajdziesz w zakładce{" "}
-          {<span className=" underline uppercase font-extrabold">OFERTA</span>}.
+          Twoje dane są dla nas bardzo ważne, dlatego też zapewniamy najwyższy poziom bezpieczeństwa.
+Pozytywnie przeszliśmy audyt bezpieczeństwa oficjalnego partnera Google - <a href="https://tacsecurity.com/#" className="font-bold hover:text-green-700 cursor-pointer" target="_blank">TAC Security</a>.
         </>
       ),
     },
