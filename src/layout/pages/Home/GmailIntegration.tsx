@@ -19,7 +19,7 @@ const GmailIntegration = () => {
         <div className="bg-[#1A9367] h-1 w-[45%] "/>
       </div>
       <div className="flex justify-evenly mb-10">
-        <img src={tac} alt="tac1" className="h-40"/>
+        <img src={tac} alt="tac1" className="h-32"/>
         <img src={tac2} alt="tac2" className="h-40"/>
       </div>
       

@@ -9,8 +9,8 @@ import ThreeRecInfo from "./Home/ThreeRecInfo";
 import AddBenefits from "./Home/AddBenefits";
 import PolishEnt from "./Home/PolishEnt";
 import FiveSteps from "./Home/FiveSteps";
-import SecurityInfo from "./Home/SecurityInfo";
 import FadeInWhenVisible from "../../components/FadeInWhenVisible";
+import NewInfo from "./Home/NewInfo";
 
 const Home = () => {
   return (
@@ -24,7 +24,7 @@ const Home = () => {
         <BasicInfo />
         </FadeInWhenVisible>
         <GmailIntegration />
-        <SecurityInfo />
+        <NewInfo/>
         <FadeInWhenVisible>
           <ThreeRecInfo />
         </FadeInWhenVisible>
