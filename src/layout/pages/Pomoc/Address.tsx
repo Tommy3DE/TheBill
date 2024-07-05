@@ -1,5 +1,5 @@
 import logo from  '../../../assets/logo.png'
-
+import verified from '../../../assets/verified.png'
 const Address = () => {
   return (
     <>
@@ -11,6 +11,7 @@ const Address = () => {
             <h3 className='text-xl font-bold text-gray-600'>Szybko, łatwo i skutecznie.</h3>
             <h3 className='text-xl text-gray-500 my-2'>Wydatki firmowe pod kontrolą!</h3>
             <h4 className='text-lg text-gray-400 font-extrathin'>Nie trać więcej czasu na papierkową robotę - usprawnij procesy w swojej firmie już dziś.</h4>
+            <img src={verified} alt="verified" className='w-72 mt-5'/>
         </div>
     </div>
     </>
