@@ -2,8 +2,11 @@ import pic1 from "../../../assets/newInfo/1.png";
 import pic2 from "../../../assets/newInfo/2.png";
 import pic3 from "../../../assets/newInfo/3.png";
 import pic4 from "../../../assets/newInfo/4.png";
-import way from  '../../../assets/newInfo/decission.png'
+import way from "../../../assets/newInfo/decission.png";
 import tick from "../../../assets/icons/tick.png";
+import logo from "../../../assets/logo.png";
+import info from '../../../assets/info.png'
+
 
 type InfoTile = {
   id: number;
@@ -41,43 +44,79 @@ const NewInfo = () => {
   ];
   return (
     <div>
-        <div className="flex lg:flex-row flex-col justify-center items-center mt-40">
-      {tiles.map((tile) => (
-        <div
-          className="flex flex-col lg:w-[20%] mx-5 justify-center items-between w-full"
-          key={tile.id}
-        >
-          <img src={tile.pic} alt="pic" className="w-72 mx-auto" />
-          <div>
-            <h2 className="text-center text-3xl font-playFair my-5 font-bold tracking-wider">
-              {tile.title}
-            </h2>
-            <h4 className="text-justify text-2xl font-playFair">{tile.text}</h4>
+      <div className="flex lg:flex-row flex-col justify-center items-center mt-40">
+        {tiles.map((tile) => (
+          <div
+            className="flex flex-col lg:w-[20%] mx-5 justify-center items-between w-full"
+            key={tile.id}
+          >
+            <img src={tile.pic} alt="pic" className="w-72 mx-auto" />
+            <div>
+              <h2 className="text-center text-3xl font-playFair my-5 font-bold tracking-wider">
+                {tile.title}
+              </h2>
+              <h4 className="text-justify text-2xl font-playFair">
+                {tile.text}
+              </h4>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-    
+        ))}
+      </div>
+
       <img src={way} alt="drogowskaz" className="mx-auto my-24" />
       <div className="flex flex-col w-7/12 justify-center items-center mx-auto">
         <div className="flex flex-row font-poppins text-3xl justify-center items-center -ml-36">
-            <img src={tick} alt="tick" className="mr-10"/>
-            <h3 className="leading-relaxed tracking-wider">
-                <span className="text-green-800 font-bold">Sam decydujesz</span>, które faktury mają zostać zapisane na Twoim koncie a które usunięte po każdym skanowaniu,
-            </h3>
+          <img src={tick} alt="tick" className="mr-10" />
+          <h3 className="leading-relaxed tracking-wider">
+            <span className="text-green-800 font-bold">Sam decydujesz</span>,
+            które faktury mają zostać zapisane na Twoim koncie a które usunięte
+            po każdym skanowaniu,
+          </h3>
         </div>
         <div className="flex flex-row-reverse font-poppins text-3xl justify-center items-center my-14 text-end -mr-36">
-            <img src={tick} alt="tick"  className="ml-10"/>
-            <h3  className="leading-relaxed tracking-wider">
-                <span className="text-green-800 font-bold">Masz pełną kontrolę </span>nad swoim kontem. W każdej chwili możesz usunąć lub pobrać fakturę,
-            </h3>
+          <img src={tick} alt="tick" className="ml-10" />
+          <h3 className="leading-relaxed tracking-wider">
+            <span className="text-green-800 font-bold">
+              Masz pełną kontrolę{" "}
+            </span>
+            nad swoim kontem. W każdej chwili możesz usunąć lub pobrać fakturę,
+          </h3>
         </div>
         <div className="flex flex-row font-poppins text-3xl justify-center items-center -ml-36">
-            <img src={tick} alt="tick" className="mr-10"/>
-            <h3 className="leading-relaxed tracking-wider">
-            Nasz program nie przechowuje<span className="text-green-800 font-bold"> żadnych innych plików </span>oprócz faktur (w formacie PDF, JPG lub JPEG).
-            </h3>
+          <img src={tick} alt="tick" className="mr-10" />
+          <h3 className="leading-relaxed tracking-wider">
+            Nasz program nie przechowuje
+            <span className="text-green-800 font-bold">
+              {" "}
+              żadnych innych plików{" "}
+            </span>
+            oprócz faktur (w formacie PDF, JPG lub JPEG).
+          </h3>
         </div>
+      </div>
+      <div className="lg:flex justify-center items-center hidden my-20 mx-[8%]">
+        <div className="bg-[#1A9367] h-1 w-[45%] "/>
+        <img src={logo} alt="logo" className="h-32" />
+        <div className="bg-[#1A9367] h-1 w-[45%] "/>
+      </div>
+      <div className="my-24">
+            <h1 className="font-poppins text-4xl font-light text-center">
+                Dbamy o Twoją  <span className="text-[#1A9367] font-black"> prywatność</span>
+            </h1>
+            <div className="flex flex-row">
+                <div className="flex flex-col ">
+                    <h2 className="text-3xl font-poppins font-black">Nasz algorytm:</h2>
+                    <p>
+                        <img src={info} alt="info" /><span className="font-black underline">nie czyta</span> treści wiadomości e-mail
+                    </p>
+                    <p>
+                    <img src={info} alt="info" /><span className="font-black underline">nie wchodzi do wiadomości</span> mailowych a jedynie sprawdza ich załączniki. 
+                    </p>
+                    <p>
+                    <img src={info} alt="info" /><span className="font-black underline">wyszukuje załącznik,</span> które są fakturami. 
+                    </p>
+                </div>
+            </div>
       </div>
     </div>
   );
