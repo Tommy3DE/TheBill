@@ -99,7 +99,7 @@ const NewInfo = () => {
         <img src={logo} alt="logo" className="h-32" />
         <div className="bg-[#1A9367] h-1 w-[45%] "/>
       </div>
-      <div className="my-24">
+      <div className="my-36">
             <h1 className="font-poppins text-4xl font-light text-center">
                 Dbamy o Twoją  <span className="text-[#1A9367] font-black"> prywatność</span>
             </h1>
