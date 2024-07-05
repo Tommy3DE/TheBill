@@ -18,12 +18,12 @@ const GmailIntegration = () => {
         <img src={logo} alt="logo" className="h-32" />
         <div className="bg-[#1A9367] h-1 w-[45%] "/>
       </div>
-      <div className="flex justify-evenly mb-10">
+      <div className="flex lg:flex-row flex-col justify-evenly mb-10">
         <img src={tac} alt="tac1" className="h-32"/>
         <img src={tac2} alt="tac2" className="h-40"/>
       </div>
       
-      <div className="mx-24 text-4xl px-5 py-8 rounded-3xl font-bold text-center font-playFair bg-[#E5FEF4] mb-10">
+      <div className="lg:mx-24 text-4xl px-5 py-8 rounded-3xl font-bold text-center font-playFair bg-[#E5FEF4] mb-10">
       Zaufaj aplikacji zweryfikowanej przez Google.
       </div>
 

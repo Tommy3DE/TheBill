@@ -5,8 +5,8 @@ import pic4 from "../../../assets/newInfo/4.png";
 import way from "../../../assets/newInfo/decission.png";
 import tick from "../../../assets/icons/tick.png";
 import logo from "../../../assets/logo.png";
-import info from '../../../assets/info.png'
-
+import info from '../../../assets/newInfo/info.png'
+import sec from '../../../assets/newInfo/sec.png'
 
 type InfoTile = {
   id: number;
@@ -64,17 +64,17 @@ const NewInfo = () => {
       </div>
 
       <img src={way} alt="drogowskaz" className="mx-auto my-24" />
-      <div className="flex flex-col w-7/12 justify-center items-center mx-auto">
-        <div className="flex flex-row font-poppins text-3xl justify-center items-center -ml-36">
-          <img src={tick} alt="tick" className="mr-10" />
+      <div className="flex flex-col lg:w-7/12 justify-center items-center lg:mx-auto mx-5">
+        <div className="flex lg:flex-row flex-col font-poppins text-xl lg:text-3xl justify-center items-center lg:-ml-36">
+          <img src={tick} alt="tick" className="lg:mr-10" />
           <h3 className="leading-relaxed tracking-wider">
             <span className="text-green-800 font-bold">Sam decydujesz</span>,
             które faktury mają zostać zapisane na Twoim koncie a które usunięte
             po każdym skanowaniu,
           </h3>
         </div>
-        <div className="flex flex-row-reverse font-poppins text-3xl justify-center items-center my-14 text-end -mr-36">
-          <img src={tick} alt="tick" className="ml-10" />
+        <div className="flex lg:flex-row-reverse flex-col font-poppins text-xl lg:text-3xl justify-center items-center my-14 lg:text-end lg:-mr-36">
+          <img src={tick} alt="tick" className="lg:ml-10" />
           <h3 className="leading-relaxed tracking-wider">
             <span className="text-green-800 font-bold">
               Masz pełną kontrolę{" "}
@@ -82,8 +82,8 @@ const NewInfo = () => {
             nad swoim kontem. W każdej chwili możesz usunąć lub pobrać fakturę,
           </h3>
         </div>
-        <div className="flex flex-row font-poppins text-3xl justify-center items-center -ml-36">
-          <img src={tick} alt="tick" className="mr-10" />
+        <div className="flex lg:flex-row flex-col font-poppins text-xl lg:text-3xl justify-center items-center lg:-ml-36">
+          <img src={tick} alt="tick" className="lg:mr-10" />
           <h3 className="leading-relaxed tracking-wider">
             Nasz program nie przechowuje
             <span className="text-green-800 font-bold">
@@ -103,19 +103,20 @@ const NewInfo = () => {
             <h1 className="font-poppins text-4xl font-light text-center">
                 Dbamy o Twoją  <span className="text-[#1A9367] font-black"> prywatność</span>
             </h1>
-            <div className="flex flex-row">
-                <div className="flex flex-col ">
-                    <h2 className="text-3xl font-poppins font-black">Nasz algorytm:</h2>
-                    <p>
-                        <img src={info} alt="info" /><span className="font-black underline">nie czyta</span> treści wiadomości e-mail
+            <div className="flex lg:flex-row flex-col justify-center">
+                <div className="flex flex-col  justify-center">
+                    <h2 className="text-4xl mb-10 font-poppins font-black text-center lg:text-start my-10 lg:my-0">Nasz algorytm:</h2>
+                    <p className="flex flex-row items-center text-2xl">
+                        <img src={info} alt="info" className="mr-5" /><span><span className="font-black underline">nie czyta</span> treści wiadomości e-mail.</span>
                     </p>
-                    <p>
-                    <img src={info} alt="info" /><span className="font-black underline">nie wchodzi do wiadomości</span> mailowych a jedynie sprawdza ich załączniki. 
+                    <p className="flex flex-row items-center text-2xl my-10 lg:-ml-24">
+                    <img src={info} alt="info" className="mr-5"/><span><span className="font-black underline">nie wchodzi do wiadomości</span> mailowych a <br/>jedynie sprawdza ich załączniki.</span>
                     </p>
-                    <p>
-                    <img src={info} alt="info" /><span className="font-black underline">wyszukuje załącznik,</span> które są fakturami. 
+                    <p className="flex flex-row items-center text-2xl lg:-ml-12">
+                    <img src={info} alt="info" className="mr-5"/><span><span className="font-black underline">wyszukuje załącznik,</span> które są fakturami.</span>
                     </p>
                 </div>
+                <img src={sec} alt="sec"  className="h-[550px] "/>
             </div>
       </div>
     </div>
